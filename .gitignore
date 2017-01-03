@@ -1,3 +1,7 @@
+# ============= Istanbul =============
+# Coverage Folder
+coverage/
+
 # ============= NodeJS =============
 # Logs
 logs
