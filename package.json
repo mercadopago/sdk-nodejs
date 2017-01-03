@@ -1,0 +1,31 @@
+{
+  "name": "px-nodejs",
+  "version": "1.0.0",
+  "description": "Mercadopago SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mercadopago/px-nodejs.git"
+  },
+  "keywords": [
+    "api",
+    "mercadopago",
+    "checkout",
+    "payment",
+    "ipn",
+    "sdk",
+    "integration"
+  ],
+  "author": "Ariel Rey <ariel.rey@mercadolibre.com>",
+  "bugs": {
+    "url": "https://github.com/mercadopago/px-nodejs/issues"
+  },
+  "homepage": "https://github.com/mercadopago/px-nodejs#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
