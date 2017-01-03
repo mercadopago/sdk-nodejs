@@ -21,7 +21,7 @@ describe('Mercadopago SDK', function(){
 
     describe('Configure Method', function(){
         it('Check configuration is made', function(){
-            mp.configurations.configure({
+            mp.configure({
                 client_id: clientId,
                 client_secret: clientSecret
             });
