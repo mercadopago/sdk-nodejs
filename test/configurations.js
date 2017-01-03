@@ -50,6 +50,7 @@ describe('Configurations Module', function(){
                 assert.equal(configuration.getClientSecret(), clientSecret);
                 assert.equal(configuration.getAccessToken(), undefined);
                 assert.equal(configuration.sandbox, false);
+                assert.isString(configuration.getUserAgent());
             });
 
             it('Check access_token is set', function(){

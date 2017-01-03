@@ -1,0 +1,18 @@
+var requestManager = require('../request-manager');
+
+var payment = module.exports = {};
+
+payment.create = requestManager.create({
+    path: '/v1/payments',
+    method: 'POST'
+});
+
+payment.update = requestManager.create({
+    path: '/v1/payments/:id',
+    method: 'PUT'
+});
+
+payment.get = requestManager.create({
+    path: '/v1/payments/:id',
+    method: 'GET'
+});
