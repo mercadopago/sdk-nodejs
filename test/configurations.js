@@ -6,7 +6,8 @@ describe('Configurations Module', function(){
     var configuration,
         clientId = 'CLIENT_ID',
         clientSecret = 'CLIENT_SECRET',
-        accessToken = 'ACCESS_TOKEN';
+        accessToken = 'ACCESS_TOKEN',
+        refreshToken = 'REFRESH_TOKEN';
 
     //Get an instance of configuration on require
     beforeEach(function(){
@@ -111,6 +112,12 @@ describe('Configurations Module', function(){
             configuration.setAccessToken(accessToken);
 
             assert.equal(configuration.getAccessToken(), accessToken);
+        });
+
+        it('Check setRefreshToken', function(){
+            configuration.setRefreshToken(refreshToken);
+
+            assert.equal(configuration.getRefreshToken(), refreshToken);
         });
     });
 });
