@@ -1,6 +1,8 @@
 var requestManager = require('../request-manager');
 
-var payment = module.exports = {};
+var payment = module.exports = {
+    schema: require('../models/paymentModel')
+};
 
 payment.create = requestManager.create({
     path: '/v1/payments',
