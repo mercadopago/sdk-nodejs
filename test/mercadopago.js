@@ -13,8 +13,8 @@ describe('Mercadopago SDK', function(){
         mp = require('../index.js');
     });
 
-    describe('Modules Exists', function(){
-        it('Configuration module', function(){
+    describe('Check Modules', function(){
+        it('Configurations module', function(){
             assert.isObject(mp.configurations, 'Configurations module doesnt exists');
         });
 
