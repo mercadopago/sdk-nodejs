@@ -4,7 +4,8 @@ var chai = require('chai'),
     sinon = require('sinon');
 
 describe('Request Manager', function(){
-    var requestManager = require('../lib/request-manager'),
+    var requestLib = require('request'),
+        requestManager = require('../lib/request-manager'),
         configurationModule = require('../lib/configurations');
 
     describe('Dynamic method Creation', function(){
@@ -17,7 +18,7 @@ describe('Request Manager', function(){
             assert.throws(method, 'Callback is required');
         });
 
-        it('Invalid Params', function(){
+        it('Invalid Parameters', function(){
             var method = requestManager.create({
                 path: '/v1/payments/:id',
                 method: 'POST'
@@ -26,7 +27,7 @@ describe('Request Manager', function(){
             assert.throws(method.bind(method, function(){}), 'Expecting parameters: id');
         });
 
-        it('Error on token', function(){
+        it('Error generating the access_token', function(){
             var tokenErrorMessage = 'Error getting the token';
 
             var method = requestManager.create({
@@ -67,7 +68,7 @@ describe('Request Manager', function(){
                 requestManager.exec.restore();
             });
 
-            it('Without params', function(){
+            it('Without path parameters', function(){
                 var callback = sinon.spy();
 
                 var method = requestManager.create({
@@ -88,7 +89,7 @@ describe('Request Manager', function(){
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
             });
 
-            it('With params', function(){
+            it('With path parameters', function(){
                 var callback = sinon.spy();
 
                 var method = requestManager.create({
@@ -109,7 +110,7 @@ describe('Request Manager', function(){
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
             });
 
-            it('With payload', function(){
+            it('With payload (POST)', function(){
                 var callback = sinon.spy(),
                     testPayload = {
                         description: 'MercadoPago Sale'
@@ -166,7 +167,7 @@ describe('Request Manager', function(){
             configurationModule.getAccessToken.restore();
         });
 
-        it('Missing client_id and client_secret exception', function(){
+        it('Missing client_id and client_secret Error', function(){
             var callback = sinon.spy();
 
             requestManager.generateAccessToken(callback);
@@ -176,7 +177,7 @@ describe('Request Manager', function(){
             assert.equal(getTokenError.message, 'Must set client_id and client_secret');
         });
 
-        it('Get the access_token from MercadoPago', function(){
+        it('Get the access_token from MercadoPago API', function(){
             var callback = sinon.spy(),
                 clientId = 'CLIENT_ID',
                 clientSecret = 'CLIENT_SECRET';
@@ -203,7 +204,7 @@ describe('Request Manager', function(){
             configurationModule.getClientSecret.restore();
         });
 
-        it('Failing getting the access_token from MercadoPago', function(){
+        it('Failing getting the access_token from MercadoPago API', function(){
             var errorMessage = 'Error getting token';
 
             //Restore the exec on beforeEach
@@ -253,7 +254,7 @@ describe('Request Manager', function(){
             configurationModule.setAccessToken('');
         });
 
-        it('Refresh token doesnt set', function(){
+        it('Missing refres_token property', function(){
             var callback = sinon.spy();
 
             sinon.stub(configurationModule, 'getRefreshToken').returns('');
@@ -269,7 +270,7 @@ describe('Request Manager', function(){
             configurationModule.getRefreshToken.restore();
         });
 
-        it('Get new access_token from MercadoPago', function(){
+        it('Get access_token from MercadoPago API', function(){
             var callback = sinon.spy(),
                 accessToken = 'ACCESS_TOKEN',
                 refreshToken = 'REFRESH_TOKEN';
@@ -295,7 +296,7 @@ describe('Request Manager', function(){
             configurationModule.getRefreshToken.restore();
         });
 
-        it('Failing refreshing the previous access_token', function(){
+        it('Failing refreshing the access_token', function(){
             var errorMessage = 'Error refreshing token';
 
             //Restore the exec on beforeEach
@@ -341,7 +342,7 @@ describe('Request Manager', function(){
             configurationModule.getAccessToken.restore();
         });
 
-        it('Validate GET Request', function(){
+        it('Valida GET Request', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'GET',
@@ -362,7 +363,7 @@ describe('Request Manager', function(){
             assert.isTrue(request.strictSSL);
         });
 
-        it('Validate POST Request', function(){
+        it('Valida POST Request', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'POST',
@@ -383,7 +384,7 @@ describe('Request Manager', function(){
             assert.isTrue(request.strictSSL);
         });
 
-        it('Validate Empty Headers', function(){
+        it('Validate with empty headers option', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'POST',
@@ -399,7 +400,7 @@ describe('Request Manager', function(){
             assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
         });
 
-        it('Validate POST Request with form Mime Type', function(){
+        it('Validate POST Request with form different Mime Type (accept, content-type)', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'POST',
@@ -425,7 +426,7 @@ describe('Request Manager', function(){
             assert.isTrue(request.strictSSL);
         });
 
-        it('Validate POST Request with Validations', function(){
+        it('Validate POST Request with schema validation', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'POST',
@@ -446,7 +447,7 @@ describe('Request Manager', function(){
             assert.isObject(request);
         });
 
-        it('Validate POST Request with Invalid Validation', function(){
+        it('Validate POST Request with errors on schema validation', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'POST',
@@ -463,6 +464,112 @@ describe('Request Manager', function(){
             };
 
             assert.throws(requestManager.buildRequest.bind(requestManager, options), 'The next fields are failing on validation: ".firstname": should be integer.');
+        });
+    });
+
+    describe('Execute method', function(){
+        it('Error on buildRequest', function(){
+            var callback = sinon.spy(),
+                errorMessage = 'Fail on request';
+
+            sinon.stub(requestManager, 'buildRequest').throws(new Error(errorMessage));
+
+            requestManager.exec({}, callback);
+
+            var callbackErrors = callback.args[0][0];
+
+            assert.equal(callbackErrors.message, errorMessage);
+
+            requestManager.buildRequest.restore();
+        });
+
+        it('Error executing the request', function(){
+            var callback = sinon.spy(),
+                errorMessage = 'Fail executing request';
+
+            sinon.stub(requestManager, 'buildRequest').returns({});
+
+            sinon.stub(requestLib, 'Request', function(params){
+                return params.callback.apply(null, [new Error(errorMessage), null, null]);
+            });
+
+            requestManager.exec({}, callback);
+
+            var callbackErrors = callback.args[0][0];
+
+            assert.equal(callbackErrors.message, errorMessage);
+
+            requestManager.buildRequest.restore();
+            requestLib.Request.restore();
+        });
+
+        it('Invalid HTTP Status Code on response from MercadoPago API', function(){
+            var callback = sinon.spy(),
+                errorMessage = 'Error on MercadoPago API';
+
+            sinon.stub(requestManager, 'buildRequest').returns({});
+
+            sinon.stub(requestLib, 'Request', function(params){
+                return params.callback.apply(null, [null, {
+                    statusCode: 500
+                }, {
+                    message: errorMessage
+                }]);
+            });
+
+            requestManager.exec({}, callback);
+
+            var callbackErrors = callback.args[0][0];
+
+            assert.equal(callbackErrors.message, errorMessage);
+
+            requestManager.buildRequest.restore();
+            requestLib.Request.restore();
+        });
+
+        it('Valid response with correct HTTP Post', function(){
+            var callback = sinon.spy();
+
+            sinon.stub(requestManager, 'buildRequest').returns({});
+
+            sinon.stub(requestLib, 'Request', function(params){
+                return params.callback.apply(null, [null, {
+                    statusCode: 500
+                }, {}]);
+            });
+
+            requestManager.exec({}, callback);
+
+            var callbackErrors = callback.args[0][0];
+
+            assert.equal(callbackErrors.message, 'Unknown Error');
+
+            requestManager.buildRequest.restore();
+            requestLib.Request.restore();
+        });
+
+        it('Valid Response From MercadoPago API', function(){
+            var callback = sinon.spy(),
+                responseBody = {
+                    firstname: 'Ariel'
+                };
+
+            sinon.stub(requestManager, 'buildRequest').returns({});
+
+            sinon.stub(requestLib, 'Request', function(params){
+                return params.callback.apply(null, [null, {
+                    statusCode: 200
+                }, responseBody]);
+            });
+
+            requestManager.exec({}, callback);
+
+            var callbackResponse = callback.args[0][1];
+
+            assert.equal(JSON.stringify(responseBody), JSON.stringify(callbackResponse));
+
+            requestManager.buildRequest.restore();
+            requestLib.Request.restore();
         });
     });
 });
