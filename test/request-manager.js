@@ -67,7 +67,10 @@ describe('Request Manager', function(){
 
         describe('Valid rest executions', function(){
             var mercadoPagoResponse = {
-                    firstname: 'Ariel'
+                    status: 200,
+                    body: {
+                        firstname: 'Ariel'
+                    }
                 },
                 execStub;
 
@@ -178,8 +181,11 @@ describe('Request Manager', function(){
 
     describe('Generate Token', function(){
         var mpTokenResponse = {
-                access_token: 'ACCESS_TOKEN',
-                refresh_token: 'REFRESH_TOKEN'
+                status: 200,
+                body: {
+                    access_token: 'ACCESS_TOKEN',
+                    refresh_token: 'REFRESH_TOKEN'
+                }
             },
             execStub;
 
@@ -240,7 +246,7 @@ describe('Request Manager', function(){
             }));
 
             assert.isTrue(callback.called);
-            assert.isTrue(callback.calledWith(null, mpTokenResponse.access_token));
+            assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
 
             configurationModule.getClientId.restore();
             configurationModule.getClientSecret.restore();
@@ -279,8 +285,11 @@ describe('Request Manager', function(){
 
     describe('Refresh Token', function(){
         var mpTokenResponse = {
-                access_token: 'ACCESS_TOKEN',
-                refresh_token: 'REFRESH_TOKEN'
+                status: 200,
+                body: {
+                    access_token: 'ACCESS_TOKEN',
+                    refresh_token: 'REFRESH_TOKEN'
+                }
             },
             execStub;
 
@@ -332,7 +341,7 @@ describe('Request Manager', function(){
             }));
 
             assert.isTrue(callback.called);
-            assert.isTrue(callback.calledWith(null, mpTokenResponse.access_token));
+            assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
 
             configurationModule.getAccessToken.restore();
             configurationModule.getRefreshToken.restore();
@@ -608,7 +617,7 @@ describe('Request Manager', function(){
 
             var callbackResponse = callback.args[0][1];
 
-            assert.equal(JSON.stringify(responseBody), JSON.stringify(callbackResponse));
+            assert.equal(JSON.stringify({ status: 200, body: responseBody }), JSON.stringify(callbackResponse));
 
             requestManager.buildRequest.restore();
             requestLib.Request.restore();
