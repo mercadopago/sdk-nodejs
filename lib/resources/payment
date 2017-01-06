@@ -4,17 +4,17 @@ var payment = module.exports = {
     schema: require('../models/paymentModel')
 };
 
-payment.create = requestManager.create({
+payment.create = requestManager.describe({
     path: '/v1/payments',
     method: 'POST'
 });
 
-payment.update = requestManager.create({
+payment.update = requestManager.describe({
     path: '/v1/payments/:id',
     method: 'PUT'
 });
 
-payment.get = requestManager.create({
+payment.get = requestManager.describe({
     path: '/v1/payments/:id',
     method: 'GET'
 });

@@ -10,7 +10,7 @@ describe('Request Manager', function(){
 
     describe('Dynamic method Creation', function(){
         it('Callback Required', function(){
-            var method = requestManager.create({
+            var method = requestManager.describe({
                 path: '/v1/payments',
                 method: 'POST'
             });
@@ -19,7 +19,7 @@ describe('Request Manager', function(){
         });
 
         it('Invalid Parameters', function(){
-            var method = requestManager.create({
+            var method = requestManager.describe({
                 path: '/v1/payments/:id',
                 method: 'POST'
             });
@@ -30,7 +30,7 @@ describe('Request Manager', function(){
         it('Error generating the access_token', function(){
             var tokenErrorMessage = 'Error getting the token';
 
-            var method = requestManager.create({
+            var method = requestManager.describe({
                 path: '/v1/payments',
                 method: 'POST'
             });
@@ -71,7 +71,7 @@ describe('Request Manager', function(){
             it('Without path parameters', function(){
                 var callback = sinon.spy();
 
-                var method = requestManager.create({
+                var method = requestManager.describe({
                     path: '/v1/payments',
                     method: 'GET'
                 });
@@ -92,7 +92,7 @@ describe('Request Manager', function(){
             it('With path parameters', function(){
                 var callback = sinon.spy();
 
-                var method = requestManager.create({
+                var method = requestManager.describe({
                     path: '/v1/payments/:id',
                     method: 'POST'
                 });
@@ -116,7 +116,7 @@ describe('Request Manager', function(){
                         description: 'MercadoPago Sale'
                     };
 
-                var method = requestManager.create({
+                var method = requestManager.describe({
                     path: '/v1/payments',
                     method: 'POST'
                 });
