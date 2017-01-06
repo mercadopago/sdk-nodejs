@@ -18,13 +18,31 @@ describe('Request Manager', function(){
             assert.throws(method, 'Callback is required');
         });
 
-        it('Invalid Parameters', function(){
+        it('Missing id parameter from arguments (GET)', function(){
+            var method = requestManager.describe({
+                path: '/v1/payments/:id',
+                method: 'GET'
+            });
+
+            assert.throws(method.bind(method, function(){}), 'Expecting parameters: id');
+        });
+
+        it('Missing id parameter from JSON (POST)', function(){
             var method = requestManager.describe({
                 path: '/v1/payments/:id',
                 method: 'POST'
             });
 
-            assert.throws(method.bind(method, function(){}), 'Expecting parameters: id');
+            assert.throws(method.bind(method, function(){}), 'The JSON is missing the following properties: id');
+        });
+
+        it('Missing multiple parameters from JSON (POST)', function(){
+            var method = requestManager.describe({
+                path: '/v1/payments/:id/:name',
+                method: 'POST'
+            });
+
+            assert.throws(method.bind(method, function(){}), 'The JSON is missing the following properties: id, name');
         });
 
         it('Error generating the access_token', function(){
@@ -68,7 +86,7 @@ describe('Request Manager', function(){
                 requestManager.exec.restore();
             });
 
-            it('Without path parameters', function(){
+            it('Without path parameters (GET)', function(){
                 var callback = sinon.spy();
 
                 var method = requestManager.describe({
@@ -89,12 +107,12 @@ describe('Request Manager', function(){
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
             });
 
-            it('With path parameters', function(){
+            it('With path parameters on arguments (GET)', function(){
                 var callback = sinon.spy();
 
                 var method = requestManager.describe({
                     path: '/v1/payments/:id',
-                    method: 'POST'
+                    method: 'GET'
                 });
 
                 method(1, callback);
@@ -106,8 +124,32 @@ describe('Request Manager', function(){
                 var execOptionParams = execStub.args[0][0];
 
                 assert.equal(execOptionParams.path, '/v1/payments/1');
-                assert.equal(execOptionParams.method, 'POST');
+                assert.equal(execOptionParams.method, 'GET');
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+            });
+
+            it('With path parameters on JSON (POST)', function(){
+                var callback = sinon.spy(),
+                    payload = {
+                        id: 1
+                    };
+
+                var method = requestManager.describe({
+                    path: '/v1/payments/:id',
+                    method: 'POST'
+                });
+
+                method(payload, callback);
+
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                //Validate exec params
+                var execOptionParams = execStub.args[0][0];
+
+                assert.equal(execOptionParams.path, '/v1/payments/1');
+                assert.equal(execOptionParams.method, 'POST');
+                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
             });
 
             it('With payload (POST)', function(){
