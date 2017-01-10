@@ -21,6 +21,18 @@ describe('Mercadopago SDK', function(){
         it('Payment module', function(){
             assert.isObject(mp.payment, 'Payment module doesnt exists');
         });
+
+        it('Merchant Orders module', function(){
+            assert.isObject(mp.merchant_orders, 'Merchant Orders module exists');
+        });
+
+        it('Customers module', function(){
+            assert.isObject(mp.customers, 'Customers module doesnt exists');
+        });
+
+        it('Preferences module', function(){
+            assert.isObject(mp.preferences, 'Preferences module doesnt exists');
+        });
     });
 
     describe('Configure Method', function(){
