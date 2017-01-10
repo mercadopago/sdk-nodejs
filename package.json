@@ -31,6 +31,11 @@
     "coveralls": "^2.11.15",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0"
+    "mocha-lcov-reporter": "^1.2.0", 
+    "sinon": "^1.17.7"
+  },
+  "dependencies": {
+    "ajv": "^4.10.3",
+    "request": "^2.79.0" 
   }
 }
