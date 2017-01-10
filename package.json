@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*"
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -27,13 +28,15 @@
   "homepage": "https://github.com/mercadopago/px-nodejs#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
+    "mocha": "^3.2.0", 
+    "mocha-lcov-reporter": "^1.2.0",
     "sinon": "^1.17.7"
   },
   "dependencies": {
     "ajv": "^4.10.3",
     "moment": "^2.17.1",
-    "request": "^2.79.0"
+    "request": "^2.79.0" 
   }
 }
