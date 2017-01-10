@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "ajv": "^4.10.3",
-    "request": "^2.79.0" 
+    "request": "^2.79.0",
+    "uuid": "^3.0.1"
   }
 }
