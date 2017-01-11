@@ -322,12 +322,18 @@ describe('Request Manager', function(){
 
         it('Missing client_id and client_secret Error', function(){
             var callback = sinon.spy();
-
+ 
+            sinon.stub(configurationModule, 'getClientId').returns();
+            sinon.stub(configurationModule, 'getClientSecret').returns();
+ 
             requestManager.generateAccessToken(callback);
 
             var getTokenError = callback.args[0][0];
 
             assert.equal(getTokenError.message, 'Must set client_id and client_secret');
+ 
+            configurationModule.getClientId.restore();
+            configurationModule.getClientSecret.restore(); 
         });
 
         it('Get the access_token from MercadoPago API', function(){

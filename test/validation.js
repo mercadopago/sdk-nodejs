@@ -1,16 +1,21 @@
 var chai = require('chai'),
     assert = chai.assert,
-    expect = chai.expect;
+    expect = chai.expect,
+    sinon = require('sinon');
 
 describe('Validation Module', function(){
     var validationModule = require('../lib/validation'),
         testSchema = {
+            "additionalProperties": false,
             "properties": {
                 "first_name": {
                     "type": "string"
                 },
                 "last_name": {
                     "type": "string"
+                },
+                "rate": {
+                    "type": "integer"
                 }
             }
         };
@@ -42,6 +47,26 @@ describe('Validation Module', function(){
 
         assert.isArray(errors, 'Always returns an array');
         assert.equal(errors.length, 1, 'Should be an error');
-        assert.equal(message, 'The next fields are failing on validation: ".first_name": should be string.')
+        assert.equal(message, 'The next fields are failing on validation: ".first_name": should be string.');
+    });
+
+    it('Extra parameters only warning', function(){
+        sinon.spy(console, 'warn');
+
+        var schemaToValidate = {
+            first_name: 'Ariel',
+            ratee: 'test'
+        };
+
+        var errors = validationModule.validate(testSchema, schemaToValidate);
+
+        assert.isArray(errors, 'Always returns an array');
+        assert.equal(errors.length, 0, 'Should be an error');
+
+        //Console asserts
+        assert.isTrue(console.warn.calledOnce);
+        assert.isTrue(console.warn.calledWith('MercadoPago SDK: "ratee": is not a valid property.'));
+
+        console.warn.restore();
     });
 });

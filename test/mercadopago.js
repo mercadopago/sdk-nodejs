@@ -20,7 +20,11 @@ describe('Mercadopago SDK', function(){
 
         it('Payment module', function(){
             assert.isObject(mp.payment, 'Payment module doesnt exists');
-        });
+        }); 
+
+        it('Utils module', function(){
+            assert.isObject(mp.utils, 'Utils exists');
+        }); 
     });
 
     describe('Configure Method', function(){
