@@ -253,6 +253,7 @@ describe('Request Manager', function(){
                 assert.equal(execOptionParams.path, '/v1/payments');
                 assert.equal(execOptionParams.method, 'POST');
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+                assert.isFalse(execOptionParams.idempotency);
             });
 
             it('With idempotency on resource (POST)', function(){
@@ -605,6 +606,7 @@ describe('Request Manager', function(){
 
             assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
             assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+            assert.isUndefined(request.headers['x-idempotency-key']);
         });
 
         it('Validate POST Request with form different Mime Type (accept, content-type)', function(){
