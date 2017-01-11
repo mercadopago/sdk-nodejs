@@ -17,6 +17,10 @@ describe('Mercadopago SDK', function(){
         it('Configurations module', function(){
             assert.isObject(mp.configurations, 'Configurations module doesnt exists');
         });
+      
+        it('Utils module', function(){
+            assert.isObject(mp.utils, 'Utils exists');
+        });
 
         it('Payment module', function(){
             assert.isObject(mp.payment, 'Payment module doesnt exists');
@@ -32,7 +36,7 @@ describe('Mercadopago SDK', function(){
 
         it('Preferences module', function(){
             assert.isObject(mp.preferences, 'Preferences module doesnt exists');
-        });
+        }); 
     });
 
     describe('Configure Method', function(){
