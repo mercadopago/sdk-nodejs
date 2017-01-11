@@ -236,6 +236,9 @@ describe('Request Manager', function(){
                         description: 'MercadoPago Sale'
                     };
 
+                this.schema = {};
+                this.idempotency = true;
+
                 var method = requestManager.describe({
                     path: '/v1/payments',
                     method: 'POST'
@@ -250,6 +253,32 @@ describe('Request Manager', function(){
                 assert.equal(execOptionParams.path, '/v1/payments');
                 assert.equal(execOptionParams.method, 'POST');
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+            });
+
+            it('With idempotency on resource (POST)', function(){
+                var callback = sinon.spy(),
+                    testPayload = {
+                        description: 'MercadoPago Sale'
+                    };
+
+                var resource = {
+                    idempotency: true,
+                    method: requestManager.describe({
+                        path: '/v1/payments',
+                        method: 'POST'
+                    })
+                };
+
+                resource.method(testPayload, callback);
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                var execOptionParams = execStub.args[0][0];
+
+                assert.equal(execOptionParams.path, '/v1/payments');
+                assert.equal(execOptionParams.method, 'POST');
+                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+                assert.isTrue(execOptionParams.idempotency);
             });
         });
     });
@@ -510,7 +539,7 @@ describe('Request Manager', function(){
             assert.isTrue(request.strictSSL);
         });
 
-        it('Valid POST Request', function(){
+        it('Valid POST Request with specific idempotency', function(){
             var fakeIdempotency = 'fake-uuid',
                     options = {
                     path: '/v1/payments',
@@ -532,6 +561,31 @@ describe('Request Manager', function(){
             assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
             assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
             assert.equal(request.headers['x-idempotency-key'], fakeIdempotency);
+            assert.equal(request.json, options.payload);
+            assert.isTrue(request.strictSSL);
+        });
+
+        it('Valid POST Request with specific without specific idempotency', function(){
+            var fakeIdempotency = 'fake-uuid',
+                options = {
+                    path: '/v1/payments',
+                    method: 'POST',
+                    payload: {
+                        firstname: 'Ariel'
+                    },
+                    config: {},
+                    idempotency: true
+                };
+
+            var request = requestManager.buildRequest(options);
+
+            assert.equal(request.uri, baseUrl + options.path);
+            assert.equal(request.method, options.method);
+            assert.equal(JSON.stringify(request.qs), JSON.stringify({ access_token: accessToken }));
+            assert.equal(request.headers['user-agent'], userAgent);
+            assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
+            assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+            assert.isString(request.headers['x-idempotency-key']);
             assert.equal(request.json, options.payload);
             assert.isTrue(request.strictSSL);
         });
