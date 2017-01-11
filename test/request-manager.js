@@ -131,6 +131,34 @@ describe('Request Manager', function(){
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
             });
 
+            it('With path_sandbox_prefix (GET)', function(){
+                var callback = sinon.spy();
+
+                //Set sandbox mode for path_sandbox_prefix
+                configurationModule.sandbox = true;
+
+                var method = requestManager.describe({
+                    path: '/v1/payments',
+                    method: 'GET',
+                    path_sandbox_prefix: true
+                });
+
+                method(callback);
+
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                //Validate exec params
+                var execOptionParams = execStub.args[0][0];
+
+                assert.equal(execOptionParams.path, '/sandbox/v1/payments');
+                assert.equal(execOptionParams.method, 'GET');
+                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+
+                //Change it back to false
+                configurationModule.sandbox = false;
+            });
+
             it('With path parameters on JSON (POST)', function(){
                 var callback = sinon.spy(),
                     payload = {
