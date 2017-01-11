@@ -7,10 +7,6 @@ describe('Mercadopago SDK', function(){
     var ipnModule = require('../lib/resources/ipn'),
         preapprovalModule = require('../lib/resources/preapproval');
 
-    before(function(){
-
-    });
-
     describe('Manage', function(){
         it('Invalid Topic', function(){
             var callback = sinon.spy();
