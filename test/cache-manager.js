@@ -13,8 +13,8 @@ describe('Validation Module', function(){
     });
 
     it('Generate Cache Key', function(){
-        var hash = cacheManager.generateCacheKey('path', { header: 'test' }, { payload: true }, { filter: 'firstname' }),
-            otherHash = cacheManager.generateCacheKey('path', { header: 'test' }, { payload: true }, { filter: 'lastname' });
+        var hash = cacheManager.generateCacheKey('path', { header: 'test' }, { filter: 'firstname' }),
+            otherHash = cacheManager.generateCacheKey('path', { header: 'test' }, { filter: 'lastname' });
 
         assert.isString(hash);
         assert.isString(otherHash);
@@ -22,7 +22,7 @@ describe('Validation Module', function(){
     });
 
     it('Save Successfully', function(){
-        var hash = cacheManager.generateCacheKey('path', { header: 'test' }, { payload: true }, { filter: 'firstname' }),
+        var hash = cacheManager.generateCacheKey('path', { header: 'test' }, { filter: 'firstname' }),
             toSave = {
                 firstname: 'Ariel'
             };

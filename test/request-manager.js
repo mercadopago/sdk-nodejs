@@ -838,7 +838,7 @@ describe('Request Manager', function(){
             requestLib.Request.restore();
         });
 
-        it('with cache configuration (POST)', function(){
+        it('with cache configuration (GET)', function(){
             var callback = sinon.spy(),
                 responseBody = {
                     firstname: 'Ariel'
@@ -854,13 +854,9 @@ describe('Request Manager', function(){
             var saveStub = sinon.spy(cacheManager, 'save'),
                 generateHashSpy = sinon.stub(cacheManager, 'generateCacheKey').returns('test-hash');
 
-            var testPayload = {
-                firstname: 'Ariel'
-            };
-
             requestManager.exec({
                 path: '/test-path',
-                payload: testPayload,
+                method: 'GET',
                 headers: {},
                 cache: true
             }, callback);
@@ -878,14 +874,15 @@ describe('Request Manager', function(){
 
             assert.equal(generateArguments[0], '/test-path');
             assert.equal(JSON.stringify(generateArguments[1]), JSON.stringify({}));
-            assert.equal(JSON.stringify(generateArguments[2]), JSON.stringify(testPayload));
-            assert.equal(JSON.stringify(generateArguments[3]), JSON.stringify({}));
+            assert.equal(JSON.stringify(generateArguments[2]), JSON.stringify({}));
 
             assert.equal(saveArguments[0], 'test-hash');
             assert.equal(JSON.stringify(saveArguments[1]), JSON.stringify(callbackResponse));
 
             //Testing sending querystring
             requestManager.exec({
+                path: '/test-path',
+                method: 'GET',
                 cache: true,
                 config: {
                     qs: {
