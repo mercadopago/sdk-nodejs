@@ -1,10 +1,11 @@
 var chai = require('chai'),
-    assert = chai.assert,
-    expect = chai.expect,
     sinon = require('sinon'),
     chaiAsPromised = require("chai-as-promised");
 
 chai.use(chaiAsPromised);
+
+var assert = chai.assert,
+    expect = chai.expect;
 
 describe('Request Manager', function(){
     var requestLib = require('request'),
