@@ -1,9 +1,14 @@
 var chai = require('chai'),
     assert = chai.assert,
-    expect = chai.expect;
+    expect = chai.expect,
+    sinon = require('sinon'),
+    chaiAsPromised = require("chai-as-promised");
+
+chai.use(chaiAsPromised);
 
 describe('Configurations Module', function(){
-    var configuration,
+    var Promise,
+        configuration,
         clientId = 'CLIENT_ID',
         clientSecret = 'CLIENT_SECRET',
         accessToken = 'ACCESS_TOKEN',
@@ -11,12 +16,14 @@ describe('Configurations Module', function(){
 
     //Get an instance of configuration on require
     beforeEach(function(){
+        Promise = require('bluebird');
         configuration = require('../lib/configurations.js');
     });
 
     //Delete the require cache after each test (Prevent Singleton)
     afterEach(function(){
         delete require.cache[require.resolve('../lib/configurations.js')];
+        delete require.cache[require.resolve('bluebird')];
     });
 
     describe('Configure Errors', function(){
@@ -49,7 +56,7 @@ describe('Configurations Module', function(){
             assert.equal(configuration.getClientId(), clientId);
             assert.equal(configuration.getClientSecret(), clientSecret);
             assert.equal(configuration.getAccessToken(), undefined);
-            assert.equal(configuration.sandbox, false);
+            assert.isFalse(configuration.sandbox);
             assert.isString(configuration.getUserAgent());
         });
 
@@ -61,27 +68,31 @@ describe('Configurations Module', function(){
             assert.equal(configuration.getClientId(), undefined);
             assert.equal(configuration.getClientSecret(), undefined);
             assert.equal(configuration.getAccessToken(), accessToken);
-            assert.equal(configuration.sandbox, false);
+            assert.isFalse(configuration.sandbox);
         });
 
-        it('Check sandbox false value', function(){
+        it('Check sandbox false value and show_promise_error false', function(){
             configuration.configure({
                 client_id: clientId,
                 client_secret: clientSecret,
-                sandbox: false
+                sandbox: false,
+                show_promise_error: false
             });
 
-            assert.equal(configuration.sandbox, false);
+            assert.isFalse(configuration.sandbox);
+            assert.isFalse(configuration.show_promise_error);
         });
 
         it('Check sandbox true value', function(){
             configuration.configure({
                 client_id: clientId,
                 client_secret: clientSecret,
-                sandbox: true
+                sandbox: true,
+                show_promise_error: true
             });
 
-            assert.equal(configuration.sandbox, true);
+            assert.isTrue(configuration.sandbox);
+            assert.isTrue(configuration.show_promise_error);
         });
 
         it('Expect error on client_id and client_secret already set', function(){
@@ -95,6 +106,59 @@ describe('Configurations Module', function(){
                 client_id: clientId,
                 client_secret: clientSecret,
             }), 'Cant change client_id or client_secret because is already set');
+        });
+
+        it('Check failing promise without error', function(){
+            var errorMessage = 'Error Ocurred';
+
+            configuration.configure({
+                client_id: clientId,
+                client_secret: clientSecret,
+                show_promise_error: false
+            });
+
+            assert.isFalse(configuration.show_promise_error);
+
+            var method = function(){
+                return new Promise(function(resolve, reject){
+                    reject(new Error(errorMessage));
+                });
+            };
+
+            var promise = method();
+        });
+
+        /* This is the only way to test the unhandled exception from bluebird */
+        it('Check failing promise with error', function(done){
+            var errorMessage = 'Error Ocurred';
+
+            var warnStub = sinon.stub(console, 'warn', function(){
+                console.log('This log is for testing purpose');
+            });
+
+            configuration.configure({
+                client_id: clientId,
+                client_secret: clientSecret,
+                show_promise_error: true
+            });
+
+            assert.isTrue(configuration.show_promise_error);
+
+            var method = function(callback){
+                return new Promise(function(resolve, reject){
+                    reject(new Error(errorMessage));
+
+                    setTimeout(function(){
+                        callback.apply(null, [null, new Error(errorMessage)]);
+                        done();
+                    }, 500);
+                });
+            };
+
+            var promise = method(function(){
+                assert.isTrue(warnStub.called);
+                warnStub.restore();
+            });
         });
     });
 
