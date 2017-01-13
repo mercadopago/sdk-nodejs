@@ -133,9 +133,7 @@ describe('Configurations Module', function(){
         it('Check failing promise with error', function(done){
             var errorMessage = 'Error Ocurred';
 
-            var warnStub = sinon.stub(console, 'warn', function(){
-                console.log('This log is for testing purpose');
-            });
+            var warnStub = sinon.stub(console, 'warn', function(){ /* Do Nothing */ });
 
             configuration.configure({
                 client_id: clientId,

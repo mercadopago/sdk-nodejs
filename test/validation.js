@@ -55,7 +55,7 @@ describe('Validation Module', function(){
     });
 
     it('Extra parameters only warning', function(){
-        sinon.spy(console, 'warn');
+        var warnStub = sinon.stub(console, 'warn', function(){ /* Do Nothing */});
 
         var schemaToValidate = {
             first_name: 'Ariel',
@@ -68,16 +68,15 @@ describe('Validation Module', function(){
         assert.equal(errors.length, 0, 'Should be an error');
 
         //Console asserts
-        assert.isTrue(console.warn.calledOnce);
-        assert.isTrue(console.warn.calledWith('MercadoPago SDK: "ratee": is not a valid property.'));
+        assert.isTrue(warnStub.calledOnce);
+        assert.isTrue(warnStub.calledWith('MercadoPago SDK: "ratee": is not a valid property.'));
 
-        console.warn.restore();
+        warnStub.restore();
     });
 
     it('Valid ISO 8601 Pattern', function(){
         var errors = validationModule.validate(testSchema, {
-            
-          _date: '2016-01-01T18:00:00.000-03:00'
+            creation_date: '2016-01-01T18:00:00.000-03:00'
         });
 
         assert.isArray(errors, 'Always returns an array');
