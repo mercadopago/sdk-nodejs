@@ -1,6 +1,7 @@
 var chai = require('chai'),
     assert = chai.assert,
-    expect = chai.expect;
+    expect = chai.expect,
+    sinon = require('sinon');
 
 describe('Mercadopago SDK', function(){
     var mp,
@@ -17,11 +18,15 @@ describe('Mercadopago SDK', function(){
         var sdk;
 
         it('Check new', function(){
+            var stub = sinon.stub(console, 'warn', function(){ /* Do Nothing */ });
+
             sdk = new mp({
                 access_token: accessToken
             });
 
             assert.isTrue(sdk instanceof mp);
+
+            stub.restore();
         });
     });
 

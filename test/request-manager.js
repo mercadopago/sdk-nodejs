@@ -78,13 +78,12 @@ describe('Request Manager', function(){
             });
 
             sinon.stub(requestManager, 'generateAccessToken', function(callback){
-                return callback.apply(null, [new Error(tokenErrorMessage), null]);
+                return new Promise(function(resolve, reject){
+                    reject(new Error(tokenErrorMessage));
+                });
             });
 
-            var promise = method(function(err, response){
-                assert.isNotNull(err, null);
-                assert.equal(err.message, tokenErrorMessage);
-            });
+            var promise = method();
 
             assert.isRejected(promise, tokenErrorMessage);
 
@@ -102,11 +101,15 @@ describe('Request Manager', function(){
 
             beforeEach(function(){
                 sinon.stub(requestManager, 'generateAccessToken', function(callback){
-                    return callback.apply(null, [null, 'ACCESS_TOKEN']);
+                    return new Promise(function(resolve, reject){
+                        resolve('ACCESS_TOKEN');
+                    });
                 });
 
                 execStub = sinon.stub(requestManager, 'exec', function(options, callback){
-                    return callback.apply(null, [null, mercadoPagoResponse]);
+                    return new Promise(function(resolve, reject){
+                        resolve(mercadoPagoResponse);
+                    });
                 });
             });
 
@@ -125,17 +128,19 @@ describe('Request Manager', function(){
 
                 var promise = method(callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                //Validate exec params
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments');
-                assert.equal(execOptionParams.method, 'GET');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    //Validate exec params
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments');
+                    assert.equal(execOptionParams.method, 'GET');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+                });
             });
 
             it('Without path parameters and no callback (GET)', function(){
@@ -159,17 +164,19 @@ describe('Request Manager', function(){
 
                 var promise = method(1, callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                //Validate exec params
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments/1');
-                assert.equal(execOptionParams.method, 'GET');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
-
                 assert.isFulfilled(promise, mercadopagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    //Validate exec params
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments/1');
+                    assert.equal(execOptionParams.method, 'GET');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+                });
             });
 
             it('With path_sandbox_prefix (GET)', function(){
@@ -188,17 +195,19 @@ describe('Request Manager', function(){
                     test_value: true
                 }, callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                //Validate exec params
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/sandbox/v1/payments');
-                assert.equal(execOptionParams.method, 'GET');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    //Validate exec params
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/sandbox/v1/payments');
+                    assert.equal(execOptionParams.method, 'GET');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+                });
 
                 //Change it back to false
                 configurationModule.sandbox = false;
@@ -217,17 +226,19 @@ describe('Request Manager', function(){
 
                 var promise = method(payload, callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                //Validate exec params
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments/1');
-                assert.equal(execOptionParams.method, 'POST');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    //Validate exec params
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments/1');
+                    assert.equal(execOptionParams.method, 'POST');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
+                });
             });
 
             it('With path parameters on JSON with configurations (POST)', function(){
@@ -245,18 +256,20 @@ describe('Request Manager', function(){
                     test_value: true
                 }, callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                //Validate exec params
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments/1');
-                assert.equal(execOptionParams.method, 'POST');
-                assert.isTrue(execOptionParams.config.test_value);
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    //Validate exec params
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments/1');
+                    assert.equal(execOptionParams.method, 'POST');
+                    assert.isTrue(execOptionParams.config.test_value);
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
+                });
             });
 
             it('Without path parameters on JSON and invalid configurations (POST)', function(){
@@ -269,18 +282,20 @@ describe('Request Manager', function(){
 
                 var promise = method('', '', callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                //Validate exec params
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments');
-                assert.equal(execOptionParams.method, 'POST');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
-                assert.equal(JSON.stringify(execOptionParams.config), JSON.stringify({}));
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    //Validate exec params
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments');
+                    assert.equal(execOptionParams.method, 'POST');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+                    assert.equal(JSON.stringify(execOptionParams.config), JSON.stringify({}));
+                });
             });
 
             it('With payload (POST)', function(){
@@ -299,17 +314,19 @@ describe('Request Manager', function(){
 
                 var promise = method(testPayload, callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments');
-                assert.equal(execOptionParams.method, 'POST');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
-                assert.isFalse(execOptionParams.idempotency);
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments');
+                    assert.equal(execOptionParams.method, 'POST');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+                    assert.isFalse(execOptionParams.idempotency);
+                });
             });
 
             it('With idempotency on resource (POST)', function(){
@@ -328,17 +345,19 @@ describe('Request Manager', function(){
 
                 var promise = resource.method(testPayload, callback);
 
-                assert.isTrue(callback.called);
-                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
-
-                var execOptionParams = execStub.args[0][0];
-
-                assert.equal(execOptionParams.path, '/v1/payments');
-                assert.equal(execOptionParams.method, 'POST');
-                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
-                assert.isTrue(execOptionParams.idempotency);
-
                 assert.isFulfilled(promise, mercadoPagoResponse);
+
+                promise.then(function(){
+                    assert.isTrue(callback.called);
+                    assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                    var execOptionParams = execStub.args[0][0];
+
+                    assert.equal(execOptionParams.path, '/v1/payments');
+                    assert.equal(execOptionParams.method, 'POST');
+                    assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+                    assert.isTrue(execOptionParams.idempotency);
+                });
             });
         });
     });

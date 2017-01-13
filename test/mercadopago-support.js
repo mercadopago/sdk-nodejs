@@ -1,6 +1,7 @@
 var chai = require('chai'),
     sinon = require('sinon'),
-    chaiAsPromised = require("chai-as-promised");
+    chaiAsPromised = require("chai-as-promised"),
+    Promise = require('bluebird');
 
 chai.use(chaiAsPromised);
 
@@ -285,20 +286,26 @@ describe('Mercadopago SDK', function(){
         });
 
         it('refundPayment', function(){
-            var stub = sinon.stub(requestManager, 'generateAccessToken', function(callback){
-                callback.apply(null, [null, 'ACCESS_TOKEN']);
+            var stub = sinon.stub(requestManager, 'generateAccessToken', function(){
+                return new Promise(function(resolve, reject){
+                    resolve('ACCESS_TOKEN');
+                });
             });
 
-            mp.refundPayment(1);
+            var promise = mp.refundPayment(1);
 
-            var requestArgs = requestStub.args[0][0];
+            assert.isFulfilled(promise);
 
-            assert.isTrue(requestStub.called);
+            promise.then(function(){
+                assert.isTrue(requestStub.called);
 
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/collections/1');
-            assert.equal(requestArgs.method, 'PUT');
-            assert.equal(requestArgs.json.id, 1);
-            assert.equal(requestArgs.json.status, 'refunded');
+                var requestArgs = requestStub.args[0][0];
+
+                assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/collections/1');
+                assert.equal(requestArgs.method, 'PUT');
+                assert.equal(requestArgs.json.id, 1);
+                assert.equal(requestArgs.json.status, 'refunded');
+            });
 
             stub.restore();
         });
@@ -308,16 +315,20 @@ describe('Mercadopago SDK', function(){
                 callback.apply(null, [null, 'ACCESS_TOKEN']);
             });
 
-            mp.cancelPayment(1);
+            var promise = mp.cancelPayment(1);
 
-            var requestArgs = requestStub.args[0][0];
+            assert.isFulfilled(promise);
 
-            assert.isTrue(requestStub.called);
+            promise.then(function(){
+                assert.isTrue(requestStub.called);
 
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/collections/1');
-            assert.equal(requestArgs.method, 'PUT');
-            assert.equal(requestArgs.json.id, 1);
-            assert.equal(requestArgs.json.status, 'cancelled');
+                var requestArgs = requestStub.args[0][0];
+
+                assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/collections/1');
+                assert.equal(requestArgs.method, 'PUT');
+                assert.equal(requestArgs.json.id, 1);
+                assert.equal(requestArgs.json.status, 'cancelled');
+            });
 
             stub.restore();
         });
