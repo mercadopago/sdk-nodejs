@@ -13,6 +13,18 @@ describe('Mercadopago SDK', function(){
         mp = require('../index.js');
     });
 
+    describe('Instance the SDK', function(){
+        var sdk;
+
+        it('Check new', function(){
+            sdk = new mp({
+                access_token: accessToken
+            });
+
+            assert.isTrue(sdk instanceof mp);
+        });
+    });
+
     describe('Check Modules', function(){
         it('Configurations module', function(){
             assert.isObject(mp.configurations, 'Configurations module doesnt exists');

@@ -1,1 +1,1 @@
-module.exports = require('./lib/mercadopago.js')();
+module.exports = require('./lib/mercadopago.js');
