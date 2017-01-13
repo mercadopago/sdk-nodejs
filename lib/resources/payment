@@ -1,7 +1,8 @@
 var requestManager = require('../request-manager');
 
 var payment = module.exports = {
-    schema: require('../models/paymentModel')
+    schema: require('../models/paymentModel'),
+    idempotency: true
 };
 
 payment.create = requestManager.describe({

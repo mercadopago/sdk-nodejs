@@ -6,7 +6,9 @@ var chai = require('chai'),
 describe('Request Manager', function(){
     var requestLib = require('request'),
         requestManager = require('../lib/request-manager'),
-        configurationModule = require('../lib/configurations');
+        configurationModule = require('../lib/configurations'),
+        mercadopagoResponse = require('../lib/utils/mercadopagoResponse');
+        mercadopagoError = require('../lib/utils/mercadopagoError');
 
     describe('Dynamic method Creation', function(){
         it('Callback Required', function(){
@@ -183,11 +185,63 @@ describe('Request Manager', function(){
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
             });
 
+            it('With path parameters on JSON with configurations (POST)', function(){
+                var callback = sinon.spy(),
+                    payload = {
+                        id: 1
+                    };
+
+                var method = requestManager.describe({
+                    path: '/v1/payments/:id',
+                    method: 'POST'
+                });
+
+                method(payload, {
+                    test_value: true
+                }, callback);
+
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                //Validate exec params
+                var execOptionParams = execStub.args[0][0];
+
+                assert.equal(execOptionParams.path, '/v1/payments/1');
+                assert.equal(execOptionParams.method, 'POST');
+                assert.isTrue(execOptionParams.config.test_value);
+                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
+            });
+
+            it('Without path parameters on JSON and invalid configurations (POST)', function(){
+                var callback = sinon.spy();
+
+                var method = requestManager.describe({
+                    path: '/v1/payments',
+                    method: 'POST'
+                });
+
+                method('', '', callback);
+
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                //Validate exec params
+                var execOptionParams = execStub.args[0][0];
+
+                assert.equal(execOptionParams.path, '/v1/payments');
+                assert.equal(execOptionParams.method, 'POST');
+                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
+                assert.equal(JSON.stringify(execOptionParams.config), JSON.stringify({}));
+            });
+
             it('With payload (POST)', function(){
                 var callback = sinon.spy(),
                     testPayload = {
                         description: 'MercadoPago Sale'
                     };
+
+                this.schema = {};
+                this.idempotency = true;
 
                 var method = requestManager.describe({
                     path: '/v1/payments',
@@ -203,6 +257,33 @@ describe('Request Manager', function(){
                 assert.equal(execOptionParams.path, '/v1/payments');
                 assert.equal(execOptionParams.method, 'POST');
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+                assert.isFalse(execOptionParams.idempotency);
+            });
+
+            it('With idempotency on resource (POST)', function(){
+                var callback = sinon.spy(),
+                    testPayload = {
+                        description: 'MercadoPago Sale'
+                    };
+
+                var resource = {
+                    idempotency: true,
+                    method: requestManager.describe({
+                        path: '/v1/payments',
+                        method: 'POST'
+                    })
+                };
+
+                resource.method(testPayload, callback);
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                var execOptionParams = execStub.args[0][0];
+
+                assert.equal(execOptionParams.path, '/v1/payments');
+                assert.equal(execOptionParams.method, 'POST');
+                assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
+                assert.isTrue(execOptionParams.idempotency);
             });
         });
     });
@@ -427,12 +508,14 @@ describe('Request Manager', function(){
             configurationModule.getAccessToken.restore();
         });
 
-        it('Valida GET Request', function(){
+        it('Valid GET Request with querystring', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'GET',
-                payload: {
-                    firstname: 'Ariel'
+                config: {
+                    qs: {
+                        firstname: 'Ariel'
+                    }
                 }
             };
 
@@ -440,7 +523,7 @@ describe('Request Manager', function(){
 
             assert.equal(request.uri, baseUrl + options.path);
             assert.equal(request.method, options.method);
-            assert.equal(request.qs, options.payload); //This works because qa is a reference of payload
+            assert.equal(JSON.stringify(request.qs), JSON.stringify(options.config.qs));
             assert.equal(request.headers['user-agent'], userAgent);
             assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
             assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -448,13 +531,11 @@ describe('Request Manager', function(){
             assert.isTrue(request.strictSSL);
         });
 
-        it('Valida POST Request', function(){
+        it('Valid GET Request without querystring', function(){
             var options = {
+                config: {},
                 path: '/v1/payments',
-                method: 'POST',
-                payload: {
-                    firstname: 'Ariel'
-                }
+                method: 'GET'
             };
 
             var request = requestManager.buildRequest(options);
@@ -465,6 +546,57 @@ describe('Request Manager', function(){
             assert.equal(request.headers['user-agent'], userAgent);
             assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
             assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+            assert.isTrue(request.json);
+            assert.isTrue(request.strictSSL);
+        });
+
+        it('Valid POST Request with specific idempotency', function(){
+            var fakeIdempotency = 'fake-uuid',
+                    options = {
+                    path: '/v1/payments',
+                    method: 'POST',
+                    payload: {
+                        firstname: 'Ariel'
+                    },
+                    config: {
+                        idempotency: fakeIdempotency
+                    }
+                };
+
+            var request = requestManager.buildRequest(options);
+
+            assert.equal(request.uri, baseUrl + options.path);
+            assert.equal(request.method, options.method);
+            assert.equal(JSON.stringify(request.qs), JSON.stringify({ access_token: accessToken }));
+            assert.equal(request.headers['user-agent'], userAgent);
+            assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
+            assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+            assert.equal(request.headers['x-idempotency-key'], fakeIdempotency);
+            assert.equal(request.json, options.payload);
+            assert.isTrue(request.strictSSL);
+        });
+
+        it('Valid POST Request with specific without specific idempotency', function(){
+            var fakeIdempotency = 'fake-uuid',
+                options = {
+                    path: '/v1/payments',
+                    method: 'POST',
+                    payload: {
+                        firstname: 'Ariel'
+                    },
+                    config: {},
+                    idempotency: true
+                };
+
+            var request = requestManager.buildRequest(options);
+
+            assert.equal(request.uri, baseUrl + options.path);
+            assert.equal(request.method, options.method);
+            assert.equal(JSON.stringify(request.qs), JSON.stringify({ access_token: accessToken }));
+            assert.equal(request.headers['user-agent'], userAgent);
+            assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
+            assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+            assert.isString(request.headers['x-idempotency-key']);
             assert.equal(request.json, options.payload);
             assert.isTrue(request.strictSSL);
         });
@@ -473,16 +605,18 @@ describe('Request Manager', function(){
             var options = {
                 path: '/v1/payments',
                 method: 'POST',
+                headers: {},
                 payload: {
                     firstname: 'Ariel'
                 },
-                headers: {}
+                config: {}
             };
 
             var request = requestManager.buildRequest(options);
 
             assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
             assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+            assert.isUndefined(request.headers['x-idempotency-key']);
         });
 
         it('Validate POST Request with form different Mime Type (accept, content-type)', function(){
@@ -495,7 +629,8 @@ describe('Request Manager', function(){
                 headers: {
                     'accept': requestManager.FORM_MIME_TYPE,
                     'content-type': requestManager.FORM_MIME_TYPE
-                }
+                },
+                config: {}
             };
 
             var request = requestManager.buildRequest(options);
@@ -517,6 +652,7 @@ describe('Request Manager', function(){
                 method: 'POST',
                 payload: {
                     firstname: 'Ariel'
+
                 },
                 schema: {
                     "properties": {
@@ -524,7 +660,8 @@ describe('Request Manager', function(){
                             "type": "string"
                         }
                     }
-                }
+                },
+                config: {}
             };
 
             var request = requestManager.buildRequest(options);
@@ -545,7 +682,8 @@ describe('Request Manager', function(){
                             "type": "integer"
                         }
                     }
-                }
+                },
+                config: {}
             };
 
             assert.throws(requestManager.buildRequest.bind(requestManager, options), 'The next fields are failing on validation: ".firstname": should be integer.');
@@ -553,6 +691,13 @@ describe('Request Manager', function(){
     });
 
     describe('Execute method', function(){
+        var fakeIdempotency = 'fake-uuid',
+            buildRequestValidResponse = {
+                headers: {
+                    'x-idempotency-key': fakeIdempotency
+                }
+            };
+
         it('Error on buildRequest', function(){
             var callback = sinon.spy(),
                 errorMessage = 'Fail on request';
@@ -572,7 +717,7 @@ describe('Request Manager', function(){
             var callback = sinon.spy(),
                 errorMessage = 'Fail executing request';
 
-            sinon.stub(requestManager, 'buildRequest').returns({});
+            sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
 
             sinon.stub(requestLib, 'Request', function(params){
                 return params.callback.apply(null, [new Error(errorMessage), null, null]);
@@ -592,7 +737,7 @@ describe('Request Manager', function(){
             var callback = sinon.spy(),
                 errorMessage = 'Error on MercadoPago API';
 
-            sinon.stub(requestManager, 'buildRequest').returns({});
+            sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
 
             sinon.stub(requestLib, 'Request', function(params){
                 return params.callback.apply(null, [null, {
@@ -606,7 +751,9 @@ describe('Request Manager', function(){
 
             var callbackErrors = callback.args[0][0];
 
+            assert.instanceOf(callbackErrors, mercadopagoError);
             assert.equal(callbackErrors.message, errorMessage);
+            assert.equal(callbackErrors.idempotency, buildRequestValidResponse.headers['x-idempotency-key']);
 
             requestManager.buildRequest.restore();
             requestLib.Request.restore();
@@ -615,7 +762,7 @@ describe('Request Manager', function(){
         it('Valid response with correct HTTP Post', function(){
             var callback = sinon.spy();
 
-            sinon.stub(requestManager, 'buildRequest').returns({});
+            sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
 
             sinon.stub(requestLib, 'Request', function(params){
                 return params.callback.apply(null, [null, {
@@ -639,7 +786,7 @@ describe('Request Manager', function(){
                     firstname: 'Ariel'
                 };
 
-            sinon.stub(requestManager, 'buildRequest').returns({});
+            sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
 
             sinon.stub(requestLib, 'Request', function(params){
                 return params.callback.apply(null, [null, {
@@ -651,7 +798,8 @@ describe('Request Manager', function(){
 
             var callbackResponse = callback.args[0][1];
 
-            assert.equal(JSON.stringify({ status: 200, body: responseBody }), JSON.stringify(callbackResponse));
+            assert.instanceOf(callbackResponse, mercadopagoResponse);
+            assert.equal(JSON.stringify(new mercadopagoResponse(responseBody, 200, fakeIdempotency)), JSON.stringify(callbackResponse));
 
             requestManager.buildRequest.restore();
             requestLib.Request.restore();
