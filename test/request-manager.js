@@ -134,12 +134,16 @@ describe('Request Manager', function(){
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
             });
 
-            it('With path and configuration parameters on arguments (GET)', function(){
+            it('With path_sandbox_prefix (GET)', function(){
                 var callback = sinon.spy();
 
+                //Set sandbox mode for path_sandbox_prefix
+                configurationModule.sandbox = true;
+
                 var method = requestManager.describe({
-                    path: '/v1/payments/:id',
-                    method: 'GET'
+                    path: '/v1/payments',
+                    method: 'GET',
+                    path_sandbox_prefix: true
                 });
 
                 var getSpy = sinon.spy(cacheManager, 'get'),
@@ -158,7 +162,7 @@ describe('Request Manager', function(){
                 //Validate exec params
                 var execOptionParams = execStub.args[0][0];
 
-                assert.equal(execOptionParams.path, '/v1/payments/1');
+                assert.equal(execOptionParams.path, '/sandbox/v1/payments');
                 assert.equal(execOptionParams.method, 'GET');
                 assert.isTrue(execOptionParams.config.cache);
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
