@@ -25,12 +25,14 @@ describe('Request Manager', function(){
 
             var promise = method(callback);
 
-            var callbackError = callback.args[0][0];
-
-            assert.isTrue(callback.called);
-            assert.equal(callbackError, 'Error: Expecting parameters: id');
-
             assert.isRejected(promise, 'Expecting parameters: id');
+
+            promise.catch(function(){
+                var callbackError = callback.args[0][0];
+
+                assert.isTrue(callback.called);
+                assert.equal(callbackError, 'Error: Expecting parameters: id');
+            });
         });
 
         it('Missing id parameter from JSON (POST)', function(){
@@ -43,12 +45,14 @@ describe('Request Manager', function(){
 
             var promise = method(callback);
 
-            var callbackError = callback.args[0][0];
-
-            assert.isTrue(callback.called);
-            assert.equal(callbackError, 'Error: The JSON is missing the following properties: id');
-
             assert.isRejected(promise, 'The JSON is missing the following properties: id');
+
+            promise.catch(function(){
+                var callbackError = callback.args[0][0];
+
+                assert.isTrue(callback.called);
+                assert.equal(callbackError, 'Error: The JSON is missing the following properties: id');
+            });
         });
 
         it('Missing multiple parameters from JSON (POST)', function(){
@@ -61,12 +65,14 @@ describe('Request Manager', function(){
 
             var promise = method(callback);
 
-            var callbackError = callback.args[0][0];
-
-            assert.isTrue(callback.called);
-            assert.equal(callbackError, 'Error: The JSON is missing the following properties: id, name');
-
             assert.isRejected(promise, 'The JSON is missing the following properties: id, name');
+
+            promise.catch(function(){
+                var callbackError = callback.args[0][0];
+
+                assert.isTrue(callback.called);
+                assert.equal(callbackError, 'Error: The JSON is missing the following properties: id, name');
+            });
         });
 
         it('Error generating the access_token', function(){
@@ -79,7 +85,8 @@ describe('Request Manager', function(){
 
             sinon.stub(requestManager, 'generateAccessToken', function(callback){
                 return new Promise(function(resolve, reject){
-                    reject(new Error(tokenErrorMessage));
+                    reject(tokenErrorMessage);
+                    return callback.apply(null, [new Error(tokenErrorMessage), null]);
                 });
             });
 
@@ -103,12 +110,14 @@ describe('Request Manager', function(){
                 sinon.stub(requestManager, 'generateAccessToken', function(callback){
                     return new Promise(function(resolve, reject){
                         resolve('ACCESS_TOKEN');
+                        return callback.apply(null, [null, 'ACCESS_TOKEN']);
                     });
                 });
 
                 execStub = sinon.stub(requestManager, 'exec', function(options, callback){
                     return new Promise(function(resolve, reject){
                         resolve(mercadoPagoResponse);
+                        return callback.apply(null, [null, mercadoPagoResponse]);
                     });
                 });
             });
