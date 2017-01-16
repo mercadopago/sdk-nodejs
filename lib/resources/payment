@@ -19,3 +19,9 @@ payment.get = requestManager.describe({
     path: '/v1/payments/:id',
     method: 'GET'
 });
+
+payment.search = requestManager.describe({
+    path: '/collections/search',
+    path_sandbox_prefix: true,
+    method: 'GET'
+});
