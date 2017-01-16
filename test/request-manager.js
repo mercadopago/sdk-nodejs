@@ -7,6 +7,7 @@ describe('Request Manager', function(){
     var requestLib = require('request'),
         requestManager = require('../lib/request-manager'),
         configurationModule = require('../lib/configurations'),
+        cacheManager = require('../lib/cache-manager'),
         mercadopagoResponse = require('../lib/utils/mercadopagoResponse');
         mercadopagoError = require('../lib/utils/mercadopagoError');
 
@@ -145,20 +146,29 @@ describe('Request Manager', function(){
                     path_sandbox_prefix: true
                 });
 
-                method(callback);
+                var getSpy = sinon.spy(cacheManager, 'get'),
+                    generateHashSpy = sinon.spy(cacheManager, 'generateCacheKey');
+
+                method(1, {
+                    cache: true
+                }, callback);
 
                 assert.isTrue(callback.called);
                 assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                assert.isTrue(getSpy.called);
+                assert.isTrue(generateHashSpy.called);
 
                 //Validate exec params
                 var execOptionParams = execStub.args[0][0];
 
                 assert.equal(execOptionParams.path, '/sandbox/v1/payments');
                 assert.equal(execOptionParams.method, 'GET');
+                assert.isTrue(execOptionParams.config.cache);
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
 
-                //Change it back to false
-                configurationModule.sandbox = false;
+                cacheManager.get.restore();
+                cacheManager.generateCacheKey.restore();
             });
 
             it('With path parameters on JSON (POST)', function(){
@@ -197,7 +207,7 @@ describe('Request Manager', function(){
                 });
 
                 method(payload, {
-                    test_value: true
+                    cache: true
                 }, callback);
 
                 assert.isTrue(callback.called);
@@ -208,7 +218,7 @@ describe('Request Manager', function(){
 
                 assert.equal(execOptionParams.path, '/v1/payments/1');
                 assert.equal(execOptionParams.method, 'POST');
-                assert.isTrue(execOptionParams.config.test_value);
+                assert.isTrue(execOptionParams.config.cache);
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(payload));
             });
 
@@ -284,6 +294,33 @@ describe('Request Manager', function(){
                 assert.equal(execOptionParams.method, 'POST');
                 assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
                 assert.isTrue(execOptionParams.idempotency);
+            });
+
+            it('Response from cache (GET)', function(){
+                var callback = sinon.spy();
+
+                var method = requestManager.describe({
+                    path: '/v1/payments',
+                    method: 'GET'
+                });
+
+                var getStub = sinon.stub(cacheManager, 'get').returns(mercadoPagoResponse),
+                    generateHashSpy = sinon.spy(cacheManager, 'generateCacheKey');
+
+                method({
+                    cache: true
+                }, callback);
+
+                assert.isTrue(callback.called);
+                assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+                assert.isTrue(getStub.called);
+                assert.isTrue(generateHashSpy.called);
+
+                assert.isFalse(execStub.called);
+
+                cacheManager.get.restore();
+                cacheManager.generateCacheKey.restore();
             });
         });
     });
@@ -803,6 +840,69 @@ describe('Request Manager', function(){
 
             requestManager.buildRequest.restore();
             requestLib.Request.restore();
+        });
+
+        it('with cache configuration (GET)', function(){
+            var callback = sinon.spy(),
+                responseBody = {
+                    firstname: 'Ariel'
+                };
+            sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
+
+            sinon.stub(requestLib, 'Request', function(params){
+                return params.callback.apply(null, [null, {
+                    statusCode: 200
+                }, responseBody]);
+            });
+
+            var saveStub = sinon.spy(cacheManager, 'save'),
+                generateHashSpy = sinon.stub(cacheManager, 'generateCacheKey').returns('test-hash');
+
+            requestManager.exec({
+                path: '/test-path',
+                method: 'GET',
+                headers: {},
+                cache: true
+            }, callback);
+
+            var callbackResponse = callback.args[0][1];
+
+            assert.instanceOf(callbackResponse, mercadopagoResponse);
+            assert.equal(JSON.stringify(new mercadopagoResponse(responseBody, 200, fakeIdempotency)), JSON.stringify(callbackResponse));
+
+            var generateArguments = generateHashSpy.args[0],
+                saveArguments = saveStub.args[0];
+
+            assert.isTrue(generateHashSpy.called);
+            assert.isTrue(saveStub.called);
+
+            assert.equal(generateArguments[0], '/test-path');
+            assert.equal(JSON.stringify(generateArguments[1]), JSON.stringify({}));
+            assert.equal(JSON.stringify(generateArguments[2]), JSON.stringify({}));
+
+            assert.equal(saveArguments[0], 'test-hash');
+            assert.equal(JSON.stringify(saveArguments[1]), JSON.stringify(callbackResponse));
+
+            //Testing sending querystring
+            requestManager.exec({
+                path: '/test-path',
+                method: 'GET',
+                cache: true,
+                config: {
+                    qs: {
+                        filter: 'firstname'
+                    }
+                }
+            }, callback);
+
+            assert.isTrue(generateHashSpy.called);
+            assert.isTrue(saveStub.called);
+
+            requestManager.buildRequest.restore();
+            requestLib.Request.restore();
+
+            cacheManager.save.restore();
+            cacheManager.generateCacheKey.restore();
         });
     });
 });
