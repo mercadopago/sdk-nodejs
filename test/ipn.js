@@ -1,28 +1,27 @@
 var chai = require('chai'),
-    assert = chai.assert,
-    expect = chai.expect,
-    sinon = require('sinon');
+    sinon = require('sinon'),
+    chaiAsPromised = require("chai-as-promised"),
+    Promise = require('bluebird');
 
-describe('Mercadopago SDK', function(){
+chai.use(chaiAsPromised);
+
+var assert = chai.assert,
+    expect = chai.expect;
+
+describe('IPN Manager', function(){
     var ipnModule = require('../lib/resources/ipn'),
         preapprovalModule = require('../lib/resources/preapproval');
 
     describe('Manage', function(){
-        it('Invalid Topic', function(){
-            var callback = sinon.spy();
-
-            ipnModule.manage({
+        it('Invalid Topic - No Callback', function(){
+            var promise = ipnModule.manage({
                 query: {
                     id: 1,
                     topic: 'invalid'
                 }
-            }, callback);
+            });
 
-            assert.isTrue(callback.called);
-
-            var callbackError = callback.args[0][0];
-
-            assert.equal(callbackError.message, 'Invalid Topic (invalid). The topics available are: preapproval, authorized_payment, payment')
+            assert.isRejected(promise, 'Invalid Topic (invalid). The topics available are: preapproval, authorized_payment, payment');
         });
 
         it('Payment Topic', function(){
@@ -37,25 +36,29 @@ describe('Mercadopago SDK', function(){
                 }]);
             });
 
-            ipnModule.manage({
+            var promise = ipnModule.manage({
                 query: {
                     id: 1,
                     topic: 'payment'
                 }
             }, callback);
 
-            var getPaymentId = getPaymentStub.args[0][0];
+            assert.isFulfilled(promise, { test_response: true });
 
-            assert.equal(getPaymentId, 1);
+            promise.then(function(){
+                var getPaymentId = getPaymentStub.args[0][0];
 
-            assert.isTrue(callback.called);
+                assert.equal(getPaymentId, 1);
 
-            var callbackResponse = callback.args[0][1];
+                assert.isTrue(callback.called);
 
-            assert.equal(callbackResponse.id, 1);
-            assert.equal(callbackResponse.topic, 'payment');
-            assert.equal(callbackResponse.status, 200);
-            assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+                var callbackResponse = callback.args[0][1];
+
+                assert.equal(callbackResponse.id, 1);
+                assert.equal(callbackResponse.topic, 'payment');
+                assert.equal(callbackResponse.status, 200);
+                assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+            });
 
             ipnModule.getPayment.restore();
         });
@@ -72,25 +75,29 @@ describe('Mercadopago SDK', function(){
                 }]);
             });
 
-            ipnModule.manage({
+            var promise = ipnModule.manage({
                 query: {
                     id: 2,
                     topic: 'authorized_payment'
                 }
             }, callback);
 
-            var getAuthorizedPaymentId = getAuthorizedPaymentStub.args[0][0];
+            assert.isFulfilled(promise, { test_response: true });
 
-            assert.equal(getAuthorizedPaymentId, 2);
+            promise.then(function(){
+                var getAuthorizedPaymentId = getAuthorizedPaymentStub.args[0][0];
 
-            assert.isTrue(callback.called);
+                assert.equal(getAuthorizedPaymentId, 2);
 
-            var callbackResponse = callback.args[0][1];
+                assert.isTrue(callback.called);
 
-            assert.equal(callbackResponse.id, 2);
-            assert.equal(callbackResponse.topic, 'authorized_payment');
-            assert.equal(callbackResponse.status, 200);
-            assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+                var callbackResponse = callback.args[0][1];
+
+                assert.equal(callbackResponse.id, 2);
+                assert.equal(callbackResponse.topic, 'authorized_payment');
+                assert.equal(callbackResponse.status, 200);
+                assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+            });
 
             ipnModule.getAuthorizedPayment.restore();
         });
@@ -107,25 +114,29 @@ describe('Mercadopago SDK', function(){
                 }]);
             });
 
-            ipnModule.manage({
+            var promise = ipnModule.manage({
                 query: {
                     id: 3,
                     topic: 'preapproval'
                 }
             }, callback);
 
-            var getPreapprovalId = getPreApproval.args[0][0];
+            assert.isFulfilled(promise, { test_response: true });
 
-            assert.equal(getPreapprovalId, 3);
+            promise.then(function(){
+                var getPreapprovalId = getPreApproval.args[0][0];
 
-            assert.isTrue(callback.called);
+                assert.equal(getPreapprovalId, 3);
 
-            var callbackResponse = callback.args[0][1];
+                assert.isTrue(callback.called);
 
-            assert.equal(callbackResponse.id, 3);
-            assert.equal(callbackResponse.topic, 'preapproval');
-            assert.equal(callbackResponse.status, 200);
-            assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+                var callbackResponse = callback.args[0][1];
+
+                assert.equal(callbackResponse.id, 3);
+                assert.equal(callbackResponse.topic, 'preapproval');
+                assert.equal(callbackResponse.status, 200);
+                assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+            });
 
             preapprovalModule.get.restore();
         });
@@ -137,18 +148,22 @@ describe('Mercadopago SDK', function(){
                 return callback.apply(null, [new Error('Error on getting payment'), null]);
             });
 
-            ipnModule.manage({
+            var promise = ipnModule.manage({
                 query: {
                     id: 1,
                     topic: 'payment'
                 }
             }, callback);
 
-            assert.isTrue(callback.called);
+            promise.isRejected(promise, 'Error on getting payment');
 
-            var callbackError = callback.args[0][0];
+            promise.catch(function(){
+                assert.isTrue(callback.called);
 
-            assert.equal(callbackError.message, 'Error on getting payment');
+                var callbackError = callback.args[0][0];
+
+                assert.equal(callbackError.message, 'Error on getting payment');
+            });
 
             ipnModule.getPayment.restore();
         });
