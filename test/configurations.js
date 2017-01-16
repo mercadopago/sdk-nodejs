@@ -181,4 +181,8 @@ describe('Configurations Module', function(){
 
         assert.equal(configuration.getRefreshToken(), refreshToken);
     });
+
+    it('Check if the tests are running', function(){
+        assert.isBoolean(configuration.areTestsRunnning());
+    });
 });

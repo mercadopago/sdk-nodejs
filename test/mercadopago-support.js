@@ -23,6 +23,10 @@ describe('Mercadopago SDK', function(){
     };
 
     it('Show Warning', function(){
+        var originalEnv = process.env.NODE_ENV;
+
+        process.env.NODE_ENV = 'PRD';
+
         var stub = sinon.stub(console, 'warn', function(){ /* Do Nothing */});
 
         mp.sandboxMode(true);
@@ -30,19 +34,21 @@ describe('Mercadopago SDK', function(){
         assert.isTrue(stub.called);
 
         stub.restore();
+
+        process.env.NODE_ENV = originalEnv;
+    });
+
+    it('Dont show Warning', function(){
+        var stub = sinon.stub(console, 'warn', function(){ /* Do Nothing */});
+
+        mp.sandboxMode(true);
+
+        assert.isFalse(stub.called);
+
+        stub.restore();
     });
 
     describe('Methods without warning', function(){
-        var consoleStub;
-
-        before(function(){
-            consoleStub = sinon.stub(console, 'warn', function(){ /* Do Nothing */});
-        });
-
-        after(function(){
-            consoleStub.restore();
-        });
-
         beforeEach(function(){
             requestStub = sinon.stub(requestLib, 'Request', function(params){
                 return params.callback.apply(null, [null, {
@@ -83,102 +89,245 @@ describe('Mercadopago SDK', function(){
             stub.restore();
         });
 
-        it('get', function(){
-            var promise = mp.get('/v1/payments/1', {
-                test_paremeter: 'get'
+        describe('REST Methods', function(){
+            var accessToken = 'ACCESS_TOKEN',
+                generateTokenStub;
+
+            describe('Valid Operations', function(){
+                before(function(){
+                    generateTokenStub = sinon.stub(requestManager, 'generateAccessToken', function(callback){
+                        return new Promise(function(resolve, reject){
+                            resolve(accessToken);
+                            return callback.apply(null, [null, accessToken]);
+                        });
+                    });
+                });
+
+                after(function(){
+                    generateTokenStub.restore();
+                });
+
+                it('get', function(){
+                    var promise = mp.get('/v1/payments/1', {
+                        test_paremeter: 'get'
+                    });
+
+                    assert.isFulfilled(promise);
+
+                    promise.then(function(){
+                        var requestArgs = requestStub.args[0][0];
+
+                        assert.isTrue(requestStub.called);
+                        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+                        assert.equal(requestArgs.method, 'GET');
+                        assert.equal(requestArgs.qs.test_paremeter, 'get');
+                    });
+
+                    //With Callback
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.get('/v1/payments/1', callback);
+
+                    assert.isFulfilled(promiseCallback);
+
+                    promiseCallback.then(function(){
+                        assert.isTrue(callback.called);
+                    });
+                });
+
+                it('post', function(){
+                    var promise = mp.post('/v1/payments', {
+                        payload: true
+                    },{
+                        test_paremeter: 'post'
+                    });
+
+                    assert.isFulfilled(promise);
+
+                    promise.then(function(){
+                        var requestArgs = requestStub.args[0][0];
+
+                        assert.isTrue(requestStub.called);
+                        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
+                        assert.equal(requestArgs.method, 'POST');
+                        assert.isTrue(requestArgs.json.payload);
+                        assert.equal(requestArgs.qs.test_paremeter, 'post');
+                    });
+
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.post('/v1/payments', callback);
+
+                    assert.isFulfilled(promiseCallback);
+
+                    promiseCallback.then(function(){
+                        assert.isTrue(callback.called);
+                    });
+                });
+
+                it('put', function(){
+                    var promise = mp.put('/v1/payments', {
+                        payload: true
+                    },{
+                        test_paremeter: 'put'
+                    });
+
+                    assert.isFulfilled(promise);
+
+                    promise.then(function(){
+                        var requestArgs = requestStub.args[0][0];
+
+                        assert.isTrue(requestStub.called);
+                        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
+                        assert.equal(requestArgs.method, 'PUT');
+                        assert.isTrue(requestArgs.json.payload);
+                        assert.equal(requestArgs.qs.test_paremeter, 'put');
+                    });
+
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.put('/v1/payments', callback);
+
+                    assert.isFulfilled(promiseCallback);
+
+                    promiseCallback.then(function(){
+                        assert.isTrue(callback.called);
+                    });
+                });
+
+                it('delete', function(){
+                    var promise = mp.delete('/v1/payments/1', {
+                        test_paremeter: 'delete'
+                    });
+
+                    assert.isFulfilled(promise);
+
+                    promise.then(function(){
+                        var requestArgs = requestStub.args[0][0];
+
+                        assert.isTrue(requestStub.called);
+                        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+                        assert.equal(requestArgs.method, 'DELETE');
+                        assert.equal(requestArgs.qs.test_paremeter, 'delete');
+                    });
+
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.delete('/v1/payments/1', callback);
+
+                    assert.isFulfilled(promiseCallback);
+
+                    promiseCallback.then(function(){
+                        assert.isTrue(callback.called);
+                    });
+                });
             });
 
-            assert.isFulfilled(promise);
+            describe('Invalid Operations', function(){
+                var errorMessage = 'An Error Ocurred';
 
-            var requestArgs = requestStub.args[0][0];
+                before(function(){
+                    generateTokenStub = sinon.stub(requestManager, 'generateAccessToken', function(callback){
+                        return new Promise(function(resolve, reject){
+                            reject(new Error(errorMessage));
+                            return callback.apply(null, [new Error(errorMessage), null]);
+                        });
+                    });
+                });
 
-            assert.isTrue(requestStub.called);
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
-            assert.equal(requestArgs.method, 'GET');
-            assert.equal(requestArgs.qs.test_paremeter, 'get');
+                after(function(){
+                    generateTokenStub.restore();
+                });
 
-            var callback = sinon.spy();
+                it('get', function(){
+                    var promise = mp.get('/v1/payments/1', {
+                        test_paremeter: 'get'
+                    });
 
-            var promiseCallback = mp.get('/v1/payments/1', callback);
+                    assert.isRejected(promise, errorMessage);
 
-            assert.isFulfilled(promiseCallback);
+                    //With Callback
+                    var callback = sinon.spy();
 
-            assert.isTrue(callback.called);
-        });
+                    var promiseCallback = mp.get('/v1/payments/1', callback);
 
-        it('post', function(){
-            var promise = mp.post('/v1/payments', {
-                payload: true
-            },{
-                test_paremeter: 'post'
+                    assert.isRejected(promiseCallback, errorMessage);
+
+                    promiseCallback.catch(function(){
+                        var error = callback.args[0][0];
+
+                        assert.isTrue(callback.called);
+                        assert.equal(error.message, errorMessage);
+                    });
+                });
+
+                it('post', function(){
+                    var promise = mp.post('/v1/payments', {
+                        payload: true
+                    },{
+                        test_paremeter: 'post'
+                    });
+
+                    assert.isRejected(promise, errorMessage);
+
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.post('/v1/payments', callback);
+
+                    assert.isRejected(promiseCallback, errorMessage);
+
+                    promiseCallback.catch(function(){
+                        var error = callback.args[0][0];
+
+                        assert.isTrue(callback.called);
+                        assert.equal(error.message, errorMessage);
+                    });
+                });
+
+                it('put', function(){
+                    var promise = mp.put('/v1/payments', {
+                        payload: true
+                    },{
+                        test_paremeter: 'put'
+                    });
+
+                    assert.isRejected(promise, errorMessage);
+
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.put('/v1/payments', callback);
+
+                    assert.isRejected(promiseCallback, errorMessage);
+
+                    promiseCallback.catch(function(){
+                        var error = callback.args[0][0];
+
+                        assert.isTrue(callback.called);
+                        assert.equal(error.message, errorMessage);
+                    });
+                });
+
+                it('delete', function(){
+                    var promise = mp.delete('/v1/payments/1', {
+                        test_paremeter: 'delete'
+                    });
+
+                    assert.isRejected(promise, errorMessage);
+
+                    var callback = sinon.spy();
+
+                    var promiseCallback = mp.delete('/v1/payments/1', callback);
+
+                    assert.isRejected(promiseCallback, errorMessage);
+
+                    promiseCallback.catch(function(){
+                        var error = callback.args[0][0];
+
+                        assert.isTrue(callback.called);
+                        assert.equal(error.message, errorMessage);
+                    });
+                });
             });
-
-            assert.isFulfilled(promise);
-
-            var requestArgs = requestStub.args[0][0];
-
-            assert.isTrue(requestStub.called);
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
-            assert.equal(requestArgs.method, 'POST');
-            assert.isTrue(requestArgs.json.payload);
-            assert.equal(requestArgs.qs.test_paremeter, 'post');
-
-            var callback = sinon.spy();
-
-            var promiseCallback = mp.post('/v1/payments', callback);
-
-            assert.isFulfilled(promiseCallback);
-
-            assert.isTrue(callback.called);
-        });
-
-        it('put', function(){
-            var promise = mp.put('/v1/payments', {
-                payload: true
-            },{
-                test_paremeter: 'put'
-            });
-
-            assert.isFulfilled(promise);
-
-            var requestArgs = requestStub.args[0][0];
-
-            assert.isTrue(requestStub.called);
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
-            assert.equal(requestArgs.method, 'PUT');
-            assert.isTrue(requestArgs.json.payload);
-            assert.equal(requestArgs.qs.test_paremeter, 'put');
-
-            var callback = sinon.spy();
-
-            var promiseCallback = mp.put('/v1/payments', callback);
-
-            assert.isFulfilled(promiseCallback);
-
-            assert.isTrue(callback.called);
-        });
-
-        it('delete', function(){
-            var promise = mp.delete('/v1/payments/1', {
-                test_paremeter: 'delete'
-            });
-
-            assert.isFulfilled(promise);
-
-            var requestArgs = requestStub.args[0][0];
-
-            assert.isTrue(requestStub.called);
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
-            assert.equal(requestArgs.method, 'DELETE');
-            assert.equal(requestArgs.qs.test_paremeter, 'delete');
-
-            var callback = sinon.spy();
-
-            var promiseCallback = mp.delete('/v1/payments/1', callback);
-
-            assert.isFulfilled(promiseCallback);
-
-            assert.isTrue(callback.called);
         });
 
         it('createPreference', function(){
@@ -311,8 +460,13 @@ describe('Mercadopago SDK', function(){
         });
 
         it('cancelPayment', function(){
+            var accessToken = 'ACCESS_TOKEN';
+
             var stub = sinon.stub(requestManager, 'generateAccessToken', function(callback){
-                callback.apply(null, [null, 'ACCESS_TOKEN']);
+                return new Promise(function(resolve, reject){
+                    resolve(accessToken);
+                    callback.apply(null, [null, accessToken]);
+                });
             });
 
             var promise = mp.cancelPayment(1);

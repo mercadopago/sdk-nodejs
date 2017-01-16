@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
+    "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
