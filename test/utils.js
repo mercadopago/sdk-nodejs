@@ -3,8 +3,7 @@ var chai = require('chai');
 var moment = require('moment');
 var MercadopagoDate = require('../lib/utils/mercadopagoDate');
 var assert = chai.assert;
-var expect = chai.expect;
-var mp = require('../index.js')
+var mp = require('../index.js');
 
 describe('Utils Module', function () {
   var stringOffset;
@@ -32,7 +31,6 @@ describe('Utils Module', function () {
     describe('From Method', function () {
       it('Not specified date', function () {
         assert.throws(mp.utils.date.from, 'You need to specified a date');
-        // assert.throws(requestManager.buildRequest.bind(requestManager, options), 'The next fields are failing on validation: ".firstname": should be integer.');
       });
 
       it('Invalid Date Format (string)', function () {

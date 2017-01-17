@@ -1,9 +1,7 @@
 /* eslint-env node, mocha */
 var chai = require('chai');
-var moment = require('moment');
 var MercadopagoError = require('../lib/utils/mercadopagoError');
 var assert = chai.assert;
-var expect = chai.expect;
 
 describe('MercadopagoError Class', function () {
   describe('Constructor', function () {

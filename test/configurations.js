@@ -1,19 +1,19 @@
 /* eslint-env node, mocha */
+/* eslint-disable global-require */
 var chai = require('chai');
 var sinon = require('sinon');
-var chaiAsPromised = require("chai-as-promised");
+var chaiAsPromised = require('chai-as-promised');
 var assert = chai.assert;
-var expect = chai.expect;
 
 chai.use(chaiAsPromised);
 
 describe('Configurations Module', function () {
-  var Promise,
-    configuration,
-    clientId = 'CLIENT_ID',
-    clientSecret = 'CLIENT_SECRET',
-    accessToken = 'ACCESS_TOKEN',
-    refreshToken = 'REFRESH_TOKEN';
+  var Promise;
+  var configuration;
+  var clientId = 'CLIENT_ID';
+  var clientSecret = 'CLIENT_SECRET';
+  var accessToken = 'ACCESS_TOKEN';
+  var refreshToken = 'REFRESH_TOKEN';
 
   // Get an instance of configuration on require
   beforeEach(function () {
@@ -33,7 +33,8 @@ describe('Configurations Module', function () {
     });
 
     it('Expect error on empty configurations', function () {
-      assert.throws(configuration.configure.bind(configuration, {}), 'You must provide a method of authentication (client_id & client_secret or access_token)');
+      assert.throws(configuration.configure.bind(configuration, {}),
+        'You must provide a method of authentication (client_id & client_secret or access_token)');
     });
 
     it('Expect error on client_id or client_secret only', function () {
@@ -105,12 +106,13 @@ describe('Configurations Module', function () {
 
       assert.throws(configuration.configure.bind(configuration, {
         client_id: clientId,
-        client_secret: clientSecret,
+        client_secret: clientSecret
       }), 'Cant change client_id or client_secret because is already set');
     });
 
     it('Check failing promise without error', function () {
       var errorMessage = 'Error Ocurred';
+      var method;
 
       configuration.configure({
         client_id: clientId,
@@ -120,18 +122,19 @@ describe('Configurations Module', function () {
 
       assert.isFalse(configuration.show_promise_error);
 
-      var method = function () {
+      method = function () {
         return new Promise(function (resolve, reject) {
           reject(new Error(errorMessage));
         });
       };
 
-      var promise = method();
+      method();
     });
 
     /* This is the only way to test the unhandled exception from bluebird */
     it('Check failing promise with error', function (done) {
       var errorMessage = 'Error Ocurred';
+      var method;
 
       var warnStub = sinon.stub(console, 'warn', function () { /* Do Nothing */
       });
@@ -144,7 +147,7 @@ describe('Configurations Module', function () {
 
       assert.isTrue(configuration.show_promise_error);
 
-      var method = function (callback) {
+      method = function (callback) {
         return new Promise(function (resolve, reject) {
           reject(new Error(errorMessage));
 
@@ -155,7 +158,7 @@ describe('Configurations Module', function () {
         });
       };
 
-      var promise = method(function () {
+      method(function () {
         assert.isTrue(warnStub.called);
         warnStub.restore();
       });

@@ -1,9 +1,8 @@
 /* eslint-env node, mocha */
 var chai = require('chai');
 var assert = chai.assert;
-var expect = chai.expect;
 var sinon = require('sinon');
-var mp = require('../index.js');
+var MercadoPago = require('../index.js');
 
 describe('Mercadopago SDK', function () {
   var clientId = 'CLIENT_ID';
@@ -17,11 +16,11 @@ describe('Mercadopago SDK', function () {
       var stub = sinon.stub(console, 'warn', function () { /* Do Nothing */
       });
 
-      sdk = new mp({
+      sdk = new MercadoPago({
         access_token: accessToken
       });
 
-      assert.isTrue(sdk instanceof mp);
+      assert.isTrue(sdk instanceof MercadoPago);
 
       stub.restore();
     });
@@ -29,121 +28,121 @@ describe('Mercadopago SDK', function () {
 
   describe('Check Modules', function () {
     it('Configurations module', function () {
-      assert.isObject(mp.configurations, 'Configurations module doesnt exists');
+      assert.isObject(MercadoPago.configurations, 'Configurations module doesnt exists');
     });
 
     it('Utils module', function () {
-      assert.isObject(mp.utils, 'Utils exists');
+      assert.isObject(MercadoPago.utils, 'Utils exists');
     });
 
     it('Payment module', function () {
-      assert.isObject(mp.payment, 'Payment module doesnt exists');
+      assert.isObject(MercadoPago.payment, 'Payment module doesnt exists');
     });
 
     it('Merchant Orders module', function () {
-      assert.isObject(mp.merchant_orders, 'Merchant Orders module exists');
+      assert.isObject(MercadoPago.merchant_orders, 'Merchant Orders module exists');
     });
 
     it('Customers module', function () {
-      assert.isObject(mp.customers, 'Customers module doesnt exists');
+      assert.isObject(MercadoPago.customers, 'Customers module doesnt exists');
     });
 
     it('Preferences module', function () {
-      assert.isObject(mp.preferences, 'Preferences module doesnt exists');
+      assert.isObject(MercadoPago.preferences, 'Preferences module doesnt exists');
     });
 
     describe('Compatibility Layer', function () {
       it('SandboxMode', function () {
-        assert.isFunction(mp.sandboxMode);
+        assert.isFunction(MercadoPago.sandboxMode);
       });
 
       it('getAccessToken', function () {
-        assert.isFunction(mp.getAccessToken);
+        assert.isFunction(MercadoPago.getAccessToken);
       });
 
       it('get', function () {
-        assert.isFunction(mp.get);
+        assert.isFunction(MercadoPago.get);
       });
 
       it('post', function () {
-        assert.isFunction(mp.post);
+        assert.isFunction(MercadoPago.post);
       });
 
       it('put', function () {
-        assert.isFunction(mp.put);
+        assert.isFunction(MercadoPago.put);
       });
 
       it('delete', function () {
-        assert.isFunction(mp.delete);
+        assert.isFunction(MercadoPago.delete);
       });
 
       it('createPreference', function () {
-        assert.isFunction(mp.createPreference);
+        assert.isFunction(MercadoPago.createPreference);
       });
 
       it('updatePreference', function () {
-        assert.isFunction(mp.updatePreference);
+        assert.isFunction(MercadoPago.updatePreference);
       });
 
       it('getPreference', function () {
-        assert.isFunction(mp.getPreference);
+        assert.isFunction(MercadoPago.getPreference);
       });
 
       it('createPreapprovalPayment', function () {
-        assert.isFunction(mp.createPreapprovalPayment);
+        assert.isFunction(MercadoPago.createPreapprovalPayment);
       });
 
       it('updatePreapprovalPayment', function () {
-        assert.isFunction(mp.updatePreapprovalPayment);
+        assert.isFunction(MercadoPago.updatePreapprovalPayment);
       });
 
       it('updatePreapprovalPayment', function () {
-        assert.isFunction(mp.updatePreapprovalPayment);
+        assert.isFunction(MercadoPago.updatePreapprovalPayment);
       });
 
       it('searchPayment', function () {
-        assert.isFunction(mp.searchPayment);
+        assert.isFunction(MercadoPago.searchPayment);
       });
 
       it('getPayment', function () {
-        assert.isFunction(mp.getPayment);
+        assert.isFunction(MercadoPago.getPayment);
       });
 
       it('getPaymentInfo', function () {
-        assert.isFunction(mp.getPaymentInfo);
+        assert.isFunction(MercadoPago.getPaymentInfo);
       });
 
       it('getAuthorizedPayment', function () {
-        assert.isFunction(mp.getAuthorizedPayment);
+        assert.isFunction(MercadoPago.getAuthorizedPayment);
       });
 
       it('refundPayment', function () {
-        assert.isFunction(mp.refundPayment);
+        assert.isFunction(MercadoPago.refundPayment);
       });
 
       it('cancelPayment', function () {
-        assert.isFunction(mp.cancelPayment);
+        assert.isFunction(MercadoPago.cancelPayment);
       });
 
       it('cancelPreapprovalPayment', function () {
-        assert.isFunction(mp.cancelPreapprovalPayment);
+        assert.isFunction(MercadoPago.cancelPreapprovalPayment);
       });
 
       it('version', function () {
-        assert.isString(mp.version);
+        assert.isString(MercadoPago.version);
       });
     });
   });
 
   describe('Configure Method', function () {
     it('Check configuration is made', function () {
-      mp.configure({
+      MercadoPago.configure({
         client_id: clientId,
         client_secret: clientSecret
       });
 
-      assert.equal(mp.configurations.getClientId(), clientId);
-      assert.equal(mp.configurations.getClientSecret(), clientSecret);
+      assert.equal(MercadoPago.configurations.getClientId(), clientId);
+      assert.equal(MercadoPago.configurations.getClientSecret(), clientSecret);
     });
   });
 });

@@ -4,7 +4,6 @@ var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
 var Promise = require('bluebird');
 var assert = chai.assert;
-var expect = chai.expect;
 var mp = require('../index.js');
 var requestLib = require('request');
 var requestManager = require('../lib/request-manager');
@@ -89,13 +88,13 @@ describe('Mercadopago SDK', function () {
     });
 
     describe('REST Methods', function () {
-      var accessToken = 'ACCESS_TOKEN',
-        generateTokenStub;
+      var accessToken = 'ACCESS_TOKEN';
+      var generateTokenStub;
 
       describe('Valid Operations', function () {
         before(function () {
           generateTokenStub = sinon.stub(requestManager, 'generateAccessToken', function (callback) {
-            return new Promise(function (resolve, reject) {
+            return new Promise(function (resolve) {
               resolve(accessToken);
               return callback.apply(null, [null, accessToken]);
             });
@@ -111,6 +110,9 @@ describe('Mercadopago SDK', function () {
             test_paremeter: 'get'
           });
 
+          var callback;
+          var promiseCallback;
+
           assert.isFulfilled(promise);
 
           promise.then(function () {
@@ -123,9 +125,9 @@ describe('Mercadopago SDK', function () {
           });
 
           // With Callback
-          var callback = sinon.spy();
+          callback = sinon.spy();
 
-          var promiseCallback = mp.get('/v1/payments/1', callback);
+          promiseCallback = mp.get('/v1/payments/1', callback);
 
           assert.isFulfilled(promiseCallback);
 
@@ -135,6 +137,9 @@ describe('Mercadopago SDK', function () {
         });
 
         it('post', function () {
+          var callback;
+          var promiseCallback;
+
           var promise = mp.post('/v1/payments', {
             payload: true
           }, {
@@ -153,9 +158,9 @@ describe('Mercadopago SDK', function () {
             assert.equal(requestArgs.qs.test_paremeter, 'post');
           });
 
-          var callback = sinon.spy();
+          callback = sinon.spy();
 
-          var promiseCallback = mp.post('/v1/payments', callback);
+          promiseCallback = mp.post('/v1/payments', callback);
 
           assert.isFulfilled(promiseCallback);
 
@@ -165,6 +170,9 @@ describe('Mercadopago SDK', function () {
         });
 
         it('put', function () {
+          var callback;
+          var promiseCallback;
+
           var promise = mp.put('/v1/payments', {
             payload: true
           }, {
@@ -183,9 +191,9 @@ describe('Mercadopago SDK', function () {
             assert.equal(requestArgs.qs.test_paremeter, 'put');
           });
 
-          var callback = sinon.spy();
+          callback = sinon.spy();
 
-          var promiseCallback = mp.put('/v1/payments', callback);
+          promiseCallback = mp.put('/v1/payments', callback);
 
           assert.isFulfilled(promiseCallback);
 
@@ -195,6 +203,9 @@ describe('Mercadopago SDK', function () {
         });
 
         it('delete', function () {
+          var callback;
+          var promiseCallback;
+
           var promise = mp.delete('/v1/payments/1', {
             test_paremeter: 'delete'
           });
@@ -210,9 +221,9 @@ describe('Mercadopago SDK', function () {
             assert.equal(requestArgs.qs.test_paremeter, 'delete');
           });
 
-          var callback = sinon.spy();
+          callback = sinon.spy();
 
-          var promiseCallback = mp.delete('/v1/payments/1', callback);
+          promiseCallback = mp.delete('/v1/payments/1', callback);
 
           assert.isFulfilled(promiseCallback);
 
@@ -239,6 +250,9 @@ describe('Mercadopago SDK', function () {
         });
 
         it('get', function () {
+          var callback;
+          var promiseCallback;
+
           var promise = mp.get('/v1/payments/1', {
             test_paremeter: 'get'
           });
@@ -246,9 +260,9 @@ describe('Mercadopago SDK', function () {
           assert.isRejected(promise, errorMessage);
 
           // With Callback
-          var callback = sinon.spy();
+          callback = sinon.spy();
 
-          var promiseCallback = mp.get('/v1/payments/1', callback);
+          promiseCallback = mp.get('/v1/payments/1', callback);
 
           assert.isRejected(promiseCallback, errorMessage);
 
@@ -335,10 +349,14 @@ describe('Mercadopago SDK', function () {
     it('createPreference', function () {
       var stub = sinon.stub(preferencesModule, 'create', function () {});
 
-      mp.createPreference({test: true});
+      mp.createPreference({
+        test: true
+      });
 
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({test: true}, undefined));
+      assert.isTrue(stub.calledWith({
+        test: true
+      }, undefined));
 
       stub.restore();
     });
@@ -349,7 +367,9 @@ describe('Mercadopago SDK', function () {
       mp.updatePreference(1, {});
 
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({id: 1}));
+      assert.isTrue(stub.calledWith({
+        id: 1
+      }));
 
       stub.restore();
     });
@@ -368,10 +388,14 @@ describe('Mercadopago SDK', function () {
     it('createPreapprovalPayment', function () {
       var stub = sinon.stub(preapprovalModule, 'create', function () {});
 
-      mp.createPreapprovalPayment({id: 1});
+      mp.createPreapprovalPayment({
+        id: 1
+      });
 
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({id: 1}, undefined));
+      assert.isTrue(stub.calledWith({
+        id: 1
+      }, undefined));
 
       stub.restore();
     });
@@ -382,7 +406,9 @@ describe('Mercadopago SDK', function () {
       mp.updatePreapprovalPayment(1, {});
 
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({id: 1}));
+      assert.isTrue(stub.calledWith({
+        id: 1
+      }));
 
       stub.restore();
     });
@@ -452,7 +478,7 @@ describe('Mercadopago SDK', function () {
       var requestArgs;
 
       var stub = sinon.stub(requestManager, 'generateAccessToken', function () {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
           resolve('ACCESS_TOKEN');
         });
       });
@@ -480,7 +506,7 @@ describe('Mercadopago SDK', function () {
       var accessToken = 'ACCESS_TOKEN';
 
       var stub = sinon.stub(requestManager, 'generateAccessToken', function (callback) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve) {
           resolve(accessToken);
           callback.apply(null, [null, accessToken]);
         });

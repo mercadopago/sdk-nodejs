@@ -3,7 +3,6 @@ var chai = require('chai');
 var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
 var assert = chai.assert;
-var expect = chai.expect;
 var Promise = require('bluebird');
 var requestLib = require('request');
 var requestManager = require('../lib/request-manager');
@@ -77,6 +76,7 @@ describe('Request Manager', function () {
 
     it('Error generating the access_token', function () {
       var tokenErrorMessage = 'Error getting the token';
+      var promise;
 
       var method = requestManager.describe({
         path: '/v1/payments',
@@ -90,7 +90,7 @@ describe('Request Manager', function () {
         });
       });
 
-      var promise = method();
+      promise = method();
 
       assert.isRejected(promise, tokenErrorMessage);
 
@@ -98,24 +98,25 @@ describe('Request Manager', function () {
     });
 
     describe('Valid rest executions', function () {
+      var execStub;
+
       var mercadoPagoResponse = {
-          status: 200,
-          body: {
-            firstname: 'Ariel'
-          }
-        },
-        execStub;
+        status: 200,
+        body: {
+          firstname: 'Ariel'
+        }
+      };
 
       beforeEach(function () {
         sinon.stub(requestManager, 'generateAccessToken', function (callback) {
-          return new Promise(function (resolve, reject) {
+          return new Promise(function (resolve) {
             resolve('ACCESS_TOKEN');
             return callback.apply(null, [null, 'ACCESS_TOKEN']);
           });
         });
 
         execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-          return new Promise(function (resolve, reject) {
+          return new Promise(function (resolve) {
             resolve(mercadoPagoResponse);
             return callback.apply(null, [null, mercadoPagoResponse]);
           });
@@ -137,6 +138,8 @@ describe('Request Manager', function () {
 
         var promise = method(callback);
 
+        var execOptionParams;
+
         assert.isFulfilled(promise, mercadoPagoResponse);
 
         promise.then(function () {
@@ -144,7 +147,7 @@ describe('Request Manager', function () {
           assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
 
           // Validate exec params
-          var execOptionParams = execStub.args[0][0];
+          execOptionParams = execStub.args[0][0];
 
           assert.equal(execOptionParams.path, '/v1/payments');
           assert.equal(execOptionParams.method, 'GET');
@@ -173,6 +176,8 @@ describe('Request Manager', function () {
 
         var promise = method(1, callback);
 
+        var execOptionParams;
+
         assert.isFulfilled(promise, mercadoPagoResponse);
 
         promise.then(function () {
@@ -180,7 +185,7 @@ describe('Request Manager', function () {
           assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
 
           // Validate exec params
-          var execOptionParams = execStub.args[0][0];
+          execOptionParams = execStub.args[0][0];
 
           assert.equal(execOptionParams.path, '/v1/payments/1');
           assert.equal(execOptionParams.method, 'GET');
@@ -191,8 +196,8 @@ describe('Request Manager', function () {
       it('With path_sandbox_prefix (GET)', function () {
         var callback = sinon.spy();
 
-        // Set sandbox mode for path_sandbox_prefix
-        configurationModule.sandbox = true;
+        var promise;
+        var execOptionParams;
 
         var method = requestManager.describe({
           path: '/v1/payments',
@@ -200,7 +205,10 @@ describe('Request Manager', function () {
           path_sandbox_prefix: true
         });
 
-        var promise = method(1, {
+        // Set sandbox mode for path_sandbox_prefix
+        configurationModule.sandbox = true;
+
+        promise = method(1, {
           test_value: true
         }, callback);
 
@@ -211,7 +219,7 @@ describe('Request Manager', function () {
           assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
 
           // Validate exec params
-          var execOptionParams = execStub.args[0][0];
+          execOptionParams = execStub.args[0][0];
 
           assert.equal(execOptionParams.path, '/sandbox/v1/payments');
           assert.equal(execOptionParams.method, 'GET');
@@ -225,9 +233,10 @@ describe('Request Manager', function () {
       it('With path parameters on JSON (POST)', function () {
         var execOptionParams;
         var callback = sinon.spy();
+
         var payload = {
-            id: 1
-          };
+          id: 1
+        };
 
         var method = requestManager.describe({
           path: '/v1/payments/:id',
@@ -317,16 +326,18 @@ describe('Request Manager', function () {
         var testPayload = {
           description: 'MercadoPago Sale'
         };
+        var method;
+        var promise;
 
         this.schema = {};
         this.idempotency = true;
 
-        var method = requestManager.describe({
+        method = requestManager.describe({
           path: '/v1/payments',
           method: 'POST'
         });
 
-        var promise = method(testPayload, callback);
+        promise = method(testPayload, callback);
 
         assert.isFulfilled(promise, mercadoPagoResponse);
 
@@ -378,14 +389,15 @@ describe('Request Manager', function () {
   });
 
   describe('Generate Token', function () {
+    var execStub;
+
     var mpTokenResponse = {
-        status: 200,
-        body: {
-          access_token: 'ACCESS_TOKEN',
-          refresh_token: 'REFRESH_TOKEN'
-        }
-      },
-      execStub;
+      status: 200,
+      body: {
+        access_token: 'ACCESS_TOKEN',
+        refresh_token: 'REFRESH_TOKEN'
+      }
+    };
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
@@ -479,8 +491,8 @@ describe('Request Manager', function () {
       requestManager.exec.restore();
 
       // Create another stub that fails
-      execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        return callback.apply(null, [new Error(errorMessage), null]);
+      execStub = sinon.stub(requestManager, 'exec', function (options, funcCallback) {
+        return funcCallback.apply(null, [new Error(errorMessage), null]);
       });
 
       sinon.stub(configurationModule, 'getClientId').returns(clientId);
@@ -502,14 +514,15 @@ describe('Request Manager', function () {
   });
 
   describe('Refresh Token', function () {
+    var execStub;
+
     var mpTokenResponse = {
-        status: 200,
-        body: {
-          access_token: 'ACCESS_TOKEN',
-          refresh_token: 'REFRESH_TOKEN'
-        }
-      },
-      execStub;
+      status: 200,
+      body: {
+        access_token: 'ACCESS_TOKEN',
+        refresh_token: 'REFRESH_TOKEN'
+      }
+    };
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
@@ -526,7 +539,7 @@ describe('Request Manager', function () {
     it('Missing refres_token property', function () {
       var callback = sinon.spy();
       var promise;
-      var callbackerror;
+      var callbackError;
 
       sinon.stub(configurationModule, 'getRefreshToken').returns('');
 
@@ -579,14 +592,14 @@ describe('Request Manager', function () {
       var accessToken = 'ACCESS_TOKEN';
       var refreshToken = 'REFRESH_TOKEN';
       var promise;
-      var execOptionParams;
+      var callbackError;
 
       // Restore the exec on beforeEach
       requestManager.exec.restore();
 
       // Create another stub that fails
-      execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        return callback.apply(null, [new Error(errorMessage), null]);
+      execStub = sinon.stub(requestManager, 'exec', function (options, funcCallback) {
+        return funcCallback.apply(null, [new Error(errorMessage), null]);
       });
 
       sinon.stub(configurationModule, 'getAccessToken').returns(accessToken);
@@ -656,7 +669,9 @@ describe('Request Manager', function () {
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({access_token: accessToken}));
+      assert.equal(JSON.stringify(request.qs), JSON.stringify({
+        access_token: accessToken
+      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -665,23 +680,25 @@ describe('Request Manager', function () {
     });
 
     it('Valid POST Request with specific idempotency', function () {
-      var fakeIdempotency = 'fake-uuid',
-        options = {
-          path: '/v1/payments',
-          method: 'POST',
-          payload: {
-            firstname: 'Ariel'
-          },
-          config: {
-            idempotency: fakeIdempotency
-          }
-        };
+      var fakeIdempotency = 'fake-uuid';
+      var options = {
+        path: '/v1/payments',
+        method: 'POST',
+        payload: {
+          firstname: 'Ariel'
+        },
+        config: {
+          idempotency: fakeIdempotency
+        }
+      };
 
       var request = requestManager.buildRequest(options);
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({access_token: accessToken}));
+      assert.equal(JSON.stringify(request.qs), JSON.stringify({
+        access_token: accessToken
+      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -691,7 +708,6 @@ describe('Request Manager', function () {
     });
 
     it('Valid POST Request with specific without specific idempotency', function () {
-      var fakeIdempotency = 'fake-uuid';
       var options = {
         path: '/v1/payments',
         method: 'POST',
@@ -706,7 +722,9 @@ describe('Request Manager', function () {
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({access_token: accessToken}));
+      assert.equal(JSON.stringify(request.qs), JSON.stringify({
+        access_token: accessToken
+      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -751,7 +769,9 @@ describe('Request Manager', function () {
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({access_token: accessToken}));
+      assert.equal(JSON.stringify(request.qs), JSON.stringify({
+        access_token: accessToken
+      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.FORM_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.FORM_MIME_TYPE);
@@ -769,9 +789,9 @@ describe('Request Manager', function () {
 
         },
         schema: {
-          "properties": {
-            "firstname": {
-              "type": "string"
+          properties: {
+            firstname: {
+              type: 'string'
             }
           }
         },
@@ -800,7 +820,8 @@ describe('Request Manager', function () {
         config: {}
       };
 
-      assert.throws(requestManager.buildRequest.bind(requestManager, options), 'The next fields are failing on validation: ".firstname": should be integer.');
+      assert.throws(requestManager.buildRequest.bind(requestManager, options),
+        'The next fields are failing on validation: ".firstname": should be integer.');
     });
   });
 
@@ -915,8 +936,8 @@ describe('Request Manager', function () {
         firstname: 'Ariel'
       };
       var promise;
-      var callbackErrors;
-      var mpResponse
+      var callbackResponse;
+      var mpResponse;
 
       sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
 

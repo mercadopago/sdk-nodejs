@@ -1,7 +1,6 @@
 /* eslint-env node, mocha */
 var chai = require('chai');
 var assert = chai.assert;
-var expect = chai.expect;
 var sinon = require('sinon');
 var validationModule = require('../lib/validation');
 

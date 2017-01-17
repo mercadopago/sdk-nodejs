@@ -7,8 +7,10 @@
       "ignoreUrls": true,
       "ignoreComments": false
     }],
-    "no-param-reassign": ["error", { "props": false }],
-    "class-methods-use-this": "off"
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off",
+    "no-console": "off",
+    "func-names": "off"
   },
   "env": {
     "node": true,
