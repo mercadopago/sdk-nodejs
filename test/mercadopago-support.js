@@ -8,7 +8,7 @@ chai.use(chaiAsPromised);
 var assert = chai.assert,
     expect = chai.expect;
 
-describe('Mercadopago SDK', function(){
+describe('Mercadopago Support (Backward Compatibility)', function(){
     var mp = require('../index.js'),
         requestLib = require('request'),
         requestManager = require('../lib/request-manager'),
@@ -77,14 +77,21 @@ describe('Mercadopago SDK', function(){
 
         it('getAccessToken', function(){
             var stub = sinon.stub(requestManager, 'generateAccessToken', function(callback){
-                callback.apply(null, [null, 'ACCESS_TOKEN']);
+                return new Promise(function(resolve, reject){
+                    resolve('ACCESS_TOKEN');
+                    return callback.apply(null, [null, 'ACCESS_TOKEN']);;
+                });
             });
 
             var callback = sinon.spy();
 
-            mp.getAccessToken(callback);
+            var promise = mp.getAccessToken(callback);
 
-            assert.isTrue(callback.called);
+            assert.isFulfilled(promise, 'ACCESS_TOKEN');
+
+            promise.then(function(){
+                assert.isTrue(callback.called);
+            });
 
             stub.restore();
         });
