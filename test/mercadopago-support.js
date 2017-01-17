@@ -14,7 +14,7 @@ var ipnModule = require('../lib/resources/ipn');
 
 chai.use(chaiAsPromised);
 
-describe('Mercadopago SDK', function () {
+describe('Mercadopago Support (Backward Compatibility)', function () {
   var requestStub;
   var mpResponse = {
     firstname: 'Ariel'
@@ -73,12 +73,23 @@ describe('Mercadopago SDK', function () {
       assert.isFalse(mp.configurations.sandbox);
     });
 
-    it('getAccessToken', function () {
-      var stub = sinon.stub(requestManager, 'generateAccessToken', function (callback) {
-        callback.apply(null, [null, 'ACCESS_TOKEN']);
+    it('getAccessToken', function(){
+      var stub = sinon.stub(requestManager, 'generateAccessToken', function(callback){
+        return new Promise(function(resolve, reject){
+          resolve('ACCESS_TOKEN');
+          return callback.apply(null, [null, 'ACCESS_TOKEN']);;
+        });
       });
 
       var callback = sinon.spy();
+
+      var promise = mp.getAccessToken(callback);
+
+      assert.isFulfilled(promise, 'ACCESS_TOKEN');
+
+      promise.then(function(){
+          assert.isTrue(callback.called);
+      });
 
       mp.getAccessToken(callback);
 

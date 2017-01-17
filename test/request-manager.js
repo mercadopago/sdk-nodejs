@@ -166,6 +166,24 @@ describe('Request Manager', function () {
         assert.isFulfilled(promise, mercadoPagoResponse);
       });
 
+      it('Validate base_url option (GET)', function () {
+        var method = requestManager.describe({
+          base_url: 'http://auth.mercadopago.com',
+          path: '/v1/payments',
+          method: 'GET'
+        });
+
+        var promise = method();
+
+        assert.isFulfilled(promise, mercadoPagoResponse);
+
+        promise.then(function () {
+          var execOptionParams = execStub.args[0][0];
+
+          assert.equal(execOptionParams.base_url, 'http://auth.mercadopago.com');
+        });
+      });
+
       it('With path parameters on arguments (GET)', function () {
         var callback = sinon.spy();
 
@@ -420,8 +438,23 @@ describe('Request Manager', function () {
 
       promise = requestManager.generateAccessToken(callback);
 
-      assert.isTrue(callback.called);
-      assert.isTrue(callback.calledWith(null, accessToken));
+      assert.isFulfilled(promise, accessToken);
+
+      promise.then(function () {
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, accessToken));
+      });
+
+      configurationModule.getAccessToken.restore();
+    });
+
+    it('Already have access_token, no callback', function () {
+      var accessToken = 'STUB_ACCESS_TOKEN';
+      var promise;
+
+      sinon.stub(configurationModule, 'getAccessToken').returns(accessToken);
+
+      promise = requestManager.generateAccessToken();
 
       assert.isFulfilled(promise, accessToken);
 
@@ -438,14 +471,16 @@ describe('Request Manager', function () {
 
       promise = requestManager.generateAccessToken(callback);
 
-      getTokenError = callback.args[0][0];
+      assert.isRejected(promise, 'Must set client_id and client_secret');
 
-      assert.equal(getTokenError.message, 'Must set client_id and client_secret');
+      promise.catch(function () {
+        getTokenError = callback.args[0][0];
+
+        assert.equal(getTokenError.message, 'Must set client_id and client_secret');
+      });
 
       configurationModule.getClientId.restore();
       configurationModule.getClientSecret.restore();
-
-      assert.isRejected(promise, 'Must set client_id and client_secret');
     });
 
     it('Get the access_token from MercadoPago API', function () {
@@ -460,20 +495,22 @@ describe('Request Manager', function () {
 
       promise = requestManager.generateAccessToken(callback);
 
-      execOptionParams = execStub.args[0][0];
-
-      assert.equal(execOptionParams.path, '/oauth/token');
-      assert.equal(execOptionParams.method, 'POST');
-      assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({
-        client_id: clientId,
-        client_secret: clientSecret,
-        grant_type: 'client_credentials'
-      }));
-
-      assert.isTrue(callback.called);
-      assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
-
       assert.isFulfilled(promise, mpTokenResponse.body.access_token);
+
+      promise.then(function () {
+        execOptionParams = execStub.args[0][0];
+
+        assert.equal(execOptionParams.path, '/oauth/token');
+        assert.equal(execOptionParams.method, 'POST');
+        assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({
+          client_id: clientId,
+          client_secret: clientSecret,
+          grant_type: 'client_credentials'
+        }));
+
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
+      });
 
       configurationModule.getClientId.restore();
       configurationModule.getClientSecret.restore();
@@ -500,13 +537,15 @@ describe('Request Manager', function () {
 
       promise = requestManager.generateAccessToken(callback);
 
-      assert.isTrue(callback.called);
-
-      callbackError = callback.args[0][0];
-
-      assert.equal(callbackError.message, errorMessage);
-
       assert.isRejected(promise, errorMessage);
+
+      promise.catch(function () {
+        assert.isTrue(callback.called);
+
+        callbackError = callback.args[0][0];
+
+        assert.equal(callbackError.message, errorMessage);
+      });
 
       configurationModule.getClientId.restore();
       configurationModule.getClientSecret.restore();
@@ -545,11 +584,25 @@ describe('Request Manager', function () {
 
       promise = requestManager.refreshAccessToken(callback);
 
-      assert.isTrue(callback.called);
+      assert.isRejected(promise, 'You need the refresh_token to refresh the access_token');
 
-      callbackError = callback.args[0][0];
+      promise.catch(function () {
+        assert.isTrue(callback.called);
 
-      assert.equal(callbackError.message, 'You need the refresh_token to refresh the access_token');
+        callbackError = callback.args[0][0];
+
+        assert.equal(callbackError.message, 'You need the refresh_token to refresh the access_token');
+      });
+
+      configurationModule.getRefreshToken.restore();
+    });
+
+    it('Missing refres_token property, no callback', function () {
+      var promise;
+
+      sinon.stub(configurationModule, 'getRefreshToken').returns('');
+
+      promise = requestManager.refreshAccessToken();
 
       assert.isRejected(promise, 'You need the refresh_token to refresh the access_token');
 
@@ -568,19 +621,21 @@ describe('Request Manager', function () {
 
       promise = requestManager.refreshAccessToken(callback);
 
-      execOptionParams = execStub.args[0][0];
-
-      assert.equal(execOptionParams.path, '/oauth/token');
-      assert.equal(execOptionParams.method, 'POST');
-      assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({
-        client_secret: accessToken,
-        grant_type: 'refresh_token'
-      }));
-
-      assert.isTrue(callback.called);
-      assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
-
       assert.isFulfilled(promise, mpTokenResponse.body.access_token);
+
+      promise.then(function () {
+        execOptionParams = execStub.args[0][0];
+
+        assert.equal(execOptionParams.path, '/oauth/token');
+        assert.equal(execOptionParams.method, 'POST');
+        assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({
+          client_secret: accessToken,
+          grant_type: 'refresh_token'
+        }));
+
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
+      });
 
       configurationModule.getAccessToken.restore();
       configurationModule.getRefreshToken.restore();
@@ -606,20 +661,97 @@ describe('Request Manager', function () {
       sinon.stub(configurationModule, 'getRefreshToken').returns(refreshToken);
 
       promise = requestManager.refreshAccessToken(callback);
-
-      callbackError = callback.args[0][0];
-
-      assert.equal(callbackError.message, errorMessage);
-
       assert.isRejected(promise, errorMessage);
+
+
+      promise.catch(function(){
+        callbackError = callback.args[0][0];
+
+        assert.equal(callbackError.message, errorMessage);
+      });
 
       configurationModule.getAccessToken.restore();
       configurationModule.getRefreshToken.restore();
     });
   });
 
+  describe('Get User Credentials', function () {
+    var userCredentialsResponse = {
+        status: 200,
+        body: {
+          success: true
+        }
+      },
+      execStub;
+
+    beforeEach(function () {
+      execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
+        return callback.apply(null, [null, userCredentialsResponse]);
+      });
+    });
+
+    afterEach(function () {
+      requestManager.exec.restore();
+    });
+
+    it('Get user credentials from MercadoPago API', function () {
+      var callback = sinon.spy();
+      var execOptionParams;
+
+      var promise = requestManager.getUserCredentials('secret', 'code', 'uri', callback);
+
+      assert.isFulfilled(promise, userCredentialsResponse);
+
+      promise.then(function () {
+        execOptionParams = execStub.args[0][0];
+
+        assert.equal(execOptionParams.path, '/oauth/token');
+        assert.equal(execOptionParams.method, 'POST');
+        assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({
+          client_secret: 'secret',
+          code: 'code',
+          redirect_uri: 'uri',
+          grant_type: 'authorization_code'
+        }));
+
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, userCredentialsResponse));
+      });
+    });
+
+    it('Get user credentials from MercadoPago API without callback', function () {
+      var promise = requestManager.getUserCredentials('secret', 'code', 'uri');
+
+      assert.isFulfilled(promise, userCredentialsResponse);
+    });
+
+    it('Failing getting user credentials from MercadoPago API', function () {
+      var errorMessage = 'Error refreshing token';
+      var callback = sinon.spy();
+      var promise;
+
+      // Restore the exec on beforeEach
+      requestManager.exec.restore();
+
+      // Create another stub that fails
+      execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
+        return callback.apply(null, [new Error(errorMessage), null]);
+      });
+
+      promise = requestManager.getUserCredentials('secret', 'code', 'uri', callback);
+
+      assert.isRejected(promise, errorMessage);
+
+      promise.catch(function () {
+        var callbackError = callback.args[0][0];
+
+        assert.equal(callbackError.message, errorMessage);
+      });
+    });
+  });
+
   describe('Build Request', function () {
-    var baseUrl = 'http:// api.mercadopago.com';
+    var baseUrl = 'http://api.mercadopago.com';
     var accessToken = 'ACCESS_TOKEN';
     var userAgent = 'USER_AGENT';
 
@@ -651,6 +783,26 @@ describe('Request Manager', function () {
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
       assert.equal(JSON.stringify(request.qs), JSON.stringify(options.config.qs));
+      assert.equal(request.headers['user-agent'], userAgent);
+      assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
+      assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
+      assert.isTrue(request.json);
+      assert.isTrue(request.strictSSL);
+    });
+
+    it('Valid GET Request with base_url', function () {
+      var options = {
+        config: {},
+        path: '/v1/payments',
+        method: 'GET',
+        base_url: 'http://auth.mercadopago.com'
+      };
+
+      var request = requestManager.buildRequest(options);
+
+      assert.equal(request.uri, 'http://auth.mercadopago.com' + options.path);
+      assert.equal(request.method, options.method);
+      assert.equal(JSON.stringify(request.qs), JSON.stringify({access_token: accessToken}));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
