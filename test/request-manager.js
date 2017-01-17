@@ -9,6 +9,7 @@ var requestManager = require('../lib/request-manager');
 var configurationModule = require('../lib/configurations');
 var MercadopagoResponse = require('../lib/utils/mercadopagoResponse');
 var MercadopagoError = require('../lib/utils/mercadopagoError');
+var cacheManager = require('../lib/cache-manager');
 
 chai.use(chaiAsPromised);
 
@@ -214,6 +215,9 @@ describe('Request Manager', function () {
       it('With path_sandbox_prefix (GET)', function () {
         var callback = sinon.spy();
 
+        var hasSpy = sinon.spy(cacheManager, 'has');
+        var generateHashSpy = sinon.spy(cacheManager, 'generateCacheKey');
+
         var promise;
         var execOptionParams;
 
@@ -227,6 +231,7 @@ describe('Request Manager', function () {
         configurationModule.sandbox = true;
 
         promise = method(1, {
+          cache: true,
           test_value: true
         }, callback);
 
@@ -236,16 +241,23 @@ describe('Request Manager', function () {
           assert.isTrue(callback.called);
           assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
 
+          assert.isTrue(hasSpy.called);
+          assert.isTrue(generateHashSpy.called);
+
           // Validate exec params
           execOptionParams = execStub.args[0][0];
 
           assert.equal(execOptionParams.path, '/sandbox/v1/payments');
           assert.equal(execOptionParams.method, 'GET');
+          assert.isTrue(execOptionParams.config.cache);
           assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify({}));
         });
 
         // Change it back to false
         configurationModule.sandbox = false;
+
+        cacheManager.has.restore();
+        cacheManager.generateCacheKey.restore();
       });
 
       it('With path parameters on JSON (POST)', function () {
@@ -402,6 +414,35 @@ describe('Request Manager', function () {
           assert.equal(JSON.stringify(execOptionParams.payload), JSON.stringify(testPayload));
           assert.isTrue(execOptionParams.idempotency);
         });
+      });
+
+      it('Response from cache (GET)', function () {
+        var callback = sinon.spy();
+
+        var method = requestManager.describe({
+          path: '/v1/payments',
+          method: 'GET'
+        });
+
+        var hasStub = sinon.stub(cacheManager, 'has').returns(true);
+        var getStub = sinon.stub(cacheManager, 'get').returns(mercadoPagoResponse);
+        var generateHashSpy = sinon.spy(cacheManager, 'generateCacheKey');
+
+        method({
+          cache: true
+        }, callback);
+
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+        assert.isTrue(getStub.called);
+        assert.isTrue(generateHashSpy.called);
+
+        assert.isFalse(execStub.called);
+
+        hasStub.restore();
+        getStub.restore();
+        generateHashSpy.restore();
       });
     });
   });
@@ -1112,6 +1153,79 @@ describe('Request Manager', function () {
 
       requestManager.buildRequest.restore();
       requestLib.Request.restore();
+    });
+
+    it('with cache configuration (GET)', function () {
+      var callback = sinon.spy();
+      var generateHashSpy;
+      var saveStub;
+      var callbackResponse;
+      var generateArguments;
+      var saveArguments;
+
+      var responseBody = {
+        firstname: 'Ariel'
+      };
+
+      sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
+
+      sinon.stub(requestLib, 'Request', function (params) {
+        return params.callback.apply(null, [null, {
+          statusCode: 200,
+          headers: {
+            'cache-control': 'max-age=600'
+          }
+        }, responseBody]);
+      });
+
+      saveStub = sinon.spy(cacheManager, 'save');
+      generateHashSpy = sinon.stub(cacheManager, 'generateCacheKey').returns('test-hash');
+
+      requestManager.exec({
+        path: '/test-path',
+        method: 'GET',
+        headers: {},
+        cache: true
+      }, callback);
+
+      callbackResponse = callback.args[0][1];
+
+      assert.instanceOf(callbackResponse, MercadopagoResponse);
+      assert.equal(JSON.stringify(new MercadopagoResponse(responseBody, 200, fakeIdempotency)), JSON.stringify(callbackResponse));
+
+      generateArguments = generateHashSpy.args[0];
+      saveArguments = saveStub.args[0];
+
+      assert.isTrue(generateHashSpy.called);
+      assert.isTrue(saveStub.called);
+
+      assert.equal(generateArguments[0], '/test-path');
+      assert.equal(JSON.stringify(generateArguments[1]), JSON.stringify({}));
+      assert.equal(JSON.stringify(generateArguments[2]), JSON.stringify({}));
+
+      assert.equal(saveArguments[0], 'test-hash');
+      assert.equal(JSON.stringify(saveArguments[1]), JSON.stringify(callbackResponse));
+
+      // Testing sending querystring
+      requestManager.exec({
+        path: '/test-path',
+        method: 'GET',
+        cache: true,
+        config: {
+          qs: {
+            filter: 'firstname'
+          }
+        }
+      }, callback);
+
+      assert.isTrue(generateHashSpy.called);
+      assert.isTrue(saveStub.called);
+
+      requestManager.buildRequest.restore();
+      requestLib.Request.restore();
+
+      cacheManager.save.restore();
+      cacheManager.generateCacheKey.restore();
     });
   });
 });
