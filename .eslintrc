@@ -11,9 +11,5 @@
     "class-methods-use-this": "off",
     "no-console": "off",
     "func-names": "off"
-  },
-  "env": {
-    "node": true,
-    "mocha": true
   }
 }

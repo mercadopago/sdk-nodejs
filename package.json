@@ -4,9 +4,11 @@
   "description": "Mercadopago SDK",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "lint": "NODE_ENV=test eslint lib/*.js",
     "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
-    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "test": "npm run coverage",
+    "posttest": "npm run lint"
   },
   "repository": {
     "type": "git",
