@@ -11,15 +11,17 @@ describe('MercadopagoError Class', function () {
       assert.instanceOf(mpError, MercadopagoError, 'mpError is an instance of MercadopagoError');
       assert.equal(mpError.name, 'MercadoPagoError');
       assert.equal(mpError.message, 'Unknown Error');
+      assert.equal(mpError.cause, 'Unknown Cause');
       assert.equal(mpError.status, 500);
       assert.isUndefined(mpError.idempotency);
     });
 
     it('with arguments', function () {
-      var mpError = new MercadopagoError('Time-Out', 408, 'idempotency');
+      var mpError = new MercadopagoError('Time-Out', 'Cause', 408, 'idempotency');
 
       assert.instanceOf(mpError, MercadopagoError, 'mpError is an instance of MercadopagoError');
       assert.equal(mpError.name, 'MercadoPagoError');
+      assert.equal(mpError.cause, 'Cause');
       assert.equal(mpError.message, 'Time-Out');
       assert.equal(mpError.status, 408);
       assert.equal(mpError.idempotency, 'idempotency');
