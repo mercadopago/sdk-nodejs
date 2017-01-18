@@ -27,28 +27,16 @@ describe('Mercadopago SDK', function () {
   });
 
   describe('Check Modules', function () {
-    it('Configurations module', function () {
+    it('Check Modules', function () {
       assert.isObject(MercadoPago.configurations, 'Configurations module doesnt exists');
-    });
-
-    it('Utils module', function () {
       assert.isObject(MercadoPago.utils, 'Utils exists');
-    });
-
-    it('Payment module', function () {
       assert.isObject(MercadoPago.payment, 'Payment module doesnt exists');
-    });
-
-    it('Merchant Orders module', function () {
       assert.isObject(MercadoPago.merchant_orders, 'Merchant Orders module exists');
-    });
-
-    it('Customers module', function () {
       assert.isObject(MercadoPago.customers, 'Customers module doesnt exists');
-    });
-
-    it('Preferences module', function () {
       assert.isObject(MercadoPago.preferences, 'Preferences module doesnt exists');
+      assert.isObject(MercadoPago.ipn, 'IPN module doesnt exists');
+      assert.isObject(MercadoPago.connect, 'Connect module doesnt exists');
+      assert.isObject(MercadoPago.money_requests, 'Money Requets module doesnt exists');
     });
 
     describe('Compatibility Layer', function () {
