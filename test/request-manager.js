@@ -1072,6 +1072,7 @@ describe('Request Manager', function () {
       });
 
       promise = requestManager.exec({}, callback);
+
       callbackErrors = callback.args[0][0];
 
       assert.equal(callbackErrors.message, 'Unknown Error');
@@ -1112,6 +1113,65 @@ describe('Request Manager', function () {
 
       requestManager.buildRequest.restore();
       requestLib.Request.restore();
+    });
+
+    it('Valid Response From MercadoPago API (Using ETAG Cache)', function () {
+      var callback = sinon.spy();
+      var responseBody = {
+        firstname: 'Ariel'
+      };
+      var tag = 'e-tag-from-mercadopago';
+      var promise;
+      var callbackResponse;
+      var mpResponse;
+      var promiseWithCache;
+      var requestStub;
+      var requestArguments;
+
+      sinon.stub(requestManager, 'buildRequest').returns(buildRequestValidResponse);
+
+      requestStub = sinon.stub(requestLib, 'Request', function (params) {
+        return params.callback.apply(null, [null, {
+          statusCode: 200,
+          headers: {
+            etag: tag
+          }
+        }, responseBody]);
+      });
+
+      promise = requestManager.exec({}, callback);
+
+      assert.isFulfilled(promise);
+
+      promise.then(function () {
+        callbackResponse = callback.args[0][1];
+
+        mpResponse = new MercadopagoResponse(responseBody, 200, fakeIdempotency);
+
+        assert.instanceOf(callbackResponse, MercadopagoResponse);
+        assert.equal(JSON.stringify(callbackResponse), JSON.stringify(mpResponse));
+
+        promiseWithCache = requestManager.exec({}, callback);
+
+        assert.isFulfilled(promiseWithCache);
+
+        promiseWithCache.then(function () {
+          requestArguments = requestStub.args[0][0];
+
+          callbackResponse = callback.args[0][1];
+
+          mpResponse = new MercadopagoResponse(responseBody, 200, fakeIdempotency);
+
+          assert.instanceOf(callbackResponse, MercadopagoResponse);
+          assert.equal(JSON.stringify(callbackResponse), JSON.stringify(mpResponse));
+
+          // Check that the etag is send on header (Check Cache Library)
+          assert.equal(requestArguments.headers['If-None-Match'], tag);
+        });
+
+        requestManager.buildRequest.restore();
+        requestLib.Request.restore();
+      });
     });
   });
 });
