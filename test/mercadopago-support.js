@@ -503,7 +503,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
         requestArgs = requestStub.args[0][0];
 
-        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/collections/1');
+        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/collections/1');
         assert.equal(requestArgs.method, 'PUT');
         assert.equal(requestArgs.json.id, 1);
         assert.equal(requestArgs.json.status, 'refunded');
@@ -532,7 +532,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
         requestArgs = requestStub.args[0][0];
 
-        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/collections/1');
+        assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/collections/1');
         assert.equal(requestArgs.method, 'PUT');
         assert.equal(requestArgs.json.id, 1);
         assert.equal(requestArgs.json.status, 'cancelled');

@@ -1,5 +1,6 @@
 var requestManager = require('../request-manager');
 var paymentModel = require('../models/paymentModel');
+var collectionsModule = require('./collections');
 
 var payment = module.exports = {
   schema: paymentModel,
@@ -21,8 +22,53 @@ payment.get = requestManager.describe({
   method: 'GET'
 });
 
-payment.search = requestManager.describe({
-  path: '/collections/search',
-  path_sandbox_prefix: true,
-  method: 'GET'
-});
+/**
+ * Search payment: Use v0 -> /collections
+ */
+payment.search = collectionsModule.search;
+
+/**
+ * Cancel payment: Use v0 -> /collections
+ * @param id
+ * @param callback
+ * @returns {*}
+ */
+payment.cancel = function (id, callback) {
+  var paymentId = (typeof arguments[0] === 'object') ? arguments[0].id : arguments[0];
+
+  if (typeof callback !== 'function' || callback === undefined) callback = function () {};
+
+  return collectionsModule.put({
+    id: paymentId,
+    status: 'cancelled'
+  }, callback);
+};
+
+/**
+ * Refund payment: Use v0 -> /collections
+ * @param id
+ * @param callback
+ * @returns {*}
+ */
+payment.refund = function (id, callback) {
+  var paymentId = (typeof arguments[0] === 'object') ? arguments[0].id : arguments[0];
+
+  if (typeof callback !== 'function' || callback === undefined) callback = function () {};
+
+  return collectionsModule.put({
+    id: paymentId,
+    status: 'refunded'
+  }, callback);
+};
+
+/**
+ * Refund partial payment: Use v0 -> /collections
+ * @param refund
+ * @param callback
+ * @returns {Thenable.<U>|*|{anyOf}|*}
+ */
+payment.refundPartial = function (refund, callback) {
+  if (typeof callback !== 'function' || callback === undefined) callback = function () {};
+
+  return collectionsModule.refunds.post(refund, callback);
+};
