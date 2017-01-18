@@ -4,14 +4,8 @@ var sinon = require('sinon');
 var chaiAsPromised = require('chai-as-promised');
 var Promise = require('bluebird');
 var assert = chai.assert;
-var mp = require('../index.js');
-var requestLib = require('request');
-var requestManager = require('../lib/request-manager');
 var paymentModule = require('../lib/resources/payment');
 var collectionsModule = require('../lib/resources/collections');
-var preferencesModule = require('../lib/resources/prefereces');
-var preapprovalModule = require('../lib/resources/preapproval');
-var ipnModule = require('../lib/resources/ipn');
 
 chai.use(chaiAsPromised);
 
