@@ -22,6 +22,11 @@ payment.get = requestManager.describe({
 });
 
 payment.search = requestManager.describe({
+  path: '/v1/payments/search',
+  method: 'GET'
+});
+
+payment.oldSearch = requestManager.describe({
   path: '/collections/search',
   path_sandbox_prefix: true,
   method: 'GET'
