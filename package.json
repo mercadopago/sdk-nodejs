@@ -45,6 +45,7 @@
     "chai-as-promised": "^6.0.0",
     "moment": "^2.17.1",
     "request": "^2.79.0",
+    "request-etag": "^2.0.3",
     "uuid": "^3.0.1"
   }
 }
