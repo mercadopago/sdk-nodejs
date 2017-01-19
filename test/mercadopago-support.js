@@ -436,7 +436,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
     });
 
     it('searchPayment', function () {
-      var stub = sinon.stub(paymentModule, 'search', function () {});
+      var stub = sinon.stub(paymentModule, 'oldSearch', function () {});
 
       mp.searchPayment({
         fields: 'firstname'
