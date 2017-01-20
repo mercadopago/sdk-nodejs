@@ -57,7 +57,7 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 * [Payment](https://github.com/mercadopago/px-nodejs/wiki/Payment)
 * [Preferences](https://github.com/mercadopago/px-nodejs/wiki/Preferences)
 * [Pre Approval](https://github.com/mercadopago/px-nodejs/wiki/Pre-Approval)
-* [Customers](https://github.com/mercadopago/px-nodejs/wiki/Customers)
+* [Customers & Cards](https://github.com/mercadopago/px-nodejs/wiki/Customers-&-Cards)
 * [Merchant Orders](https://github.com/mercadopago/px-nodejs/wiki/Merchant-Orders)
 * [Money Requests](https://github.com/mercadopago/px-nodejs/wiki/Money-Requests)
 * [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
