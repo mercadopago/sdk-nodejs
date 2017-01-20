@@ -59,6 +59,16 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 * [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
 * [IPN Manager](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
 
+### Testing
+
+This project is tested using:
+
+- Mocha
+- Chai
+- Sinon
+
+You can see the current covertura [here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
+
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
 * [API Documentation](developers.mercadopago.com)
