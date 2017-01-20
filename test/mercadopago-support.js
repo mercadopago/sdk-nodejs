@@ -8,7 +8,7 @@ var mp = require('../index.js');
 var requestLib = require('request');
 var requestManager = require('../lib/request-manager');
 var paymentModule = require('../lib/resources/payment');
-var preferencesModule = require('../lib/resources/prefereces');
+var preferencesModule = require('../lib/resources/preferences');
 var preapprovalModule = require('../lib/resources/preapproval');
 var ipnModule = require('../lib/resources/ipn');
 
