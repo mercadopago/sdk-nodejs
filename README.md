@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/px-ios)
+![build](https://travis-ci.org/mercadopago/px-nodejs.svg?branch=development)
+[![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=development)](https://coveralls.io/github/mercadopago/px-nodejs?branch=development)
+
 # MercadoPago Node.js SDK
 
 This library provides developers with a simple set of bindings to the MercadoPago API. You read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
@@ -67,7 +71,7 @@ This project is tested using:
 - Chai
 - Sinon
 
-You can see the current covertura [here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
+You can see the current covertura [here](https://coveralls.io/github/mercadopago/px-nodejs?branch=develop).
 
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
