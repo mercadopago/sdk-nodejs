@@ -5,6 +5,7 @@ var assert = chai.assert;
 var sinon = require('sinon');
 var ipnModule = require('../lib/resources/ipn');
 var preapprovalModule = require('../lib/resources/preapproval');
+var merchantOrdersModule = require('../lib/resources/merchantOrders');
 var Promise = require('bluebird');
 
 chai.use(chaiAsPromised);
@@ -28,7 +29,7 @@ describe('IPN Manager', function () {
         callbackError = callback.args[0][0];
 
         assert.equal(callbackError.message,
-          'Invalid Topic (invalid). The topics available are: preapproval, authorized_payment, payment');
+          'Invalid Topic (invalid). The topics available are: preapproval, authorized_payment, payment, merchant_orders');
       });
     });
 
@@ -167,6 +168,48 @@ describe('IPN Manager', function () {
       });
 
       preapprovalModule.get.restore();
+    });
+
+    it('MerchantOrders Topic', function () {
+      var callback = sinon.spy();
+      var getPreapprovalId;
+      var callbackResponse;
+      var promise;
+
+      var getMerchantOrders = sinon.stub(merchantOrdersModule, 'get', function (options, funcCallback) {
+        return funcCallback.apply(null, [null, {
+          status: 200,
+          body: {
+            test_response: true
+          }
+        }]);
+      });
+
+      promise = ipnModule.manage({
+        query: {
+          id: 3,
+          topic: 'merchant_orders'
+        }
+      }, callback);
+
+      assert.isFulfilled(promise, { test_response: true });
+
+      promise.then(function(){
+        getPreapprovalId = getMerchantOrders.args[0][0];
+
+        assert.equal(getPreapprovalId, 3);
+
+        assert.isTrue(callback.called);
+
+        callbackResponse = callback.args[0][1];
+
+        assert.equal(callbackResponse.id, 3);
+        assert.equal(callbackResponse.topic, 'merchant_orders');
+        assert.equal(callbackResponse.status, 200);
+        assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
+      });
+
+      merchantOrdersModule.get.restore();
     });
 
     it('Error on manage', function () {
