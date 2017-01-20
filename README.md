@@ -4,7 +4,7 @@
 
 # MercadoPago Node.js SDK
 
-This library provides developers with a simple set of bindings to the MercadoPago API. You read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
+This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
 
 ### Node.js Versions Support
 
