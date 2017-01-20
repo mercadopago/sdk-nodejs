@@ -50,13 +50,14 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 
 ## Operations & Resources
 
-* [payment](https://github.com/mercadopago/px-nodejs/wiki/Payment)
-* [preferences](https://github.com/mercadopago/px-nodejs/wiki/Preferences)
-* [preapproval](https://github.com/mercadopago/px-nodejs/wiki/Pre-Approval)
-* [customers](https://github.com/mercadopago/px-nodejs/wiki/Customers)
-* [mercahntOrders](https://github.com/mercadopago/px-nodejs/wiki/Merchant-Orders)
-* [connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
-* [ipn](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
+* [Payment](https://github.com/mercadopago/px-nodejs/wiki/Payment)
+* [Preferences](https://github.com/mercadopago/px-nodejs/wiki/Preferences)
+* [Pre Approval](https://github.com/mercadopago/px-nodejs/wiki/Pre-Approval)
+* [Customers](https://github.com/mercadopago/px-nodejs/wiki/Customers)
+* [Merchant Orders](https://github.com/mercadopago/px-nodejs/wiki/Merchant-Orders)
+* [Money Requests](https://github.com/mercadopago/px-nodejs/wiki/Money-Requests)
+* [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
+* [IPN Manager](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
 
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
