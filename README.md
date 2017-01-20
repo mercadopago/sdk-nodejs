@@ -62,3 +62,7 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
 * [API Documentation](developers.mercadopago.com)
+
+### License
+
+Copyright © 2017.
