@@ -1,5 +1,5 @@
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/px-ios)
-![build](https://travis-ci.org/mercadopago/px-nodejs.svg?branch=master)
+[![Build Status](https://travis-ci.org/mercadopago/px-nodejs.svg?branch=master)](https://travis-ci.org/mercadopago/px-nodejs)
 [![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=master)](https://coveralls.io/github/mercadopago/px-nodejs?branch=master)
 
 # MercadoPago Node.js SDK
@@ -61,7 +61,7 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 * [Merchant Orders](https://github.com/mercadopago/px-nodejs/wiki/Merchant-Orders)
 * [Money Requests](https://github.com/mercadopago/px-nodejs/wiki/Money-Requests)
 * [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
-* [IPN Manager](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
+* [IPN Notifications](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
 
 ### Testing
 
