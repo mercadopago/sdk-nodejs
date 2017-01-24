@@ -33,181 +33,394 @@ describe('mercadopagoResponse Class', function () {
     });
   });
 
-  describe('Pagination', function(){
-    it('hasNext()', function () {
-      var mpResponseWithoutNext = new MercadopagoResponse({}, 200, 'idempotency', {
-        total: 100,
-        limit: 10,
-        offset: 0
-      }, {});
+  describe('Pagination', function () {
+    describe('Next Page', function () {
+      it('hasNext()', function () {
+        var mpResponseWithNext = new MercadopagoResponse({}, 200, 'idempotency', {
+          total: 100,
+          limit: 10,
+          offset: 0
+        }, {});
 
-      var mpResponseWithNext = new MercadopagoResponse({}, 200, 'idempotency', {
-        total: 100,
-        limit: 10,
-        offset: 95
-      }, {});
+        var mpResponseWithout = new MercadopagoResponse({}, 200, 'idempotency', {
+          total: 100,
+          limit: 10,
+          offset: 95
+        }, {});
 
-      assert.isTrue(mpResponseWithoutNext.hasNext());
-      assert.isFalse(mpResponseWithNext.hasNext());
-    });
-
-    it('next() - No pagination available', function () {
-      var promise;
-      var callback = sinon.spy();
-
-      var mpResponse = new MercadopagoResponse({}, 200, 'idempotency', undefined, {});
-
-      promise = mpResponse.next(callback);
-
-      assert.isRejected(promise, 'This response doesnt support pagination');
-
-      promise.catch(function () {
-        var callbackError = callback.args[0][0];
-
-        assert.isTrue(callback.called);
-
-        assert.equal(callbackError.message, 'This response doesnt support pagination');
+        assert.isTrue(mpResponseWithNext.hasNext());
+        assert.isFalse(mpResponseWithout.hasNext());
       });
-    });
 
-    it('next() - No pagination available', function () {
-      var promise;
-      var callback = sinon.spy();
+      it('next() - No pagination available', function () {
+        var promise;
+        var callback = sinon.spy();
 
-      var mpResponse = new MercadopagoResponse({}, 200, 'idempotency', undefined, {});
+        var mpResponse = new MercadopagoResponse({}, 200, 'idempotency', undefined, {});
 
-      promise = mpResponse.next(callback);
+        promise = mpResponse.next(callback);
 
-      assert.isRejected(promise, 'This response doesnt support pagination');
+        assert.isRejected(promise, 'This response doesnt support pagination');
 
-      promise.catch(function () {
-        var callbackError = callback.args[0][0];
+        promise.catch(function () {
+          var callbackError = callback.args[0][0];
 
-        assert.isTrue(callback.called);
+          assert.isTrue(callback.called);
 
-        assert.equal(callbackError.message, 'This response doesnt support pagination');
+          assert.equal(callbackError.message, 'This response doesnt support pagination');
+        });
       });
-    });
 
-    it('next() - Get Next Page', function () {
-      var promise;
-      var callback = sinon.spy();
-      var execOptions = {
-        config: {
-          qs: {}
-        }
-      };
-      var mpResponse = new MercadopagoResponse({
-        paging: {
+      it('next() - Get Next Page', function () {
+        var promise;
+        var callback = sinon.spy();
+        var execOptions = {
+          config: {
+            qs: {}
+          }
+        };
+        var mpResponse = new MercadopagoResponse({
+          paging: {
+            total: 200,
+            limit: 20,
+            offset: 10
+          },
+          results: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            }
+          ]
+        }, 200, 'idempotency', {
           total: 200,
           limit: 20,
           offset: 10
-        },
-        results: [
-          {
-            id: 1
-          },
-          {
-            id: 2
+        }, execOptions, requestManager);
+
+        var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
+          return new Promise(function (resolve) {
+            resolve('ACCESS_TOKEN');
+            return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
+          });
+        });
+
+        var requestStub = sinon.stub(requestManager, 'exec', function(options, callbackExec){
+          return new Promise(function (resolve) {
+            resolve(mpResponse);
+            return callbackExec.apply(null, [null, mpResponse]);
+          });
+        });
+
+        promise = mpResponse.next(callback);
+
+        assert.isFulfilled(promise);
+
+        promise.then(function () {
+          var requestArgs;
+
+          assert.isTrue(generateToken.called);
+          assert.isTrue(requestStub.called);
+
+          requestArgs = requestStub.args[0][0];
+
+          // Final offset must be: original offset + limit
+          assert.equal(requestArgs.config.qs.offset, mpResponse.pagination.offset + mpResponse.pagination.limit);
+          assert.equal(JSON.stringify(requestArgs), JSON.stringify(execOptions));
+          assert.equal(JSON.stringify(requestArgs), JSON.stringify(mpResponse.getExecOptions()));
+
+          generateToken.restore();
+          requestStub.restore();
+        });
+      });
+
+      it('next() - Get Next Page With Error', function () {
+        var promise;
+        var callback = sinon.spy();
+        var execOptions = {
+          config: {
+            qs: {}
           }
-        ]
-      }, 200, 'idempotency', {
-        total: 200,
-        limit: 20,
-        offset: 10
-      }, execOptions, requestManager);
-
-      var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
-        return new Promise(function (resolve) {
-          resolve('ACCESS_TOKEN');
-          return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
-        });
-      });
-
-      var requestStub = sinon.stub(requestManager, 'exec', function(options, callbackExec){
-        return new Promise(function (resolve) {
-          resolve(mpResponse);
-          return callbackExec.apply(null, [null, mpResponse]);
-        });
-      });
-
-      promise = mpResponse.next(callback);
-
-      assert.isFulfilled(promise);
-
-      promise.then(function () {
-        var requestArgs;
-
-        assert.isTrue(generateToken.called);
-        assert.isTrue(requestStub.called);
-
-        requestArgs = requestStub.args[0][0];
-
-        // Final offset must be: original offset + limit
-        assert.equal(requestArgs.config.qs.offset, mpResponse.pagination.offset + mpResponse.pagination.limit);
-        assert.equal(JSON.stringify(requestArgs), JSON.stringify(execOptions));
-        assert.equal(JSON.stringify(requestArgs), JSON.stringify(mpResponse.getExecOptions()));
-
-        generateToken.restore();
-        requestStub.restore();
-      });
-    });
-
-    it('next() - Get Next Page With Error', function () {
-      var promise;
-      var callback = sinon.spy();
-      var execOptions = {
-        config: {
-          qs: {}
-        }
-      };
-      var mpResponse = new MercadopagoResponse({
-        paging: {
+        };
+        var mpResponse = new MercadopagoResponse({
+          paging: {
+            total: 200,
+            limit: 20,
+            offset: 10
+          },
+          results: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            }
+          ]
+        }, 200, 'idempotency', {
           total: 200,
           limit: 20,
           offset: 10
-        },
-        results: [
-          {
-            id: 1
-          },
-          {
-            id: 2
+        }, execOptions, requestManager);
+
+        var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
+          return new Promise(function (resolve) {
+            resolve('ACCESS_TOKEN');
+            return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
+          });
+        });
+
+        var requestStub = sinon.stub(requestManager, 'exec', function (options, callbackExec) {
+          return new Promise(function (resolve, reject) {
+            var error = new MercadopagoError('Error', 'Cause', 500, 'idempotency');
+            reject(error);
+            return callbackExec.apply(null, [null, error]);
+          });
+        });
+
+        promise = mpResponse.next(callback);
+
+        assert.isRejected(promise);
+
+        promise.catch(function () {
+          var callbackError = callback.args[0][0];
+
+          assert.instanceOf(callbackError, MercadopagoError);
+          assert.equal(callbackError.message, 'Error');
+
+          generateToken.restore();
+          requestStub.restore();
+        });
+      });
+    });
+
+
+
+
+
+
+
+    describe('Previous Page', function () {
+      it('hasPrev()', function () {
+        var mpResponseWithoutPrevious = new MercadopagoResponse({}, 200, 'idempotency', {
+          total: 100,
+          limit: 10,
+          offset: 0
+        }, {});
+
+        var mpResponseWithPrevious = new MercadopagoResponse({}, 200, 'idempotency', {
+          total: 100,
+          limit: 10,
+          offset: 95
+        }, {});
+
+        assert.isTrue(mpResponseWithPrevious.hasPrev());
+        assert.isFalse(mpResponseWithoutPrevious.hasPrev());
+      });
+
+      it('prev() - No pagination available', function () {
+        var promise;
+        var callback = sinon.spy();
+
+        var mpResponse = new MercadopagoResponse({}, 200, 'idempotency', undefined, {});
+
+        promise = mpResponse.prev(callback);
+
+        assert.isRejected(promise, 'This response doesnt support pagination');
+
+        promise.catch(function () {
+          var callbackError = callback.args[0][0];
+
+          assert.isTrue(callback.called);
+
+          assert.equal(callbackError.message, 'This response doesnt support pagination');
+        });
+      });
+
+      it('prev() - Get Previous Page', function () {
+        var promise;
+        var callback = sinon.spy();
+        var execOptions = {
+          config: {
+            qs: {}
           }
-        ]
-      }, 200, 'idempotency', {
-        total: 200,
-        limit: 20,
-        offset: 10
-      }, execOptions, requestManager);
+        };
+        var mpResponse = new MercadopagoResponse({
+          paging: {
+            total: 200,
+            limit: 20,
+            offset: 10
+          },
+          results: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            }
+          ]
+        }, 200, 'idempotency', {
+          total: 200,
+          limit: 20,
+          offset: 40
+        }, execOptions, requestManager);
 
-      var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
-        return new Promise(function (resolve) {
-          resolve('ACCESS_TOKEN');
-          return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
+        var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
+          return new Promise(function (resolve) {
+            resolve('ACCESS_TOKEN');
+            return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
+          });
+        });
+
+        var requestStub = sinon.stub(requestManager, 'exec', function(options, callbackExec){
+          return new Promise(function (resolve) {
+            resolve(mpResponse);
+            return callbackExec.apply(null, [null, mpResponse]);
+          });
+        });
+
+        promise = mpResponse.prev(callback);
+
+        assert.isFulfilled(promise);
+
+        promise.then(function () {
+          var requestArgs;
+
+          assert.isTrue(generateToken.called);
+          assert.isTrue(requestStub.called);
+
+          requestArgs = requestStub.args[0][0];
+
+          // Final offset must be: original offset - limit
+          assert.equal(requestArgs.config.qs.offset, mpResponse.pagination.offset - mpResponse.pagination.limit);
+          assert.equal(JSON.stringify(requestArgs), JSON.stringify(execOptions));
+          assert.equal(JSON.stringify(requestArgs), JSON.stringify(mpResponse.getExecOptions()));
+
+          generateToken.restore();
+          requestStub.restore();
         });
       });
 
-      var requestStub = sinon.stub(requestManager, 'exec', function (options, callbackExec) {
-        return new Promise(function (resolve, reject) {
-          var error = new MercadopagoError('Error', 'Cause', 500, 'idempotency');
-          reject(error);
-          return callbackExec.apply(null, [null, error]);
+      it('prev() - Get Previous Page With offest < 0', function () {
+        var promise;
+        var callback = sinon.spy();
+        var execOptions = {
+          config: {
+            qs: {}
+          }
+        };
+        var mpResponse = new MercadopagoResponse({
+          paging: {
+            total: 200,
+            limit: 20,
+            offset: 10
+          },
+          results: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            }
+          ]
+        }, 200, 'idempotency', {
+          total: 200,
+          limit: 20,
+          offset: 10
+        }, execOptions, requestManager);
+
+        var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
+          return new Promise(function (resolve) {
+            resolve('ACCESS_TOKEN');
+            return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
+          });
+        });
+
+        var requestStub = sinon.stub(requestManager, 'exec', function(options, callbackExec){
+          return new Promise(function (resolve) {
+            resolve(mpResponse);
+            return callbackExec.apply(null, [null, mpResponse]);
+          });
+        });
+
+        promise = mpResponse.prev(callback);
+
+        assert.isFulfilled(promise);
+
+        promise.then(function () {
+          var requestArgs;
+
+          assert.isTrue(generateToken.called);
+          assert.isTrue(requestStub.called);
+
+          requestArgs = requestStub.args[0][0];
+
+          // Final offset must be 0 not -10
+          assert.equal(requestArgs.config.qs.offset, 0);
+          assert.equal(JSON.stringify(requestArgs), JSON.stringify(execOptions));
+          assert.equal(JSON.stringify(requestArgs), JSON.stringify(mpResponse.getExecOptions()));
+
+          generateToken.restore();
+          requestStub.restore();
         });
       });
 
-      promise = mpResponse.next(callback);
+      it('prev() - Get Next Page With Error', function () {
+        var promise;
+        var callback = sinon.spy();
+        var execOptions = {
+          config: {
+            qs: {}
+          }
+        };
+        var mpResponse = new MercadopagoResponse({
+          paging: {
+            total: 200,
+            limit: 20,
+            offset: 10
+          },
+          results: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            }
+          ]
+        }, 200, 'idempotency', {
+          total: 200,
+          limit: 20,
+          offset: 10
+        }, execOptions, requestManager);
 
-      assert.isRejected(promise);
+        var generateToken = sinon.stub(requestManager, 'generateAccessToken', function (callbackToken) {
+          return new Promise(function (resolve) {
+            resolve('ACCESS_TOKEN');
+            return callbackToken.apply(null, ['ACCESS_TOKEN', null]);
+          });
+        });
 
-      promise.catch(function () {
-        var callbackError = callback.args[0][0];
+        var requestStub = sinon.stub(requestManager, 'exec', function (options, callbackExec) {
+          return new Promise(function (resolve, reject) {
+            var error = new MercadopagoError('Error', 'Cause', 500, 'idempotency');
+            reject(error);
+            return callbackExec.apply(null, [null, error]);
+          });
+        });
 
-        assert.instanceOf(callbackError, MercadopagoError);
-        assert.equal(callbackError.message, 'Error');
+        promise = mpResponse.prev(callback);
 
-        generateToken.restore();
-        requestStub.restore();
+        assert.isRejected(promise);
+
+        promise.catch(function () {
+          var callbackError = callback.args[0][0];
+
+          assert.instanceOf(callbackError, MercadopagoError);
+          assert.equal(callbackError.message, 'Error');
+
+          generateToken.restore();
+          requestStub.restore();
+        });
       });
     });
   });
