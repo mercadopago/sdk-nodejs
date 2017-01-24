@@ -4,6 +4,3 @@ node_js:
   - "5"
   - "4"
   - "0"
-after_success:
-- npm run coveralls
-
