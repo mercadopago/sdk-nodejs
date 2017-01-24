@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/px-ios)
-![build](https://travis-ci.org/mercadopago/px-nodejs.svg?branch=development)
-[![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=development)](https://coveralls.io/github/mercadopago/px-nodejs?branch=development)
+![build](https://travis-ci.org/mercadopago/px-nodejs.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=master)](https://coveralls.io/github/mercadopago/px-nodejs?branch=master)
 
 # MercadoPago Node.js SDK
 

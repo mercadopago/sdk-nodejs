@@ -7,7 +7,7 @@
     "lint": "NODE_ENV=test eslint lib/*.js",
     "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
-    "test": "npm run coveralls",
+    "test": "NODE_ENV=test mocha ./test/*.*",
     "posttest": "npm run lint"
   },
   "repository": {
