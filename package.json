@@ -1,0 +1,50 @@
+{
+  "name": "mercadopago",
+  "version": "1.0.0",
+  "description": "Mercadopago SDK for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "lint": "NODE_ENV=test eslint lib/*.js",
+    "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "test": "NODE_ENV=test mocha ./test/*.*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mercadopago/px-nodejs.git"
+  },
+  "keywords": [
+    "api",
+    "mercadopago",
+    "checkout",
+    "payment",
+    "ipn",
+    "sdk",
+    "integration"
+  ],
+  "author": "Ariel Rey <ariel.rey@mercadolibre.com>",
+  "bugs": {
+    "url": "https://github.com/mercadopago/px-nodejs/issues"
+  },
+  "homepage": "https://github.com/mercadopago/px-nodejs#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0",
+    "sinon": "^1.17.7"
+  },
+  "dependencies": {
+    "ajv": "^4.10.3",
+    "bluebird": "^3.4.7",
+    "chai-as-promised": "^6.0.0",
+    "moment": "^2.17.1",
+    "request": "^2.79.0",
+    "request-etag": "^2.0.3",
+    "uuid": "^3.0.1"
+  }
+}
