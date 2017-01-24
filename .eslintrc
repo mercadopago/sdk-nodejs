@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "airbnb-base/legacy"
+  ],
+  "rules": {
+    "max-len": ["warn", 120, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
+    "no-param-reassign": "off",
+    "class-methods-use-this": "off",
+    "no-console": "off",
+    "func-names": "off"
+  }
+}
