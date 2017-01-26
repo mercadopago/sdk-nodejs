@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/px-ios)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/px-nodejs)
 [![Build Status](https://img.shields.io/travis/mercadopago/px-nodejs/master.svg)](https://travis-ci.org/mercadopago/px-nodejs)
 [![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=master)](https://coveralls.io/github/mercadopago/px-nodejs?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
@@ -11,6 +11,10 @@ This library provides developers with a simple set of bindings to the MercadoPag
 ### Node.js Versions Support
 
 The SDK Supports Node.js from version v0 to latest (v7).
+
+### Backward Compatiblity
+
+If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs), you don't need to do **anything**. Just update the NPM Package and you will received all of the [previous methods](https://github.com/mercadopago/px-nodejs/wiki/Backward-Compatibility).
 
 ### Installation
 
@@ -73,11 +77,11 @@ This project is tested using:
 - Chai
 - Sinon
 
-You can see the current covertura [here](https://coveralls.io/github/mercadopago/px-nodejs?branch=develop).
+You can see the current covertura [here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
 
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
-* [API Documentation](developers.mercadopago.com)
+* [API Documentation](http://developers.mercadopago.com)
 
 ### License
 
