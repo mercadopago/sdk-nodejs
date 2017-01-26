@@ -19,6 +19,6 @@ describe('Validation Module', function () {
 
     callback = preConditionModule.getCallback(undefined);
 
-    assert.equal(callback.toString(), testFunction.toString());
+    assert.typeOf(callback, 'function');
   });
 });
