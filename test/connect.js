@@ -64,14 +64,14 @@ describe('Connect', function () {
       }
     };
 
-    callback = sinon.spy();
-
     var getUserCredentialsStub = sinon.stub(requestManager, 'getUserCredentials', function (config, funcCallback) {
       return new Promise(function (resolve) {
         resolve(userCredentialsResponse);
         return funcCallback.apply(null, [null, userCredentialsResponse]);
       });
     });
+
+    callback = sinon.spy();
 
     promise = connectModule.getCredentialsAndConfigure('clientSecret', 'authorizationCode', 'redirectURI', callback);
 
@@ -99,14 +99,14 @@ describe('Connect', function () {
     var callback;
     var errorMessage = 'Error Ocurred';
 
-    callback = sinon.spy();
-
     var getUserCredentialsStub = sinon.stub(requestManager, 'getUserCredentials', function (config, funcCallback) {
       return new Promise(function (resolve, reject) {
         reject(new Error(errorMessage));
         return funcCallback.apply(null, [new Error(errorMessage), null]);
       });
     });
+
+    callback = sinon.spy();
 
     promise = connectModule.getCredentialsAndConfigure('clientSecret', 'authorizationCode', 'redirectURI', callback);
 
