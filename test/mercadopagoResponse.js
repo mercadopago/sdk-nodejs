@@ -17,6 +17,7 @@ describe('mercadopagoResponse Class', function () {
 
       assert.instanceOf(mpResponse, MercadopagoResponse, 'mpResponse is an instance of MercadopagoResponse');
       assert.isUndefined(mpResponse.body);
+      assert.isUndefined(mpResponse.response);
       assert.isUndefined(mpResponse.status);
       assert.isUndefined(mpResponse.idempotency);
       assert.isUndefined(mpResponse.pagination);
@@ -27,9 +28,29 @@ describe('mercadopagoResponse Class', function () {
 
       assert.instanceOf(mpResponse, MercadopagoResponse, 'mpResponse is an instance of MercadopagoResponse');
       assert.equal(JSON.stringify(mpResponse.body), JSON.stringify({}));
+      assert.equal(JSON.stringify(mpResponse.response), JSON.stringify({}));
       assert.equal(mpResponse.status, 200);
       assert.equal(mpResponse.idempotency, 'idempotency');
       assert.equal(JSON.stringify(mpResponse.pagination), JSON.stringify({}));
+    });
+
+    it('Check warning message on response', function () {
+      var mpResponse;
+      var stub = sinon.stub(console, 'warn', function () { /* Do Nothing */ });
+      var originalEnv = process.env.NODE_ENV;
+
+      process.env.NODE_ENV = 'PRD';
+
+      mpResponse = new MercadopagoResponse({}, 200, 'idempotency', {});
+
+      assert.instanceOf(mpResponse, MercadopagoResponse, 'mpResponse is an instance of MercadopagoResponse');
+      assert.equal(JSON.stringify(mpResponse.response), JSON.stringify({}));
+
+      assert.isTrue(stub.called);
+
+      stub.restore();
+
+      process.env.NODE_ENV = originalEnv;
     });
   });
 
