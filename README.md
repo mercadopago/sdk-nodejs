@@ -69,6 +69,10 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 * [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
 * [IPN Notifications](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
 
+## Examples
+
+In The examples folder you will find an web application. In this you can try some examples. For more information read the documentation [here](https://github.com/mercadopago/px-nodejs/tree/master/examples)
+
 ### Testing
 
 This project is tested using:
