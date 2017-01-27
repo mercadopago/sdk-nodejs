@@ -2,14 +2,12 @@
   "name": "mercadopago-examples",
   "version": "0.0.1",
   "repository": "",
-  "author": "hcasatti <horacio.casatti@mercadolibre.com>",
+  "author": "Ariel Rey <ariel.rey@mercadolibre.com>",
   "license": "BSD",
+  "main": "index.js",
   "dependencies": {
     "body-parser": "^1.15.1",
-    "mercadopago": "git+ssh://git@github.com:mercadopago/px-nodejs.git",
     "jade": "^1.11.0",
-    "express": "^4.14.0",
-    "MD5": "^1.3.0"
-  },
-  "main": "index.js"
+    "express": "^4.14.0"
+  }
 }
