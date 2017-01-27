@@ -71,7 +71,7 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 
 ## Examples
 
-In The examples folder you will find an web application. In this you can try some examples. For more information read the documentation [here](https://github.com/mercadopago/px-nodejs/tree/master/examples)
+In the examples folder you will find a web application. In this you can try some examples. For more information read the documentation [here](https://github.com/mercadopago/px-nodejs/tree/master/examples)
 
 ### Testing
 
