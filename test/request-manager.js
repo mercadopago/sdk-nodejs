@@ -9,6 +9,7 @@ var requestManager = require('../lib/request-manager');
 var configurationModule = require('../lib/configurations');
 var MercadopagoResponse = require('../lib/utils/mercadopagoResponse');
 var MercadopagoError = require('../lib/utils/mercadopagoError');
+var preConditions = require('../lib/precondition');
 
 chai.use(chaiAsPromised);
 
@@ -117,8 +118,9 @@ describe('Request Manager', function () {
 
         execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
           return new Promise(function (resolve) {
-            resolve(mercadoPagoResponse);
-            return callback.apply(null, [null, mercadoPagoResponse]);
+            callback = preConditions.getCallback(callback);
+            callback.apply(null, [null, mercadoPagoResponse]);
+            return Promise.resolve(mercadoPagoResponse);
           });
         });
       });
@@ -419,7 +421,9 @@ describe('Request Manager', function () {
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        return callback.apply(null, [null, mpTokenResponse]);
+        callback = preConditions.getCallback(callback);
+        callback.apply(null, [null, mpTokenResponse]);
+        return Promise.resolve(mpTokenResponse);
       });
     });
 
@@ -529,7 +533,12 @@ describe('Request Manager', function () {
 
       // Create another stub that fails
       execStub = sinon.stub(requestManager, 'exec', function (options, funcCallback) {
-        return funcCallback.apply(null, [new Error(errorMessage), null]);
+        var errorToReturn = new Error(errorMessage);
+
+        funcCallback = preConditions.getCallback(funcCallback);
+        funcCallback.apply(null, [errorToReturn, null]);
+
+        return Promise.reject(errorToReturn);
       });
 
       sinon.stub(configurationModule, 'getClientId').returns(clientId);
@@ -565,7 +574,9 @@ describe('Request Manager', function () {
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        return callback.apply(null, [null, mpTokenResponse]);
+        callback = preConditions.getCallback(callback);
+        callback.apply(null, [null, mpTokenResponse]);
+        return Promise.resolve(mpTokenResponse);
       });
     });
 
@@ -654,7 +665,12 @@ describe('Request Manager', function () {
 
       // Create another stub that fails
       execStub = sinon.stub(requestManager, 'exec', function (options, funcCallback) {
-        return funcCallback.apply(null, [new Error(errorMessage), null]);
+        var errorToReturn = new Error(errorMessage);
+
+        funcCallback = preConditions.getCallback(funcCallback);
+        funcCallback.apply(null, [errorToReturn, null]);
+
+        return Promise.reject(errorToReturn);
       });
 
       sinon.stub(configurationModule, 'getAccessToken').returns(accessToken);
@@ -686,7 +702,9 @@ describe('Request Manager', function () {
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        return callback.apply(null, [null, userCredentialsResponse]);
+        callback = preConditions.getCallback(callback);
+        callback.apply(null, [null, userCredentialsResponse]);
+        return Promise.resolve(userCredentialsResponse);
       });
     });
 
@@ -735,7 +753,12 @@ describe('Request Manager', function () {
 
       // Create another stub that fails
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        return callback.apply(null, [new Error(errorMessage), null]);
+        var errorToReturn = new Error(errorMessage);
+
+        callback = preConditions.getCallback(callback);
+        callback.apply(null, [errorToReturn, null]);
+
+        return Promise.reject(errorToReturn);
       });
 
       promise = requestManager.getUserCredentials('secret', 'code', 'uri', callback);
