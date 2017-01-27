@@ -359,91 +359,104 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
     it('createPreference', function () {
       var stub = sinon.stub(preferencesModule, 'create', function () {});
+      var stubArguments;
 
       mp.createPreference({
         test: true
       });
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
-        test: true
-      }, undefined));
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({test: true}));
 
       stub.restore();
     });
 
     it('updatePreference', function () {
       var stub = sinon.stub(preferencesModule, 'update', function () {});
+      var stubArguments;
 
       mp.updatePreference(1, {});
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
-        id: 1
-      }));
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({ id: 1 }));
 
       stub.restore();
     });
 
     it('getPreference', function () {
       var stub = sinon.stub(preferencesModule, 'get', function () {});
+      var stubArguments;
 
       mp.getPreference(1);
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith(1, undefined));
+      assert.equal(stubArguments, 1);
 
       stub.restore();
     });
 
     it('createPreapprovalPayment', function () {
       var stub = sinon.stub(preapprovalModule, 'create', function () {});
+      var stubArguments;
 
       mp.createPreapprovalPayment({
         id: 1
       });
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
-        id: 1
-      }, undefined));
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({ id: 1 }));
 
       stub.restore();
     });
 
     it('updatePreapprovalPayment', function () {
       var stub = sinon.stub(preapprovalModule, 'update', function () {});
+      var stubArguments;
 
       mp.updatePreapprovalPayment(1, {});
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
-        id: 1
-      }));
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({ id: 1 }));
 
       stub.restore();
     });
 
     it('getPreapprovalPayment', function () {
       var stub = sinon.stub(preapprovalModule, 'get', function () {});
+      var stubArguments;
 
       mp.getPreapprovalPayment(1);
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith(1, undefined));
+      assert.equal(stubArguments, 1);
 
       stub.restore();
     });
 
     it('searchPayment', function () {
       var stub = sinon.stub(paymentModule, 'oldSearch', function () {});
+      var stubArguments;
 
       mp.searchPayment({
         fields: 'firstname'
       }, 0, 10);
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({
         qs: {
           fields: 'firstname', offset: 0, limit: 10
         }
@@ -453,8 +466,22 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
         fields: 'firstname'
       });
 
+      stub.restore();
+    });
+
+    it('searchPayment - no offset and limit', function () {
+      var stub = sinon.stub(paymentModule, 'oldSearch', function () {});
+      var stubArguments;
+
+      mp.searchPayment({
+        fields: 'firstname'
+      });
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
+
+      stubArguments = stub.args[0][0];
+
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({
         qs: {
           fields: 'firstname'
         }
@@ -465,22 +492,28 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
     it('getPayment', function () {
       var stub = sinon.stub(ipnModule, 'getPayment', function () {});
+      var stubArguments;
 
       mp.getPayment(1);
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith(1, undefined));
+      assert.equal(stubArguments, 1);
 
       stub.restore();
     });
 
     it('getAuthorizedPayment', function () {
       var stub = sinon.stub(ipnModule, 'getAuthorizedPayment', function () {});
+      var stubArguments;
 
       mp.getAuthorizedPayment(1);
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith(1, undefined));
+      assert.equal(stubArguments, 1);
 
       stub.restore();
     });
@@ -542,13 +575,16 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
     it('cancelPreapprovalPayment', function () {
       var stub = sinon.stub(preapprovalModule, 'update', function () {});
+      var stubArguments;
 
       mp.cancelPreapprovalPayment(1);
 
+      stubArguments = stub.args[0][0];
+
       assert.isTrue(stub.called);
-      assert.isTrue(stub.calledWith({
+      assert.equal(JSON.stringify(stubArguments), JSON.stringify({
         id: 1, status: 'cancelled'
-      }, undefined));
+      }));
 
       stub.restore();
     });
