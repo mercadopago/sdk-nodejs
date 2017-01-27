@@ -55,8 +55,7 @@ describe('Validation Module', function () {
   });
 
   it('Extra parameters only warning', function () {
-    var warnStub = sinon.stub(console, 'warn', function () { /* Do Nothing */
-    });
+    var warnStub = sinon.stub(console, 'warn', function () { /* Do Nothing */ });
 
     var schemaToValidate = {
       first_name: 'Ariel',

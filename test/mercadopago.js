@@ -10,19 +10,82 @@ describe('Mercadopago SDK', function () {
   var accessToken = 'ACCESS_TOKEN';
 
   describe('Instance the SDK', function () {
-    var sdk;
+    var consoleStub;
 
-    it('Check new', function () {
-      var stub = sinon.stub(console, 'warn', function () { /* Do Nothing */
-      });
+    beforeEach(function () {
+      consoleStub = sinon.stub(console, 'warn', function () { /* Do Nothing */ });
+    });
 
-      sdk = new MercadoPago({
+    afterEach(function () {
+      consoleStub.restore();
+    });
+
+    it('Check new with access_token', function () {
+      var sdk;
+      var configureMock = sinon.mock(MercadoPago.prototype);
+
+      configureMock.expects('configure').once().withExactArgs({
+        show_promise_error: false,
         access_token: accessToken
-      });
+      }).returns({});
+
+      sdk = new MercadoPago(accessToken);
 
       assert.isTrue(sdk instanceof MercadoPago);
+      assert.isTrue(configureMock.verify());
 
-      stub.restore();
+      configureMock.restore();
+    });
+
+    it('Check new with client_id and client_secret', function () {
+      var sdk;
+      var configureMock = sinon.mock(MercadoPago.prototype);
+
+      configureMock.expects('configure').once().withExactArgs({
+        show_promise_error: false,
+        client_id: clientId,
+        client_secret: clientSecret
+      }).returns({});
+
+      sdk = new MercadoPago(clientId, clientSecret);
+
+      assert.isTrue(sdk instanceof MercadoPago);
+      assert.isTrue(configureMock.verify());
+
+      configureMock.restore();
+    });
+
+    it('Check new with invalid arguments', function () {
+      assert.throws(MercadoPago.bind(), 'Invalid arguments. Use CLIENT_ID and CLIENT SECRET, or ACCESS_TOKEN');
+    });
+  });
+
+  describe('Configure Method', function () {
+    it('Check configuration is made - With Mock', function () {
+      var configureArgs;
+      var configureStub = sinon.stub(MercadoPago, 'configure');
+
+      MercadoPago.configure({
+        client_id: clientId,
+        client_secret: clientSecret
+      });
+
+      configureArgs = configureStub.args[0][0];
+
+      assert.equal(configureArgs.client_id, clientId);
+      assert.equal(configureArgs.client_secret, clientSecret);
+
+      configureStub.restore();
+    });
+
+    it('Check configuration is made - Without mocks', function () {
+      MercadoPago.configure({
+        client_id: clientId,
+        client_secret: clientSecret
+      });
+
+      assert.equal(MercadoPago.configurations.getClientId(), clientId);
+      assert.equal(MercadoPago.configurations.getClientSecret(), clientSecret);
     });
   });
 
@@ -119,18 +182,6 @@ describe('Mercadopago SDK', function () {
       it('version', function () {
         assert.isString(MercadoPago.version);
       });
-    });
-  });
-
-  describe('Configure Method', function () {
-    it('Check configuration is made', function () {
-      MercadoPago.configure({
-        client_id: clientId,
-        client_secret: clientSecret
-      });
-
-      assert.equal(MercadoPago.configurations.getClientId(), clientId);
-      assert.equal(MercadoPago.configurations.getClientSecret(), clientSecret);
     });
   });
 });
