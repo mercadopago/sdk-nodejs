@@ -12,7 +12,7 @@ exports.run = function (req, res) {
     ]
   };
 
-  mercadopago.createPreference(preference).then(function (data) {
+  mercadopago.preferences.create(preference).then(function (data) {
     res.render('checkout-buttons/basic-preference/button', {
       preference: data
     });
