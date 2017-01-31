@@ -1,10 +1,11 @@
 var mercadopago = require('../../index');
 var config = require('../config');
-
-// Set the access_token credentials for testing
-mercadopago.configurations.setAccessToken(config.access_token);
+var oldAccessToken = mercadopago.configurations.getAccessToken();
 
 exports.run = function (req, res) {
+  // Set the access_token credentials for testing
+  mercadopago.configurations.setAccessToken(config.access_token);
+
   mercadopago.payment.cancel(parseInt(req.query.id, 10)).then(function (data) {
     res.render('jsonOutput', {
       result: data
@@ -13,5 +14,7 @@ exports.run = function (req, res) {
     res.render('500', {
       error: error
     });
+  }).finally(function() {
+    mercadopago.configurations.setAccessToken(oldAccessToken);
   });
 };
