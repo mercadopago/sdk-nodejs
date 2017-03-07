@@ -1,6 +1,9 @@
 {
   "name": "mercadopago",
   "version": "1.0.0",
+  "publishConfig": {
+    "tag": "beta"
+  },
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
   "scripts": {
