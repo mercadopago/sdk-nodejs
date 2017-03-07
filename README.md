@@ -21,13 +21,13 @@ If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs)
 ### Installation
 
 ```
-$ npm install mercadopago
+$ npm install mercadopago@beta
 ```
 
 or saving your dependency on your package.json
 
 ```
-$ npm install --save mercadopago
+$ npm install --save mercadopago@beta
 ```
 
 ### Credentials
