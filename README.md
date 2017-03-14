@@ -41,6 +41,7 @@ Before you use the SDK, you need to get your credentials from the following addr
 * Colombia: [https://www.mercadopago.com/mco/account/credentials](https://www.mercadopago.com/mco/account/credentials)
 * Chile: [https://www.mercadopago.com/mlc/account/credentials](https://www.mercadopago.com/mlc/account/credentials)
 * Uruguay: [https://www.mercadopago.com/mlu/account/credentials](https://www.mercadopago.com/mlu/account/credentials)
+* Perú: [https://www.mercadopago.com/mpe/account/credentials](https://www.mercadopago.com/mpe/account/credentials)
 
 > We highly recomend using only the access_token. If you provide the client_id and client_secret it's going to generate the access_token anyway (only on Production, for Sandbox use access_token).
 
