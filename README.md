@@ -12,7 +12,7 @@ This library provides developers with a simple set of bindings to the MercadoPag
 
 ### Node.js Versions Support
 
-The SDK Supports Node.js from version v0 to latest (v7).
+The SDK Supports Node.js from version v0 to the latest (v7).
 
 ### Backward Compatiblity
 
@@ -20,13 +20,13 @@ If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs)
 
 ### Installation
 
-```
+```sh
 $ npm install mercadopago@beta
 ```
 
-or saving your dependency on your package.json
+or saving as a dependency on your `package.json`
 
-```
+```sh
 $ npm install --save mercadopago@beta
 ```
 
@@ -61,7 +61,7 @@ mercadopago.configure({
 });
 ```
 
-You **don't need to instantiate** mercadopago. It's a global singleton accross your application. Just require the sdk in any other file and it's already configure with your credentials.
+You **don't need to instantiate** `mercadopago`. It's a global singleton accross your application. Just require the SDK in any other file and it's already configured with your credentials.
 
 ## Operations & Resources
 
@@ -76,7 +76,7 @@ You **don't need to instantiate** mercadopago. It's a global singleton accross y
 
 ## Examples
 
-In the examples folder you will find a web application. In this you can try some examples. For more information read the documentation [here](https://github.com/mercadopago/px-nodejs/tree/master/examples)
+In the examples folder you will find a web application. In this you can try some examples. For more information read the [documentation here](https://github.com/mercadopago/px-nodejs/tree/master/examples).
 
 ### Testing
 
@@ -86,7 +86,7 @@ This project is tested using:
 - Chai
 - Sinon
 
-You can see the current covertura [here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
+You can see the current [coverage here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
 
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
