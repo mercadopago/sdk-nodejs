@@ -1,9 +1,6 @@
 {
   "name": "mercadopago",
-  "version": "1.0.3",
-  "publishConfig": {
-    "tag": "dx-nodejs"
-  },
+  "version": "1.0.8",
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
   "scripts": {
