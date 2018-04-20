@@ -88,7 +88,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
       assert.isFulfilled(promise, 'ACCESS_TOKEN');
 
       promise.then(function(){
-          assert.isTrue(callback.called);
+        assert.isTrue(callback.called);
       });
 
       mp.getAccessToken(callback);
@@ -544,7 +544,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
       stub.restore();
     });
 
-    it('cancelPayment', function () {
+    it('cancelPayment', function (done) {
       var requestArgs;
       var accessToken = 'ACCESS_TOKEN';
 
@@ -566,9 +566,10 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
         assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/collections/1');
         assert.equal(requestArgs.method, 'PUT');
-        assert.equal(requestArgs.json.id, 1);
         assert.equal(requestArgs.json.status, 'cancelled');
-      });
+
+        done();
+      }).catch(done);
 
       stub.restore();
     });
