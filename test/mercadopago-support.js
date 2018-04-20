@@ -26,7 +26,6 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
     process.env.NODE_ENV = 'PRD';
 
-
     mp.sandboxMode(true);
 
     assert.isTrue(stub.called);
