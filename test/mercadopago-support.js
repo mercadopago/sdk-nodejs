@@ -26,7 +26,6 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
     process.env.NODE_ENV = 'PRD';
 
-
     mp.sandboxMode(true);
 
     assert.isTrue(stub.called);
@@ -88,7 +87,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
       assert.isFulfilled(promise, 'ACCESS_TOKEN');
 
       promise.then(function(){
-          assert.isTrue(callback.called);
+        assert.isTrue(callback.called);
       });
 
       mp.getAccessToken(callback);
@@ -566,7 +565,6 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
         assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/collections/1');
         assert.equal(requestArgs.method, 'PUT');
-        assert.equal(requestArgs.json.id, 1);
         assert.equal(requestArgs.json.status, 'cancelled');
       });
 
