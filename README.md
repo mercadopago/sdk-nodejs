@@ -71,6 +71,8 @@ You **don't need to instantiate** `mercadopago`. It's a global singleton accross
 * [Money Requests](https://github.com/mercadopago/px-nodejs/wiki/Money-Requests)
 * [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
 * [IPN Notifications](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
+* Plans (doc. in progress)
+* Subscriptions (doc. in progress)
 
 ## Examples
 
