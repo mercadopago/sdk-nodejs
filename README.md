@@ -4,9 +4,10 @@
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
  
-# MercadoPago Node.js SDK
+# MercadoPago-Extended Node.js SDK
 
-This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
+This library is an extension of "MercadoPago Node.js SDK", which provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
+This extension includes Plans and Subscritions.
 
 ### Node.js Versions Support
 
@@ -19,13 +20,13 @@ If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs)
 ### Installation
 
 ```sh
-$ npm install mercadopago
+$ npm install mercadopago-extended
 ```
 
 or saving as a dependency on your `package.json`
 
 ```sh
-$ npm install --save mercadopago
+$ npm install --save mercadopago-extended
 ```
 
 ### Credentials
