@@ -29,7 +29,7 @@ describe('IPN Manager', function () {
         callbackError = callback.args[0][0];
 
         assert.equal(callbackError.message,
-          'Invalid Topic (invalid). The topics available are: preapproval, authorized_payment, payment, merchant_orders');
+          'Invalid Topic (invalid). The topics available are: preapproval, authorized_payment, payment, merchant_order');
       });
     });
 
@@ -188,7 +188,7 @@ describe('IPN Manager', function () {
       promise = ipnModule.manage({
         query: {
           id: 3,
-          topic: 'merchant_orders'
+          topic: 'merchant_order'
         }
       }, callback);
 
@@ -204,7 +204,7 @@ describe('IPN Manager', function () {
         callbackResponse = callback.args[0][1];
 
         assert.equal(callbackResponse.id, 3);
-        assert.equal(callbackResponse.topic, 'merchant_orders');
+        assert.equal(callbackResponse.topic, 'merchant_order');
         assert.equal(callbackResponse.status, 200);
         assert.equal(JSON.stringify(callbackResponse.body), JSON.stringify({ test_response: true }));
       });
