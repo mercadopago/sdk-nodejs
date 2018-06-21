@@ -818,7 +818,8 @@ describe('Request Manager', function () {
         config: {},
         path: '/v1/payments',
         method: 'GET',
-        base_url: 'http://auth.mercadopago.com'
+        base_url: 'http://auth.mercadopago.com',
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -837,7 +838,8 @@ describe('Request Manager', function () {
       var options = {
         config: {},
         path: '/v1/payments',
-        method: 'GET'
+        method: 'GET',
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -864,7 +866,8 @@ describe('Request Manager', function () {
         },
         config: {
           idempotency: fakeIdempotency
-        }
+        },
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -890,7 +893,8 @@ describe('Request Manager', function () {
           firstname: 'Ariel'
         },
         config: {},
-        idempotency: true
+        idempotency: true,
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -916,7 +920,8 @@ describe('Request Manager', function () {
         payload: {
           firstname: 'Ariel'
         },
-        config: {}
+        config: {},
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -937,7 +942,8 @@ describe('Request Manager', function () {
           accept: requestManager.FORM_MIME_TYPE,
           'content-type': requestManager.FORM_MIME_TYPE
         },
-        config: {}
+        config: {},
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -970,7 +976,8 @@ describe('Request Manager', function () {
             }
           }
         },
-        config: {}
+        config: {},
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
