@@ -8,7 +8,7 @@
 
 This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
 
-**Warning**: [Important updates in changelog](CHANGELOG.md)
+**Warning**: [Important updates in changelog](CHANGELOG.MD)
 
 ### Node.js Versions Support
 
