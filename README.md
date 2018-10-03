@@ -86,7 +86,7 @@ This project is tested using:
 - Chai
 - Sinon
 
-You can see the current [coverage here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
+You can see the current [coverage here](https://coveralls.io/github/mercadopago/dx-nodejs?branch=master).
 
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
