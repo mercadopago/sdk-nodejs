@@ -7,7 +7,7 @@
 # MercadoPago-Extended Node.js SDK
 
 This library is an extension of "MercadoPago Node.js SDK", which provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
-This extension includes Plans and Subscritions.
+This extension includes Payment Methods Issuers by bin, Plans and Subscritions.
 
 ### Node.js Versions Support
 
