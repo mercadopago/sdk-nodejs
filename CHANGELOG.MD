@@ -1,7 +1,7 @@
 # Releases
 
-## VERSION 1.1.6
+## VERSION 1.0.23
 
-_05-06-2018_
+_16-03-2019_
 
-* Changing endpoint for IPN on Payments. Moving from /collections/notifications to /v1/payments
+* Fixing reserved word for strict mode
