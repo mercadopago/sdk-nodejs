@@ -30,12 +30,12 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
-    "coveralls": "2.11.15",
+    "coveralls": "3.0.3",
     "eslint": "3.13.1",
     "eslint-config-airbnb-base": "11.0.1",
     "eslint-plugin-import": "2.2.0",
     "istanbul": "0.4.5",
-    "mocha": "3.2.0",
+    "mocha": "6.0.2",
     "mocha-lcov-reporter": "1.2.0",
     "sinon": "1.17.7"
   },
