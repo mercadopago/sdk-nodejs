@@ -22,7 +22,7 @@ If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs)
 ### Installation
 
 ```sh
-$ npm install mercadopago-extended
+$ npm install mercadopago
 ```
 
 or saving as a dependency on your `package.json`
