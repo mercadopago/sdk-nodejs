@@ -28,7 +28,7 @@ $ npm install mercadopago
 or saving as a dependency on your `package.json`
 
 ```sh
-$ npm install --save mercadopago-extended
+$ npm install --save mercadopago
 ```
 
 ### Credentials
