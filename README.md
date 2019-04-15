@@ -4,7 +4,7 @@
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
  
-# MercadoPago-Extended Node.js SDK
+# MercadoPago Node.js SDK
 
 This library is an extension of "MercadoPago Node.js SDK", which provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
 
