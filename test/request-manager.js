@@ -13,9 +13,11 @@ var preConditions = require('../lib/precondition');
 
 chai.use(chaiAsPromised);
 
+var ACCESS_TOKEN = 'ACCESS_TOKEN';
+
 describe('Request Manager', function () {
   describe('Dynamic method Creation', function () {
-    it('Missing id parameter from arguments (GET)', function () {
+    it('Missing id parameter from arguments (GET)', function (done) {
       var callback = sinon.spy();
 
       var method = requestManager.describe({
@@ -27,15 +29,19 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, 'Expecting parameters: id');
 
-      promise.catch(function () {
+      promise.then(function () {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         var callbackError = callback.args[0][0];
 
         assert.isTrue(callback.called);
         assert.equal(callbackError, 'Error: Expecting parameters: id');
+
+        done();
       });
     });
 
-    it('Missing id parameter from JSON (POST)', function () {
+    it('Missing id parameter from JSON (POST)', function (done) {
       var callback = sinon.spy();
 
       var method = requestManager.describe({
@@ -47,15 +53,19 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, 'The JSON is missing the following properties: id');
 
-      promise.catch(function () {
+      promise.then(function () {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         var callbackError = callback.args[0][0];
 
         assert.isTrue(callback.called);
         assert.equal(callbackError, 'Error: The JSON is missing the following properties: id');
+
+        done();
       });
     });
 
-    it('Missing multiple parameters from JSON (POST)', function () {
+    it('Missing multiple parameters from JSON (POST)', function (done) {
       var callback = sinon.spy();
 
       var method = requestManager.describe({
@@ -67,11 +77,15 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, 'The JSON is missing the following properties: id, name');
 
-      promise.catch(function () {
+      promise.then(function () {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         var callbackError = callback.args[0][0];
 
         assert.isTrue(callback.called);
         assert.equal(callbackError, 'Error: The JSON is missing the following properties: id, name');
+
+        done();
       });
     });
 
@@ -111,16 +125,16 @@ describe('Request Manager', function () {
       beforeEach(function () {
         sinon.stub(requestManager, 'generateAccessToken', function (callback) {
           return new Promise(function (resolve) {
-            resolve('ACCESS_TOKEN');
-            return callback.apply(null, [null, 'ACCESS_TOKEN']);
+            resolve(ACCESS_TOKEN);
+            return callback.apply(null, [null, ACCESS_TOKEN]);
           });
         });
 
         execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
           return new Promise(function (resolve) {
             callback = preConditions.getCallback(callback);
-            callback.apply(null, [null, mercadoPagoResponse]);
-            return Promise.resolve(mercadoPagoResponse);
+            resolve(mercadoPagoResponse);
+            return callback.apply(null, [null, mercadoPagoResponse]);
           });
         });
       });
@@ -414,16 +428,18 @@ describe('Request Manager', function () {
     var mpTokenResponse = {
       status: 200,
       body: {
-        access_token: 'ACCESS_TOKEN',
+        access_token: ACCESS_TOKEN,
         refresh_token: 'REFRESH_TOKEN'
       }
     };
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        callback = preConditions.getCallback(callback);
-        callback.apply(null, [null, mpTokenResponse]);
-        return Promise.resolve(mpTokenResponse);
+        return new Promise(function (resolve) {
+          callback = preConditions.getCallback(callback);
+          resolve(mpTokenResponse);
+          return callback.apply(null, [null, mpTokenResponse]);
+        });
       });
     });
 
@@ -433,7 +449,7 @@ describe('Request Manager', function () {
       configurationModule.setAccessToken('');
     });
 
-    it('Already have access_token', function () {
+    it('Already have access_token', function (done) {
       var callback = sinon.spy();
       var accessToken = 'STUB_ACCESS_TOKEN';
       var promise;
@@ -447,6 +463,10 @@ describe('Request Manager', function () {
       promise.then(function () {
         assert.isTrue(callback.called);
         assert.isTrue(callback.calledWith(null, accessToken));
+
+        done();
+      }).catch(function (error) {
+        done(error);
       });
 
       configurationModule.getAccessToken.restore();
@@ -465,7 +485,7 @@ describe('Request Manager', function () {
       configurationModule.getAccessToken.restore();
     });
 
-    it('Missing client_id and client_secret Error', function () {
+    it('Missing client_id and client_secret Error', function (done) {
       var callback = sinon.spy();
       var promise;
       var getTokenError;
@@ -477,17 +497,21 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, 'Must set client_id and client_secret');
 
-      promise.catch(function () {
+      promise.then(function () {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         getTokenError = callback.args[0][0];
 
         assert.equal(getTokenError.message, 'Must set client_id and client_secret');
+
+        done();
       });
 
       configurationModule.getClientId.restore();
       configurationModule.getClientSecret.restore();
     });
 
-    it('Get the access_token from MercadoPago API', function () {
+    it('Get the access_token from MercadoPago API', function (done) {
       var callback = sinon.spy();
       var clientId = 'CLIENT_ID';
       var clientSecret = 'CLIENT_SECRET';
@@ -514,13 +538,17 @@ describe('Request Manager', function () {
 
         assert.isTrue(callback.called);
         assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
+
+        done();
+      }).catch(function (error) {
+        done(error);
       });
 
       configurationModule.getClientId.restore();
       configurationModule.getClientSecret.restore();
     });
 
-    it('Failing getting the access_token from MercadoPago API', function () {
+    it('Failing getting the access_token from MercadoPago API', function (done) {
       var callback = sinon.spy();
       var clientId = 'CLIENT_ID';
       var clientSecret = 'CLIENT_SECRET';
@@ -548,12 +576,16 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, errorMessage);
 
-      promise.catch(function () {
+      promise.then(function () {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         assert.isTrue(callback.called);
 
         callbackError = callback.args[0][0];
 
         assert.equal(callbackError.message, errorMessage);
+
+        done();
       });
 
       configurationModule.getClientId.restore();
@@ -567,16 +599,18 @@ describe('Request Manager', function () {
     var mpTokenResponse = {
       status: 200,
       body: {
-        access_token: 'ACCESS_TOKEN',
+        access_token: ACCESS_TOKEN,
         refresh_token: 'REFRESH_TOKEN'
       }
     };
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        callback = preConditions.getCallback(callback);
-        callback.apply(null, [null, mpTokenResponse]);
-        return Promise.resolve(mpTokenResponse);
+        return new Promise(function (resolve) {
+          callback = preConditions.getCallback(callback);
+          resolve(mpTokenResponse);
+          return callback.apply(null, [null, mpTokenResponse]);
+        });
       });
     });
 
@@ -586,7 +620,7 @@ describe('Request Manager', function () {
       configurationModule.setAccessToken('');
     });
 
-    it('Missing refres_token property', function () {
+    it('Missing refres_token property', function (done) {
       var callback = sinon.spy();
       var promise;
       var callbackError;
@@ -597,12 +631,16 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, 'You need the refresh_token to refresh the access_token');
 
-      promise.catch(function () {
+      promise.then(function() {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         assert.isTrue(callback.called);
 
         callbackError = callback.args[0][0];
 
         assert.equal(callbackError.message, 'You need the refresh_token to refresh the access_token');
+
+        done();
       });
 
       configurationModule.getRefreshToken.restore();
@@ -620,9 +658,9 @@ describe('Request Manager', function () {
       configurationModule.getRefreshToken.restore();
     });
 
-    it('Get access_token from MercadoPago API', function () {
+    it('Get access_token from MercadoPago API', function (done) {
       var callback = sinon.spy();
-      var accessToken = 'ACCESS_TOKEN';
+      var accessToken = ACCESS_TOKEN;
       var refreshToken = 'REFRESH_TOKEN';
       var promise;
       var execOptionParams;
@@ -646,16 +684,20 @@ describe('Request Manager', function () {
 
         assert.isTrue(callback.called);
         assert.isTrue(callback.calledWith(null, mpTokenResponse.body.access_token));
+
+        done();
+      }).catch(function (error) {
+        done(error);
       });
 
       configurationModule.getAccessToken.restore();
       configurationModule.getRefreshToken.restore();
     });
 
-    it('Failing refreshing the access_token', function () {
+    it('Failing refreshing the access_token', function (done) {
       var errorMessage = 'Error refreshing token';
       var callback = sinon.spy();
-      var accessToken = 'ACCESS_TOKEN';
+      var accessToken = ACCESS_TOKEN;
       var refreshToken = 'REFRESH_TOKEN';
       var promise;
       var callbackError;
@@ -680,10 +722,14 @@ describe('Request Manager', function () {
       assert.isRejected(promise, errorMessage);
 
 
-      promise.catch(function(){
+      promise.then(function() {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         callbackError = callback.args[0][0];
 
         assert.equal(callbackError.message, errorMessage);
+
+        done();
       });
 
       configurationModule.getAccessToken.restore();
@@ -702,9 +748,11 @@ describe('Request Manager', function () {
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
-        callback = preConditions.getCallback(callback);
-        callback.apply(null, [null, userCredentialsResponse]);
-        return Promise.resolve(userCredentialsResponse);
+        return new Promise(function (resolve) {
+          callback = preConditions.getCallback(callback);
+          resolve(userCredentialsResponse);
+          return callback.apply(null, [null, userCredentialsResponse]);
+        });
       });
     });
 
@@ -712,7 +760,7 @@ describe('Request Manager', function () {
       requestManager.exec.restore();
     });
 
-    it('Get user credentials from MercadoPago API', function () {
+    it('Get user credentials from MercadoPago API', function (done) {
       var callback = sinon.spy();
       var execOptionParams;
 
@@ -734,6 +782,10 @@ describe('Request Manager', function () {
 
         assert.isTrue(callback.called);
         assert.isTrue(callback.calledWith(null, userCredentialsResponse));
+
+        done();
+      }).catch(function (error) {
+        done(error);
       });
     });
 
@@ -743,7 +795,7 @@ describe('Request Manager', function () {
       assert.isFulfilled(promise, userCredentialsResponse);
     });
 
-    it('Failing getting user credentials from MercadoPago API', function () {
+    it('Failing getting user credentials from MercadoPago API', function (done) {
       var errorMessage = 'Error refreshing token';
       var callback = sinon.spy();
       var promise;
@@ -765,17 +817,21 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, errorMessage);
 
-      promise.catch(function () {
+      promise.then(function () {
+        done(new Error('Should be rejected'));
+      }).catch(function () {
         var callbackError = callback.args[0][0];
 
         assert.equal(callbackError.message, errorMessage);
+
+        done();
       });
     });
   });
 
   describe('Build Request', function () {
     var baseUrl = 'http://api.mercadopago.com';
-    var accessToken = 'ACCESS_TOKEN';
+    var accessToken = ACCESS_TOKEN;
     var userAgent = 'USER_AGENT';
 
     beforeEach(function () {
@@ -818,7 +874,8 @@ describe('Request Manager', function () {
         config: {},
         path: '/v1/payments',
         method: 'GET',
-        base_url: 'http://auth.mercadopago.com'
+        base_url: 'http://auth.mercadopago.com',
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -837,7 +894,8 @@ describe('Request Manager', function () {
       var options = {
         config: {},
         path: '/v1/payments',
-        method: 'GET'
+        method: 'GET',
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -864,7 +922,8 @@ describe('Request Manager', function () {
         },
         config: {
           idempotency: fakeIdempotency
-        }
+        },
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -890,7 +949,8 @@ describe('Request Manager', function () {
           firstname: 'Ariel'
         },
         config: {},
-        idempotency: true
+        idempotency: true,
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -916,7 +976,8 @@ describe('Request Manager', function () {
         payload: {
           firstname: 'Ariel'
         },
-        config: {}
+        config: {},
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -937,7 +998,8 @@ describe('Request Manager', function () {
           accept: requestManager.FORM_MIME_TYPE,
           'content-type': requestManager.FORM_MIME_TYPE
         },
-        config: {}
+        config: {},
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -970,7 +1032,8 @@ describe('Request Manager', function () {
             }
           }
         },
-        config: {}
+        config: {},
+        access_token: accessToken,
       };
 
       var request = requestManager.buildRequest(options);
@@ -1138,7 +1201,7 @@ describe('Request Manager', function () {
       requestLib.Request.restore();
     });
 
-    it('Valid Response From MercadoPago API (Using ETAG Cache)', function () {
+    it('Valid Response From MercadoPago API (Using ETAG Cache)', function (done) {
       var callback = sinon.spy();
       var responseBody = {
         firstname: 'Ariel'
@@ -1194,6 +1257,109 @@ describe('Request Manager', function () {
 
         requestManager.buildRequest.restore();
         requestLib.Request.restore();
+
+        done();
+      }).catch(function (error) {
+        done(error);
+      });
+    });
+  });
+
+  describe('Override Access Token', function () {
+    var execStub;
+
+    var mercadoPagoResponse = {
+      status: 200,
+      body: {
+        firstname: 'Ariel'
+      }
+    };
+
+    beforeEach(function () {
+      sinon.stub(requestManager, 'generateAccessToken', function (callback) {
+        return new Promise(function (resolve) {
+          resolve(ACCESS_TOKEN);
+          return callback.apply(null, [null, ACCESS_TOKEN]);
+        });
+      });
+
+      execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
+        return new Promise(function (resolve) {
+          callback = preConditions.getCallback(callback);
+          resolve(mercadoPagoResponse);
+          return callback.apply(null, [null, mercadoPagoResponse]);
+        });
+      });
+    });
+
+    afterEach(function () {
+      requestManager.generateAccessToken.restore();
+      requestManager.exec.restore();
+    });
+
+    it('Without access_token on config', function (done) {
+      var execOptionParams;
+      var callback = sinon.spy();
+      var testPayload = {
+        description: 'MercadoPago Sale'
+      };
+
+      var resource = {
+        method: requestManager.describe({
+          path: '/v1/payments',
+          method: 'POST'
+        })
+      };
+
+      var promise = resource.method(testPayload, callback);
+
+      assert.isFulfilled(promise, mercadoPagoResponse);
+
+      promise.then(function () {
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+        execOptionParams = execStub.args[0][0];
+
+        assert.equal(execOptionParams.access_token, ACCESS_TOKEN);
+
+        done();
+      }).catch(function (error) {
+        done(error);
+      });
+    });
+
+    it('With access_token on config', function (done) {
+      var execOptionParams;
+      var callback = sinon.spy();
+      var testPayload = {
+        description: 'MercadoPago Sale'
+      };
+
+      var resource = {
+        method: requestManager.describe({
+          path: '/v1/payments',
+          method: 'POST'
+        })
+      };
+
+      var promise = resource.method(testPayload, {
+        access_token: '123',
+      }, callback);
+
+      assert.isFulfilled(promise, mercadoPagoResponse);
+
+      promise.then(function () {
+        assert.isTrue(callback.called);
+        assert.isTrue(callback.calledWith(null, mercadoPagoResponse));
+
+        execOptionParams = execStub.args[0][0];
+
+        assert.equal(execOptionParams.access_token, '123');
+
+        done();
+      }).catch(function (error) {
+        done(error);
       });
     });
   });
