@@ -25,7 +25,7 @@
   "author": "Ariel Rey <ariel.rey@mercadolibre.com>",
   "contributors": [{ "name" : "Leonardo Nomdedeu", "email" : "nomdedeu@gmail.com", "url" : "https://www.linkedin.com/in/leonardonomdedeu"} ],
   "bugs": {
-    "url": "https://github.com/leitonet/dx-nodejs/issues"
+    "url": "https://github.com/mercadopago/dx-nodejs/issues"
   },
   "homepage": "https://github.com/leitonet/dx-nodejs#readme",
   "devDependencies": {
