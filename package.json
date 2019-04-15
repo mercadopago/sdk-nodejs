@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leitonet/dx-nodejs.git"
+    "url": "git+https://github.com/mercadopago/dx-nodejs.git"
   },
   "keywords": [
     "api",
