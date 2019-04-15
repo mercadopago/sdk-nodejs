@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/mercadopago/dx-nodejs/issues"
   },
-  "homepage": "https://github.com/leitonet/dx-nodejs#readme",
+  "homepage": "https://github.com/mercadopago/dx-nodejs#readme",
   "devDependencies": {
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
