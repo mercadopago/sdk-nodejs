@@ -134,21 +134,25 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('get - callback', function () {
+        it('get - callback', function (done) {
           var callback = sinon.spy();
 
-          mp.get('/v1/payments/1', {
+          var promise = mp.get('/v1/payments/1', {
             test_paremeter: 'get'
           }, callback);
 
-          assert.isTrue(callback.called);
+          promise.then(function () {
+            var requestArgs = requestStub.args[0][0];
 
-          var requestArgs = requestStub.args[0][0];
+            assert.isTrue(callback.called);
 
-          assert.isTrue(requestStub.called);
-          assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
-          assert.equal(requestArgs.method, 'GET');
-          assert.equal(requestArgs.qs.test_paremeter, 'get');
+            assert.isTrue(requestStub.called);
+            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+            assert.equal(requestArgs.method, 'GET');
+            assert.equal(requestArgs.qs.test_paremeter, 'get');
+
+            done();
+          });
         });
 
         it('post - promise', function (done) {
@@ -178,21 +182,24 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
         it('post - callback', function () {
           var callback = sinon.spy();
 
-          mp.post('/v1/payments', {
+          var promise = mp.post('/v1/payments', {
             payload: true
           }, {
             test_paremeter: 'post'
           }, callback);
 
-          assert.isTrue(callback.called);
+          promise.then(function () {
+            var requestArgs = requestStub.args[0][0];
 
-          var requestArgs = requestStub.args[0][0];
+            assert.isTrue(callback.called);
 
-          assert.isTrue(requestStub.called);
-          assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
-          assert.equal(requestArgs.method, 'POST');
-          assert.isTrue(requestArgs.json.payload);
-          assert.equal(requestArgs.qs.test_paremeter, 'post');
+            assert.isTrue(requestStub.called);
+            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+            assert.equal(requestArgs.method, 'POST');
+            assert.equal(requestArgs.qs.test_paremeter, 'post');
+
+            done();
+          });
         });
 
         it('put - promise', function (done) {
@@ -222,21 +229,24 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
         it('put - callback', function () {
           var callback = sinon.spy();
 
-          mp.put('/v1/payments', {
+          var promise = mp.put('/v1/payments', {
             payload: true
           }, {
             test_paremeter: 'put'
           }, callback);
 
-          assert.isTrue(callback.called);
+          promise.then(function () {
+            var requestArgs = requestStub.args[0][0];
 
-          var requestArgs = requestStub.args[0][0];
+            assert.isTrue(callback.called);
 
-          assert.isTrue(requestStub.called);
-          assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
-          assert.equal(requestArgs.method, 'PUT');
-          assert.isTrue(requestArgs.json.payload);
-          assert.equal(requestArgs.qs.test_paremeter, 'put');
+            assert.isTrue(requestStub.called);
+            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+            assert.equal(requestArgs.method, 'PUT');
+            assert.equal(requestArgs.qs.test_paremeter, 'put');
+
+            done();
+          });
         });
 
         it('delete - promise', function (done) {
@@ -263,18 +273,22 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
         it('delete - callback', function () {
           var callback = sinon.spy();
 
-          mp.delete('/v1/payments/1', {
+          var promise = mp.delete('/v1/payments/1', {
             test_paremeter: 'delete'
           }, callback);
 
-          assert.isTrue(callback.called);
+          promise.then(function () {
+            var requestArgs = requestStub.args[0][0];
 
-          var requestArgs = requestStub.args[0][0];
+            assert.isTrue(callback.called);
 
-          assert.isTrue(requestStub.called);
-          assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
-          assert.equal(requestArgs.method, 'DELETE');
-          assert.equal(requestArgs.qs.test_paremeter, 'delete');
+            assert.isTrue(requestStub.called);
+            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+            assert.equal(requestArgs.method, 'DELETE');
+            assert.equal(requestArgs.qs.test_paremeter, 'delete');
+
+            done();
+          });
         });
       });
 
