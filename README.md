@@ -8,6 +8,8 @@
 
 This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
 
+**Warning**: [Important updates in changelog](CHANGELOG.MD)
+
 ### Node.js Versions Support
 
 The SDK Supports Node.js from version v0 to the latest (v7).
@@ -84,7 +86,7 @@ This project is tested using:
 - Chai
 - Sinon
 
-You can see the current [coverage here](https://coveralls.io/github/mercadopago/px-nodejs?branch=master).
+You can see the current [coverage here](https://coveralls.io/github/mercadopago/dx-nodejs?branch=master).
 
 ### Links
 * [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
