@@ -164,7 +164,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
 
           assert.isFulfilled(promise);
 
-          promise.then(function (resp) {
+          promise.then(function () {
             var requestArgs = requestStub.args[0][0];
 
             assert.isTrue(requestStub.called);
@@ -179,7 +179,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('post - callback', function () {
+        it('post - callback', function (done) {
           var callback = sinon.spy();
 
           var promise = mp.post('/v1/payments', {
@@ -194,7 +194,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
             assert.isTrue(callback.called);
 
             assert.isTrue(requestStub.called);
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
             assert.equal(requestArgs.method, 'POST');
             assert.equal(requestArgs.qs.test_paremeter, 'post');
 
@@ -226,7 +226,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('put - callback', function () {
+        it('put - callback', function (done) {
           var callback = sinon.spy();
 
           var promise = mp.put('/v1/payments', {
@@ -241,7 +241,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
             assert.isTrue(callback.called);
 
             assert.isTrue(requestStub.called);
-            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments/1');
+            assert.equal(requestArgs.uri, mp.configurations.getBaseUrl() + '/v1/payments');
             assert.equal(requestArgs.method, 'PUT');
             assert.equal(requestArgs.qs.test_paremeter, 'put');
 
@@ -270,7 +270,7 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('delete - callback', function () {
+        it('delete - callback', function (done) {
           var callback = sinon.spy();
 
           var promise = mp.delete('/v1/payments/1', {
@@ -320,17 +320,21 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('get - callback', function () {
+        it('get - callback', function (done) {
           var callback = sinon.spy();
 
-          mp.get('/v1/payments/1', {
+          var promise = mp.get('/v1/payments/1', {
             test_paremeter: 'get'
           }, callback);
 
-          var error = callback.args[0][0];
+          promise.catch(function () {
+            var error = callback.args[0][0];
 
-          assert.isTrue(callback.called);
-          assert.equal(error.message, errorMessage);
+            assert.isTrue(callback.called);
+            assert.equal(error.message, errorMessage);
+
+            done();
+          });
         });
 
         it('post - promise', function (done) {
@@ -349,19 +353,23 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('post - callback', function () {
+        it('post - callback', function (done) {
           var callback = sinon.spy();
 
-          mp.post('/v1/payments', {
+          var promise = mp.post('/v1/payments', {
             payload: true
           }, {
             test_paremeter: 'post'
           }, callback);
 
-          var error = callback.args[0][0];
+          promise.catch(function () {
+            var error = callback.args[0][0];
 
-          assert.isTrue(callback.called);
-          assert.equal(error.message, errorMessage);
+            assert.isTrue(callback.called);
+            assert.equal(error.message, errorMessage);
+
+            done();
+          });
         });
 
         it('put - promise', function (done) {
@@ -378,22 +386,26 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('put - callback', function () {
+        it('put - callback', function (done) {
           var callback = sinon.spy();
 
-          mp.put('/v1/payments', {
+          var promise = mp.put('/v1/payments', {
             payload: true
           }, {
             test_paremeter: 'put'
           }, callback);
 
-          var error = callback.args[0][0];
+          promise.catch(function () {
+            var error = callback.args[0][0];
 
-          assert.isTrue(callback.called);
-          assert.equal(error.message, errorMessage);
+            assert.isTrue(callback.called);
+            assert.equal(error.message, errorMessage);
+
+            done();
+          });
         });
 
-        it('delete - promise', function () {
+        it('delete - promise', function (done) {
           var promise = mp.delete('/v1/payments/1', {
             test_paremeter: 'delete'
           });
@@ -405,17 +417,21 @@ describe('Mercadopago Support (Backward Compatibility)', function () {
           });
         });
 
-        it('delete - callback', function () {
+        it('delete - callback', function (done) {
           var callback = sinon.spy();
 
-          mp.delete('/v1/payments/1', {
+          var promise = mp.delete('/v1/payments/1', {
             test_paremeter: 'delete'
           }, callback);
 
-          var error = callback.args[0][0];
+          promise.catch(function () {
+            var error = callback.args[0][0];
 
-          assert.isTrue(callback.called);
-          assert.equal(error.message, errorMessage);
+            assert.isTrue(callback.called);
+            assert.equal(error.message, errorMessage);
+
+            done();
+          });
         });
       });
     });
