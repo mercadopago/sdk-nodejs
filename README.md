@@ -1,14 +1,12 @@
-[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/px-nodejs)
-[![Build Status](https://img.shields.io/travis/mercadopago/px-nodejs/master.svg)](https://travis-ci.org/mercadopago/px-nodejs)
-[![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=master)](https://coveralls.io/github/mercadopago/px-nodejs?branch=master)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/dx-nodejs)
+[![Build Status](https://img.shields.io/travis/mercadopago/px-nodejs/master.svg)](https://travis-ci.org/mercadopago/dx-nodejs)
+[![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=master)](https://coveralls.io/github/mercadopago/dx-nodejs?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
  
 # MercadoPago Node.js SDK
 
-This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/px-nodejs/wiki).
-
-**Warning**: [Important updates in changelog](CHANGELOG.MD)
+This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/dx-nodejs/wiki).
 
 ### Node.js Versions Support
 
@@ -16,7 +14,7 @@ The SDK Supports Node.js from version v0 to the latest (v7).
 
 ### Backward Compatiblity
 
-If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs), you don't need to do **anything**. Just update the NPM Package and you will received all of the [previous methods](https://github.com/mercadopago/px-nodejs/wiki/Backward-Compatibility).
+If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs), you don't need to do **anything**. Just update the NPM Package and you will received all of the [previous methods](https://github.com/mercadopago/dx-nodejs/wiki/Backward-Compatibility).
 
 ### Installation
 
@@ -65,18 +63,18 @@ You **don't need to instantiate** `mercadopago`. It's a global singleton accross
 
 ## Operations & Resources
 
-* [Payment](https://github.com/mercadopago/px-nodejs/wiki/Payment)
-* [Preferences](https://github.com/mercadopago/px-nodejs/wiki/Preferences)
-* [Pre Approval](https://github.com/mercadopago/px-nodejs/wiki/Pre-Approval)
-* [Customers & Cards](https://github.com/mercadopago/px-nodejs/wiki/Customers-&-Cards)
-* [Merchant Orders](https://github.com/mercadopago/px-nodejs/wiki/Merchant-Orders)
-* [Money Requests](https://github.com/mercadopago/px-nodejs/wiki/Money-Requests)
-* [MercadoPago Connect](https://github.com/mercadopago/px-nodejs/wiki/MercadoPago-Connect)
-* [IPN Notifications](https://github.com/mercadopago/px-nodejs/wiki/IPN-Notifications)
+* [Payment](https://github.com/mercadopago/dx-nodejs/wiki/Payment)
+* [Preferences](https://github.com/mercadopago/dx-nodejs/wiki/Preferences)
+* [Pre Approval](https://github.com/mercadopago/dx-nodejs/wiki/Pre-Approval)
+* [Customers & Cards](https://github.com/mercadopago/dx-nodejs/wiki/Customers-&-Cards)
+* [Merchant Orders](https://github.com/mercadopago/dx-nodejs/wiki/Merchant-Orders)
+* [Money Requests](https://github.com/mercadopago/dx-nodejs/wiki/Money-Requests)
+* [MercadoPago Connect](https://github.com/mercadopago/dx-nodejs/wiki/MercadoPago-Connect)
+* [IPN Notifications](https://github.com/mercadopago/dx-nodejs/wiki/IPN-Notifications)
 
 ## Examples
 
-In the examples folder you will find a web application. In this you can try some examples. For more information read the [documentation here](https://github.com/mercadopago/px-nodejs/tree/master/examples).
+In the examples folder you will find a web application. In this you can try some examples. For more information read the [documentation here](https://github.com/mercadopago/dx-nodejs/tree/master/examples).
 
 ### Testing
 
@@ -89,7 +87,7 @@ This project is tested using:
 You can see the current [coverage here](https://coveralls.io/github/mercadopago/dx-nodejs?branch=master).
 
 ### Links
-* [Documentation](https://github.com/mercadopago/px-nodejs/wiki)
+* [Documentation](https://github.com/mercadopago/dx-nodejs/wiki)
 * [API Documentation](http://developers.mercadopago.com)
 
 ### License
