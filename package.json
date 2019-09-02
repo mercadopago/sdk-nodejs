@@ -1,6 +1,6 @@
 {
   "name": "mercadopago",
-  "version": "1.0.24",
+  "version": "1.1.0",
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "coveralls": "2.11.15",
-    "eslint": "3.13.1",
+    "eslint": ">=4.18.2",
     "eslint-config-airbnb-base": "11.0.1",
     "eslint-plugin-import": "2.2.0",
     "istanbul": "0.4.5",
