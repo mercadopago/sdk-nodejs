@@ -1,6 +1,5 @@
 [![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/dx-nodejs)
 [![Build Status](https://img.shields.io/travis/mercadopago/px-nodejs/master.svg)](https://travis-ci.org/mercadopago/dx-nodejs)
-[![Coverage Status](https://coveralls.io/repos/github/mercadopago/px-nodejs/badge.svg?branch=master)](https://coveralls.io/github/mercadopago/dx-nodejs?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
  
