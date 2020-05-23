@@ -30,7 +30,7 @@ Thats all, you have Mercado Pago SDK installed.
 ```javascript
 var mercadopago = require('mercadopago');
 mercadopago.configure({
-    access_token: 'ACCESS_TOKEN'
+    access_token: 'YOUR_ACCESS_TOKEN'
 });
 ```
 
