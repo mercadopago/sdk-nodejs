@@ -1,98 +1,52 @@
-[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/mercadopago/dx-nodejs)
-[![Build Status](https://img.shields.io/travis/mercadopago/px-nodejs/master.svg)](https://travis-ci.org/mercadopago/dx-nodejs)
+# Mercado Pago SDK for NodeJS
+
+[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mercadopago/dx-nodejs)
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
  
-# MercadoPago Node.js SDK
+This library provides developers with a simple set of bindings to help you integrate Mercado Pago API to a website and start receiving payments.
 
-This library provides developers with a simple set of bindings to the MercadoPago API. You can read the full [documentation here](https://github.com/mercadopago/dx-nodejs/wiki).
-
-### Node.js Versions Support
+## 💡 Requirements
 
 The SDK Supports Node.js from version v0 to the latest (v7).
 
-### Backward Compatiblity
+## 📲 Installation 
 
-If you implemented the [previous SDK](https://github.com/mercadopago/sdk-nodejs), you don't need to do **anything**. Just update the NPM Package and you will received all of the [previous methods](https://github.com/mercadopago/dx-nodejs/wiki/Backward-Compatibility).
+First time using Mercado Pago? Create your [Mercado Pago account](https://www.mercadopago.com), if you don’t have one already.
 
-### Installation
-
-```sh
-$ npm install mercadopago
-```
-
-or saving as a dependency on your `package.json`
-
+1. Run
 ```sh
 $ npm install --save mercadopago
 ```
 
-### Credentials
+2. Copy the access_token in the [credentials](https://www.mercadopago.com/mlb/account/credentials) section of the page and replace YOUR_ACCESS_TOKEN with it.
 
-Before you use the SDK, you need to get your credentials from the following address:
+Thats all, you have Mercado Pago SDK installed.
 
-* Argentina: [https://www.mercadopago.com/mla/account/credentials](https://www.mercadopago.com/mla/account/credentials)
-* Brazil: [https://www.mercadopago.com/mlb/account/credentials](https://www.mercadopago.com/mlb/account/credentials)
-* Mexico: [https://www.mercadopago.com/mlm/account/credentials](https://www.mercadopago.com/mlm/account/credentials)
-* Venezuela: [https://www.mercadopago.com/mlv/account/credentials](https://www.mercadopago.com/mlv/account/credentials)
-* Colombia: [https://www.mercadopago.com/mco/account/credentials](https://www.mercadopago.com/mco/account/credentials)
-* Chile: [https://www.mercadopago.com/mlc/account/credentials](https://www.mercadopago.com/mlc/account/credentials)
-* Uruguay: [https://www.mercadopago.com/mlu/account/credentials](https://www.mercadopago.com/mlu/account/credentials)
-* Perú: [https://www.mercadopago.com/mpe/account/credentials](https://www.mercadopago.com/mpe/account/credentials)
+## 🌟 Getting Started
 
-> We highly recomend using only the access_token. If you provide the client_id and client_secret it's going to generate the access_token anyway (only on Production, for Sandbox use access_token).
-
-### Quick Start
-
-First you need to require the library
+  Simple usage looks like:
 
 ```javascript
 var mercadopago = require('mercadopago');
-```
-
-Then you need to configure it with your credentials:
-
-```javascript
 mercadopago.configure({
     access_token: 'ACCESS_TOKEN'
 });
 ```
 
-You **don't need to instantiate** `mercadopago`. It's a global singleton accross your application. Just require the SDK in any other file and it's already configured with your credentials.
+## 📚 Documentation 
 
-## Operations & Resources
+See our Documentation with all APIs you can integrate in our DevSite: [Spanish](https://www.mercadopago.com.ar/developers/es/guides/payments/api/introduction/) / [Portuguese](https://www.mercadopago.com.br/developers/pt/guides/payments/api/introduction/)
 
-* [Payment](https://github.com/mercadopago/dx-nodejs/wiki/Payment)
-* [Preferences](https://github.com/mercadopago/dx-nodejs/wiki/Preferences)
-* [Pre Approval](https://github.com/mercadopago/dx-nodejs/wiki/Pre-Approval)
-* [Customers & Cards](https://github.com/mercadopago/dx-nodejs/wiki/Customers-&-Cards)
-* [Merchant Orders](https://github.com/mercadopago/dx-nodejs/wiki/Merchant-Orders)
-* [Money Requests](https://github.com/mercadopago/dx-nodejs/wiki/Money-Requests)
-* [MercadoPago Connect](https://github.com/mercadopago/dx-nodejs/wiki/MercadoPago-Connect)
-* [IPN Notifications](https://github.com/mercadopago/dx-nodejs/wiki/IPN-Notifications)
+Check our official code reference to explore all available functionalities.
 
-## Examples
+## ❤️ Support 
 
-In the examples folder you will find a web application. In this you can try some examples. For more information read the [documentation here](https://github.com/mercadopago/dx-nodejs/tree/master/examples).
+If you require technical support, please contact our support team at [developers.mercadopago.com](https://developers.mercadopago.com)
 
-### Testing
+## 🏻 License 
 
-This project is tested using:
-
-- Mocha
-- Chai
-- Sinon
-
-You can see the current [coverage here](https://coveralls.io/github/mercadopago/dx-nodejs?branch=master).
-
-### Links
-* [Documentation](https://github.com/mercadopago/dx-nodejs/wiki)
-* [API Documentation](http://developers.mercadopago.com)
-
-### Support 
-
-Write us at [developers.mercadopago.com](https://developers.mercadopago.com)
-
-### License
-
-Copyright © 2017.
+```
+MIT license. Copyright (c) 2018 - Mercado Pago / Mercado Libre 
+For more information, see the LICENSE file.
+```
