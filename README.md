@@ -1,9 +1,9 @@
 # Mercado Pago SDK for NodeJS
 
-[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mercadopago/dx-nodejs)
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
- 
+[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mercadopago/dx-nodejs)
+
 This library provides developers with a simple set of bindings to help you integrate Mercado Pago API to a website and start receiving payments.
 
 ## 💡 Requirements
