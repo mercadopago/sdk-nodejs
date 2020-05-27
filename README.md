@@ -14,7 +14,7 @@ The SDK Supports Node.js from version v0 to the latest (v7).
 
 First time using Mercado Pago? Create your [Mercado Pago account](https://www.mercadopago.com), if you don’t have one already.
 
-1. Run
+1. Install NodeJS SDK for MercadoPago running in command line:
 ```sh
 $ npm install --save mercadopago
 ```
