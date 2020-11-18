@@ -1,6 +1,6 @@
 {
   "name": "mercadopago",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
   "scripts": {
