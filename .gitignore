@@ -168,3 +168,8 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# JSDoc
+jsdoc.json
+/docs/
+/custom-template/

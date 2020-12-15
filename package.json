@@ -4,6 +4,7 @@
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
   "scripts": {
+    "doc": "jsdoc -c jsdoc.json",
     "lint": "NODE_ENV=test eslint lib/*.js",
     "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.*",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
@@ -35,6 +36,7 @@
     "eslint-config-airbnb-base": "11.0.1",
     "eslint-plugin-import": "2.2.0",
     "istanbul": "0.4.5",
+    "jsdoc": "^3.6.6",
     "mocha": "3.2.0",
     "mocha-lcov-reporter": "1.2.0",
     "sinon": "1.17.7"
