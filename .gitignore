@@ -171,5 +171,4 @@ fabric.properties
 
 # JSDoc
 jsdoc.json
-/docs/
 /custom-template/
