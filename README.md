@@ -2,7 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
 [![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
-[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mercadopago/dx-nodejs)
+[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mercadopago/sdk-nodejs)
 
 This library provides developers with a simple set of bindings to help you integrate Mercado Pago API to a website and start receiving payments.
 
@@ -54,7 +54,7 @@ Visit our Dev Site for further information regarding:
  - Mercado Pago checkout: [Spanish](https://www.mercadopago.com.ar/developers/es/guides/payments/web-payment-checkout/introduction/) / [Portuguese](https://www.mercadopago.com.br/developers/pt/guides/payments/web-payment-checkout/introduction/)
  - Web Tokenize checkout: [Spanish](https://www.mercadopago.com.ar/developers/es/guides/payments/web-tokenize-checkout/introduction/) / [Portuguese](https://www.mercadopago.com.br/developers/pt/guides/payments/web-tokenize-checkout/introduction/)
 
-Check our [official code reference](https://mercadopago.github.io/dx-nodejs/) to explore all available functionalities.
+Check our [official code reference](https://mercadopago.github.io/sdk-nodejs/) to explore all available functionalities.
 
 ## ❤️ Support 
 
