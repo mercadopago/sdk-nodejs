@@ -6,7 +6,7 @@ var validationModule = require('../lib/validation');
 
 describe('Validation Module', function () {
   var testSchema = {
-    additionalProperties: false,
+    additionalProperties: true,
     properties: {
       first_name: {
         type: 'string'
