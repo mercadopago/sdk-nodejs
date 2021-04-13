@@ -31,18 +31,18 @@
   "devDependencies": {
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
-    "coveralls": "2.11.15",
+    "coveralls": "^3.1.0",
     "eslint": ">=4.18.2",
     "eslint-config-airbnb-base": "11.0.1",
     "eslint-plugin-import": "2.2.0",
     "istanbul": "0.4.5",
     "jsdoc": "^3.6.6",
-    "mocha": "3.2.0",
+    "mocha": "^8.3.2",
     "mocha-lcov-reporter": "1.2.0",
     "sinon": "1.17.7"
   },
   "dependencies": {
-    "ajv": "4.10.3",
+    "ajv": "^6.12.3",
     "bluebird": "3.4.7",
     "moment": "^2.24.0",
     "request": "^2.88.0",
