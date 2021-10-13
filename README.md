@@ -1,3 +1,7 @@
+# HOLA, NO FUNCIONA EL @types/mercadopago porque no esta en el nuevo registry 
+# Deberian tener una pagina de issues para dar soporte a los desarrolladores que usan su sdk
+# GRACIAS
+
 # Mercado Pago SDK for NodeJS
 
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
