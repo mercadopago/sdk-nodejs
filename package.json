@@ -44,7 +44,7 @@
   "dependencies": {
     "ajv": "^6.12.3",
     "bluebird": "3.4.7",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "request": "^2.88.0",
     "request-etag": "2.0.3",
     "uuid": "3.0.1"
