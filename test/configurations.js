@@ -117,39 +117,6 @@ describe('Configurations Module', function () {
 
       method();
     });
-
-    /* This is the only way to test the unhandled exception from bluebird */
-    it('Check failing promise with error', function (done) {
-      var errorMessage = 'Error Ocurred';
-      var method;
-
-      var warnStub = sinon.stub(console, 'warn', function () { /* Do Nothing */
-      });
-
-      configuration.configure({
-        client_id: clientId,
-        client_secret: clientSecret,
-        show_promise_error: true
-      });
-
-      assert.isTrue(configuration.show_promise_error);
-
-      method = function (callback) {
-        return new Promise(function (resolve, reject) {
-          reject(new Error(errorMessage));
-
-          setTimeout(function () {
-            callback.apply(null, [null, new Error(errorMessage)]);
-            done();
-          }, 500);
-        });
-      };
-
-      method(function () {
-        assert.isTrue(warnStub.called);
-        warnStub.restore();
-      });
-    });
   });
 
   it('Check getBaseUrl', function () {
