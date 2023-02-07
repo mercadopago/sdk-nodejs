@@ -57,12 +57,23 @@ describe('Validation Module', function () {
   it('Extra parameters only warning', function () {
     var warnStub = sinon.stub(console, 'warn', function () { /* Do Nothing */ });
 
+    var schema = {
+      additionalProperties: false,
+      properties: {
+        first_name: {
+          type: 'string'
+        },
+        rate: {
+          type: 'integer'
+        }
+      }
+    };
     var schemaToValidate = {
       first_name: 'Ariel',
       ratee: 'test'
     };
 
-    var errors = validationModule.validate(testSchema, schemaToValidate);
+    var errors = validationModule.validate(schema, schemaToValidate);
 
     assert.isArray(errors, 'Always returns an array');
     assert.equal(errors.length, 0, 'Should be an error');
