@@ -984,11 +984,12 @@ describe('Request Manager', function () {
         payload: {
           firstname: 'Ariel'
         },
-        headers: {
-          accept: requestManager.FORM_MIME_TYPE,
-          'content-type': requestManager.FORM_MIME_TYPE
+        config: {
+          headers: {
+            accept: requestManager.FORM_MIME_TYPE,
+            'content-type': requestManager.FORM_MIME_TYPE
+          }
         },
-        config: {},
         access_token: accessToken
       };
 
