@@ -10,7 +10,7 @@ describe('Utils Module', function () {
 
   // I'm getting the current offset, because if the test server has another TZ, this tests will crash
   before(function () {
-    var currentOffset = (moment().utcOffset() / 60);
+    var currentOffset = (moment('2016-01-01').utcOffset() / 60);
 
     stringOffset = (currentOffset < 0) ? '-' : '+';
 
