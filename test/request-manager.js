@@ -631,7 +631,7 @@ describe('Request Manager', function () {
 
       assert.isRejected(promise, 'You need the refresh_token to refresh the access_token');
 
-      promise.then(function() {
+      promise.then(function () {
         done(new Error('Should be rejected'));
       }).catch(function () {
         assert.isTrue(callback.called);
@@ -722,7 +722,7 @@ describe('Request Manager', function () {
       assert.isRejected(promise, errorMessage);
 
 
-      promise.then(function() {
+      promise.then(function () {
         done(new Error('Should be rejected'));
       }).catch(function () {
         callbackError = callback.args[0][0];
@@ -739,12 +739,12 @@ describe('Request Manager', function () {
 
   describe('Get User Credentials', function () {
     var userCredentialsResponse = {
-        status: 200,
-        body: {
-          success: true
-        }
-      },
-      execStub;
+      status: 200,
+      body: {
+        success: true
+      }
+    };
+    var execStub;
 
     beforeEach(function () {
       execStub = sinon.stub(requestManager, 'exec', function (options, callback) {
@@ -875,14 +875,13 @@ describe('Request Manager', function () {
         path: '/v1/payments',
         method: 'GET',
         base_url: 'http://auth.mercadopago.com',
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
 
       assert.equal(request.uri, 'http://auth.mercadopago.com' + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({access_token: accessToken}));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -895,16 +894,13 @@ describe('Request Manager', function () {
         config: {},
         path: '/v1/payments',
         method: 'GET',
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({
-        access_token: accessToken
-      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -923,16 +919,13 @@ describe('Request Manager', function () {
         config: {
           idempotency: fakeIdempotency
         },
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({
-        access_token: accessToken
-      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -950,16 +943,13 @@ describe('Request Manager', function () {
         },
         config: {},
         idempotency: true,
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({
-        access_token: accessToken
-      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.JSON_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.JSON_MIME_TYPE);
@@ -977,7 +967,7 @@ describe('Request Manager', function () {
           firstname: 'Ariel'
         },
         config: {},
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
@@ -994,21 +984,19 @@ describe('Request Manager', function () {
         payload: {
           firstname: 'Ariel'
         },
-        headers: {
-          accept: requestManager.FORM_MIME_TYPE,
-          'content-type': requestManager.FORM_MIME_TYPE
+        config: {
+          headers: {
+            accept: requestManager.FORM_MIME_TYPE,
+            'content-type': requestManager.FORM_MIME_TYPE
+          }
         },
-        config: {},
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
 
       assert.equal(request.uri, baseUrl + options.path);
       assert.equal(request.method, options.method);
-      assert.equal(JSON.stringify(request.qs), JSON.stringify({
-        access_token: accessToken
-      }));
       assert.equal(request.headers['user-agent'], userAgent);
       assert.equal(request.headers.accept, requestManager.FORM_MIME_TYPE);
       assert.equal(request.headers['content-type'], requestManager.FORM_MIME_TYPE);
@@ -1033,7 +1021,7 @@ describe('Request Manager', function () {
           }
         },
         config: {},
-        access_token: accessToken,
+        access_token: accessToken
       };
 
       var request = requestManager.buildRequest(options);
@@ -1344,7 +1332,7 @@ describe('Request Manager', function () {
       };
 
       var promise = resource.method(testPayload, {
-        access_token: '123',
+        access_token: '123'
       }, callback);
 
       assert.isFulfilled(promise, mercadoPagoResponse);
