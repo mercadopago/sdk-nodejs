@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: resources/collections.js</title>
+    <title>JSDoc: Source: resources/paymentMethods.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: resources/collections.js</h1>
+    <h1 class="page-title">Source: resources/paymentMethods.js</h1>
 
     
 
@@ -27,57 +27,19 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>var requestManager = require('../request-manager');
-var collectionsModel = require('../models/collectionsModel');
+
+var paymentMethods = module.exports = {}
 
 /**
-  * Collections Class
-  * @namespace collections
+ * Get payment methods
+ * [Click here for more infos]{@link https://www.mercadopago.com.br/developers/en/reference/payment_methods/_payment_methods/get/}
+ * @function listAll
+ * @memberof paymentMethods
  */
-var collections = module.exports = {
-  schema: collectionsModel,
-  idempotency: true,
-  refunds: {}
-};
-
-/**
- * Get collection for provided id
- * @function get
- * @param {string} id Collection id
- * @memberof collections
- */
-collections.get = requestManager.describe({
-  path: '/collections/:id',
+paymentMethods.listAll = requestManager.describe({
+  path: '/v1/payment_methods',
   method: 'GET'
-});
-
-collections.findById = collections.get;
-
-collections.put = requestManager.describe({
-  path: '/collections/:id',
-  method: 'PUT'
-});
-
-/**
- * Get all collection
- * @function search
- * @memberof collections
- */
-collections.search = requestManager.describe({
-  path: '/collections/search',
-  path_sandbox_prefix: true,
-  method: 'GET'
-});
-
-/**
- * Collection ID Refund
- * @function refunds
- * @memberof collections
- */
-collections.refunds.post = requestManager.describe({
-  path: '/collections/:id/refunds',
-  method: 'POST'
-});
-</code></pre>
+});</code></pre>
         </article>
     </section>
 
