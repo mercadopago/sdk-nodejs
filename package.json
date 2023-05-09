@@ -3,6 +3,7 @@
   "version": "1.5.15",
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
+  "files": ["lib/"],
   "scripts": {
     "doc": "jsdoc -c jsdoc.json",
     "lint": "NODE_ENV=test eslint lib/*.js",
