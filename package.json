@@ -1,9 +1,11 @@
 {
   "name": "mercadopago",
-  "version": "1.5.15",
+  "version": "1.5.16",
   "description": "Mercadopago SDK for Node.js",
   "main": "index.js",
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "doc": "jsdoc -c jsdoc.json",
     "lint": "NODE_ENV=test eslint lib/*.js",
