@@ -1,6 +1,8 @@
 /* eslint-env node, mocha */
 var chai = require('chai');
-var moment = require('moment');
+var dayjs = require('dayjs');
+var utc = require('dayjs/plugin/utc');
+dayjs.extend(utc);
 var MercadopagoDate = require('../lib/utils/mercadopagoDate');
 var assert = chai.assert;
 
@@ -9,7 +11,7 @@ describe('MercadopagoDate Class', function () {
 
   // I'm getting the current offset, because if the test server has another TZ, this tests will crash
   before(function () {
-    var currentOffset = (moment('2016-01-01').utcOffset() / 60);
+    var currentOffset = (dayjs('2016-01-01').utcOffset() / 60);
 
     stringOffset = (currentOffset < 0) ? '-' : '+';
 
