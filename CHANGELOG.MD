@@ -1,7 +1,5 @@
 # Releases
 
-## VERSION 1.0.23
+## VERSION 2.0.0
 
-_16-03-2019_
-
-* Fixing reserved word for strict mode
+* Search Method implementation
