@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '../../../MercadoPagoConfig'
+import { MercadoPagoConfig } from '../../../MercadoPagoConfig';
 
 export declare type Search = {
   filters?: PaymentsSearchOptions,
@@ -37,7 +37,7 @@ export declare type PaymentsSearchResult = {
   call_for_authorize_id: string;
   statement_descriptor: string;
   installments: number;
-  card: Object;
+  card: NonNullable<unknown>;
   carnotification_urld: string;
   processing_mode: string;
   merchant_account_id: string;
@@ -50,8 +50,8 @@ export declare type Payer = {
   email: string;
   identification: Identification;
   type: string;
-  metadata: Object;
-  additional_info: Object;
+  metadata: NonNullable<unknown>;
+  additional_info: NonNullable<unknown>;
   external_reference: string;
   transaction_amount: number;
   transaction_amount_refunded: number;
