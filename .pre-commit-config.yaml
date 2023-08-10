@@ -1,7 +1,7 @@
 repos:
   # Websec hook is MANDATORY, DO NOT comment it.
   - repo: https://github.com/mercadolibre/fury_websec-git-hooks
-    rev: v1.0.0
+    rev: v1.0.5
     hooks:
       - id: pre_commit_hook
         stages: [commit]
