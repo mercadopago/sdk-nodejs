@@ -1,13 +1,14 @@
 {
-  "name": "mercadopago-examples",
-  "version": "0.0.1",
-  "repository": "",
-  "author": "Ariel Rey <ariel.rey@mercadolibre.com>",
-  "license": "BSD",
-  "main": "index.js",
-  "dependencies": {
-    "body-parser": "^1.15.1",
-    "jade": "^1.11.0",
-    "express": "^4.14.0"
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "algum readme",
+  "scripts": {
+    "build": "rm -rf dist && tsc --build tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.1.6"
   }
 }
