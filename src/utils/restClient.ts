@@ -17,9 +17,9 @@ export class RestClient {
 			const searchParams = new URLSearchParams();
 
 			for (const key in queryParams) {
-        if (queryParams.hasOwnProperty(key)) {
-          searchParams.append(key, queryParams[key].toString());
-        }
+				if (queryParams.hasOwnProperty(key)) {
+				searchParams.append(key, queryParams[key].toString());
+				}
       }
 
 			fetchUrl = fetchUrl.includes('?') ? `${fetchUrl}&${searchParams}` : `${fetchUrl}?${searchParams}`;

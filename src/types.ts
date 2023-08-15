@@ -1,6 +1,6 @@
 export declare type Config = {
   accessToken: string;
-  options: Options;
+  options?: Options;
 };
 
 export declare type Options = {
