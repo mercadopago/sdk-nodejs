@@ -6,7 +6,7 @@ export declare type CardTokenGet = {
   config: MercadoPagoConfig;
 };
 
-export declare type CardTokenRequest = {
+export declare type CardTokenResponse = {
   id: string;
   card_id: string;
   first_six_digits: string;

@@ -7,7 +7,7 @@ export default function search({ filters, config }: Search): Promise<PaymentsSea
 		'/payments/search',
 		{
 			headers: {
-				'Authorization': `Bearer ${config.accessToken}`
+				'Authorization': `${config.accessToken}`
 			},
 			queryParams: {
 				...filters
