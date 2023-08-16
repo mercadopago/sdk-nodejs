@@ -4,7 +4,7 @@ import { CardTokenCreate } from './types';
 
 export default function create({body, config}: CardTokenCreate): Promise<CardTokenResponse> {
 	return RestClient.fetch<CardTokenResponse>(
-		'card_tokens',
+		'/card_tokens',
 		{
 			headers: {
 				'Authorization': `${config.accessToken}`

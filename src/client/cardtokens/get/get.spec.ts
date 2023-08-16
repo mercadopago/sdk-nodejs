@@ -9,6 +9,6 @@ describe('Testing card tokens, get', () => {
         const client = new MercadoPagoConfig({accessToken: 'accessToken', options: {timeout: 5000}})
         await get({id: "123", config: client})
         const spyFetch = jest.spyOn(RestClient, 'fetch') 
-        expect(spyFetch).toHaveBeenCalledWith("card_tokens/123", {"headers": {"Authorization": "accessToken"}, "timeout": 5000})
+        expect(spyFetch).toHaveBeenCalledWith("/card_tokens/123", {"headers": {"Authorization": "accessToken"}, "timeout": 5000})
 	});
 });

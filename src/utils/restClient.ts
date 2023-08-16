@@ -3,7 +3,7 @@ import fetch, { RequestInit } from 'node-fetch';
 import type { RestClientConfig } from './types';
 
 const TIMEOUT = 10000;
-const BASE_URL = 'https://api.mercadopago.com/v1/';
+const BASE_URL = 'https://api.mercadopago.com/v1';
 
 export class RestClient {
 	static async fetch<T>(
