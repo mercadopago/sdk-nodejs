@@ -3,13 +3,15 @@ import fetch, { RequestInit } from 'node-fetch';
 import type { RestClientConfig } from './types';
 
 const TIMEOUT = 10000;
-const BASE_URL = 'https://api.mercadopago.com/v1/';
+const BASE_URL = 'https://api.mercadopago.com/v1';
 
 export class RestClient {
 	static async fetch<T>(
 		endpoint: string,
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
+		console.log('Config', config);
+
 		let fetchUrl = BASE_URL + endpoint;
 		const { timeout = TIMEOUT, queryParams, ...customConfig } = config || {};
 
