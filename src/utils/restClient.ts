@@ -3,7 +3,7 @@ import fetch, { RequestInit } from 'node-fetch';
 import type { RestClientConfig } from './types';
 
 const TIMEOUT = 10000;
-const BASE_URL = 'https://api.mercadopago.com/v1/';
+const BASE_URL = 'https://api.mercadopago.com/v1';
 
 export class RestClient {
 	static async fetch<T>(
@@ -17,9 +17,9 @@ export class RestClient {
 			const searchParams = new URLSearchParams();
 
 			for (const key in queryParams) {
-        if (queryParams.hasOwnProperty(key)) {
-          searchParams.append(key, queryParams[key].toString());
-        }
+				if (queryParams.hasOwnProperty(key)) {
+				searchParams.append(key, queryParams[key].toString());
+			}
       }
 
 			fetchUrl = fetchUrl.includes('?') ? `${fetchUrl}&${searchParams}` : `${fetchUrl}?${searchParams}`;
@@ -38,7 +38,6 @@ export class RestClient {
 
 			clearTimeout(timeoutId);
 
-			console.log('response', response);
 			if (!response.ok) {
 				throw new Error(`Request failed with status ${response.status}`);
 			}
