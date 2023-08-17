@@ -7,7 +7,7 @@ export default function create({body, config}: CardTokenCreate): Promise<CardTok
 		'/card_tokens',
 		{
 			headers: {
-				'Authorization': `${config.accessToken}`
+				'Authorization': `Bearer ${config.accessToken}`
 			},
 			body: JSON.stringify(body),
 			method: "POST",

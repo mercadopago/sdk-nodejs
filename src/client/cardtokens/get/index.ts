@@ -6,7 +6,7 @@ export default function get({id, config}: CardTokenGet): Promise<CardTokenRespon
 		`/card_tokens/${id}`,
 		{
 			headers: {
-				'Authorization': `${config.accessToken}`
+				'Authorization': `Bearer ${config.accessToken}`
 			},
 			...config.options
 		}
