@@ -19,9 +19,9 @@ export class RestClient {
 			const searchParams = new URLSearchParams();
 
 			for (const key in queryParams) {
-        if (queryParams.hasOwnProperty(key)) {
-          searchParams.append(key, queryParams[key].toString());
-        }
+				if (queryParams.hasOwnProperty(key)) {
+				searchParams.append(key, queryParams[key].toString());
+			}
       }
 
 			fetchUrl = fetchUrl.includes('?') ? `${fetchUrl}&${searchParams}` : `${fetchUrl}?${searchParams}`;
@@ -40,7 +40,6 @@ export class RestClient {
 
 			clearTimeout(timeoutId);
 
-			console.log('response', response);
 			if (!response.ok) {
 				throw new Error(`Request failed with status ${response.status}`);
 			}
