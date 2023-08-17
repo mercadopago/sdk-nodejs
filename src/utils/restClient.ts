@@ -10,8 +10,6 @@ export class RestClient {
 		endpoint: string,
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
-		console.log('Config', config);
-
 		let fetchUrl = BASE_URL + endpoint;
 		const { timeout = TIMEOUT, queryParams, ...customConfig } = config || {};
 
@@ -39,8 +37,7 @@ export class RestClient {
 			});
 
 			clearTimeout(timeoutId);
-
-			console.log('response', response);
+			
 			if (!response.ok) {
 				throw new Error(`Request failed with status ${response.status}`);
 			}
