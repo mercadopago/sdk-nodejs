@@ -4,6 +4,7 @@ coverage/
 
 # ============= BUILD =============
 /dist
+tsconfig.tsbuildinfo
 
 # ============= Examples =============
 /examples/dist

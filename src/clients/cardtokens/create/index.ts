@@ -10,7 +10,7 @@ export default function create({body, config}: CardTokenCreate): Promise<CardTok
 				'Authorization': `Bearer ${config.accessToken}`
 			},
 			body: JSON.stringify(body),
-			method: "POST",
+			method: 'POST',
 			...config.options
 		}
 	);

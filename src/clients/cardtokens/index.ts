@@ -1,8 +1,10 @@
 import get from './get';
 import create from './create';
-import type { MercadoPagoConfig } from '../../MercadoPagoConfig';
+
 import { CardTokenId, CardTokenResponse } from './get/types';
 import { CardTokenBody } from './create/types';
+
+import type { MercadoPagoConfig } from '@src/MercadoPagoConfig';
 
 export class CardToken {
 	private config: MercadoPagoConfig;

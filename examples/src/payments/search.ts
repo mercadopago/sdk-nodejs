@@ -1,6 +1,6 @@
 import MercadoPago, { Payments } from '../../../dist';
 
-const client = new MercadoPago({accessToken: 'access_token'})
+const client = new MercadoPago({accessToken: ''})
 
 const payments = new Payments(client);
 
