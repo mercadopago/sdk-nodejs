@@ -1,6 +1,6 @@
 import MercadoPago, { CardToken } from '../../../../dist';
 
-const client = new MercadoPago({accessToken: 'access_token'});
+const client = new MercadoPago({ accessToken: 'access_token' });
 const cardToken = new CardToken(client);
 
 const body = {
@@ -8,5 +8,5 @@ const body = {
 	security_code : 'security_code'
 };
 
-cardToken.create({cardTokenBody : body})
+cardToken.create({ cardTokenBody : body })
 	.then((result) => console.log(result));
