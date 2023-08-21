@@ -1,40 +1,36 @@
-import fetch, { RequestInit } from 'node-fetch';
+import fetch, { Response, RequestInit } from 'node-fetch';
 
-import type { RestClientConfig } from './types';
-
-const TIMEOUT = 10000;
+const DEFAULT_TIMEOUT = 10000;
 const BASE_URL = 'https://api.mercadopago.com/v1';
+
+interface RestClientConfig {
+  timeout?: number;
+  queryParams?: Record<string, string | number>;
+}
 
 export class RestClient {
 	static async fetch<T>(
 		endpoint: string,
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
-		let fetchUrl = BASE_URL + endpoint;
-		const { timeout = TIMEOUT, queryParams, ...customConfig } = config || {};
+		const { timeout = DEFAULT_TIMEOUT, queryParams, ...customConfig } = config || {};
 
-		if (queryParams) {
-			const searchParams = new URLSearchParams();
+		const url = queryParams ? appendQueryParamsToUrl(`${BASE_URL}${endpoint}`, queryParams) : `${BASE_URL}${endpoint}`;
 
-			// for (const key in queryParams) {
-			// 	if ((queryParams).hasOwnProperty(key)) {
-			// 		searchParams.append(key, queryParams[key].toString());
-			// 	}
-			// }
+		const responsePromise = fetch(url, {
+			...customConfig,
+		});
 
-			fetchUrl = fetchUrl.includes('?') ? `${fetchUrl}&${searchParams}` : `${fetchUrl}?${searchParams}`;
-		}
+		let timeoutId: NodeJS.Timeout;
 
-		const controller = new AbortController();
-		const timeoutId = setTimeout(() => {
-			controller.abort();
-		}, timeout);
+		const timeoutPromise = new Promise<Response>((_, reject) => {
+			timeoutId = setTimeout(() => {
+				reject(new Error(`Request timed out after ${timeout}ms`));
+			}, timeout);
+		});
 
 		try {
-			const response = await fetch(fetchUrl, {
-				signal: controller.signal,
-				...customConfig,
-			});
+			const response = await Promise.race([responsePromise, timeoutPromise]);
 
 			clearTimeout(timeoutId);
 
@@ -49,4 +45,14 @@ export class RestClient {
 			throw error;
 		}
 	}
+}
+
+function appendQueryParamsToUrl(url: string, queryParams: Record<string, string | number>): string {
+	const searchParams = new URLSearchParams();
+
+	for (const [key, value] of Object.entries(queryParams)) {
+		searchParams.append(key, value.toString());
+	}
+
+	return url.includes('?') ? `${url}&${searchParams}` : `${url}?${searchParams}`;
 }
