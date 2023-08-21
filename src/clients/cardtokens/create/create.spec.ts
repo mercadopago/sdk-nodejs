@@ -1,5 +1,5 @@
 import create from '.';
-import { MercadoPagoConfig } from '@src/MercadoPagoConfig';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
 
 jest.mock('@utils/restClient');

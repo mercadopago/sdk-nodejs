@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '../../../MercadoPagoConfig';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type PaymentMethodGet = {
   config: MercadoPagoConfig;
@@ -34,7 +34,7 @@ export declare type PaymentMethodFinancialInstitutions = {
 };
 
 export declare type PaymentMethodSettingsBin = {
-  pattern: string;  
+  pattern: string;
   exclusion_pattern: string;
   installments_pattern: string;
 };

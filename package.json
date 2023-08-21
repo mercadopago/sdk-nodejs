@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && tsc --build tsconfig.json && tsc-alias -p tsconfig.json",
+    "build": "rm -rf dist && tsc --build tsconfig.prod.json && tsc-alias -p tsconfig.json",
     "dev": "nodemon -x \"npm run build\"",
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}' --cache",

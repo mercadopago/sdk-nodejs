@@ -1,4 +1,5 @@
-import { MercadoPagoConfig } from '../../../MercadoPagoConfig';
+import type { Identification } from '@src/clients/commonTypes';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type Search = {
   filters?: PaymentsSearchOptions,
@@ -71,12 +72,6 @@ export declare type TransactionDetails = {
   payment_method_reference_id: string;
   payable_deferral_period: string;
   acquirer_reference: string;
-};
-
-export declare type Identification = {
-  type: string;
-  number: string;
-  identification: number;
 };
 
 export declare type PaymentsSearchPaging = {

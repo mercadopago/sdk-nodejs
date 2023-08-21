@@ -1,8 +1,7 @@
 import get from './get';
 
-import type { MercadoPagoConfig } from '../../MercadoPagoConfig';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { PaymentMethodResponse } from './get/types';
-
 
 export class PaymentMethod {
 	private config: MercadoPagoConfig;

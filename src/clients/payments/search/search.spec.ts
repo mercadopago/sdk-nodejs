@@ -1,8 +1,8 @@
-import { MercadoPagoConfig } from '../../../MercadoPagoConfig';
 import search from '.';
 import { RestClient } from '@utils/restClient';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-jest.mock('../../../utils/restClient');
+jest.mock('@utils/restClient');
 
 describe('Testing search payments, search', () => {
 	test('shoud pass foward request options from search to RestClient.fetch', async () => {

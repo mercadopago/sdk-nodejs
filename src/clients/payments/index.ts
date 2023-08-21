@@ -1,8 +1,7 @@
 import search from './search';
 
 import type { PaymentsSearch, PaymentsSearchOptions } from './search/types';
-import type { MercadoPagoConfig } from '../../MercadoPagoConfig';
-
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export class Payments {
 	private config: MercadoPagoConfig;

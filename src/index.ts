@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from './MercadoPagoConfig';
+import { MercadoPagoConfig } from './mercadoPagoConfig';
 export default MercadoPagoConfig;
 
 export { Payments } from './clients/payments';

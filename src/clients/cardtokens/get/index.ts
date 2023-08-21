@@ -1,5 +1,5 @@
-import { RestClient } from '../../../utils/restClient';
-import { CardTokenGet, CardTokenResponse } from './types';
+import { RestClient } from '@utils/restClient';
+import type { CardTokenGet, CardTokenResponse } from './types';
 
 export default function get({id, config}: CardTokenGet): Promise<CardTokenResponse> {
 	return RestClient.fetch<CardTokenResponse>(

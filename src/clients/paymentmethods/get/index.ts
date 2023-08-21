@@ -1,4 +1,4 @@
-import { RestClient } from '../../../utils/restClient';
+import { RestClient } from '@utils/restClient';
 
 import type { PaymentMethodGet, PaymentMethodResponse } from './types';
 
