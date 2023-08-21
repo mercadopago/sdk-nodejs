@@ -1,3 +1,7 @@
+# ============= Lint =============
+# Cache eslint
+.eslintcache
+
 # ============= Istanbul =============
 # Coverage Folder
 coverage/
