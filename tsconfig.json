@@ -2,7 +2,6 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
-    "removeComments": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
