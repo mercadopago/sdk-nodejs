@@ -1,9 +1,8 @@
-import { MercadoPagoConfig } from './MercadoPagoConfig';
-import { Payments } from './client/payments';
-import { Preference } from './client/preference';
-
+import { MercadoPagoConfig } from './mercadoPagoConfig';
 export default MercadoPagoConfig;
-export {
-	Payments,
-  Preference
-};
+
+export { Payments } from './clients/payments';
+export { CardToken } from './clients/cardtokens';
+export { PaymentMethod } from './clients/paymentmethods';
+export { Preference } from './clients/preferences';
+

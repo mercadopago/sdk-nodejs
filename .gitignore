@@ -1,9 +1,14 @@
+# ============= Lint =============
+# Cache eslint
+.eslintcache
+
 # ============= Istanbul =============
 # Coverage Folder
 coverage/
 
 # ============= BUILD =============
 /dist
+*tsbuildinfo
 
 # ============= Examples =============
 /examples/dist

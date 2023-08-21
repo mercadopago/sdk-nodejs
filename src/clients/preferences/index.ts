@@ -3,7 +3,7 @@ import create from './create';
 import update from './update';
 import search from './search';
 
-import type { MercadoPagoConfig } from '../../MercadoPagoConfig';
+import type { MercadoPagoConfig } from '../../mercadoPagoConfig';
 import type { PreferenceId, GetPreferenceResponse } from './get/types';
 import type { PreferenceRequest, CreatePreferenceResponse } from './create/types';
 import type { UpdatePreferenceNovo, UpdatePreferenceResponse } from './update/types';
