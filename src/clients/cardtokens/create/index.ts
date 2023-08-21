@@ -1,4 +1,4 @@
-import { RestClient } from '../../../utils/restClient';
+import { RestClient } from '@utils/restClient';
 import { CardTokenResponse } from '../get/types';
 import { CardTokenCreate } from './types';
 
