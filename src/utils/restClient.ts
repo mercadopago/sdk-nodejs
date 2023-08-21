@@ -16,11 +16,11 @@ export class RestClient {
 		if (queryParams) {
 			const searchParams = new URLSearchParams();
 
-			for (const key in queryParams) {
-				if (queryParams.hasOwnProperty(key)) {
-				searchParams.append(key, queryParams[key].toString());
-			}
-      }
+			// for (const key in queryParams) {
+			// 	if ((queryParams).hasOwnProperty(key)) {
+			// 		searchParams.append(key, queryParams[key].toString());
+			// 	}
+			// }
 
 			fetchUrl = fetchUrl.includes('?') ? `${fetchUrl}&${searchParams}` : `${fetchUrl}?${searchParams}`;
 		}
