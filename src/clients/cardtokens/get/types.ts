@@ -1,5 +1,5 @@
-import { MercadoPagoConfig } from "../../../MercadoPagoConfig";
-import { Identification } from "../../../client/payments/search/types";
+import type { Identification } from '@src/clients/commonTypes';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type CardTokenGet = {
   id: string;

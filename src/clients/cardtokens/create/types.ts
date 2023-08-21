@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from "../../../MercadoPagoConfig";
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type CardTokenCreate = {
   body: CardTokenRequest;
