@@ -6,7 +6,7 @@
 
 import MercadoPago, { Payments } from '@src/index';
 
-const client = new MercadoPago({ accessToken: 'APP_USR-1503858983807072-071216-eddb4ebd12c20a125107fabe4aca88de-248724191' });
+const client = new MercadoPago({ accessToken: '' });
 
 const payments = new Payments(client);
 
