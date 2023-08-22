@@ -4,7 +4,7 @@
  * @see {@link https://www.mercadopago.com.br/developers/en/reference Documentation }.
  */
 
-import MercadoPago, { Payments } from '../../../dist';
+import MercadoPago, { Payments } from '@src/index';
 
 const client = new MercadoPago({ accessToken: '' });
 
