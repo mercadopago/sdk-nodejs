@@ -1,4 +1,4 @@
-import MercadoPago, { PaymentMethod } from '../../../dist';
+import MercadoPago, { PaymentMethod } from '@src/index';
 
 const client = new MercadoPago({ accessToken: 'token' });
 

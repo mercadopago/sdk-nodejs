@@ -1,4 +1,4 @@
-import MercadoPago, { CardToken } from '../../../../dist';
+import MercadoPago, { CardToken } from '@src/index';
 
 const client = new MercadoPago({ accessToken: 'access_token' });
 const cardToken = new CardToken(client);
