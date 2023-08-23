@@ -4,7 +4,7 @@ import type { PaymentMethodGet, PaymentMethodResponse } from './types';
 
 export default function get({ config }: PaymentMethodGet): Promise<PaymentMethodResponse[]> {
 	return RestClient.fetch<PaymentMethodResponse[]>(
-		'/payment_methods',
+		'/v1/payment_methods',
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

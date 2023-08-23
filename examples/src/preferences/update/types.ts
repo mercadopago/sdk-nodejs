@@ -1,9 +1,7 @@
-import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
-
-export declare type CreatePreferenceRequest = {
-  preferenceRequest: PreferenceRequest;
-  config: MercadoPagoConfig
-};
+export declare type UpdatePreferenceRequest = {
+  id: string;
+  updatePreferenceRequest: UpdatePreferenceRequestData;
+}
 
 export declare type Identification = {
   type: string;
@@ -22,17 +20,6 @@ export declare type Address = {
 };
 
 export declare type PayerRequest = {
-  name: string;
-  surname: string;
-  email: string;
-  phone: Phone;
-  identification: Identification;
-  address: Address;
-  date_created: string;
-};
-
-export declare type PayerResponse = {
-  id: string;
   name: string;
   surname: string;
   email: string;
@@ -80,10 +67,6 @@ export declare type ShipmentsRequest = {
   tracks: Array<Track>;
 };
 
-export declare type ShipmentsResponse = {
-  receiver_address: ReceiverAddress;
-};
-
 export declare type PaymentMethods = {
   excluded_payment_methods: Array<string>;
   excluded_payment_types: Array<string>;
@@ -103,7 +86,7 @@ export declare type BackUrls = {
   failure: string;
 };
 
-export declare type PreferenceRequest = {
+export declare type UpdatePreferenceRequestData = {
   additional_info?: string;
   auto_return?: string;
   back_urls?: BackUrls;
@@ -113,7 +96,7 @@ export declare type PreferenceRequest = {
   expiration_date_to?: string;
   expires?: boolean;
   external_reference?: string;
-  items: Array<Items>;
+  items?: Array<Items>;
   marketplace?: string;
   marketplace_fee?: number;
   metadata?: object;
@@ -124,29 +107,3 @@ export declare type PreferenceRequest = {
   statement_descriptor?: string;
   tracks?: Array<Track>;
 }
-
-export declare type PreferenceResponse = {
-  id: string;
-  additional_info: string;
-  auto_return: string;
-  back_urls: BackUrls;
-  client_id: string;
-  collector_id: number;
-  date_created: string;
-  expiration_date_from: string;
-  expiration_date_to: string;
-  expires: boolean;
-  external_reference: string;
-  init_point: string;
-  items: Array<Items>;
-  marketplace: string;
-  marketplace_fee: number;
-  metadata: object;
-  notification_url: string;
-  payer: PayerResponse;
-  payment_methods: PaymentMethods;
-  shipments: ShipmentsResponse;
-  statement_descriptor: string;
-  sandbox_init_point: string;
-  operation_type: string;
-};

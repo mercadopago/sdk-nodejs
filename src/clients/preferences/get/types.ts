@@ -86,16 +86,18 @@ export declare type GetPreferenceResponse = {
   expiration_date_from: string;
   expiration_date_to: string;
   expires: boolean;
+  external_reference: string;
   init_point: string;
   items: Array<Items>;
   marketplace: string;
   marketplace_fee: number;
-  metadata: NonNullable<unknown>; //map<string, object>
+  metadata: object;
   notification_url: string;
+  operation_type: string;
   payer: PayerResponse;
   payment_methods: PaymentMethods;
   shipments: ShipmentsResponse;
   statement_descriptor: string;
-  operation_type: string;
+  sandbox_init_point: string;
 
 };

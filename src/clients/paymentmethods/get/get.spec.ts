@@ -9,6 +9,6 @@ describe('Testing get payment methods, get', () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		await get({ config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith('/payment_methods', { 'headers': { 'Authorization': 'Bearer token' }, 'timeout': 5000 });
+		expect(spyFetch).toHaveBeenCalledWith('/v1/payment_methods', { 'headers': { 'Authorization': 'Bearer token' }, 'timeout': 5000 });
 	});
 });

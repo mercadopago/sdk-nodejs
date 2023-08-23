@@ -1,4 +1,4 @@
-import { RestClient } from '../../../utils/restClient';
+import { RestClient } from '@utils/restClient';
 
 import type { GetPreference, GetPreferenceResponse } from './types';
 
