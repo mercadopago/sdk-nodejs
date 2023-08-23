@@ -42,7 +42,6 @@ export declare type PayerRequest = {
 };
 
 export declare type PayerResponse = {
-  id: string;
   name: string;
   surname: string;
   email: string;
@@ -57,17 +56,6 @@ export declare type DifferentialPricing = {
 };
 
 export declare type Items = {
-  id: string;
-  title: string;
-  description?: string;
-  picture_url?: string;
-  category_id?: string;
-  quantity: number;
-  currency_id?: string;
-  unit_price: number;
-};
-
-export declare type UpdateItems = {
   id: string;
   title?: string;
   description?: string;
@@ -88,17 +76,19 @@ export declare type ReceiverAddress = {
   apartment?: string;
 };
 
+export declare type FreeMethods = {
+  id: number;
+};
+
 export declare type ShipmentsRequest = {
   mode?: string;
   local_pickup?: boolean;
   dimensions?: string;
   default_shipping_method?: number;
-  free_methods?: Array<number>;
+  free_methods?: Array<FreeMethods>;
   cost?: number;
   free_shipping?: boolean;
   receiver_address?: ReceiverAddress;
-  statement_descriptor?: string;
-  tracks?: Array<Track>;
 };
 
 export declare type ShipmentsResponse = {
@@ -154,7 +144,7 @@ export declare type UpdatePreferenceRequestData = {
   expiration_date_to?: string;
   expires?: boolean;
   external_reference?: string;
-  items?: Array<UpdateItems>;
+  items?: Array<Items>;
   marketplace?: string;
   marketplace_fee?: number;
   metadata?: NonNullable<unknown>;
@@ -175,7 +165,7 @@ export declare type UpdatePreferenceResponse = {
   coupon_code: NonNullable<unknown>;
   coupon_labels: NonNullable<unknown>;
   date_created: string;
-  date_of_expiration: string;
+  date_of_expiration:  NonNullable<unknown>;
   expiration_date_from: string;
   expiration_date_to: string;
   expires: boolean;
@@ -183,6 +173,7 @@ export declare type UpdatePreferenceResponse = {
   init_point: string;
   items: Array<Items>;
   internal_metadata: NonNullable<unknown>;
+  last_updated: NonNullable<unknown>;
   marketplace: string;
   marketplace_fee: number;
   metadata: NonNullable<unknown>;
@@ -190,6 +181,7 @@ export declare type UpdatePreferenceResponse = {
   payer: PayerResponse;
   payment_methods: PaymentMethods;
   product_id: NonNullable<unknown>;
+  processing_modes: NonNullable<unknown>;
   redirect_urls: RedirectUrls;
   shipments: ShipmentsResponse;
   site_id: string;
@@ -197,5 +189,4 @@ export declare type UpdatePreferenceResponse = {
   operation_type: string;
   sandbox_init_point: string;
   total_amount: NonNullable<unknown>;
-  processing_modes: Array<string>;
 };

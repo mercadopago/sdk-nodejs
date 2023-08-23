@@ -69,7 +69,6 @@ export declare type BackUrls = {
 };
 
 export declare type PayerResponse = {
-  id: string;
   name: string;
   surname: string;
   email: string;
@@ -107,5 +106,4 @@ export declare type GetPreferenceResponse = {
   shipments: ShipmentsResponse;
   statement_descriptor: string;
   sandbox_init_point: string;
-
 };

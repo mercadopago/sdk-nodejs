@@ -32,7 +32,6 @@ export declare type PayerRequest = {
 };
 
 export declare type PayerResponse = {
-  id: string;
   name: string;
   surname: string;
   email: string;
@@ -67,17 +66,19 @@ export declare type ReceiverAddress = {
   apartment: string;
 };
 
+export declare type FreeMethods = {
+  id: number;
+};
+
 export declare type ShipmentsRequest = {
   mode: string;
   local_pickup: boolean;
   dimensions: string;
   default_shipping_method: number;
-  free_methods: Array<number>;
+  free_methods: Array<FreeMethods>;
   cost: number;
   free_shipping: boolean;
   receiver_address: ReceiverAddress;
-  statement_descriptor: string;
-  tracks: Array<Track>;
 };
 
 export declare type ShipmentsResponse = {
