@@ -7,7 +7,7 @@ jest.mock('@utils/restClient');
 describe('Testing preference, get', () => {
 	test('should make a GET request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const id = '1273205088-4cbd8faf-eb95-4dc3-b7cd-82cf979856b4';
+		const id = '1234';
 
 		const expectedHeaders = {
 			'Authorization': 'Bearer token'

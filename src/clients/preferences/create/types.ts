@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type CreatePreferenceRequest = {
   preferenceRequest: PreferenceRequest;
@@ -84,12 +84,20 @@ export declare type ShipmentsResponse = {
   receiver_address: ReceiverAddress;
 };
 
+export declare type ExcludedPaymentMethods = {
+  id: string;
+};
+
+export declare type ExcludedPaymentTypes = {
+  id: string;
+};
+
 export declare type PaymentMethods = {
-  excluded_payment_methods: Array<string>;
-  excluded_payment_types: Array<string>;
-  default_payment_method_id: string;
-  installments: string;
-  default_installments: string;
+  excluded_payment_methods?: Array<ExcludedPaymentMethods>;
+  excluded_payment_types?: Array<ExcludedPaymentTypes>;
+  default_payment_method_id?: string;
+  installments?: string;
+  default_installments?: string;
 };
 
 export declare type Track = {
@@ -116,7 +124,7 @@ export declare type PreferenceRequest = {
   items: Array<Items>;
   marketplace?: string;
   marketplace_fee?: number;
-  metadata?: object;
+  metadata?: NonNullable<unknown>;
   notification_url?: string;
   payer?: PayerRequest;
   payment_methods?: PaymentMethods;
@@ -141,7 +149,7 @@ export declare type PreferenceResponse = {
   items: Array<Items>;
   marketplace: string;
   marketplace_fee: number;
-  metadata: object;
+  metadata: NonNullable<unknown>;
   notification_url: string;
   payer: PayerResponse;
   payment_methods: PaymentMethods;

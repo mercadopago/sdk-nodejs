@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type GetPreference = {
   id: string;
@@ -46,12 +46,20 @@ export declare type ReceiverAddress = {
   apartment: string;
 };
 
+export declare type ExcludedPaymentMethods = {
+  id: string;
+};
+
+export declare type ExcludedPaymentTypes = {
+  id: string;
+};
+
 export declare type PaymentMethods = {
-  excluded_payment_methods: Array<string>;
-  excluded_payment_types: Array<string>;
-  default_payment_method_id: string;
-  installments: string;
-  default_installments: string;
+  excluded_payment_methods?: Array<ExcludedPaymentMethods>;
+  excluded_payment_types?: Array<ExcludedPaymentTypes>;
+  default_payment_method_id?: string;
+  installments?: string;
+  default_installments?: string;
 };
 
 export declare type BackUrls = {
@@ -91,7 +99,7 @@ export declare type GetPreferenceResponse = {
   items: Array<Items>;
   marketplace: string;
   marketplace_fee: number;
-  metadata: object;
+  metadata: NonNullable<unknown>;
   notification_url: string;
   operation_type: string;
   payer: PayerResponse;

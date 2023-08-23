@@ -1,11 +1,16 @@
 import MercadoPago, { Preference } from '@src/index';
-import { UpdatePreferenceRequest } from './types';
+
+/**
+ * Mercado Pago Preference.
+ *
+ * @see {@link https://www.mercadopago.com.br/developers/pt/reference/preferences/_checkout_preferences_id/put Documentation }.
+ */
 
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000 } });
 
 const preference = new Preference(client);
 
-const preferenceRequest: UpdatePreferenceRequest = {
+preference.update({
 	id: 'id',
 	updatePreferenceRequest: {
 		additional_info: 'teste update',
@@ -23,9 +28,6 @@ const preferenceRequest: UpdatePreferenceRequest = {
 			}
 		],
 	}
-};
-
-preference.update(preferenceRequest)
-	.then((result) => console.log(result))
+}).then((result) => console.log(result))
 	.catch((error) => console.log(error));
 

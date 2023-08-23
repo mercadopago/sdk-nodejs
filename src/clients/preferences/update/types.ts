@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type PreferenceId = {
   preferenceId: string;
@@ -105,9 +105,17 @@ export declare type ShipmentsResponse = {
   receiver_address: ReceiverAddress;
 };
 
+export declare type ExcludedPaymentMethods = {
+  id: string;
+};
+
+export declare type ExcludedPaymentTypes = {
+  id: string;
+};
+
 export declare type PaymentMethods = {
-  excluded_payment_methods?: Array<string>;
-  excluded_payment_types?: Array<string>;
+  excluded_payment_methods?: Array<ExcludedPaymentMethods>;
+  excluded_payment_types?: Array<ExcludedPaymentTypes>;
   default_payment_method_id?: string;
   installments?: string;
   default_installments?: string;
@@ -149,7 +157,7 @@ export declare type UpdatePreferenceRequestData = {
   items?: Array<UpdateItems>;
   marketplace?: string;
   marketplace_fee?: number;
-  metadata?: object;
+  metadata?: NonNullable<unknown>;
   notification_url?: string;
   payer?: PayerRequest;
   payment_methods?: PaymentMethods;
@@ -164,8 +172,8 @@ export declare type UpdatePreferenceResponse = {
   binary_mode: boolean;
   client_id: string;
   collector_id: number;
-  coupon_code: object;
-  coupon_labels: object;
+  coupon_code: NonNullable<unknown>;
+  coupon_labels: NonNullable<unknown>;
   date_created: string;
   date_of_expiration: string;
   expiration_date_from: string;
@@ -174,20 +182,20 @@ export declare type UpdatePreferenceResponse = {
   external_reference: string;
   init_point: string;
   items: Array<Items>;
-  internal_metadata: object;
+  internal_metadata: NonNullable<unknown>;
   marketplace: string;
   marketplace_fee: number;
-  metadata: object;
+  metadata: NonNullable<unknown>;
   notification_url: string;
   payer: PayerResponse;
   payment_methods: PaymentMethods;
-  product_id: object;
+  product_id: NonNullable<unknown>;
   redirect_urls: RedirectUrls;
   shipments: ShipmentsResponse;
   site_id: string;
   statement_descriptor: string;
   operation_type: string;
   sandbox_init_point: string;
-  total_amount: object;
+  total_amount: NonNullable<unknown>;
   processing_modes: Array<string>;
 };

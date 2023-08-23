@@ -1,5 +1,4 @@
 import { RestClient } from '@utils/restClient';
-
 import type { UpdatePreference, UpdatePreferenceResponse } from './types';
 
 export default function update({ id, updatePreferenceRequest, config }: UpdatePreference): Promise<UpdatePreferenceResponse> {

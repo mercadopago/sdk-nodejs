@@ -1,5 +1,4 @@
 import { RestClient } from '@utils/restClient';
-
 import type { GetPreference, GetPreferenceResponse } from './types';
 
 export default function get({ id, config }: GetPreference): Promise<GetPreferenceResponse> {

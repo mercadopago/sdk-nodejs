@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type Search = {
   filters?: PreferenceSearchOptions,
