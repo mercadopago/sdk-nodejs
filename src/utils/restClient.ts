@@ -1,7 +1,7 @@
 import fetch, { Response, RequestInit } from 'node-fetch';
 
 const DEFAULT_TIMEOUT = 10000;
-const BASE_URL = 'https://api.mercadopago.com/v1';
+const BASE_URL = 'https://api.mercadopago.com';
 
 interface RestClientConfig {
   timeout?: number;
@@ -14,7 +14,7 @@ export class RestClient {
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
 		const { timeout = DEFAULT_TIMEOUT, queryParams, ...customConfig } = config || {};
-
+		
 		const url = queryParams ? appendQueryParamsToUrl(`${BASE_URL}${endpoint}`, queryParams) : `${BASE_URL}${endpoint}`;
 
 		const responsePromise = fetch(url, {
