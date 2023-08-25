@@ -4,11 +4,12 @@ import remove from './remove';
 import update from './update';
 import listAll from './list';
 
-import type { CustomerCardCreate, CustomerCardResponse } from './create/types';
+import type { CustomerCardCreate } from './create/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { CustomerCardIds } from './get/types';
 import { CustomerCardUpdate } from './update/types';
 import { CustomerCardId } from './list/types';
+import { CustomerCardResponse } from './commonTypes';
 
 /**
  * Mercado Pago Customer card.

@@ -1,5 +1,5 @@
 import { RestClient } from '@utils/restClient';
-import { CustomerCardResponse } from '../create/types';
+import { CustomerCardResponse } from '../commonTypes';
 import { CustomerCardConfigUpdate } from './types';
 
 export default function update({ customerId, cardId, body, config }: CustomerCardConfigUpdate): Promise<CustomerCardResponse> {

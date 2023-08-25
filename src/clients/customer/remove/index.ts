@@ -1,5 +1,5 @@
 import { RestClient } from '@utils/restClient';
-import { CustomerCardResponse } from '../create/types';
+import { CustomerCardResponse } from '../commonTypes';
 import { CustomerCardConfigs } from '../get/types';
 
 export default function remove({ customerId, cardId, config }: CustomerCardConfigs): Promise<CustomerCardResponse> {
