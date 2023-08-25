@@ -4,10 +4,10 @@ import update from './update';
 import search from './search';
 
 import type { MercadoPagoConfig } from '../../mercadoPagoConfig';
-import type { PreferenceId, GetPreferenceResponse } from './get/types';
-import type { PreferenceRequest, PreferenceResponse } from './create/types';
-import type { UpdatePreferenceRequest, UpdatePreferenceResponse } from './update/types';
+import type { PreferenceId } from './get/types';
+import type { UpdatePreferenceRequest } from './update/types';
 import type { PreferenceSearchOptions, PreferenceSearchResponse } from './search/types';
+import type { PreferenceRequest, PreferenceResponse } from './commonTypes';
 
 
 /**
@@ -28,7 +28,7 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/preferences/get/get.ts Usage Example  }.
  */
-	get({ preferenceId }: PreferenceId): Promise<GetPreferenceResponse> {
+	get({ preferenceId }: PreferenceId): Promise<PreferenceResponse> {
 		return get({ id: preferenceId, config: this.config });
 	}
 
@@ -46,7 +46,7 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/preferences/update/update.ts Usage Example  }.
  */
-	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest): Promise<UpdatePreferenceResponse> {
+	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest): Promise<PreferenceResponse> {
 		return update({ id, updatePreferenceRequest, config: this.config });
 	}
 

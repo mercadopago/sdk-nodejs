@@ -1,8 +1,9 @@
 import { RestClient } from '@utils/restClient';
-import type { UpdatePreference, UpdatePreferenceResponse } from './types';
+import type { UpdatePreference } from './types';
+import type { PreferenceResponse } from '@src/clients/preferences/commonTypes';
 
-export default function update({ id, updatePreferenceRequest, config }: UpdatePreference): Promise<UpdatePreferenceResponse> {
-	return RestClient.fetch<UpdatePreferenceResponse>(
+export default function update({ id, updatePreferenceRequest, config }: UpdatePreference): Promise<PreferenceResponse> {
+	return RestClient.fetch<PreferenceResponse>(
 		`/checkout/preferences/${id}`,
 		{
 			method: 'PUT',

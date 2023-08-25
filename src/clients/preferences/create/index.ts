@@ -1,5 +1,6 @@
 import { RestClient } from '@utils/restClient';
-import type { CreatePreferenceRequest, PreferenceResponse } from './types';
+import type { CreatePreferenceRequest } from './types';
+import type { PreferenceResponse } from '@src/clients/preferences/commonTypes';
 
 export default function create({ preferenceRequest, config }: CreatePreferenceRequest): Promise<PreferenceResponse> {
 	return RestClient.fetch<PreferenceResponse>(

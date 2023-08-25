@@ -1,8 +1,9 @@
 import { RestClient } from '@utils/restClient';
-import type { GetPreference, GetPreferenceResponse } from './types';
+import type { GetPreference } from './types';
+import type { PreferenceResponse } from '@src/clients/preferences/commonTypes';
 
-export default function get({ id, config }: GetPreference): Promise<GetPreferenceResponse> {
-	return RestClient.fetch<GetPreferenceResponse>(
+export default function get({ id, config }: GetPreference): Promise<PreferenceResponse> {
+	return RestClient.fetch<PreferenceResponse>(
 		`/checkout/preferences/${id}`,
 		{
 			headers: {
