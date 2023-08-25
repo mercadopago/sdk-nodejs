@@ -1,5 +1,4 @@
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { RedirectUrls } from '../update/types';
 
 export declare type CreatePreferenceRequest = {
   preferenceRequest: PreferenceRequest;
@@ -34,7 +33,7 @@ export declare type Payer = {
 };
 
 export declare type DifferentialPricing = {
-  id: number;
+  id?: number;
 };
 
 export declare type Items = {
@@ -60,7 +59,7 @@ export declare type ReceiverAddress = {
 };
 
 export declare type FreeMethods = {
-  id: number;
+  id?: number;
 };
 
 export declare type Shipments = {
@@ -76,11 +75,11 @@ export declare type Shipments = {
 };
 
 export declare type ExcludedPaymentMethods = {
-  id: string;
+  id?: string;
 };
 
 export declare type ExcludedPaymentTypes = {
-  id: string;
+  id?: string;
 };
 
 export declare type PaymentMethods = {
@@ -93,9 +92,9 @@ export declare type PaymentMethods = {
 };
 
 export declare type TrackValues = {
-  conversion_id: string;
-  conversion_label: string;
-  pixel_id: string;
+  conversion_id?: string;
+  conversion_label?: string;
+  pixel_id?: string;
 };
 
 export declare type Track = {
@@ -107,6 +106,12 @@ export declare type BackUrls = {
   success?: string;
   pending?: string;
   failure?: string;
+};
+
+export declare type RedirectUrls = {
+  success?: string;
+  failure?: string;
+  pending?: string;
 };
 
 export declare type Tax = {
@@ -155,7 +160,7 @@ export declare type PreferenceResponse = {
   coupon_labels: Array<string>;
   date_created: string;
   date_of_expiration: string;
-  differential_pricing?: DifferentialPricing;
+  differential_pricing: DifferentialPricing;
   expiration_date_from: string;
   expiration_date_to: string;
   expires: boolean;
@@ -179,4 +184,5 @@ export declare type PreferenceResponse = {
   shipments: Shipments;
   statement_descriptor: string;
   tracks: Array<Track>;
+  taxes: Array<Tax>;
 };

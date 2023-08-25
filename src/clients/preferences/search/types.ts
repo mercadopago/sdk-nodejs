@@ -11,17 +11,6 @@ export declare type PreferenceSearchResponse = {
   total: number;
 };
 
-export declare type Items = {
-  id: string;
-  title: string;
-  description: string;
-  picture_url: string;
-  category_id: string;
-  quantity: number;
-  currency_id: string;
-  unit_price: number;
-};
-
 export declare type Elements = {
   id: string;
   client_id: string;
@@ -34,18 +23,20 @@ export declare type Elements = {
   expires: boolean;
   external_reference: string;
   integrator_id: string;
-  items: Array<Items>;
+  items: Array<string>;
   last_updated: string;
   live_mode: boolean;
   marketplace: string;
   operation_type: string;
   payer_email: string;
+  payer_id: number;
   platform_id: string;
-  processing_modes: string;
+  processing_modes: Array<string>;
   product_id: string;
   purpose: string;
   site_id: string;
   sponsor_id: number;
+  shipping_mode: string;
 }
 
 export declare type PreferenceSearchOptions = {

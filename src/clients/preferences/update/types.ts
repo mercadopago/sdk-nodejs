@@ -14,24 +14,23 @@ export declare type UpdatePreferenceRequest = {
   id: string;
   updatePreferenceRequest: UpdatePreferenceRequestData;
 }
-
 export declare type Identification = {
-  type: string;
-  number: string;
+  type?: string;
+  number?: string;
 };
 
 export declare type Phone = {
-  area_code: string;
-  number: number;
+  area_code?: string;
+  number?: string;
 };
 
 export declare type Address = {
-  zip_code: string;
-  street_name: string;
-  street_number: number;
+  zip_code?: string;
+  street_name?: string;
+  street_number?: number;
 };
 
-export declare type PayerRequest = {
+export declare type Payer = {
   name?: string;
   surname?: string;
   email?: string;
@@ -39,48 +38,40 @@ export declare type PayerRequest = {
   identification?: Identification;
   address?: Address;
   date_created?: string;
-};
-
-export declare type PayerResponse = {
-  name: string;
-  surname: string;
-  email: string;
-  phone: Phone;
-  identification: Identification;
-  address: Address;
-  date_created: string;
+  last_purchase?: string;
 };
 
 export declare type DifferentialPricing = {
-  id: number;
+  id?: number;
 };
 
 export declare type Items = {
   id: string;
-  title?: string;
+  title: string;
   description?: string;
   picture_url?: string;
   category_id?: string;
-  quantity?: number;
+  quantity: number;
   currency_id?: string;
-  unit_price?: number;
+  unit_price: number;
 };
 
 export declare type ReceiverAddress = {
   zip_code?: string;
   street_name?: string;
-  city_name?: string;
-  state_name?: string;
   street_number?: number;
   floor?: string;
   apartment?: string;
+  city_name?: string;
+  state_name?: string;
+  country_name?: string;
 };
 
 export declare type FreeMethods = {
-  id: number;
+  id?: number;
 };
 
-export declare type ShipmentsRequest = {
+export declare type Shipments = {
   mode?: string;
   local_pickup?: boolean;
   dimensions?: string;
@@ -89,31 +80,35 @@ export declare type ShipmentsRequest = {
   cost?: number;
   free_shipping?: boolean;
   receiver_address?: ReceiverAddress;
-};
-
-export declare type ShipmentsResponse = {
-  receiver_address: ReceiverAddress;
+  express_shipment?: boolean;
 };
 
 export declare type ExcludedPaymentMethods = {
-  id: string;
+  id?: string;
 };
 
 export declare type ExcludedPaymentTypes = {
-  id: string;
+  id?: string;
 };
 
 export declare type PaymentMethods = {
+  default_card_id?: string;
+  default_payment_method_id?: string;
   excluded_payment_methods?: Array<ExcludedPaymentMethods>;
   excluded_payment_types?: Array<ExcludedPaymentTypes>;
-  default_payment_method_id?: string;
-  installments?: string;
-  default_installments?: string;
+  installments?: number;
+  default_installments?: number;
+};
+
+export declare type TrackValues = {
+  conversion_id?: string;
+  conversion_label?: string;
+  pixel_id?: string;
 };
 
 export declare type Track = {
-  type: string;
-  values: string;
+  type?: string;
+  values?: TrackValues;
 };
 
 export declare type BackUrls = {
@@ -123,70 +118,81 @@ export declare type BackUrls = {
 };
 
 export declare type RedirectUrls = {
-  failure: string;
-  pending: string;
-  success: string;
+  success?: string;
+  failure?: string;
+  pending?: string;
+
 };
 
 export declare type Tax = {
-  success: string;
-  pending: string;
-  failure: string;
+  type?: string;
+  value?: number;
 };
 
 export declare type UpdatePreferenceRequestData = {
   additional_info?: string;
   auto_return?: string;
   back_urls?: BackUrls;
+  binary_mode?: boolean;
+  coupon_code?: string;
+  coupon_labels?: Array<string>;
   date_of_expiration?: string;
   differential_pricing?: DifferentialPricing;
   expiration_date_from?: string;
   expiration_date_to?: string;
   expires?: boolean;
   external_reference?: string;
-  items?: Array<Items>;
+  items: Array<Items>;
   marketplace?: string;
   marketplace_fee?: number;
   metadata?: NonNullable<unknown>;
   notification_url?: string;
-  payer?: PayerRequest;
+  operation_type?: string;
+  payer?: Payer;
   payment_methods?: PaymentMethods;
-  shipments?: ShipmentsRequest;
+  processing_modes?: Array<string>;
+  purpose?: string;
+  redirect_urls?: RedirectUrls;
+  shipments?: Shipments;
+  statement_descriptor?: string;
+  taxes?: Array<Tax>;
+  tracks?: Array<Track>;
 }
 
 export declare type UpdatePreferenceResponse = {
-  id: string;
   additional_info: string;
   auto_return: string;
   back_urls: BackUrls;
   binary_mode: boolean;
   client_id: string;
   collector_id: number;
-  coupon_code: NonNullable<unknown>;
-  coupon_labels: NonNullable<unknown>;
   date_created: string;
-  date_of_expiration:  NonNullable<unknown>;
+  date_of_expiration:  string;
+  differential_pricing: DifferentialPricing;
   expiration_date_from: string;
   expiration_date_to: string;
   expires: boolean;
   external_reference: string;
+  id: string;
   init_point: string;
   items: Array<Items>;
   internal_metadata: NonNullable<unknown>;
-  last_updated: NonNullable<unknown>;
+  last_updated: string;
   marketplace: string;
   marketplace_fee: number;
   metadata: NonNullable<unknown>;
   notification_url: string;
-  payer: PayerResponse;
+  payer: Payer;
   payment_methods: PaymentMethods;
-  product_id: NonNullable<unknown>;
-  processing_modes: NonNullable<unknown>;
+  purpose: string;
+  processing_modes: Array<string>;
   redirect_urls: RedirectUrls;
-  shipments: ShipmentsResponse;
+  shipments: Shipments;
   site_id: string;
   statement_descriptor: string;
   operation_type: string;
   sandbox_init_point: string;
-  total_amount: NonNullable<unknown>;
+  tracks: Array<Track>;
+  taxes: Array<Tax>;
+  total_amount: string;
 };
