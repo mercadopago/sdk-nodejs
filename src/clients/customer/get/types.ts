@@ -10,7 +10,3 @@ export declare type CustomerCardIds = {
   customerId: string;
   cardId: string;
 };
-
-
-
-

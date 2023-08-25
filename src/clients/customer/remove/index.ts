@@ -1,6 +1,6 @@
 import { RestClient } from '@utils/restClient';
-import { CustomerCardResponse } from '../commonTypes';
-import { CustomerCardConfigs } from '../get/types';
+import type { CustomerCardResponse } from '../commonTypes';
+import type { CustomerCardConfigs } from '../get/types';
 
 export default function remove({ customerId, cardId, config }: CustomerCardConfigs): Promise<CustomerCardResponse> {
 	return RestClient.fetch<CustomerCardResponse>(
@@ -14,5 +14,3 @@ export default function remove({ customerId, cardId, config }: CustomerCardConfi
 		}
 	);
 }
-
-

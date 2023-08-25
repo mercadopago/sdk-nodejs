@@ -8,7 +8,3 @@ export declare type CustomerCardList = {
 export declare type CustomerCardId = {
   customerId: string;
 };
-
-
-
-

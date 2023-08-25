@@ -14,6 +14,3 @@ export declare type CustomerCardCreate = {
   customerId: string;
   customerCardBody: CustomerCardBody;
 };
-
-
-

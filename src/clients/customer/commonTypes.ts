@@ -1,4 +1,4 @@
-import { Identification } from '../commonTypes';
+import type { Identification } from '../commonTypes';
 
 export declare type CustomerCardResponse = {
   id: string;
@@ -17,7 +17,7 @@ export declare type CustomerCardResponse = {
   live_mode: boolean;
 };
 
-export declare class CustomerCardPaymentMethod {
+export declare type CustomerCardPaymentMethod = {
 	id: string;
 	name: string;
 	payment_type_id: string;
@@ -25,17 +25,17 @@ export declare class CustomerCardPaymentMethod {
 	secure_thumbnail: string;
 }
 
-export declare class CustomerCardSecurityCode {
+export declare type CustomerCardSecurityCode = {
 	length: number;
 	card_location: string;
 }
 
-export declare class CustomerCardIssuer {
-	readonly id: string;
-	readonly name: string;
+export declare type CustomerCardIssuer = {
+	id: string;
+	name: string;
 }
 
-export declare class CustomerCardCardholder {
+export declare type CustomerCardCardholder = {
 	name: string;
 	identification: Identification;
 }

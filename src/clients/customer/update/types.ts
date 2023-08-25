@@ -1,4 +1,4 @@
-import { CustomerCardCardholder } from '@src/clients/cardtokens/get/types';
+import type { CustomerCardCardholder } from '@src/clients/cardtokens/get/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type CustomerCardConfigUpdate = {
@@ -20,6 +20,3 @@ export declare type CustomerCardUpdate = {
   cardId: string;
   customerCardBody: CustomerCardUpdateBody;
 };
-
-
-
