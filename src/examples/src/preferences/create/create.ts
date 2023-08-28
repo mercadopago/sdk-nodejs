@@ -11,7 +11,7 @@ const client = new MercadoPago({ accessToken: 'access_token', options: { timeout
 const preference = new Preference(client);
 
 preference.create({
-	'external_reference': 'teste_eltin',
+	'external_reference': 'teste_pref',
 	'items': [
 		{
 			'id': '4567',
