@@ -8,7 +8,7 @@
     "build": "rm -rf dist && tsc --build tsconfig.production.json && tsc-alias -p tsconfig.production.json",
     "dev": "nodemon -x \"npm run build\"",
     "test": "jest",
-    "lint": "eslint 'src/**/*.{ts,tsx}' 'examples/**/*.{ts,tsx}' --cache",
+    "lint": "eslint 'src/**/*.{ts,tsx}' 'src/examples/**/*.{ts,tsx}' --cache",
     "lint:fix": "eslint --fix --ext .ts src examples",
     "prepare": "husky install"
   },
