@@ -14,7 +14,7 @@ export class RestClient {
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
 		const { timeout = DEFAULT_TIMEOUT, queryParams, ...customConfig } = config || {};
-
+		
 		const url = queryParams ? appendQueryParamsToUrl(`${BASE_URL}${endpoint}`, queryParams) : `${BASE_URL}${endpoint}`;
 
 		const responsePromise = fetch(url, {
