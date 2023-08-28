@@ -21,7 +21,7 @@ export class CardToken {
    * Mercado Pago Search.
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/cardtoken/get/get.ts Usage Example  }.
- */
+   */
 	get({ cardTokenId }: CardTokenId): Promise<CardTokenResponse> {
 		return get({ id: cardTokenId, config: this.config });
 	}
@@ -30,7 +30,7 @@ export class CardToken {
    * Mercado Pago Search.
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/cardtoken/create.ts Usage Example  }.
- */
+   */
 	create ({ cardTokenBody }: CardTokenBody): Promise<CardTokenResponse> {
 		return create({ body: cardTokenBody, config: this.config });
 	}

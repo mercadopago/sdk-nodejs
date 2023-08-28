@@ -2,7 +2,7 @@
  * Mercado Pago Customer card get.
  *
  * @see {@link https://www.mercadopago.com.br/developers/pt/reference/cards/_customers_customer_id_cards_id/get Documentation }.
-*/
+ */
 import MercadoPago, { CustomerCard } from '@src/index';
 
 const client = new MercadoPago({ accessToken: 'access_token' });

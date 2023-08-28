@@ -16,9 +16,9 @@ export class PaymentMethod {
 	}
 
 	/**
-     * Mercado Pago Search.
-     *
-     * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/paymentmethods/get.ts Usage Example  }.
+   * Mercado Pago Search.
+   *
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/paymentmethods/get.ts Usage Example  }.
    */
 	get(): Promise<PaymentMethodResponse[]> {
 		return get({ config: this.config });
