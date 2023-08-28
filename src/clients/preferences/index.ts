@@ -26,7 +26,7 @@ export class Preference {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/preferences/get/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/get/get.ts Usage Example  }.
  */
 	get({ preferenceId }: PreferenceId): Promise<PreferenceResponse> {
 		return get({ id: preferenceId, config: this.config });
@@ -35,7 +35,7 @@ export class Preference {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/preferences/create/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/create/create.ts Usage Example  }.
  */
 	create(preferenceRequest: PreferenceRequest): Promise<PreferenceResponse> {
 		return create({ preferenceRequest, config: this.config });
@@ -44,7 +44,7 @@ export class Preference {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/preferences/update/update.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/update/update.ts Usage Example  }.
  */
 	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest): Promise<PreferenceResponse> {
 		return update({ id, updatePreferenceRequest, config: this.config });
@@ -53,7 +53,7 @@ export class Preference {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/preferences/search/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/search/search.ts Usage Example  }.
  */
 	search(filters?: PreferenceSearchOptions): Promise<PreferenceSearchResponse> {
 		return search({ filters, config: this.config });
