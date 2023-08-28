@@ -20,7 +20,7 @@ export class CardToken {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/cardtoken/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/cardtoken/get/get.ts Usage Example  }.
  */
 	get({ cardTokenId }: CardTokenId): Promise<CardTokenResponse> {
 		return get({ id: cardTokenId, config: this.config });
