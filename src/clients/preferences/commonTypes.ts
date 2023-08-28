@@ -1,4 +1,4 @@
-import { Identification } from '@src/clients/commonTypes';
+import type { Identification } from '@src/clients/commonTypes';
 
 export declare type Phone = {
   area_code?: string;
