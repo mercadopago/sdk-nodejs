@@ -36,7 +36,7 @@ export class CustomerCard {
 	 * Mercado Pago customer card get.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/get/get.ts Usage Example  }.
-	 */
+	*/
 	get({ customerId, cardId }: CustomerCardIds): Promise<CustomerCardResponse> {
 		return get({ customerId: customerId, cardId: cardId, config: this.config });
 	}
