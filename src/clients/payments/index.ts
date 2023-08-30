@@ -18,8 +18,8 @@ export class Payments {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/payments/create.ts Usage Example  }.
- */
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/payments/search.ts Usage Example  }.
+   */
 	search(filters?: PaymentsSearchOptions): Promise<PaymentsSearch> {
 		return search({ filters, config: this.config });
 	}
