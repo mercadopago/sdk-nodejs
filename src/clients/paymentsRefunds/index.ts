@@ -41,7 +41,7 @@ export class PaymentsRefunds {
 	/**
    * Mercado Pago Get Refund List.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/search/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/getList/getList.ts Usage Example  }.
    */
 	getList({ payment_id }: GetRefundList): Promise<Array<RefundResponse>> {
 		return getList({ payment_id, config: this.config });
