@@ -127,7 +127,7 @@ export declare type PreferenceRequest = {
   items: Array<Items>;
   marketplace?: string;
   marketplace_fee?: number;
-  metadata?: NonNullable<unknown>;
+  metadata?: any;
   notification_url?: string;
   operation_type?: string;
   payer?: Payer;
@@ -159,11 +159,11 @@ export declare type PreferenceResponse = {
   external_reference: string;
   id: string;
   init_point: string;
-  internal_metadata: NonNullable<unknown>;
+  internal_metadata: any;
   items: Array<Items>;
   marketplace: string;
   marketplace_fee: number;
-  metadata: NonNullable<unknown>;
+  metadata: any;
   notification_url: string;
   operation_type: string;
   payer: Payer;
