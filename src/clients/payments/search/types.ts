@@ -38,7 +38,7 @@ export declare type PaymentsSearchResult = {
   call_for_authorize_id: string;
   statement_descriptor: string;
   installments: number;
-  card: NonNullable<unknown>;
+  card: any;
   carnotification_urld: string;
   processing_mode: string;
   merchant_account_id: string;
@@ -51,8 +51,8 @@ export declare type Payer = {
   email: string;
   identification: Identification;
   type: string;
-  metadata: NonNullable<unknown>;
-  additional_info: NonNullable<unknown>;
+  metadata: any;
+  additional_info: any;
   external_reference: string;
   transaction_amount: number;
   transaction_amount_refunded: number;
