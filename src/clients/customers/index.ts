@@ -18,7 +18,7 @@ import type { CustomerCardId } from '../customercards/list/types';
 /**
  * Mercado Pago Customer.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/reference/cards/_customers_customer_id_cards/post Documentation }.
+ * @see {@link https://www.mercadopago.com.br/developers/pt/reference/customers/_customers/post Documentation }.
  */
 export class Customer {
 	private config: MercadoPagoConfig;
@@ -68,7 +68,7 @@ export class Customer {
 	/**
 	 * Mercado Pago customer search.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/search/search.ts Usage Example  }.
 	 */
 	search(filters?: CustomerSearchOptions): Promise<CustomerSearchResultsPage> {
 		return search({ filters, config: this.config });
@@ -77,7 +77,7 @@ export class Customer {
 	/**
 	 * Mercado Pago create card for customer.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/createcard/createcard.ts Usage Example  }.
 	 */
 	createCard({ customerId, customerCardBody }: CustomerCardCreate): Promise<CustomerCardResponse> {
 		return this.customerCard.create({ customerId, customerCardBody });
@@ -86,7 +86,7 @@ export class Customer {
 	/**
 	 * Mercado Pago  get customer's card.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/getcard/getcard.ts Usage Example  }.
 	 */
 	getCard({ customerId, cardId }: CustomerCardIds): Promise<CustomerCardResponse> {
 		return this.customerCard.get({ customerId, cardId });
@@ -95,7 +95,7 @@ export class Customer {
 	/**
 	 * Mercado Pago remove customer's card .
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/removecard/removecard.ts Usage Example  }.
 	 */
 	removeCard({ customerId, cardId }: CustomerCardIds): Promise<CustomerCardResponse> {
 		return this.customerCard.remove({ customerId, cardId: cardId });
@@ -104,7 +104,7 @@ export class Customer {
 	/**
 	 * Mercado Pago  list customer's cards .
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/listcards/listcards.ts Usage Example  }.
 	 */
 	listCards({ customerId }: CustomerCardId): Promise<CustomerCardResponse[]> {
 		return this.customerCard.listAll({ customerId });
