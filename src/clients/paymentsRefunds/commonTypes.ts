@@ -16,7 +16,5 @@ export declare type RefundResponse = {
   adjustment_amount: number;
   status: string;
   reason: string;
-  label: Array<string>;
   amount_refunded_to_payer: number;
-  partition_details: Array<string>;
 };
