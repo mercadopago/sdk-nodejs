@@ -9,7 +9,7 @@
     "dev": "nodemon -x \"npm run build\"",
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}' 'src/examples/**/*.{ts,tsx}' --cache",
-    "lint:fix": "eslint --fix --ext .ts src examples",
+    "lint:fix": "eslint --fix --ext .ts src src/examples",
     "prepare": "husky install"
   },
   "repository": {
