@@ -26,7 +26,7 @@ export class PaymentsRefunds {
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/get/get.ts Usage Example  }.
    */
 	get({ payment_id, refund_id }: GetRefund): Promise<RefundResponse> {
-		return get({ payment_id, refund_id: refund_id, config: this.config });
+		return get({ payment_id, refund_id, config: this.config });
 	}
 
 	/**

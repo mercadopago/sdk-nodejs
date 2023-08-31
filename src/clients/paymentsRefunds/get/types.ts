@@ -5,7 +5,7 @@ export declare type GetRefund = {
   refund_id: string;
 };
 
-export declare type GetRefundByRefundId = {
+export declare type Get = {
   payment_id: string
   refund_id: string;
   config: MercadoPagoConfig

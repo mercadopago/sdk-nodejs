@@ -8,10 +8,9 @@ export declare type RefundResponse = {
   id: number;
   payment_id: number;
   amount: number;
-  metadata: Array<string>; // conferir -> devsite = array -> postman -> objeto
-  source: Array<Source>;
+  metadata: any;
+  source: Source;
   date_created: string;
-  expiration_date: string; // conferir 
   unique_sequence_number: string;
   refund_mode: string;
   adjustment_amount: number;
@@ -19,6 +18,5 @@ export declare type RefundResponse = {
   reason: string;
   label: Array<string>;
   amount_refunded_to_payer: number;
-  additional_data: string; // conferir
   partition_details: Array<string>;
 };

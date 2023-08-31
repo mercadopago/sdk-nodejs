@@ -1,14 +1,14 @@
 import get from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { GetRefundByRefundId } from './types';
+import type { Get } from './types';
 
 jest.mock('@utils/restClient');
 
 describe('Testing payments refunds, get', () => {
 	test('should find a refund by refund_id ', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const request: GetRefundByRefundId = {
+		const request: Get = {
 			payment_id: '123',
 			refund_id: '456',
 			config: client,
