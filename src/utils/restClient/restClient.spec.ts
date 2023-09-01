@@ -10,7 +10,7 @@ describe('RestClient', () => {
 	});
 
 	describe('fetch', () => {
-		it('should use default idempotency key for POST requests', async () => {
+		test('should use default idempotency key for POST requests', async () => {
 			const mockId = 'mocked-id';
 			(uuidv4 as jest.Mock).mockReturnValue(mockId);
 
@@ -22,7 +22,7 @@ describe('RestClient', () => {
 			expect(uuidv4).toHaveBeenCalledTimes(1);
 		});
 
-		it('should fetch data successfully', async () => {
+		test('should fetch data successfully', async () => {
 			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 			const response = await RestClient.fetch<{ message: string }>('/test');
@@ -30,7 +30,7 @@ describe('RestClient', () => {
 			expect(fetchMock).toHaveBeenCalledTimes(1);
 		});
 
-		it('should retry and throw an error', async () => {
+		test('should retry and throw an error', async () => {
 			fetchMock.mockRejectedValueOnce(new Error('Failed'))
 				.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
@@ -38,7 +38,7 @@ describe('RestClient', () => {
 			expect(fetchMock).toHaveBeenCalledTimes(2);
 		});
 
-		it('should use provided idempotency key for POST requests', async () => {
+		test('should use provided idempotency key for POST requests', async () => {
 			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 			const idempotencyKey = 'abc123';
@@ -49,7 +49,7 @@ describe('RestClient', () => {
 			expect(fetchMock.mock.calls[0][1].headers).toHaveProperty('Idempotency-Key', idempotencyKey);
 		});
 
-		it('should not use provided idempotency key for GET requests', async () => {
+		test('should not use provided idempotency key for GET requests', async () => {
 			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 			await RestClient.fetch('/test', {
@@ -58,8 +58,7 @@ describe('RestClient', () => {
 			expect(fetchMock.mock.calls[0][1].headers).toBeUndefined();
 		});
 
-
-		it('should handle query parameters correctly', async () => {
+		test('should handle query parameters correctly', async () => {
 			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 			await RestClient.fetch('/test', {
@@ -73,7 +72,7 @@ describe('RestClient', () => {
 			expect(urlWithQueryParams).toContain('/test?param1=value1&param2=2');
 		});
 
-		it('should handle custom timeout', async () => {
+		test('should handle custom timeout', async () => {
 			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 			const timeout = 5000;
@@ -84,7 +83,7 @@ describe('RestClient', () => {
 		});
 	});
 
-	it('should use default idempotency key for POST requests', async () => {
+	test('should use default idempotency key for POST requests', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 		await RestClient.fetch('/test', {
@@ -94,7 +93,7 @@ describe('RestClient', () => {
 		expect(options.headers).toHaveProperty('Idempotency-Key');
 	});
 
-	it('should handle headers correctly', async () => {
+	test('should handle headers correctly', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 		await RestClient.fetch('/test', {
@@ -108,7 +107,7 @@ describe('RestClient', () => {
 		expect(options.headers).toHaveProperty('Custom-Header', 'Value');
 	});
 
-	it('should handle headers and idempotency key for PUT requests', async () => {
+	test('should handle headers and idempotency key for PUT requests', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
 
 		const idempotencyKey = 'abc123';
@@ -125,19 +124,19 @@ describe('RestClient', () => {
 		expect(options.headers).toHaveProperty('Idempotency-Key', idempotencyKey);
 	});
 
-	it('should throw an error for unsuccessful response', async () => {
+	test('should throw an error for unsuccessful response', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Error' }), { status: 400 });
 
 		await expect(RestClient.fetch('/test')).rejects.toThrowError('invalid json response body');
 	});
 
-	it('should handle response with invalid JSON', async () => {
+	test('should handle response with invalid JSON', async () => {
 		fetchMock.mockResponseOnce('Invalid JSON', { status: 500 });
 
 		await expect(RestClient.fetch('/test')).rejects.toThrowError('invalid json response body');
 	});
 
-	it('should use GET as the default method', async () => {
+	test('should use GET as the default method', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
 
 		await RestClient.fetch('/example');
@@ -148,7 +147,7 @@ describe('RestClient', () => {
 		expect(fetchOptions.method).toBe('GET');
 	});
 
-	it('should allow specifying a different method', async () => {
+	test('should allow specifying a different method', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
 
 		await RestClient.fetch('/example', { method: 'POST' });
@@ -159,7 +158,7 @@ describe('RestClient', () => {
 		expect(fetchOptions.method).toBe('POST');
 	});
 
-	it('should use GET as the default method if method is not specified', async () => {
+	test('should use GET as the default method if method is not specified', async () => {
 		fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
 
 		await RestClient.fetch('/example', {});
