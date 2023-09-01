@@ -14,10 +14,11 @@ const jestConfig: JestConfigWithTsJest = {
 	testMatch: [
 		'**/?(*.)+(spec|test).[tj]s?(x)'
 	],
-	transform: {'^.+\\.(ts|tsx)$': 'ts-jest'},
+	transform: { '^.+\\.(ts|tsx)$': 'ts-jest' },
 	moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
 	preset: 'ts-jest',
-	testEnvironment: 'node'
+	testEnvironment: 'node',
+	setupFilesAfterEnv: ['./setupTests.ts'],
 };
 
 export default jestConfig;
