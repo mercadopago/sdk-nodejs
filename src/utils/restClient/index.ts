@@ -44,8 +44,6 @@ class RestClient {
 			...customConfig
 		} = config || {};
 
-		console.log('timeouttimeout', timeout);
-
 		const url = `${BASE_URL}${endpoint}${queryParams ? RestClient.appendQueryParamsToUrl('', queryParams) : ''}`;
 
 		if (method && method !== 'GET') {
@@ -66,15 +64,12 @@ class RestClient {
 					timeout,
 				});
 
-				console.log('customConfig', customConfig);
-
 				if (response.ok) {
 					const data = await response.json() as T;
 					return data;
 				}
 			} catch (error) {
 				retries++;
-				console.log('retriesretries', retries);
 				if (retries > maxRetries -1) {
 					throw error;
 				}
