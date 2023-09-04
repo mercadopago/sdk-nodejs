@@ -8,7 +8,7 @@ This library provides developers with a simple set of bindings to help you integ
 
 ## 💡 Requirements
 
-The SDK Supports Node.js v10 or higher.
+The SDK Supports NodeJS version 12 or higher.
 
 ## 📲 Installation 
 
@@ -56,13 +56,26 @@ Visit our Dev Site for further information regarding:
 
 Check our [official code reference](https://mercadopago.github.io/sdk-nodejs/) to explore all available functionalities.
 
+## 🤝 Contributing
+
+All contributions are welcome, ranging from people wanting to triage issues, others wanting to write documentation, to people wanting to contribute code.
+
+Please read and follow our [contribution guidelines](CONTRIBUTING.md). Contributions not following these guidelines will be disregarded. The guidelines are in place to make all of our lives easier and make contribution a consistent process for everyone.
+
+### Patches to version 1.x.x
+
+Since the release of version 2.0.0, version 1 is deprecated and will not be receiving new features, only bug fixes. If you need to submit PRs for that version, please do so by using develop-v1 as your base branch.
+
 ## ❤️ Support 
 
-If you require technical support, please contact our support team at [developers.mercadopago.com](https://developers.mercadopago.com)
+If you require technical support, please contact our support team at our developers
+site: [English](https://www.mercadopago.com/developers/en/support/center/contact)
+/ [Portuguese](https://www.mercadopago.com/developers/pt/support/center/contact)
+/ [Spanish](https://www.mercadopago.com/developers/es/support/center/contact)
 
 ## 🏻 License 
 
 ```
-MIT license. Copyright (c) 2021 - Mercado Pago / Mercado Libre 
+MIT license. Copyright (c) 2023 - Mercado Pago / Mercado Libre 
 For more information, see the LICENSE file.
 ```
