@@ -10,7 +10,7 @@ const client = new MercadoPago({ accessToken: 'access_token', options: { timeout
 
 const refund = new PaymentsRefunds(client);
 
-refund.getList({
+refund.list({
 	payment_id: '123'
 }).then((result) => console.log(result))
 	.catch((error) => console.log(error));

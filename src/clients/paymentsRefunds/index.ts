@@ -1,11 +1,11 @@
 import get from './get';
 import create from './create';
-import getList from './getList';
+import list from './list';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { CreateRefund } from './create/types';
 import type { GetRefund } from './get/types';
-import type { GetRefundList } from './getList/types';
+import type { GetRefundList } from './list/types';
 import type { RefundResponse } from './commonTypes';
 
 /**
@@ -41,10 +41,10 @@ export class PaymentsRefunds {
 	/**
    * Mercado Pago Get Refund List.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/getList/getList.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/list/list.ts Usage Example  }.
    */
-	getList({ payment_id }: GetRefundList): Promise<Array<RefundResponse>> {
-		return getList({ payment_id, config: this.config });
+	list({ payment_id }: GetRefundList): Promise<Array<RefundResponse>> {
+		return list({ payment_id, config: this.config });
 	}
 
 }
