@@ -1,17 +1,31 @@
-## Cambios realizados para el feature:
- * item 1
+## 📝 Description
 
-## Cambios generales
- * item 1
- 
-## Issues cerrados
- * Closes #XX
- 
+- Give some context to why we need the changes contained in this branch. 
+- Tell us why, how and/or what did you did in this changes. 
 
-## Checklist validación PR:
+### ✅ Checklist:
 
-- [ ] Título y descripción clara del PR
-- [ ] Tests de mi funcionalidad 
-- [ ] Documentación de mi funcionalidad
-- [ ] Tests ejecutados y pasados
-- [ ] Branch Coverage >= 80%
+- [ ] I followed the instructions indicated in [Contribution Guidelines](CONTRIBUTING.md)
+- [ ] Added the necessary tests for the code or functionality that I'm working on
+- [ ] I ran the tests and made sure they work
+- [ ] My branch coverage is at least 80%
+- [ ] I verified the style of my code matches the one in the project
+- [ ] I have updated the documentation and CHANGELOG accordingly
+
+## 🧰 How to reproduce
+
+- Step by step of how to test, specially for bugs.
+- What scopes need to active.
+- Links of external docs.
+
+## 📸 Screenshots
+
+- Before and after, if it's a fix.
+- New screens of new features.
+- Changes in all resolutions.
+
+## 📄 References
+
+- Links do external documentation
+- Diagrams
+- Useful links
