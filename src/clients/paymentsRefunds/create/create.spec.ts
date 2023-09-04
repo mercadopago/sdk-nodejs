@@ -6,7 +6,7 @@ import type { CreateRefundRequest } from './types';
 jest.mock('@utils/restClient');
 
 describe('Testing payments refunds, create', () => {
-	test('should successfully make a request with the body "amount"', async () => {
+	test('should successfully make a request with "amount" in the body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		const request: CreateRefundRequest = {
 			payment_id: '123',
