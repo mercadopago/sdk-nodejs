@@ -1,6 +1,6 @@
+import update from '.';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
-import update from '.';
 
 jest.mock('@utils/restClient');
 
