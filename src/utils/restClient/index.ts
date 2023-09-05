@@ -42,7 +42,7 @@ class RestClient {
 			try {
 				return await fn();
 			} catch (error) {
-				if (attempt >= retries || (error instanceof Response && error.status < 500)) {
+				if (attempt >= retries || (error.status < 500)) {
 					throw error;
 				}
 
@@ -89,11 +89,9 @@ class RestClient {
 			});
 
 			if (response.ok) {
-				console.log('responseeeeee', response);
 				const data = await response.json() as T;
 				return data;
 			} else {
-				console.log('responseresponse', response);
 				throw response;
 			}
 		};
