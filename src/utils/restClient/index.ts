@@ -34,7 +34,7 @@ class RestClient {
 
 	private static async retryWithExponentialBackoff<T>(
 		fn: () => Promise<T>,
-		retires: number,
+		retries: number,
 	): Promise<T> {
 		let attempt = 1;
 
@@ -42,7 +42,7 @@ class RestClient {
 			try {
 				return await fn();
 			} catch (error) {
-				if (attempt >= retires) {
+				if (attempt >= retries || (error instanceof Response && error.status < 500)) {
 					throw error;
 				}
 
@@ -89,9 +89,11 @@ class RestClient {
 			});
 
 			if (response.ok) {
+				console.log('responseeeeee', response);
 				const data = await response.json() as T;
 				return data;
 			} else {
+				console.log('responseresponse', response);
 				throw response;
 			}
 		};
