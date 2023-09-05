@@ -2,7 +2,8 @@ import fetch, { Response, RequestInit } from 'node-fetch';
 import { v4 as uuidv4 } from 'uuid';
 
 const DEFAULT_TIMEOUT = 10000;
-const DEFAULT_MAX_RETRIES = 2;
+const DEFAULT_RETRIES = 2;
+const BASE_DELAY_MS = 1000;
 const BASE_URL = 'https://api.mercadopago.com';
 
 interface RestClientConfig {
@@ -31,52 +32,72 @@ class RestClient {
 		return url.includes('?') ? `${url}&${searchParams.toString()}` : `${url}?${searchParams.toString()}`;
 	}
 
+	private static async retryWithExponentialBackoff<T>(
+		fn: () => Promise<T>,
+		retires: number,
+	): Promise<T> {
+		let attempt = 1;
+
+		const execute = async () => {
+			try {
+				return await fn();
+			} catch (error) {
+				if (attempt >= retires) {
+					throw error;
+				}
+
+				const delayMs = BASE_DELAY_MS * 2 ** attempt;
+				console.info(`Attempt ${attempt} after ${delayMs}ms`);
+				await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+				attempt++;
+				return execute();
+			}
+		};
+
+		return execute();
+	}
+
 	static async fetch<T>(
 		endpoint: string,
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
 		const {
 			timeout = DEFAULT_TIMEOUT,
-			retries: maxRetries = DEFAULT_MAX_RETRIES,
-			idempotencyKey,
+			idempotencyKey = RestClient.generateIdempotencyKey(),
 			queryParams,
 			method = 'GET',
+			retries = DEFAULT_RETRIES,
 			...customConfig
 		} = config || {};
 
-		const url = `${BASE_URL}${endpoint}${queryParams ? RestClient.appendQueryParamsToUrl('', queryParams) : ''}`;
+		const url = RestClient.appendQueryParamsToUrl(`${BASE_URL}${endpoint}`, queryParams);
 
 		if (method && method !== 'GET') {
 			customConfig.headers = {
 				...(customConfig.headers || {}),
-				'Idempotency-Key': idempotencyKey || RestClient.generateIdempotencyKey(),
+				'Idempotency-Key': idempotencyKey,
 			};
 		}
 
-		let retries = 0;
 		let response: Response;
 
-		while (retries <= maxRetries) {
-			try {
-				response = await fetch(url, {
-					...customConfig,
-					method,
-					timeout,
-				});
+		const fetchFn = async () => {
+			response = await fetch(url, {
+				...customConfig,
+				method,
+				timeout,
+			});
 
-				if (response.ok) {
-					const data = await response.json() as T;
-					return data;
-				}
-			} catch (error) {
-				retries++;
-				if (retries > maxRetries -1) {
-					throw error;
-				}
+			if (response.ok) {
+				const data = await response.json() as T;
+				return data;
+			} else {
+				throw response;
 			}
-		}
+		};
 
-		throw new Error(`Request failed with status ${response.status}`);
+		return await RestClient.retryWithExponentialBackoff(fetchFn, retries);
 	}
 }
 
