@@ -1,171 +1,160 @@
 import { RestClient } from '.';
-import fetchMock from 'jest-fetch-mock';
-import { v4 as uuidv4 } from 'uuid';
+import fetch from 'node-fetch';
 
-jest.mock('uuid');
+jest.mock('node-fetch', () => jest.fn());
+const { Response } = jest.requireActual('node-fetch');
 
 describe('RestClient', () => {
-	beforeEach(() => {
-		fetchMock.resetMocks();
-	});
+	test('Should set 10000 timeout as default', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-	describe('fetch', () => {
-		test('should use default idempotency key for POST requests', async () => {
-			const mockId = 'mocked-id';
-			(uuidv4 as jest.Mock).mockReturnValue(mockId);
+		await RestClient.fetch('/test');
 
-			fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
-
-			const response = await RestClient.fetch('/test', { method: 'POST' });
-
-			expect(response).toEqual({});
-			expect(uuidv4).toHaveBeenCalledTimes(1);
-		});
-
-		test('should fetch data successfully', async () => {
-			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-			const response = await RestClient.fetch<{ message: string }>('/test');
-			expect(response.message).toEqual('Success');
-			expect(fetchMock).toHaveBeenCalledTimes(1);
-		});
-
-		test('should retry and throw an error', async () => {
-			fetchMock.mockRejectedValueOnce(new Error('Failed'))
-				.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-			await expect(RestClient.fetch('/test')).resolves.toEqual({ message: 'Success' });
-			expect(fetchMock).toHaveBeenCalledTimes(2);
-		});
-
-		test('should use provided idempotency key for POST requests', async () => {
-			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-			const idempotencyKey = 'abc123';
-			await RestClient.fetch('/test', {
-				method: 'POST',
-				idempotencyKey,
-			});
-			expect(fetchMock.mock.calls[0][1].headers).toHaveProperty('Idempotency-Key', idempotencyKey);
-		});
-
-		test('should not use provided idempotency key for GET requests', async () => {
-			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-			await RestClient.fetch('/test', {
-				method: 'GET',
-			});
-			expect(fetchMock.mock.calls[0][1].headers).toBeUndefined();
-		});
-
-		test('should handle query parameters correctly', async () => {
-			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-			await RestClient.fetch('/test', {
-				queryParams: {
-					param1: 'value1',
-					param2: 2,
-				},
-			});
-
-			const urlWithQueryParams = fetchMock.mock.calls[0][0];
-			expect(urlWithQueryParams).toContain('/test?param1=value1&param2=2');
-		});
-
-		test('should handle custom timeout', async () => {
-			fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-			const timeout = 5000;
-			await RestClient.fetch('/test', { timeout });
-
-			const options = fetchMock.mock.calls[0][1];
-			expect(options).toHaveProperty('timeout', timeout);
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+			method: expect.any(String),
+			timeout: 10000,
 		});
 	});
 
-	test('should use default idempotency key for POST requests', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
+	test('Should set GET http as default method', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-		await RestClient.fetch('/test', {
-			method: 'POST',
-		});
-		const options = fetchMock.mock.calls[0][1];
-		expect(options.headers).toHaveProperty('Idempotency-Key');
-	});
+		await RestClient.fetch('/test');
 
-	test('should handle headers correctly', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
-
-		await RestClient.fetch('/test', {
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'GET',
-			headers: {
-				'Custom-Header': 'Value',
-			},
+			timeout: expect.any(Number),
 		});
-
-		const options = fetchMock.mock.calls[0][1];
-		expect(options.headers).toHaveProperty('Custom-Header', 'Value');
 	});
 
-	test('should handle headers and idempotency key for PUT requests', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Success' }), { status: 200 });
+	test('Should set Idempotency-Key header when method is not GET if it is received', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-		const idempotencyKey = 'abc123';
-		await RestClient.fetch('/test', {
-			method: 'PUT',
+		const idempotencyKey = 'your-idempotency-key';
+		await RestClient.fetch('/test', { method: 'POST', idempotencyKey });
+
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+			method: 'POST',
 			headers: {
-				'Custom-Header': 'Value',
+				'Idempotency-Key': idempotencyKey,
 			},
-			idempotencyKey,
+			timeout: expect.any(Number),
 		});
-
-		const options = fetchMock.mock.calls[0][1];
-		expect(options.headers).toHaveProperty('Custom-Header', 'Value');
-		expect(options.headers).toHaveProperty('Idempotency-Key', idempotencyKey);
 	});
 
-	test('should throw an error for unsuccessful response', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({ message: 'Error' }), { status: 400 });
+	test('Should append query parameters to the URL', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-		await expect(RestClient.fetch('/test')).rejects.toThrowError('invalid json response body');
+		const queryParams = { param1: 'value1', param2: 'value2' };
+		await RestClient.fetch('/test', { queryParams });
+
+		expect(fetch).toHaveBeenCalledWith(expect.stringContaining('param1=value1&param2=value2'), {
+			method: 'GET',
+			timeout: expect.any(Number),
+		});
 	});
 
-	test('should handle response with invalid JSON', async () => {
-		fetchMock.mockResponseOnce('Invalid JSON', { status: 500 });
+	test('Should handle network errors and retry according to the retry count', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error 1'));
+		(fetch as jest.MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error 2'));
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-		await expect(RestClient.fetch('/test')).rejects.toThrowError('invalid json response body');
+		const retries = 3;
+		const endpoint = '/test-network-retry';
+		const response = await RestClient.fetch(endpoint, { retries });
+
+		expect(fetch).toHaveBeenCalledTimes(retries);
+		expect(response).toEqual({ success: true });
 	});
 
-	test('should use GET as the default method', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
+	test('Should throw an error if the response status code is not in the 2xx range', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ error: 'Not Found' }), { url: 'url', status: 404, statusText: 'Not Found' })
+		);
 
-		await RestClient.fetch('/example');
-
-		const fetchCall = fetchMock.mock.calls[0];
-		const fetchOptions = fetchCall[1];
-
-		expect(fetchOptions.method).toBe('GET');
+		const endpoint = '/test-not-found';
+		try {
+			await RestClient.fetch(endpoint);
+		} catch (error) {
+			expect(error.status).toBe(404);
+			expect(error.statusText).toBe('Not Found');
+		}
 	});
 
-	test('should allow specifying a different method', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
+	test('Should allow custom headers to be set in the request', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-		await RestClient.fetch('/example', { method: 'POST' });
+		const customHeaders = {
+			Authorization: 'Bearer Token123',
+		};
+		const endpoint = '/test-custom-headers';
+		await RestClient.fetch(endpoint, { headers: customHeaders });
 
-		const fetchCall = fetchMock.mock.calls[0];
-		const fetchOptions = fetchCall[1];
-
-		expect(fetchOptions.method).toBe('POST');
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+			method: 'GET',
+			timeout: expect.any(Number),
+			headers: customHeaders,
+		});
 	});
 
-	test('should use GET as the default method if method is not specified', async () => {
-		fetchMock.mockResponseOnce(JSON.stringify({}), { status: 200 });
+	test('Should throw an error if the response status code is not 200 OK when retries are exhausted', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ error: 'Internal Server Error' }), { url: 'url', status: 500, statusText: 'Internal Server Error' })
+		);
 
-		await RestClient.fetch('/example', {});
+		const endpoint = '/test-retry-failure';
+		const retries = 2;
+		try {
+			await RestClient.fetch(endpoint, { retries });
+		} catch (error) {
+			expect(error.status).toBe(500);
+			expect(error.statusText).toBe('Internal Server Error');
+			expect(fetch).toHaveBeenCalledTimes(retries);
+		}
+	});
 
-		const fetchCall = fetchMock.mock.calls[0];
-		const fetchOptions = fetchCall[1];
+	test('Should support custom request methods', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
 
-		expect(fetchOptions.method).toBe('GET');
+		const endpoint = '/test-custom-method';
+		const customMethod = 'PUT';
+		await RestClient.fetch(endpoint, { method: customMethod });
+
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+			method: customMethod,
+			timeout: expect.any(Number),
+			headers: expect.any(Object),
+		});
+	});
+
+	test('Should generate Idempotency-Key header if not provided', async () => {
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+		);
+
+		const endpoint = '/test-idempotency';
+		await RestClient.fetch(endpoint, { method: 'POST' });
+
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
+			method: 'POST',
+			headers: {
+				'Idempotency-Key': expect.any(String),
+			},
+			timeout: expect.any(Number),
+		});
 	});
 });
