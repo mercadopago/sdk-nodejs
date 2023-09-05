@@ -14,7 +14,7 @@ import type { CustomerCardResponse } from './commonTypes';
 /**
  * Mercado Pago Customer card.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/reference/cards/_customers_customer_id_cards/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/cards/_customers_customer_id_cards/post Documentation }.
  */
 export class CustomerCard {
 	private config: MercadoPagoConfig;

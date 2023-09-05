@@ -11,7 +11,7 @@ import type { RefundResponse } from './commonTypes';
 /**
  * Mercado Pago Refund.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
  */
 export class PaymentsRefunds {
 	private config: MercadoPagoConfig;
