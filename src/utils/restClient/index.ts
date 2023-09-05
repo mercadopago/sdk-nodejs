@@ -47,7 +47,6 @@ class RestClient {
 				}
 
 				const delayMs = BASE_DELAY_MS * 2 ** attempt;
-				console.info(`Attempt ${attempt} after ${delayMs}ms`);
 				await new Promise((resolve) => setTimeout(resolve, delayMs));
 
 				attempt++;

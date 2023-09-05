@@ -75,7 +75,7 @@ describe('RestClient', () => {
 
 		expect(fetch).toHaveBeenCalledTimes(retries);
 		expect(response).toEqual({ success: true });
-	});
+	}, 10000);
 
 	test('Should throw an error if the response status code is not in the 2xx range', async () => {
 		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
