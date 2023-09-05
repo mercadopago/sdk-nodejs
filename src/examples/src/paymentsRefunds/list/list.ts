@@ -3,7 +3,7 @@ import MercadoPago, { PaymentsRefunds } from '@src/index';
 /**
  * Mercado Pago Refund.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/reference/chargebacks/_payments_id_refunds/get Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/chargebacks/_payments_id_refunds/get Documentation }.
  */
 
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000 } });
