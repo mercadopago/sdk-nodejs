@@ -157,4 +157,57 @@ describe('RestClient', () => {
 			timeout: expect.any(Number),
 		});
 	});
+
+	test('Should retry for 5xx errors', async () => {
+		const errorResponse = new Response('Internal Server Error', {
+			url: 'url',
+			status: 500,
+			statusText: 'Internal Server Error',
+		});
+
+		const successResponse = new Response(JSON.stringify({ success: true }), {
+			url: 'url',
+			status: 200,
+			statusText: 'OK',
+		});
+
+		(fetch as jest.MockedFunction<typeof fetch>)
+			.mockRejectedValueOnce(errorResponse)
+			.mockRejectedValueOnce(errorResponse)
+			.mockRejectedValueOnce(errorResponse)
+			.mockResolvedValueOnce(successResponse);
+
+		const endpoint = '/test-5xx-error-retry';
+		const retries = 5;
+		const response = await RestClient.fetch(endpoint, { retries });
+
+		expect(fetch).toHaveBeenCalledTimes(4);
+		expect(response).toEqual({ success: true });
+	}, 20000);
+
+	test('Should not retry for 4xx errors', async () => {
+		const errorResponse = new Response('Bad Request', {
+			url: 'url',
+			status: 400,
+			statusText: 'Bad Request',
+		});
+
+		(fetch as jest.MockedFunction<typeof fetch>)
+			.mockRejectedValueOnce(errorResponse)
+			.mockRejectedValueOnce(errorResponse)
+			.mockRejectedValueOnce(errorResponse)
+			.mockRejectedValueOnce(errorResponse)
+			.mockRejectedValueOnce(errorResponse);
+
+		const endpoint = '/test-4xx-error';
+		const retries = 5;
+		try {
+			await RestClient.fetch(endpoint, { retries });
+		} catch (error) {
+			expect(fetch).toHaveBeenCalledTimes(1);
+			expect(error instanceof Response).toBe(true);
+			expect(error.status).toBe(400);
+			expect(error.statusText).toBe('Bad Request');
+		}
+	});
 });
