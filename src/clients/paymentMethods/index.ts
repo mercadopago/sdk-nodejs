@@ -6,7 +6,7 @@ import type { PaymentMethodResponse } from './get/types';
 /**
  * Mercado Pago PaymentMethods.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
  */
 export class PaymentMethod {
 	private config: MercadoPagoConfig;
