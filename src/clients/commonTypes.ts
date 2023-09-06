@@ -3,3 +3,20 @@ export declare type Identification = {
   number: string;
   identification?: number;
 };
+
+export declare type Address = {
+  zip_code?: string;
+  street_name?: string;
+  street_number?: number;
+};
+
+export declare type Items = {
+  id: string;
+  title: string;
+  description?: string;
+  picture_url?: string;
+  category_id?: string;
+  quantity: number;
+  currency_id?: string;
+  unit_price: number;
+};

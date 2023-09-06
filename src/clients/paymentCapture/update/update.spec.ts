@@ -15,6 +15,12 @@ describe('Testing Payment Capture, update', () => {
 			},
 			config: client,
 		};
+
+		const expectedBody = {
+			transaction_amount: 75,
+			capture: true,
+		};
+
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
 			'Content-Type': 'application/json',
@@ -26,7 +32,7 @@ describe('Testing Payment Capture, update', () => {
 			expect.objectContaining({
 				method: 'PUT',
 				headers: expectedHeaders,
-				body: JSON.stringify(capture.body),
+				body: JSON.stringify(expectedBody),
 			})
 		);
 	});
@@ -39,6 +45,10 @@ describe('Testing Payment Capture, update', () => {
 			},
 			config: client,
 		};
+		const expectedBody = {
+			capture: true,
+		};
+
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
 			'Content-Type': 'application/json',
@@ -50,7 +60,7 @@ describe('Testing Payment Capture, update', () => {
 			expect.objectContaining({
 				method: 'PUT',
 				headers: expectedHeaders,
-				body: JSON.stringify(capture.body),
+				body: JSON.stringify(expectedBody),
 			})
 		);
 	});

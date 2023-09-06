@@ -1,7 +1,6 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type Capture = {
-  capture?: boolean;
   transaction_amount?: number;
 };
 

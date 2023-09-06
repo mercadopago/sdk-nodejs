@@ -3,6 +3,11 @@ import type { PaymentCapture } from './types';
 import type { PaymentsResponse } from '../../payments/commonTypes';
 
 export default function update({ id,  body, config }: PaymentCapture): Promise<PaymentsResponse>  {
+	const updateBody = {
+		...body,
+		capture: true
+	};
+
 	return RestClient.fetch<PaymentsResponse>(
 		`/v1/payments/${id}`,
 		{
@@ -11,7 +16,7 @@ export default function update({ id,  body, config }: PaymentCapture): Promise<P
 				'Authorization': `Bearer ${config.accessToken}`,
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(body),
+			body: JSON.stringify(updateBody),
 			...config.options
 		}
 	);

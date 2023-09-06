@@ -1,16 +1,36 @@
+import { Address, Items } from '../commonTypes';
+
 export declare type MerchantAccount = {
   merchant_account_id: string;
 };
 
+export declare type Discount = {
+  type: string;
+  value: number;
+  limit_date: string;
+};
+
+export declare type Fee = {
+  type: string;
+  value: number;
+};
+
+export declare type Rules = {
+  discounts: Array<Discount>
+  fine: Fee;
+  interest: Fee;
+};
+
 export declare type Data = {
-  routing_data: MerchantAccount; // conferir
+  routing_data: MerchantAccount;
+  rules: Rules;
 };
 
 export declare type PaymentMethod = {
-  id: string; // repetido?
-  type: string; // repetido?
-  issuer_id: string; // repetido?
-  data: Data; // diferente da sdk de java
+  id: string;
+  type: string;
+  issuer_id: string;
+  data: Data;
 }
 
 export declare type Identification = {
@@ -27,7 +47,7 @@ export declare type Phone = {
 export declare type Payer = {
   type: string;
   id: string;
-  operator_id: null; // conferir
+  operator_id: any;
   email: string;
   identification: Identification;
   phone: Phone;
@@ -36,14 +56,37 @@ export declare type Payer = {
   entity_type: string;
 }
 
-// objeto diferente da sdk de java
+export declare type PayerAdditionalInfo = {
+  first_name: string;
+  last_name: string;
+  phone: Phone;
+  address: Address;
+  registration_date: string;
+};
+
+export declare type ShipmentsPayments = {
+  receiver_address: ShipmentsReceiverAddress;
+};
+
+export declare type ShipmentsReceiverAddress = {
+  floor: string;
+  apartment: string;
+  city_name: string;
+  state_name: string;
+};
+
 export declare type AdditionalInfo = {
-  available_balance: null,
-  nsu_processadora: null,
-  authentication_code: null
+  ip_address: string;
+  items: Array<Items>;
+  payer: PayerAdditionalInfo;
+  shipments: ShipmentsPayments;
+  available_balance: any,
+  nsu_processadora: any,
+  authentication_code: any
 };
 
 export declare type TransactionDetails = {
+  financial_instit_transaction_detution: string;
   payment_method_reference_id: string;
   acquirer_reference: string;
   net_received_amount: number;
@@ -52,7 +95,7 @@ export declare type TransactionDetails = {
   external_resource_url: string;
   installment_amount: number;
   financial_institution: string;
-  payable_deferral_period: string | null; // conferir
+  payable_deferral_period: any;
 }
 
 export declare type FeeDetails = {
@@ -81,8 +124,8 @@ export declare type ChargesDetail = {
   last_updated: string;
   amounts: Amounts;
   metadata: any;
-  reserve_id: null; // conferir
-  refund_charges: []; // conferir
+  reserve_id: any;
+  refund_charges: any[];
 }
 
 export declare type Cardholder = {
@@ -107,14 +150,55 @@ export declare type BusinessInfo = {
   sub_unit: string;
 };
 
+export declare type ApplicationData = {
+  version: string;
+  name: string;
+};
+
+export declare type PayerBankInfo = {
+  email: string;
+  account_id: number;
+  long_name: string;
+};
+
+export declare type CollectorBankInfo = {
+  account_id: number;
+  long_name: string;
+};
+
+export declare type BankInfo = {
+  payer: PayerBankInfo;
+  collector: CollectorBankInfo;
+  is_same_bank_account_owner: string;
+};
+
+export declare type TransactionData = {
+  qr_code: string;
+  qr_code_base64: string;
+  transaction_id: string;
+  bank_transfer_id: number;
+  financial_institution: number;
+  bankInfo: BankInfo;
+  ticket_url: string;
+};
+
 export declare type PointOfInteraction = {
   type: string;
+  sub_type: string;
+  linked_to: string;
+  application_data: ApplicationData;
+  transaction_data: TransactionData;
   business_info: BusinessInfo;
 };
 
 export declare type PaymentOrder = {
   id: number;
   type: string;
+};
+
+export declare type ThreeDSInfo = {
+  external_resource_url: string;
+  creq: string;
 };
 
 export declare type PaymentsResponse = {
@@ -150,8 +234,8 @@ export declare type PaymentsResponse = {
   payer: Payer;
   collector_id: number;
   metadata: any;
-  additional_info:AdditionalInfo; // diferente da sdk de java
-  order: PaymentOrder; // retorna {} vazio. copiei a estrutura de java.
+  additional_info:AdditionalInfo;
+  order: PaymentOrder;
   external_reference: string;
   transaction_amount: number;
   transaction_amount_refunded: number;
@@ -161,23 +245,24 @@ export declare type PaymentsResponse = {
   installments: number;
   transaction_details: TransactionDetails;
   fee_details: Array<FeeDetails>;
-  charges_details: Array<ChargesDetail>; // nao tem na sdk de java
+  charges_details: Array<ChargesDetail>;
   captured: boolean;
   binary_mode: boolean;
   call_for_authorize_id: string;
   statement_descriptor: string;
   card: Card;
   notification_url: string;
-  refunds: [];
+  refunds: any[];
   processing_mode: string;
   merchant_account_id: string;
   merchant_number: string;
-  point_of_interaction: PointOfInteraction; // objeto diferente da sdk de java
-  accounts_info: null; // conferir
-  tags: null; // conferir
-  financing_group: null; // conferir
-  marketplace_owner: null; // conferir
-  brand_id: null; // conferir
-  acquirer_reconciliation: []; // conferir
+  point_of_interaction: PointOfInteraction;
+  accounts_info: any;
+  tags: any;
+  financing_group: any;
+  marketplace_owner: any;
+  brand_id: any;
+  acquirer_reconciliation: any[];
+  three_ds_info: ThreeDSInfo;
 
 }

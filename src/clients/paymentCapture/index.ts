@@ -6,7 +6,7 @@ import type { PaymentsResponse } from '../payments/commonTypes';
 /**
  * Mercado Pago Payment Capture.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/docs/checkout-api/payment-management/make-value-reserve Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/docs/checkout-api/payment-management/make-value-reserve Documentation }.
  */
 export class PaymentCapture {
 	private config: MercadoPagoConfig;
@@ -21,7 +21,6 @@ export class PaymentCapture {
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentCapture/update/update.ts Usage Example  }.
    */
 	update({ id, body }: PaymentCaptureRequest): Promise<PaymentsResponse> {
-		body.capture = true;
 		return update({ id, body, config: this.config });
 	}
 }
