@@ -1,10 +1,9 @@
 /**
  * Mercado Pago Customer card create.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/reference/cards/_customers_customer_id_cards/post Documentation}.
+ * @see {@link https://www.mercadopago.com.br/developers/en/reference/cards/_customers_customer_id_cards/post Documentation}.
 */
-import { Customer } from '@src/clients/customers';
-import MercadoPago from '@src/index';
+import MercadoPago, { Customer } from '@src/index';
 
 const client = new MercadoPago({ accessToken: 'access_token' });
 const customerClient = new Customer(client);
