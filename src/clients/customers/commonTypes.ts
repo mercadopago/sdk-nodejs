@@ -1,5 +1,5 @@
 import type { Identification, Phone } from '../commonTypes';
-import type { CustomerCard } from '../customerCardssss/create/types';
+import type { CustomerCard } from '../customerCards/create/types';
 
 
 export declare type CustomerRequestBody = {

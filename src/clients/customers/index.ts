@@ -3,17 +3,17 @@ import create from './create';
 import remove from './remove';
 import update from './update';
 import search from './search';
-import { CustomerCard } from '@src/clients/customerCardssss';
+import { CustomerCard } from '@src/clients/customerCards';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Customer as CustomerObj } from './commonTypes';
 import type { CustomerCreate } from './create/types';
 import type { CustomerUpdate } from './update/types';
 import type { CustomerSearchOptions, CustomerSearchResultsPage } from './search/types';
-import type { CustomerCardCreate } from '../customerCardssss/create/types';
-import type { CustomerCardResponse } from '../customerCardssss/commonTypes';
-import type { CustomerCardIds } from '../customerCardssss/get/types';
-import type { CustomerCardId } from '../customerCardssss/list/types';
+import type { CustomerCardCreate } from '../customerCards/create/types';
+import type { CustomerCardResponse } from '../customerCards/commonTypes';
+import type { CustomerCardIds } from '../customerCards/get/types';
+import type { CustomerCardId } from '../customerCards/list/types';
 
 /**
  * Mercado Pago Customer.
