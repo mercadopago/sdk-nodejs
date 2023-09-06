@@ -3,3 +3,8 @@ export declare type Identification = {
   number: string;
   identification?: number;
 };
+
+export declare type Phone = {
+  area_code: string,
+  number: string
+}
