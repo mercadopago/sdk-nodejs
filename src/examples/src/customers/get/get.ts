@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Customer card get.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/reference/cards/_customers_customer_id_cards_id/get Documentation }.
+ * @see {@link https://www.mercadopago.com.br/developers/en/reference/cards/_customers_customer_id_cards_id/get Documentation }.
 */
 import MercadoPago, { Customer } from '@src/index';
 
