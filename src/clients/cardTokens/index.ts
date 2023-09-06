@@ -8,7 +8,7 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 /**
  * Mercado Pago CardTokens.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
  */
 export class CardToken {
 	private config: MercadoPagoConfig;

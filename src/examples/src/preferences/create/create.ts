@@ -3,7 +3,7 @@ import MercadoPago, { Preference } from '@src/index';
 /**
  * Mercado Pago Preference.
  *
- * @see {@link https://www.mercadopago.com.br/developers/pt/reference/preferences/_checkout_preferences/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/preferences/_checkout_preferences/post Documentation }.
  */
 
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000 } });

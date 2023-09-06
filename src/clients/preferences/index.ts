@@ -12,7 +12,7 @@ import type { PreferenceRequest, PreferenceResponse } from './commonTypes';
 /**
  * Mercado Pago Preference.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
  */
 export class Preference {
 	private config: MercadoPagoConfig;

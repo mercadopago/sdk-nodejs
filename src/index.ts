@@ -3,6 +3,7 @@ export default MercadoPagoConfig;
 
 export { CardToken } from './clients/cardTokens';
 export { CustomerCard } from './clients/customer';
+export { PaymentsRefunds } from './clients/paymentsRefunds';
 export { IdentificationType } from './clients/identificationTypes';
 export { PaymentMethod } from './clients/paymentMethods';
 export { Payments } from './clients/payments';
