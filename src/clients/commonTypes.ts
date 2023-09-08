@@ -20,3 +20,8 @@ export declare type Items = {
   currency_id?: string;
   unit_price: number;
 };
+
+export declare type Phone = {
+  area_code: string,
+  number: string
+}
