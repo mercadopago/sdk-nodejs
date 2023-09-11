@@ -28,23 +28,24 @@ That's it! Mercado Pago SDK has been successfully installed.
   Simple usage looks like:
 
 ```javascript
-var mercadopago = require('mercadopago');
-mercadopago.configure({
-    access_token: 'YOUR_ACCESS_TOKEN'
-});
+// Step 1: Require the parts of the module you want to use
+import MercadoPago, { CardToken } from 'mercadopago';
 
-var preference = {
-  items: [
-    {
-      title: 'Test',
-      quantity: 1,
-      currency_id: 'ARS',
-      unit_price: 10.5
-    }
-  ]
+// Step 2: Initialize the client object
+const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000, idempotencyKey: 'abc' } });
+
+// Step 3: Initialize the API object
+const cardToken = new CardToken(client);
+
+// Step 4: Create the request object
+const body = {
+	card_id : 'card_id',
+	security_code : 'security_code'
 };
 
-mercadopago.preferences.create(preference)
+// Step 5: Make the request
+cardToken.create({ cardTokenBody : body })
+	.then((result) => console.log(result));
 ```
 
 ## 📚 Documentation 

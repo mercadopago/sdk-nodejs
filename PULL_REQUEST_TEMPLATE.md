@@ -18,7 +18,7 @@
 
 ## 📸 Screenshots
 
-- Before and after, if it's a fix.
+- Before and after, if it's a fix for a bug.
 
 ## 📄 References
 
