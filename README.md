@@ -62,7 +62,7 @@ Initialize the client object, passing the following:
 - `accessToken`: Application's private key.
 - `options`: These are optional fields,
   - `timeout`: Are the timeout of requests
-  - `idempotencyKey`: .
+  - `idempotencyKey`: [Idempotency](https://en.wikipedia.org/wiki/Idempotence) Is for retrying requests without accidentally performing the same operation twice
 
 For example:
 
