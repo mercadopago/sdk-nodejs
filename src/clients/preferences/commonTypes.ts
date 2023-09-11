@@ -1,14 +1,8 @@
-import type { Identification } from '@src/clients/commonTypes';
+import type { Address, Identification, Items } from '@src/clients/commonTypes';
 
 export declare type Phone = {
   area_code?: string;
   number?: string;
-};
-
-export declare type Address = {
-  zip_code?: string;
-  street_name?: string;
-  street_number?: number;
 };
 
 export declare type Payer = {
@@ -24,17 +18,6 @@ export declare type Payer = {
 
 export declare type DifferentialPricing = {
   id?: number;
-};
-
-export declare type Items = {
-  id: string;
-  title: string;
-  description?: string;
-  picture_url?: string;
-  category_id?: string;
-  quantity: number;
-  currency_id?: string;
-  unit_price: number;
 };
 
 export declare type ReceiverAddress = {
