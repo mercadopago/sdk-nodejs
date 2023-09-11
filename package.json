@@ -34,6 +34,7 @@
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.8",
     "@types/node-fetch": "^2.6.4",
+    "@types/uuid": "^9.0.3",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.46.0",
@@ -50,6 +51,7 @@
     "dist"
   ],
   "dependencies": {
-    "node-fetch": "^2.6.12"
+    "node-fetch": "^2.6.12",
+    "uuid": "^9.0.0"
   }
 }

@@ -4,5 +4,6 @@ export declare type Config = {
 };
 
 export declare type Options = {
-  timeout: number;
+  timeout?: number;
+  idempotencyKey?: string;
 };
