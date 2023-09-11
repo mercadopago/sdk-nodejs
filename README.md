@@ -58,7 +58,7 @@ Check our [official code reference](https://mercadopago.github.io/sdk-nodejs/) t
 
 ## 🤝 Contributing
 
-All contributions are welcome, ranging from people wanting to triage issues, others wanting to write documentation, to people wanting to contribute code.
+All contributions are welcome, ranging from people wanting to triage issues, others wanting to write documentation, to people wanting to contribute with code.
 
 Please read and follow our [contribution guidelines](CONTRIBUTING.md). Contributions not following these guidelines will be disregarded. The guidelines are in place to make all of our lives easier and make contribution a consistent process for everyone.
 
