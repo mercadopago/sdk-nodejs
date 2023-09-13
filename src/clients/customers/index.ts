@@ -18,7 +18,7 @@ import type { CustomerCardId } from '../customerCards/list/types';
 /**
  * Mercado Pago Customer.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/customers/_customers/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/customers/_customers/post Documentation }.
  */
 export class Customer {
 	private config: MercadoPagoConfig;
