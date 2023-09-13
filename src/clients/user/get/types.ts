@@ -54,7 +54,7 @@ export declare type UserResponse = {
       ratings: {
         negative: number;
         neutral: number;
-        positive: number
+        positive: number;
       };
       total: number;
     };
@@ -63,21 +63,9 @@ export declare type UserResponse = {
         period: string;
         completed: number;
       };
-      claims: {
-        period: string;
-        rate: number;
-        value: number;
-      };
-      delayed_handling_time: {
-        period: string;
-        rate: number;
-        value: number;
-      };
-      cancellations: {
-        period: string;
-        rate: number;
-        value: number;
-      };
+      claims: SellerReputationMetrics;
+      delayed_handling_time: SellerReputationMetrics;
+      cancellations: SellerReputationMetrics;
     };
   };
   buyer_reputation: {
@@ -86,13 +74,13 @@ export declare type UserResponse = {
     transactions: {
       canceled: {
         paid: number | null;
-        total: number | null
+        total: number | null;
       };
       completed: number | null;
       not_yet_rated: {
         paid: number | null;
         total: number | null;
-        units: number | null
+        units: number | null;
       };
       period: string;
       total: number | null;
@@ -110,10 +98,7 @@ export declare type UserResponse = {
     buy: {
       allow: boolean;
       codes: string[];
-      immediate_payment: {
-        reasons: string[];
-        required: boolean;
-      };
+      immediate_payment: StatusImmediate_payment;
     };
     confirmed_email: boolean;
     shopping_cart: {
@@ -124,10 +109,7 @@ export declare type UserResponse = {
     list: {
       allow: boolean;
       codes: string[];
-      immediate_payment: {
-        reasons: string[];
-        required: boolean;
-      };
+      immediate_payment: StatusImmediate_payment;
     };
     mercadoenvios: string;
     mercadopago_account_type: string;
@@ -136,10 +118,7 @@ export declare type UserResponse = {
     sell: {
       allow: boolean;
       codes: string[];
-      immediate_payment: {
-        reasons: string[];
-        required: boolean;
-      };
+      immediate_payment: StatusImmediate_payment;
     };
     site_status: string;
     user_type: string;
@@ -164,4 +143,15 @@ export declare type UserResponse = {
   };
   registration_identifiers: string[];
   countryId: string;
+};
+
+export declare type SellerReputationMetrics = {
+  period: string;
+  rate: number;
+  value: number;
+};
+
+export declare type StatusImmediate_payment = {
+  reasons: string[];
+  required: boolean;
 };
