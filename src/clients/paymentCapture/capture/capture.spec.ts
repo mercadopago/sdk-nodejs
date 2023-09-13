@@ -1,4 +1,4 @@
-import update from '.';
+import capture from '.';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
 import type { PaymentCapture } from './types';
@@ -8,7 +8,7 @@ jest.mock('@utils/restClient');
 describe('Testing Payment Capture, update', () => {
 	test('should successfully make a request with "transaction_amount" in the body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
-		const capture: PaymentCapture = {
+		const body: PaymentCapture = {
 			id: '1234',
 			body: {
 				transaction_amount: 75,
@@ -25,10 +25,10 @@ describe('Testing Payment Capture, update', () => {
 			'Authorization': 'Bearer token',
 			'Content-Type': 'application/json',
 		};
-		await update(capture);
+		await capture(body);
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
-			`/v1/payments/${capture.id}`,
+			`/v1/payments/${body.id}`,
 			expect.objectContaining({
 				method: 'PUT',
 				headers: expectedHeaders,
@@ -39,7 +39,7 @@ describe('Testing Payment Capture, update', () => {
 
 	test('should successfully make a request with an empty body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
-		const capture: PaymentCapture = {
+		const body: PaymentCapture = {
 			id: '1234',
 			body: {
 			},
@@ -53,10 +53,10 @@ describe('Testing Payment Capture, update', () => {
 			'Authorization': 'Bearer token',
 			'Content-Type': 'application/json',
 		};
-		await update(capture);
+		await capture(body);
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
-			`/v1/payments/${capture.id}`,
+			`/v1/payments/${body.id}`,
 			expect.objectContaining({
 				method: 'PUT',
 				headers: expectedHeaders,
