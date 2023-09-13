@@ -107,6 +107,6 @@ export class Customer {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/listcards/listcards.ts Usage Example  }.
 	 */
 	listCards({ customerId }: CustomerCardId): Promise<CustomerCardResponse[]> {
-		return this.customerCard.listAll({ customerId });
+		return this.customerCard.list({ customerId });
 	}
 }
