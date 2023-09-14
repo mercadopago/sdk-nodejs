@@ -24,27 +24,27 @@ export declare type UserResponse = {
     zip_code: string | null;
   };
   phone: {
-    areaCode: string;
+    area_code: string;
     extension: string;
     number: string;
     verified: boolean;
   };
-  alternativePhone: {
-    areaCode: string;
+  alternative_phone: {
+    area_code: string;
     extension: string;
     number: string;
   };
   tags: string[];
-  userType?: string;
+  user_type?: string;
   logo?: string;
   points?: number;
-  siteId: string;
+  site_id: string;
   permalink?: string;
-  sellerExperience?: string;
+  seller_experience?: string;
   bill_data: {
-    acceptCreditNote?: string;
+    accept_credit_note?: string;
   };
-  sellerReputation: {
+  seller_reputation: {
     level_id: string | null;
     power_seller_status: string | null;
     transactions: {
@@ -142,7 +142,7 @@ export declare type UserResponse = {
     ip_address: string;
   };
   registration_identifiers: string[];
-  countryId: string;
+  country_id: string;
 };
 
 export declare type SellerReputationMetrics = {
