@@ -2,7 +2,7 @@ import get from './get';
 import create from './create';
 import remove from './remove';
 import update from './update';
-import listAll from './list';
+import list from './list';
 
 import type { CustomerCardCreate } from './create/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
@@ -64,7 +64,7 @@ export class CustomerCard {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
 	 */
-	listAll({ customerId }: CustomerCardId): Promise<CustomerCardResponse[]> {
-		return listAll({ customerId: customerId, config: this.config });
+	list({ customerId }: CustomerCardId): Promise<CustomerCardResponse[]> {
+		return list({ customerId: customerId, config: this.config });
 	}
 }

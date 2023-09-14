@@ -18,7 +18,7 @@ import type { CustomerCardId } from '../customerCards/list/types';
 /**
  * Mercado Pago Customer.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/customers/_customers/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/customers/_customers/post Documentation }.
  */
 export class Customer {
 	private config: MercadoPagoConfig;
@@ -107,6 +107,6 @@ export class Customer {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/listcards/listcards.ts Usage Example  }.
 	 */
 	listCards({ customerId }: CustomerCardId): Promise<CustomerCardResponse[]> {
-		return this.customerCard.listAll({ customerId });
+		return this.customerCard.list({ customerId });
 	}
 }

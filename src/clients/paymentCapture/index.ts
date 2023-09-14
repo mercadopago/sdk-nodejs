@@ -1,6 +1,6 @@
-import update from './update';
+import capture from './capture';
 import type { MercadoPagoConfig } from '../../mercadoPagoConfig';
-import type { PaymentCaptureRequest } from './update/types';
+import type { PaymentCaptureRequest } from './capture/types';
 import type { PaymentsResponse } from '../payments/commonTypes';
 
 /**
@@ -20,7 +20,7 @@ export class PaymentCapture {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentCapture/update/update.ts Usage Example  }.
    */
-	update({ id, body }: PaymentCaptureRequest): Promise<PaymentsResponse> {
-		return update({ id, body, config: this.config });
+	capture({ id, body }: PaymentCaptureRequest): Promise<PaymentsResponse> {
+		return capture({ id, body, config: this.config });
 	}
 }
