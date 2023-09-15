@@ -9,4 +9,4 @@ const client = new MercadoPago({ accessToken: 'access_token' });
 
 const identificationType = new IdentificationType(client);
 
-identificationType.get().then((result) => console.log(result));
+identificationType.list().then((result) => console.log(result));

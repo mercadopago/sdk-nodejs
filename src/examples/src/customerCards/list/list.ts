@@ -8,5 +8,5 @@ import MercadoPago, { CustomerCard } from '@src/index';
 const client = new MercadoPago({ accessToken: 'access_token' });
 const customerClient = new CustomerCard(client);
 
-customerClient.listAll({ customerId: 'customer_id' })
+customerClient.list({ customerId: 'customer_id' })
 	.then((result) => console.log(result));
