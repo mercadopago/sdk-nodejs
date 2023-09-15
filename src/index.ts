@@ -8,5 +8,6 @@ export { PaymentsRefunds } from './clients/paymentsRefunds';
 export { IdentificationType } from './clients/identificationTypes';
 export { PaymentMethod } from './clients/paymentMethods';
 export { Payments } from './clients/payments';
+export { PreApprovalPlan } from './clients/preApprovalPlans';
 export { Preference } from './clients/preferences';
 export { PaymentCapture } from './clients/paymentCapture';
