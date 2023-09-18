@@ -52,3 +52,9 @@ export declare type ReceiverAddress = {
   state_name?: string;
   country_name?: string;
 };
+
+export declare type Paging = {
+  total: number;
+  offset: number;
+  limit: number;
+};
