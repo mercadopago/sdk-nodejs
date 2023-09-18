@@ -10,5 +10,5 @@ export default function getAuthorizationURL({ filters }: GetAuthorizationRequest
 		};
 
 	const AUTH_HOST = 'https://auth.mercadopago.com/authorization';
-	return RestClient.appendQueryParamsToUrl(AUTH_HOST, defaultFilters); // aqui quando testo sem console.log, nao retorna nada no terminal.
+	return RestClient.appendQueryParamsToUrl(AUTH_HOST, defaultFilters);
 }

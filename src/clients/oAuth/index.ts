@@ -28,7 +28,7 @@ export class OAuth {
 		return create({ oauthRequest, config: this.config });
 	}
 
-  	/**
+	/**
 	 * Mercado Pago OAuth Refresh.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/oauth/refresh/refresh.ts Usage Example  }.
@@ -37,7 +37,7 @@ export class OAuth {
 		return refresh({ oauthRequest, config: this.config });
 	}
 
-  	/**
+	/**
 	 * Mercado Pago OAuth getAuthorizationURL.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/oauth/getAuthorizationURL/getAuthorizationURL.ts Usage Example  }.

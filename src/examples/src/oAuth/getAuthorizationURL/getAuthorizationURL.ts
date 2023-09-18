@@ -10,8 +10,10 @@ const client = new MercadoPago({ accessToken: 'access_token', options: { timeout
 
 const oauth = new OAuth(client);
 
-oauth.getAuthorizationURL({
+const getCode = oauth.getAuthorizationURL({
 	client_id: '<your-client-id>',
 	state: '12345',
 	redirect_uri: 'redirect-uri',
 });
+
+console.log(getCode);
