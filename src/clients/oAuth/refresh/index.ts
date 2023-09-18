@@ -1,8 +1,8 @@
 import { RestClient } from '@utils/restClient';
-import type { RefreshOAuthRequest } from './types';
+import type { OAuthRefreshRequest } from './types';
 import type { OAuthResponse } from '../commonTypes';
 
-export default function refresh({ oauthRequest, config }: RefreshOAuthRequest): Promise<OAuthResponse> {
+export default function refresh({ oauthRequest, config }: OAuthRefreshRequest): Promise<OAuthResponse> {
 	const defaultRequest = {
 		...oauthRequest,
 		'grant_type': 'refresh_token',

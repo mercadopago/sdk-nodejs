@@ -4,7 +4,7 @@ import create from './create';
 import refresh from './refresh';
 import getAuthorizationURL from './getAuthorizationURL';
 import { AuthorizationRequest } from './getAuthorizationURL/types';
-import { RefreshOAuth } from './refresh/types';
+import { OAuthRefresh } from './refresh/types';
 import { OAuthResponse } from './commonTypes';
 
 /**
@@ -33,7 +33,7 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/oauth/refresh/refresh.ts Usage Example  }.
 	 */
-	refresh(oauthRequest: RefreshOAuth): Promise<OAuthResponse> {
+	refresh(oauthRequest: OAuthRefresh): Promise<OAuthResponse> {
 		return refresh({ oauthRequest, config: this.config });
 	}
 
