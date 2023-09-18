@@ -9,4 +9,3 @@ export { IdentificationType } from './clients/identificationTypes';
 export { PaymentMethod } from './clients/paymentMethods';
 export { Payments } from './clients/payments';
 export { Preference } from './clients/preferences';
-export { PaymentCapture } from './clients/paymentCapture';
