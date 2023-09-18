@@ -1,7 +1,7 @@
-import get from './get';
+import list from './list';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { IdentificationTypeResponse } from './get/types';
+import type { IdentificationTypeResponse } from './list/types';
 
 /**
  * Mercado Pago IdentificationTypes.
@@ -18,9 +18,9 @@ export class IdentificationType {
 	/**
    * Mercado Pago Identification Types get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/identificationtypes/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/identificationtypes/list.ts Usage Example  }.
    */
-	get(): Promise<IdentificationTypeResponse[]> {
-		return get({ config: this.config });
+	list(): Promise<IdentificationTypeResponse[]> {
+		return list({ config: this.config });
 	}
 }
