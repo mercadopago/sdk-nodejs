@@ -1,3 +1,4 @@
+import { Paging } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Customer } from '../commonTypes';
 
@@ -13,10 +14,4 @@ export declare type CustomerSearchOptions = {
 export declare type CustomerSearchResultsPage = {
   results: Customer[];
   paging: Paging;
-};
-
-export declare type Paging = {
-  total: number;
-  offset: number;
-  limit: number;
 };
