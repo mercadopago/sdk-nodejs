@@ -1,7 +1,7 @@
 /**
  * Mercado Pago MerchantOrder create.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/merchant_orders/_merchant_orders/post Documentation}.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/merchant_orders/_merchant_orders/post Documentation}.
 */
 import { MerchantOrder } from '@src/index';
 import MercadoPago from '@src/index';

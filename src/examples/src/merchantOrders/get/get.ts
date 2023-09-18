@@ -1,7 +1,7 @@
 /**
  * Mercado Pago MerchantOrder get.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/cards/_customers_customer_id_cards_id/get Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/cards/_customers_customer_id_cards_id/get Documentation }.
 */
 import MercadoPago, { MerchantOrder } from '@src/index';
 

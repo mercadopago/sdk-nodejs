@@ -1,7 +1,7 @@
 /**
  * Mercado Pago MerchantOrder card update.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/merchant_orders/_merchant_orders_id/put Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/merchant_orders/_merchant_orders_id/put Documentation }.
 */
 import MercadoPago, { MerchantOrder } from '@src/index';
 

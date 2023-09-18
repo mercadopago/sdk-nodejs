@@ -11,7 +11,7 @@ import type { MerchantOrderSearchOptions, MerchantOrderSearchResultsPage } from 
 /**
  * Mercado Pago Merchant Order.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/merchant_orders/_merchant_orders/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/merchant_orders/_merchant_orders/post Documentation }.
  */
 export class MerchantOrder {
 	private config: MercadoPagoConfig;
