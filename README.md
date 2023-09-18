@@ -1,3 +1,6 @@
+
+![SDK Node MErcado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/f0e9b85d-1a9f-4c04-a958-0e8f855fe792)
+
 # Mercado Pago SDK for NodeJS
 
 [![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
@@ -19,7 +22,7 @@ First time using Mercado Pago? Create your [Mercado Pago account](https://www.me
 $ npm install --save mercadopago
 ```
 
-2. Copy the access_token in the [credentials](https://www.mercadopago.com.br/developers/pt/docs/your-integrations/credentials) section of the page and replace YOUR_ACCESS_TOKEN with it.
+2. Copy the access_token in the [credentials](https://www.mercadopago.com/developers/en/docs/your-integrations/credentials) section of the page and replace YOUR_ACCESS_TOKEN with it.
 
 That's it! Mercado Pago SDK has been successfully installed.
 

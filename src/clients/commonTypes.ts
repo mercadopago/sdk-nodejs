@@ -25,3 +25,9 @@ export declare type Phone = {
   area_code: string,
   number: string
 }
+
+export declare type Paging = {
+  total: number;
+  offset: number;
+  limit: number;
+};
