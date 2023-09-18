@@ -125,37 +125,35 @@ export declare type BuyerReputationTransactionsWithUnits = {
 };
 
 export declare type Status = {
-  billing: {
-    allow: boolean;
-    codes: string[];
-  };
-  buy: {
-    allow: boolean;
-    codes: string[];
-    immediate_payment: StatusImmediatePayment;
-  };
+  billing: StatusBilling;
+  buy: StatusAllowImmediatePayments;
   confirmed_email: boolean;
-  shopping_cart: {
-    buy: string;
-    sell: string;
-  };
+  shopping_cart: StatusShoppingCart;
   immediate_payment: boolean;
-  list: {
-    allow: boolean;
-    codes: string[];
-    immediate_payment: StatusImmediatePayment;
-  };
+  list: StatusAllowImmediatePayments;
   mercadoenvios: string;
   mercadopago_account_type: string;
   mercadopago_tc_accepted: boolean;
   required_action: string | null;
-  sell: {
-    allow: boolean;
-    codes: string[];
-    immediate_payment: StatusImmediatePayment;
-  };
+  sell: StatusAllowImmediatePayments;
   site_status: string;
   user_type: string;
+};
+
+export declare type StatusBilling = {
+  allow: boolean;
+  codes: string[];
+};
+
+export declare type StatusShoppingCart = {
+  buy: string;
+  sell: string;
+};
+
+export declare type StatusAllowImmediatePayments = {
+  allow: boolean;
+  codes: string[];
+  immediate_payment: StatusImmediatePayment;
 };
 
 export declare type Company = {
