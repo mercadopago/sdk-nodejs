@@ -4,7 +4,7 @@ import { RestClient } from '@utils/restClient';
 jest.mock('@utils/restClient');
 
 describe('Testing oAuth, getAuthorizationURL', () => {
-	test('should make a SEARCH request with the correct parameters', async () => {
+	test('should append query params to url ', async () => {
 
 		const authorization = {
 			filters: {

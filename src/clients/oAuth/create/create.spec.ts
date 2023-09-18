@@ -6,7 +6,7 @@ import create from '.';
 jest.mock('@utils/restClient');
 
 describe('Testing OAuth, create', () => {
-	test('should make a POST request with the correct parameters', async () => {
+	test('should make a request with the input params and add grant_type', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		const oauthRequest: OAuthRequest = {
 			client_secret: '',

@@ -6,7 +6,7 @@ import refresh from '.';
 jest.mock('@utils/restClient');
 
 describe('Testing OAuth, refresh', () => {
-	test('should make a POST request with the correct parameters', async () => {
+	test('should make a request with input params and add grant_type', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		const oauthRequest: OAuthRefresh = {
 			client_secret: '',
