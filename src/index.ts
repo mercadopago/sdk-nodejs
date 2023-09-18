@@ -10,3 +10,4 @@ export { PaymentMethod } from './clients/paymentMethods';
 export { Payments } from './clients/payments';
 export { Preference } from './clients/preferences';
 export { PaymentCapture } from './clients/paymentCapture';
+export { OAuth } from './clients/oAuth';
