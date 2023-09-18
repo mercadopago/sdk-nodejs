@@ -68,49 +68,60 @@ export declare type BillData = {
 export declare type SellerReputation = {
   level_id: string | null;
   power_seller_status: string | null;
-  transactions: {
-    canceled: number;
-    completed: number;
-    period: string;
-    ratings: {
-      negative: number;
-      neutral: number;
-      positive: number;
-    };
-    total: number;
-  };
-  metrics: {
-    sales: {
-      period: string;
-      completed: number;
-    };
-    claims: SellerReputationMetrics;
-    delayed_handling_time: SellerReputationMetrics;
-    cancellations: SellerReputationMetrics;
-  };
+  transactions: SellerReputationTransactions;
+  metrics: SellerReputationMetrics;
+};
+
+export declare type SellerReputationMetrics = {
+  sales: SellerReputationMetricsSales;
+  claims: SellerReputationMetricsRating;
+  delayed_handling_time: SellerReputationMetricsRating;
+  cancellations: SellerReputationMetricsRating;
+};
+
+export declare type SellerReputationMetricsSales = {
+  period: string;
+  completed: number;
+};
+
+export declare type SellerReputationTransactions = {
+  canceled: number;
+  completed: number;
+  period: string;
+  ratings: SellerReputationTransactionsRatings;
+  total: number;
+};
+
+export declare type SellerReputationTransactionsRatings = {
+  negative: number;
+  neutral: number;
+  positive: number;
 };
 
 export declare type BuyerReputation = {
   canceled_transactions: number;
   tags: string[];
-  transactions: {
-    canceled: {
-      paid: number | null;
-      total: number | null;
-    };
-    completed: number | null;
-    not_yet_rated: {
-      paid: number | null;
-      total: number | null;
-      units: number | null;
-    };
-    period: string;
-    total: number | null;
-    unrated: {
-      paid: number | null;
-      total: number | null;
-    };
-  };
+  transactions: BuyerReputationTransactions;
+};
+
+export declare type BuyerReputationTransactions = {
+  canceled: BuyerReputationTransactionsWithoutUnits;
+  completed: number | null;
+  not_yet_rated: BuyerReputationTransactionsWithUnits;
+  period: string;
+  total: number | null;
+  unrated: BuyerReputationTransactionsWithoutUnits;
+};
+
+export declare type BuyerReputationTransactionsWithoutUnits = {
+  paid: number | null;
+  total: number | null;
+};
+
+export declare type BuyerReputationTransactionsWithUnits = {
+  paid: number | null;
+  total: number | null;
+  units: number | null;
 };
 
 export declare type Status = {
@@ -167,7 +178,7 @@ export declare type Context = {
   ip_address: string;
 };
 
-export declare type SellerReputationMetrics = {
+export declare type SellerReputationMetricsRating = {
   period: string;
   rate: number;
   value: number;
