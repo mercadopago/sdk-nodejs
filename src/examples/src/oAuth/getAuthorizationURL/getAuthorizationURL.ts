@@ -1,3 +1,9 @@
+/**
+ * Mercado Pago OAuth getAuthorizationURL.
+ *
+ * @see {@link https://www.mercadopago.com/developers/en/reference/oauth/_oauth_token/post Documentation }.
+ */
+
 import MercadoPago, { OAuth } from '@src/index';
 
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000 } });
