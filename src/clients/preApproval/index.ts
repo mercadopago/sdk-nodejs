@@ -16,7 +16,7 @@ export class PreApproval {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/create/create.ts Usage Example  }.
    */
-	create(preApprovalRequest: PreApprovalRequest): Promise<PreApprovalResponse> {
-		return create({ preApprovalRequest, config: this.config });
+	create(body: PreApprovalRequest): Promise<PreApprovalResponse> {
+		return create({ body, config: this.config });
 	}
 }

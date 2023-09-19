@@ -8,7 +8,7 @@ jest.mock('@utils/restClient');
 describe('Testing preApproval , create', () => {
 	test('should make a POST request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const preApprovalRequest: PreApprovalRequest = {
+		const body: PreApprovalRequest = {
 			reason: 'test',
 			external_reference: 'S01',
 			payer_email: 'test@testuser.com',
@@ -27,14 +27,14 @@ describe('Testing preApproval , create', () => {
 			'Content-Type': 'application/json',
 		};
 
-		await create({ preApprovalRequest, config : client });
+		await create({ body, config : client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
 			'/preapproval/',
 			expect.objectContaining({
 				method: 'POST',
 				headers: expectedHeaders,
-				body: JSON.stringify(preApprovalRequest),
+				body: JSON.stringify(body),
 			})
 		);
 
