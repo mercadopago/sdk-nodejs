@@ -1,7 +1,9 @@
 import create from './create';
 import get from './get';
+import search from './search';
 
 import { PreApprovalRequest, PreApprovalResponse } from './commonTypes';
+import type { PreApprovalSearchOptions, PreApprovalSearchResponse } from './search/types';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
@@ -15,7 +17,7 @@ export class PreApproval {
 	/**
    * Mercado Pago Create.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/create/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapproval/create/create.ts Usage Example  }.
    */
 	create(body: PreApprovalRequest): Promise<PreApprovalResponse> {
 		return create({ body, config: this.config });
@@ -24,9 +26,18 @@ export class PreApproval {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/get/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapproval/get/get.ts Usage Example  }.
    */
 	get({ id }): Promise<PreApprovalResponse> {
 		return get({ id, config: this.config });
+	}
+
+	/**
+   * Mercado Pago Search.
+   *
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapproval/search/search.ts Usage Example  }.
+   */
+	search(filters?: PreApprovalSearchOptions): Promise<PreApprovalSearchResponse> {
+		return search({ filters, config: this.config });
 	}
 }
