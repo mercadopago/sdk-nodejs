@@ -10,6 +10,7 @@
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,tsx}' 'src/examples/**/*.{ts,tsx}' --cache",
     "lint:fix": "eslint --fix --ext .ts src src/examples",
+    "exec": "node_modules/.bin/ts-node -r tsconfig-paths/register",
     "prepare": "husky install"
   },
   "repository": {

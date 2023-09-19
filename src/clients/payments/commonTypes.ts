@@ -1,4 +1,4 @@
-import { Address, Items } from '../commonTypes';
+import type { Address, Items } from '../commonTypes';
 
 export declare type MerchantAccount = {
   merchant_account_id: string;
@@ -34,8 +34,8 @@ export declare type PaymentMethod = {
 }
 
 export declare type Identification = {
-  type: string;
-  number: string;
+  type?: string;
+  number?: string;
 }
 
 export declare type Phone = {
@@ -45,15 +45,16 @@ export declare type Phone = {
 }
 
 export declare type Payer = {
-  type: string;
-  id: string;
-  operator_id: any;
+  type?: string;
+  id?: string;
+  operator_id?: any;
   email: string;
-  identification: Identification;
-  phone: Phone;
-  first_name: string;
-  last_name: string;
-  entity_type: string;
+  identification?: Identification;
+  phone?: Phone;
+  first_name?: string;
+  last_name?: string;
+  entity_type?: string;
+  address?: Address;
 }
 
 export declare type PayerAdditionalInfo = {
@@ -264,5 +265,5 @@ export declare type PaymentsResponse = {
   brand_id: any;
   acquirer_reconciliation: any[];
   three_ds_info: ThreeDSInfo;
-
 }
+
