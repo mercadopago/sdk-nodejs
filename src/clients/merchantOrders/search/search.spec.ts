@@ -15,7 +15,7 @@ describe('Testing customer, search', () => {
 
 		await search({ filters: searchFilters, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith('/v1/merchant_orders/search', {
+		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders/search', {
 			'headers': { 'Authorization': 'Bearer token' }, 
 			'queryParams': { 'application_id': '10000000000000000' },
 			'timeout': 5000 });

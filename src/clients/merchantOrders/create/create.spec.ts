@@ -33,7 +33,7 @@ describe('Testing merchantOrder, create', () => {
 
 		await create({ body, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith('/v1/merchant_orders', { 
+		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders', { 
 			'body': JSON.stringify(body), 
 			'headers': { 'Authorization': 'Bearer token' }, 
 			'method': 'POST', 'timeout': 5000 });

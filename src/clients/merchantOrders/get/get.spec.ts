@@ -9,6 +9,6 @@ describe('Testing merchantOrder, get', () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		await get({ merchantOrderId: '123', config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith('/v1/merchant_orders/123', { 'headers': { 'Authorization': 'Bearer token' }, 'timeout': 5000 });
+		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders/123', { 'headers': { 'Authorization': 'Bearer token' }, 'timeout': 5000 });
 	});
 });

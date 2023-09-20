@@ -4,7 +4,7 @@ import type { MerchantOrder } from '../commonTypes';
 
 export default function create({ body, config }: MerchantOrderCreateRequest): Promise<MerchantOrder> {
 	return RestClient.fetch<MerchantOrder>(
-		'/v1/merchant_orders',
+		'/merchant_orders',
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

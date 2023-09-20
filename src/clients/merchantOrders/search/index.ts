@@ -3,7 +3,7 @@ import type { MerchantOrderSearchRequest, MerchantOrderSearchResultsPage } from 
 
 export default function search({ filters, config }: MerchantOrderSearchRequest): Promise<MerchantOrderSearchResultsPage> {
 	return RestClient.fetch<MerchantOrderSearchResultsPage>(
-		'/v1/merchant_orders/search',
+		'/merchant_orders/search',
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

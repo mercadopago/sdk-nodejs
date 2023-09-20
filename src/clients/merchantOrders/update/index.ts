@@ -4,7 +4,7 @@ import type { MerchantOrderUpdateRequest } from './types';
 
 export default function update({ merchantOrderId, body, config }: MerchantOrderUpdateRequest): Promise<MerchantOrder> {
 	return RestClient.fetch<MerchantOrder>(
-		`/v1/merchant_orders/${merchantOrderId}`,
+		`/merchant_orders/${merchantOrderId}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

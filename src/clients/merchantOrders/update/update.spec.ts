@@ -34,7 +34,7 @@ describe('Testing merchantOrder, update', () => {
 		await update({ merchantOrderId: '123', body, config: client });
 
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith( '/v1/merchant_orders/123', { 
+		expect(spyFetch).toHaveBeenCalledWith( '/merchant_orders/123', { 
 			'body': JSON.stringify(body),
 			'headers': { 'Authorization': 'Bearer token' }, 'method': 'PUT', 'timeout': 5000 });
 	});

@@ -1,5 +1,5 @@
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
+import type { MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
 
 export declare type MerchantOrderCreate = {
   body: MerchantOrderCreateRequestBody;
