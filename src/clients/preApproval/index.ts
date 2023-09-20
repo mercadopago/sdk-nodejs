@@ -8,6 +8,7 @@ import type { PreApprovalSearchOptions, PreApprovalSearchResponse } from './sear
 import type { PreApprovalUpdateOptions, PreApprovalUpdateResponse } from './update/types';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options } from '@src/types';
 
 export class PreApproval {
 	private config: MercadoPagoConfig;
@@ -21,7 +22,8 @@ export class PreApproval {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/create/create.ts Usage Example  }.
    */
-	create(body: PreApprovalRequest): Promise<PreApprovalResponse> {
+	create(body: PreApprovalRequest, requestOptions?: Options): Promise<PreApprovalResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ body, config: this.config });
 	}
 
@@ -30,7 +32,8 @@ export class PreApproval {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/get/get.ts Usage Example  }.
    */
-	get({ id }): Promise<PreApprovalResponse> {
+	get({ id }, requestOptions?: Options): Promise<PreApprovalResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id, config: this.config });
 	}
 
@@ -39,7 +42,8 @@ export class PreApproval {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/search/search.ts Usage Example  }.
    */
-	search(filters?: PreApprovalSearchOptions): Promise<PreApprovalSearchResponse> {
+	search(filters?: PreApprovalSearchOptions, requestOptions?: Options): Promise<PreApprovalSearchResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ filters, config: this.config });
 	}
 
@@ -48,7 +52,8 @@ export class PreApproval {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/update/update.ts Usage Example  }.
    */
-	update({ id, body }: PreApprovalUpdateOptions): Promise<PreApprovalUpdateResponse> {
+	update({ id, body }: PreApprovalUpdateOptions, requestOptions?: Options): Promise<PreApprovalUpdateResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return update({ id, body, config: this.config });
 	}
 }
