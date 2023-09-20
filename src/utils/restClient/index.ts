@@ -18,7 +18,7 @@ class RestClient {
 		return uuidv4();
 	}
 
-	private static appendQueryParamsToUrl(url: string, queryParams?: Record<string, string | number>): string {
+	static appendQueryParamsToUrl(url: string, queryParams?: Record<string, string | number>): string {
 		if (!queryParams) return url;
 
 		const searchParams = new URLSearchParams();

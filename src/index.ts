@@ -12,5 +12,6 @@ export { PreApprovalPlan } from './clients/preApprovalPlans';
 export { Point } from './clients/point';
 export { Preference } from './clients/preferences';
 export { PaymentCapture } from './clients/paymentCapture';
+export { OAuth } from './clients/oAuth';
 export { MerchantOrder } from './clients/merchantOrders';
 export { User } from './clients/user';
