@@ -1,4 +1,4 @@
-import type { Address, Identification, Items } from '@src/clients/commonTypes';
+import type { Address, Identification, Items, Shipments } from '@src/clients/commonTypes';
 
 export declare type Phone = {
   area_code?: string;
@@ -18,34 +18,6 @@ export declare type Payer = {
 
 export declare type DifferentialPricing = {
   id?: number;
-};
-
-export declare type ReceiverAddress = {
-  zip_code?: string;
-  street_name?: string;
-  street_number?: number;
-  floor?: string;
-  apartment?: string;
-  city_name?: string;
-  state_name?: string;
-  country_name?: string;
-};
-
-export declare type FreeMethods = {
-  id?: number;
-};
-
-
-export declare type Shipments = {
-  mode?: string;
-  local_pickup?: boolean;
-  dimensions?: string;
-  default_shipping_method?: number;
-  free_methods?: Array<FreeMethods>;
-  cost?: number;
-  free_shipping?: boolean;
-  receiver_address?: ReceiverAddress;
-  express_shipment?: boolean;
 };
 
 export declare type ExcludedPaymentMethods = {
