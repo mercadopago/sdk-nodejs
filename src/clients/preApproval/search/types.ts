@@ -1,6 +1,6 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Paging } from '@src/clients/commonTypes';
-import type { AutoRecurringRequest } from '@src/clients/preApproval/commonTypes';
+import type { AutoRecurringWithFreeTrial, SummarizedResponse } from '@src/clients/preApproval/commonTypes';
 
 export declare type Search = {
   filters?: PreApprovalSearchOptions;
@@ -35,7 +35,7 @@ export declare type PreApprovalResults = {
   external_reference: number;
   back_url: string;
   init_point: string;
-  auto_recurring: PreApprovalAutoRecurring;
+  auto_recurring: AutoRecurringWithFreeTrial;
   first_invoice_offset: number;
   payer_id: number;
   payer_first_name: string;
@@ -45,26 +45,6 @@ export declare type PreApprovalResults = {
   next_payment_date: number;
   date_created: number;
   last_modified: number;
-  summarized: PreApprovalSummarized;
+  summarized: SummarizedResponse;
   status: string;
-}
-
-export declare type PreApprovalFreeTrial = {
-  frequency: number;
-  frequency_type: string;
-}
-
-export declare type PreApprovalSummarized = {
-  quotas: number;
-  charged_quantity: number;
-  charged_amount: number;
-  pending_charge_quantity: number;
-  pending_charge_amount: number;
-  last_charged_date: string;
-  last_charged_amount: number;
-  semaphore: string;
-}
-
-export declare interface PreApprovalAutoRecurring extends AutoRecurringRequest {
-  free_trial: PreApprovalFreeTrial;
 }
