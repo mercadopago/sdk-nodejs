@@ -17,6 +17,6 @@ export declare type InvoicesSearchOptions = {
 }
 
 export declare type InvoicesSearchResponse = {
-  paging: Paging;
-  results: Array<InvoicesResponse>;
+  paging?: Paging;
+  results?: Array<InvoicesResponse>;
 }
