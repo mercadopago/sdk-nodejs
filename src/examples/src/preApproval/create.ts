@@ -23,5 +23,4 @@ const body = {
 	status: 'pending',
 };
 
-preApproval.create({ body }).then((result) => console.log(result))
-	.catch((error) => console.log(error));
+preApproval.create({ body }).then(console.log).catch(console.log);

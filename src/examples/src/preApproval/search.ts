@@ -14,5 +14,4 @@ const filters = {
 	q: 'reason=Test',
 };
 
-preApproval.search({ filters }).then((result) => console.log(result))
-	.catch((error) => console.log(error));
+preApproval.search({ filters }).then(console.log).catch(console.log);

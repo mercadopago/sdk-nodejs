@@ -10,5 +10,4 @@ const client = new MercadoPago({ accessToken: 'access_token', options: { timeout
 
 const preApproval = new PreApproval(client);
 
-preApproval.get({ id: '123' }).then((result) => console.log(result))
-	.catch((error) => console.log(error));
+preApproval.get({ id: '123' }).then(console.log).catch(console.log);
