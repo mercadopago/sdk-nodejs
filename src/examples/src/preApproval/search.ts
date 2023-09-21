@@ -9,9 +9,10 @@ import MercadoPago, { PreApproval } from '@src/index';
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 9000 } });
 
 const preApproval = new PreApproval(client);
-
-preApproval.search({
+const filters = {
 	status: 'active',
 	q: 'reason=Test',
-}).then((result) => console.log(result))
+};
+
+preApproval.search({ filters }).then((result) => console.log(result))
 	.catch((error) => console.log(error));

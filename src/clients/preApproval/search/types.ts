@@ -1,10 +1,16 @@
+import type { Options } from '@src/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Paging } from '@src/clients/commonTypes';
 import type { AutoRecurringWithFreeTrial, SummarizedResponse } from '@src/clients/preApproval/commonTypes';
 
-export declare type Search = {
+export declare type SearchPreApproval = {
   filters?: PreApprovalSearchOptions;
-  config: MercadoPagoConfig
+  config: MercadoPagoConfig;
+}
+
+export declare type PreApprovalSearchRequest = {
+  filters?: PreApprovalSearchOptions;
+  requestOptions?: Options;
 }
 
 export declare type PreApprovalSearchOptions = {

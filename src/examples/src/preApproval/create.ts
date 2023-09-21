@@ -9,8 +9,7 @@ import MercadoPago, { PreApproval } from '@src/index';
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000 } });
 
 const preApproval = new PreApproval(client);
-
-preApproval.create({
+const body = {
 	reason: 'test',
 	external_reference: 'S01',
 	payer_email: 'test@testuser.com',
@@ -22,5 +21,7 @@ preApproval.create({
 	},
 	back_url: 'https://www.test.com',
 	status: 'pending',
-}).then((result) => console.log(result))
+};
+
+preApproval.create({ body }).then((result) => console.log(result))
 	.catch((error) => console.log(error));
