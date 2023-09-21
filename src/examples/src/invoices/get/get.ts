@@ -6,9 +6,8 @@ import MercadoPago, { Invoices } from '@src/index';
  * @see {@link https://www.mercadopago.com/developers/en/reference/subscriptions/_authorized_payments_id/get Documentation }.
  */
 
-const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000 } });
+const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 5000 } });
 
 const invoices = new Invoices(client);
 
-invoices.get({ id: '123' }).then((result) => console.log(result))
-	.catch((error) => console.log(error));
+invoices.get({ id: '123' }).then(console.log).catch(console.log);
