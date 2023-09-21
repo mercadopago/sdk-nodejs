@@ -8,6 +8,7 @@ import type { PreferenceId } from './get/types';
 import type { UpdatePreferenceRequest } from './update/types';
 import type { PreferenceSearchOptions, PreferenceSearchResponse } from './search/types';
 import type { PreferenceRequest, PreferenceResponse } from './commonTypes';
+import type { Options } from '@src/types';
 
 /**
  * Mercado Pago Preference.
@@ -26,7 +27,8 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/get/get.ts Usage Example  }.
    */
-	get({ preferenceId }: PreferenceId): Promise<PreferenceResponse> {
+	get({ preferenceId }: PreferenceId, requestOptions?: Options): Promise<PreferenceResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id: preferenceId, config: this.config });
 	}
 
@@ -35,7 +37,8 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/create/create.ts Usage Example  }.
    */
-	create(preferenceRequest: PreferenceRequest): Promise<PreferenceResponse> {
+	create(preferenceRequest: PreferenceRequest, requestOptions?: Options): Promise<PreferenceResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ preferenceRequest, config: this.config });
 	}
 
@@ -44,7 +47,8 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/update/update.ts Usage Example  }.
    */
-	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest): Promise<PreferenceResponse> {
+	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest, requestOptions?: Options): Promise<PreferenceResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return update({ id, updatePreferenceRequest, config: this.config });
 	}
 
@@ -53,7 +57,8 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/search/search.ts Usage Example  }.
    */
-	search(filters?: PreferenceSearchOptions): Promise<PreferenceSearchResponse> {
+	search(filters?: PreferenceSearchOptions, requestOptions?: Options): Promise<PreferenceSearchResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ filters, config: this.config });
 	}
 

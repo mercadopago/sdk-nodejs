@@ -6,6 +6,7 @@ import getAuthorizationURL from './getAuthorizationURL';
 import { AuthorizationRequest } from './getAuthorizationURL/types';
 import { OAuthRefresh } from './refresh/types';
 import { OAuthResponse } from './commonTypes';
+import type { Options } from '@src/types';
 
 /**
  * Mercado Pago OAuth.
@@ -24,7 +25,8 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/oauth/create/create.ts Usage Example  }.
 	 */
-	create(oauthRequest: OAuthRequest): Promise<OAuthResponse> {
+	create(oauthRequest: OAuthRequest, requestOptions?: Options): Promise<OAuthResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ oauthRequest, config: this.config });
 	}
 
@@ -33,7 +35,8 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/oauth/refresh/refresh.ts Usage Example  }.
 	 */
-	refresh(oauthRequest: OAuthRefresh): Promise<OAuthResponse> {
+	refresh(oauthRequest: OAuthRefresh, requestOptions?: Options): Promise<OAuthResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return refresh({ oauthRequest, config: this.config });
 	}
 

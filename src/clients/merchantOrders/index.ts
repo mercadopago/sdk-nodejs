@@ -7,6 +7,7 @@ import type { MerchantOrder as MerchantOrderObj } from './commonTypes';
 import type { MerchantOrderCreate } from './create/types';
 import type { MerchantOrderUpdate } from './update/types';
 import type { MerchantOrderSearchOptions, MerchantOrderSearchResultsPage } from './search/types';
+import type { Options } from '@src/types';
 
 /**
  * Mercado Pago Merchant Order.
@@ -25,7 +26,8 @@ export class MerchantOrder {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/create/create.ts Usage Example  }.
 	 */
-	create({ body }: MerchantOrderCreate): Promise<MerchantOrderObj> {
+	create({ body }: MerchantOrderCreate, requestOptions?: Options): Promise<MerchantOrderObj> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ body, config: this.config });
 	}
 
@@ -34,7 +36,8 @@ export class MerchantOrder {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/get/get.ts Usage Example  }.
 	 */
-	get(merchantOrderId: string): Promise<MerchantOrderObj> {
+	get(merchantOrderId: string, requestOptions?: Options): Promise<MerchantOrderObj> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ merchantOrderId, config: this.config });
 	}
 
@@ -43,7 +46,8 @@ export class MerchantOrder {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/update/update.ts Usage Example  }.
 	 */
-	update({ merchantOrderId, body }: MerchantOrderUpdate): Promise<MerchantOrderObj> {
+	update({ merchantOrderId, body }: MerchantOrderUpdate, requestOptions?: Options): Promise<MerchantOrderObj> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return update({ merchantOrderId, body, config: this.config });
 	}
 
@@ -52,7 +56,8 @@ export class MerchantOrder {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/search/search.ts Usage Example  }.
 	 */
-	search(filters?: MerchantOrderSearchOptions): Promise<MerchantOrderSearchResultsPage> {
+	search(filters?: MerchantOrderSearchOptions, requestOptions?: Options): Promise<MerchantOrderSearchResultsPage> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ filters, config: this.config });
 	}
 }
