@@ -11,7 +11,7 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 const invoices = new Invoices(client);
 const filters = {
 	id: 1234,
-	preapproval_id: 'test',
+	preapproval_id: '<PREAPPROVAL_ID>',
 	payment_id: 1234,
 	payer_id: 1234
 };

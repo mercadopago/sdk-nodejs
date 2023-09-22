@@ -10,4 +10,4 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 
 const invoices = new Invoices(client);
 
-invoices.get({ id: '123' }).then(console.log).catch(console.log);
+invoices.get({ id: '1234' }).then(console.log).catch(console.log);
