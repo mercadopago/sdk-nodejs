@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 import type { CustomerCreateRequest } from './types';
-import type { Customer } from '../commonTypes';
+import type { CustomerResponse } from '../commonTypes';
 
-export default function create({ body, config }: CustomerCreateRequest): Promise<Customer> {
-	return RestClient.fetch<Customer>(
+export default function create({ body, config }: CustomerCreateRequest): Promise<CustomerResponse> {
+	return RestClient.fetch<CustomerResponse>(
 		'/v1/customers',
 		{
 			headers: {

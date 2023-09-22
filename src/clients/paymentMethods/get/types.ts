@@ -1,10 +1,11 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { ApiResponse } from '@src/types';
 
 export declare type PaymentMethodGet = {
   config: MercadoPagoConfig;
 };
 
-export declare type PaymentMethodResponse = {
+export declare interface PaymentMethodResponse extends ApiResponse {
   id: string;
   name: string;
   payment_type_id: string;
@@ -19,7 +20,7 @@ export declare type PaymentMethodResponse = {
   accreditation_time: number;
   financial_institutions: PaymentMethodFinancialInstitutions[];
   processing_modes: string[];
-};
+}
 
 export declare type PaymentMethodSettings = {
   bin: PaymentMethodSettingsBin;
