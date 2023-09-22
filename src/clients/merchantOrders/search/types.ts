@@ -1,5 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { MerchantOrder } from '../commonTypes';
+import type { MerchantOrderResponse } from '../commonTypes';
 
 export declare type MerchantOrderSearchRequest = {
   filters?: MerchantOrderSearchOptions;
@@ -25,7 +25,7 @@ export declare type MerchantOrderSearchOptions = {
 };
 
 export declare type MerchantOrderSearchResultsPage = {
-  results: MerchantOrder[];
+  results: MerchantOrderResponse[];
   paging: Paging;
 };
 

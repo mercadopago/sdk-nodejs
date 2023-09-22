@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
-import type { Customer } from '../commonTypes';
+import type { CustomerResponse } from '../commonTypes';
 import type { CustomerDeleteRequest } from './types';
 
-export default function remove({ customerId, config }: CustomerDeleteRequest): Promise<Customer> {
-	return RestClient.fetch<Customer>(
+export default function remove({ customerId, config }: CustomerDeleteRequest): Promise<CustomerResponse> {
+	return RestClient.fetch<CustomerResponse>(
 		`/v1/customers/${customerId}`,
 		{
 			headers: {

@@ -6,7 +6,7 @@ import search from './search';
 import { CustomerCard } from '@src/clients/customerCards';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { Customer as CustomerObj } from './commonTypes';
+import type { CustomerResponse } from './commonTypes';
 import type { CustomerCreate } from './create/types';
 import type { CustomerUpdate } from './update/types';
 import type { CustomerSearchOptions, CustomerSearchResultsPage } from './search/types';
@@ -35,7 +35,7 @@ export class Customer {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/create/create.ts Usage Example  }.
 	 */
-	create ({ body }: CustomerCreate, requestOptions?: Options): Promise<CustomerObj> {
+	create ({ body }: CustomerCreate, requestOptions?: Options): Promise<CustomerResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ body, config: this.config });
 	}
@@ -45,7 +45,7 @@ export class Customer {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/get/get.ts Usage Example  }.
 	 */
-	get(customerId: string, requestOptions?: Options): Promise<CustomerObj> {
+	get(customerId: string, requestOptions?: Options): Promise<CustomerResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ customerId, config: this.config });
 	}
@@ -55,7 +55,7 @@ export class Customer {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/remove/remove.ts Usage Example  }.
 	 */
-	remove(customerId: string, requestOptions?: Options): Promise<CustomerObj> {
+	remove(customerId: string, requestOptions?: Options): Promise<CustomerResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return remove({ customerId, config: this.config });
 	}
@@ -65,7 +65,7 @@ export class Customer {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/update/update.ts Usage Example  }.
 	 */
-	update({ customerId, body }: CustomerUpdate, requestOptions?: Options): Promise<CustomerObj> {
+	update({ customerId, body }: CustomerUpdate, requestOptions?: Options): Promise<CustomerResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return update({ customerId: customerId, body, config: this.config });
 	}

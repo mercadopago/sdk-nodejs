@@ -1,4 +1,6 @@
-export declare type MerchantOrder = {
+import { ApiResponse } from '@src/types';
+
+export declare interface MerchantOrderResponse extends ApiResponse {
   id: number;
   preference_id: string;
   application_id: string;
@@ -22,7 +24,7 @@ export declare type MerchantOrder = {
   total_amount: number;
   order_status: string;
   last_updated: string;
-};
+}
 
 export declare type MerchantOrderPayer = {
   id: number;
