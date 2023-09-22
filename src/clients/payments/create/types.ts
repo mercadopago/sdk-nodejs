@@ -17,7 +17,7 @@ export declare type PaymentsCreateRequest = {
   coupon_amount?: number,
   coupon_code?: string,
   date_of_expiration?: string,
-  description: string,
+  description?: string, // modifiquei para opcional por que é possível criar pagamentos sem descfription na api de payments direto
   differential_pricing_id?: number,
   external_reference?: string,
   installments?: number,
