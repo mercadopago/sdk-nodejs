@@ -6,7 +6,7 @@ import type { MerchantOrderSearchOptions } from './types';
 jest.mock('@utils/restClient');
 
 describe('Testing merchantOrder, search', () => {
-	test('shoud pass foward request options from search to RestClient.fetch', async () => {
+	test('should pass foward request options from search to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 
 		const searchFilters: MerchantOrderSearchOptions = {
@@ -16,7 +16,7 @@ describe('Testing merchantOrder, search', () => {
 		await search({ filters: searchFilters, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith('/v1/merchantOrders/search', {
-			'headers': { 'Authorization': 'Bearer token' }, 
+			'headers': { 'Authorization': 'Bearer token' },
 			'queryParams': { 'application_id': '10000000000000000' },
 			'timeout': 5000 });
 	});

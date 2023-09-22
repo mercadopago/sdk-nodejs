@@ -4,7 +4,7 @@ import type { Create } from '../create/types';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 describe('Testing payment, get', () => {
-	test('shoud get a payment by id', async () => {
+	test('should get a payment by id', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const body = {
 			'additional_info': {

@@ -4,7 +4,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Create } from '../create/types';
 
 describe('Testing payments, cancel', () => {
-	test('shoud cancel with success', async () => {
+	test('should cancel with success', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'access_token' });
 
 		const paymentBody = createPayment(client);

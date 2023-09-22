@@ -5,7 +5,7 @@ import { RestClient } from '@utils/restClient';
 jest.mock('@utils/restClient');
 
 describe('Testing merchantOrder, create', () => {
-	test('shoud pass foward request options from create to RestClient.fetch', async () => {
+	test('should pass foward request options from create to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 
 		const body = {
@@ -33,9 +33,9 @@ describe('Testing merchantOrder, create', () => {
 
 		await create({ body, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders', { 
-			'body': JSON.stringify(body), 
-			'headers': { 'Authorization': 'Bearer token' }, 
+		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders', {
+			'body': JSON.stringify(body),
+			'headers': { 'Authorization': 'Bearer token' },
 			'method': 'POST', 'timeout': 5000 });
 	});
 });
