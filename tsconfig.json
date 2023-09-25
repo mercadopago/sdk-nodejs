@@ -22,5 +22,5 @@
       "@clients/*": ["./src/clients/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "e2e/preferences/create.integration.spec.ts", "e2e/preferences/get.integration.spec.ts", "e2e/preferences/search.integration.spec.ts", "e2e/preferences/update.integration.spec.ts"]
 }

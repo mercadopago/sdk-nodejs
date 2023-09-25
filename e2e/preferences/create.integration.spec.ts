@@ -1,11 +1,11 @@
-import create from '.';
+import create from '../../src/clients/preferences/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PreferenceRequest } from '../commonTypes';
+import type { PreferenceRequest } from '../../src/clients/preferences/commonTypes';
 
 describe('Testing preference, create', () => {
 	test('should POST a request with success', async () => {
 
-		const client = new MercadoPagoConfig({ accessToken, options: { timeout: 5000 } });
+		const client = new MercadoPagoConfig({  accessToken: 'access_token', options: { timeout: 5000 } });
 
 		const preferenceRequest: PreferenceRequest = {
 			items: [
