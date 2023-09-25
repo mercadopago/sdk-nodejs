@@ -18,6 +18,10 @@ const jestConfig: JestConfigWithTsJest = {
 	moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
 	preset: 'ts-jest',
 	testEnvironment: 'node',
+	testPathIgnorePatterns: [
+		'/node_modules/',
+		'/e2e/'
+	],
 };
 
 export default jestConfig;

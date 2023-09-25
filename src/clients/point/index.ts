@@ -20,6 +20,7 @@ import {
 	PaymentIntentResponse,
 	PaymentIntentStatusResponse,
 } from './commonTypes';
+import type { Options } from '@src/types';
 
 /**
  * Mercado Pago Point.
@@ -41,7 +42,8 @@ export class Point {
 	createPaymentIntent({
 		device_id,
 		request,
-	}: CreatePaymentIntentRequest): Promise<PaymentIntentResponse> {
+	}: CreatePaymentIntentRequest, requestOptions?: Options): Promise<PaymentIntentResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return createPaymentIntent({ device_id, request, config: this.config });
 	}
 
@@ -52,7 +54,8 @@ export class Point {
    */
 	searchPaymentIntent(
 		payment_intent_id: string
-	): Promise<PaymentIntentResponse> {
+		, requestOptions?: Options): Promise<PaymentIntentResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return searchPaymentIntent({
 			payment_intent_id: payment_intent_id,
 			config: this.config,
@@ -67,7 +70,8 @@ export class Point {
 	cancelPaymentIntent(
 		device_id: string,
 		payment_intent_id: string
-	): Promise<CancelPaymentIntentResponse> {
+		, requestOptions?: Options): Promise<CancelPaymentIntentResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return cancelPaymentIntent({
 			device_id,
 			payment_intent_id,
@@ -82,7 +86,8 @@ export class Point {
    */
 	getPaymentIntentList(
 		request?: GetPaymentIntentListRequest
-	): Promise<GetPaymentIntentListResponse> {
+		, requestOptions?: Options): Promise<GetPaymentIntentListResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return getPaymentIntentList({
 			filters: request?.filters,
 			config: this.config,
@@ -96,7 +101,8 @@ export class Point {
    */
 	getPaymentIntentStatus(
 		payment_intent_id: string
-	): Promise<PaymentIntentStatusResponse> {
+		, requestOptions?: Options): Promise<PaymentIntentStatusResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return getPaymentIntentStatus({ payment_intent_id, config: this.config });
 	}
 
@@ -105,7 +111,8 @@ export class Point {
    *
    * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_devices/get Usage Example }.
    */
-	getDevices(request: GetDevicesRequest): Promise<GetDevicesResponse> {
+	getDevices(request: GetDevicesRequest, requestOptions?: Options): Promise<GetDevicesResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return getDevices({ filters: request?.filters, config: this.config });
 	}
 
@@ -117,7 +124,8 @@ export class Point {
 	changeDeviceOperatingMode({
 		device_id,
 		request,
-	}: ChangeDeviceOperatingModeRequest): Promise<ChangeDeviceOperatingModeResponse> {
+	}: ChangeDeviceOperatingModeRequest, requestOptions?: Options): Promise<ChangeDeviceOperatingModeResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return changeDeviceOperatingMode({
 			device_id,
 			request,

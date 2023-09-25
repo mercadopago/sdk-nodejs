@@ -2,6 +2,7 @@ import get from './get';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { PaymentMethodResponse } from './get/types';
+import type { Options } from '@src/types';
 
 /**
  * Mercado Pago PaymentMethods.
@@ -20,7 +21,8 @@ export class PaymentMethod {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/paymentmethods/get.ts Usage Example  }.
    */
-	get(): Promise<PaymentMethodResponse[]> {
+	get(requestOptions?: Options): Promise<PaymentMethodResponse[]> {
+		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ config: this.config });
 	}
 }

@@ -1,3 +1,4 @@
+import { ApiResponse } from '@src/types';
 import type { Identification, Phone } from '../commonTypes';
 import type { CustomerCard } from '../customerCards/create/types';
 
@@ -27,7 +28,7 @@ export declare type CustomerAddressCity = {
   name?: string;
 };
 
-export declare type Customer = {
+export declare interface CustomerResponse extends ApiResponse {
   id: string;
   email: string;
   first_name: string;
@@ -45,7 +46,7 @@ export declare type Customer = {
   cards: CustomerCard[];
   addresses: CustomerDefaultAddress[];
   live_mode: boolean;
-};
+}
 
 export declare type CustomerDefaultAddress = {
   id: string;

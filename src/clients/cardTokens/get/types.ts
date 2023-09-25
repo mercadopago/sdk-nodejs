@@ -1,12 +1,13 @@
 import type { Identification } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { ApiResponse } from '@src/types';
 
 export declare type CardTokenGet = {
   id: string;
   config: MercadoPagoConfig;
 };
 
-export declare type CardTokenResponse = {
+export declare interface CardTokenResponse extends ApiResponse {
   id: string;
   card_id: string;
   first_six_digits: string;
@@ -23,7 +24,7 @@ export declare type CardTokenResponse = {
   require_esc: boolean;
   card_number_length: number;
   security_code_length: number;
-};
+}
 
 export declare type CustomerCardCardholder = {
   name: string;

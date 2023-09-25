@@ -1,3 +1,4 @@
+import { ApiResponse } from '@src/types';
 import type { Address, Items } from '../commonTypes';
 
 export declare type MerchantAccount = {
@@ -202,7 +203,7 @@ export declare type ThreeDSInfo = {
   creq: string;
 };
 
-export declare type PaymentsResponse = {
+export declare interface PaymentsResponse extends ApiResponse {
   id: number;
   date_created: string;
   date_approved: string;

@@ -1,4 +1,5 @@
 import type { Address, Identification, Items, Shipments } from '@src/clients/commonTypes';
+import { ApiResponse } from '@src/types';
 
 export declare type Phone = {
   area_code?: string;
@@ -96,7 +97,7 @@ export declare type PreferenceRequest = {
   tracks?: Array<Track>;
 }
 
-export declare type PreferenceResponse = {
+export declare interface PreferenceResponse extends ApiResponse {
   additional_info: string;
   auto_return: string;
   back_urls: BackUrls;
@@ -132,4 +133,4 @@ export declare type PreferenceResponse = {
   statement_descriptor: string;
   tracks: Array<Track>;
   taxes: Array<Tax>;
-};
+}

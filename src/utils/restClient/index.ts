@@ -18,7 +18,7 @@ class RestClient {
 		return uuidv4();
 	}
 
-	private static appendQueryParamsToUrl(url: string, queryParams?: Record<string, string | number>): string {
+	static appendQueryParamsToUrl(url: string, queryParams?: Record<string, string | number>): string {
 		if (!queryParams) return url;
 
 		const searchParams = new URLSearchParams();
@@ -71,7 +71,6 @@ class RestClient {
 		} = config || {};
 
 		const url = RestClient.appendQueryParamsToUrl(`${BASE_URL}${endpoint}`, queryParams);
-
 		if (method && method !== 'GET') {
 			customConfig.headers = {
 				...(customConfig.headers || {}),
@@ -89,8 +88,13 @@ class RestClient {
 			});
 
 			if (response.ok) {
-				const data = await response.json() as T;
-				return data;
+				const data = await response.json();
+				const api_response = {
+					status: response.status,
+					headers: response.headers.raw(),
+				};
+				data.api_response = api_response;
+				return data as T;
 			} else {
 				throw response;
 			}
