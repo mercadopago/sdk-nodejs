@@ -1,4 +1,5 @@
 import create from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
 
@@ -9,7 +10,7 @@ describe('Testing merchantOrder, create', () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 
 		const body = {
-			external_reference: 'default',
+			external_reference: '<EXTERNAL_REFERENCE>',
 			preference_id: 'Preference identification',
 			payer: {
 				id: 123,
@@ -18,7 +19,7 @@ describe('Testing merchantOrder, create', () => {
 			site_id: 'MLA',
 			items: [
 				{
-					id: 'item id',
+					id: '<ITEM_ID>',
 					category_id: 'item category',
 					currency_id: 'BRL',
 					description: 'item description',
@@ -33,9 +34,9 @@ describe('Testing merchantOrder, create', () => {
 
 		await create({ body, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders', { 
-			'body': JSON.stringify(body), 
-			'headers': { 'Authorization': 'Bearer token' }, 
+		expect(spyFetch).toHaveBeenCalledWith('/merchant_orders', {
+			'body': JSON.stringify(body),
+			'headers': { 'Authorization': 'Bearer token' },
 			'method': 'POST', 'timeout': 5000 });
 	});
 });

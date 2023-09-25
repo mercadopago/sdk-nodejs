@@ -1,6 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
-import { CancelPaymentIntentResponse } from '../commonTypes';
-import { CancelPaymentIntent } from './types';
+
+import type { CancelPaymentIntentResponse } from '../commonTypes';
+import type { CancelPaymentIntent } from './types';
 
 export default function cancelPaymentIntent({
 	device_id,

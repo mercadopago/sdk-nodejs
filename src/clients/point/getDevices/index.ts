@@ -1,6 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
-import { GetDevicesResponse } from '../commonTypes';
-import { Search } from './types';
+
+import type { GetDevicesResponse } from '../commonTypes';
+import type { Search } from './types';
 
 export default function getDevices({
 	filters,

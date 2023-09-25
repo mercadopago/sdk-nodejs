@@ -1,4 +1,5 @@
 import search from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 

@@ -1,6 +1,8 @@
 import search from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
 import type { CustomerSearchOptions } from './types';
 
 jest.mock('@utils/restClient');
@@ -16,7 +18,7 @@ describe('Testing customer, search', () => {
 		await search({ filters: searchFilters, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith('/v1/customers/search', {
-			'headers': { 'Authorization': 'Bearer token' }, 
+			'headers': { 'Authorization': 'Bearer token' },
 			'queryParams': { 'email': 'john.doe@example.com' },
 			'timeout': 5000 });
 	});

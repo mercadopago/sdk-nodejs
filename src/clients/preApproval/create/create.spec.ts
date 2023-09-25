@@ -1,6 +1,8 @@
 import create from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
 import type { PreApprovalRequest } from '@src/clients/preApproval/commonTypes';
 
 jest.mock('@utils/restClient');

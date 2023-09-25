@@ -96,7 +96,7 @@ class RestClient {
 				data.api_response = api_response;
 				return data as T;
 			} else {
-				throw response;
+				throw await response.json();
 			}
 		};
 

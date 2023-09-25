@@ -25,7 +25,7 @@ export class Preference {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/get/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/get.ts Usage Example  }.
    */
 	get({ preferenceId }: PreferenceId, requestOptions?: Options): Promise<PreferenceResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -35,7 +35,7 @@ export class Preference {
 	/**
    * Mercado Pago Create.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/create/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/create.ts Usage Example  }.
    */
 	create(preferenceRequest: PreferenceRequest, requestOptions?: Options): Promise<PreferenceResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -45,7 +45,7 @@ export class Preference {
 	/**
    * Mercado Pago Update.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/update/update.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/update.ts Usage Example  }.
    */
 	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest, requestOptions?: Options): Promise<PreferenceResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -55,7 +55,7 @@ export class Preference {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preferences/search/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/search.ts Usage Example  }.
    */
 	search(filters?: PreferenceSearchOptions, requestOptions?: Options): Promise<PreferenceSearchResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };

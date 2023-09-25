@@ -1,5 +1,5 @@
-import { ApiResponse } from '@src/types';
-import { Paging } from '../commonTypes';
+import type { ApiResponse } from '@src/types';
+import type { Paging } from '../commonTypes';
 
 export declare interface CancelPaymentIntentResponse extends ApiResponse {
   id?: string;

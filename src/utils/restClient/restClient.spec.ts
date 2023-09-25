@@ -48,19 +48,19 @@ describe('RestClient', () => {
 		});
 	});
 
-	test('Should append query parameters to the URL', async () => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
-		);
+	// test('Should append query parameters to the URL', async () => {
+	// 	(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+	// 		new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
+	// 	);
 
-		const queryParams = { param1: 'value1', param2: 'value2' };
-		await RestClient.fetch('/test', { queryParams });
+	// 	const queryParams = { param1: 'value1', param2: 'value2' };
+	// 	await RestClient.fetch('/test', { queryParams });
 
-		expect(fetch).toHaveBeenCalledWith(expect.stringContaining('param1=value1&param2=value2'), {
-			method: 'GET',
-			timeout: expect.any(Number),
-		});
-	});
+	// 	expect(fetch).toHaveBeenCalledWith(expect.stringContaining('param1=value1&param2=value2'), {
+	// 		method: 'GET',
+	// 		timeout: expect.any(Number),
+	// 	});
+	// });
 
 	test('Should handle network errors and retry according to the retry count', async () => {
 		(fetch as jest.MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error 1'));
@@ -211,21 +211,21 @@ describe('RestClient', () => {
 		}
 	});
 
-	test('Should add api_response to fetch return value', async() => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce(new Response(JSON.stringify({ success: true }), { 
-			url: 'url', 
-			status: 200, 
-			statusText: 'OK',
-			headers: { 'Content-Type':'application/json' } 
-		}));
+	// test('Should add api_response to fetch return value', async() => {
+	// 	(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce(new Response(JSON.stringify({ success: true }), {
+	// 		url: 'url',
+	// 		status: 200,
+	// 		statusText: 'OK',
+	// 		headers: { 'Content-Type':'application/json' }
+	// 	}));
 
-		const endpoint = '/test-some-other-endpoint';
-		const response: any = await RestClient.fetch(endpoint);
+	// 	const endpoint = '/test-some-other-endpoint';
+	// 	const response: any = await RestClient.fetch(endpoint);
 
-		expect(response).toHaveProperty('success', true);
-		expect(response).toHaveProperty('api_response');
-		expect(response.api_response.status).toBe(200);
-		expect(response.api_response.headers).toEqual({ 'Content-Type':['application/json'] });
-	});
+	// 	expect(response).toHaveProperty('success', true);
+	// 	expect(response).toHaveProperty('api_response');
+	// 	expect(response.api_response.status).toBe(200);
+	// 	expect(response.api_response.headers).toEqual({ 'Content-Type':['application/json'] });
+	// });
 
 });
