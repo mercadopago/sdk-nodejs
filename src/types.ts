@@ -6,6 +6,9 @@ export declare type Config = {
 export declare type Options = {
   timeout?: number;
   idempotencyKey?: string;
+  plataformId?: string;
+  integratorId?: string;
+  corporationId?: string;
 };
 
 export declare interface ApiResponse {

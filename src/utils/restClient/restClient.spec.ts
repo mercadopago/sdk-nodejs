@@ -15,6 +15,7 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: expect.any(String),
 			timeout: 10000,
+			headers: expect.any(Object)
 		});
 	});
 
@@ -28,6 +29,7 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'GET',
 			timeout: expect.any(Number),
+			headers: expect.any(Object)
 		});
 	});
 

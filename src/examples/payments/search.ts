@@ -6,10 +6,8 @@
 
 import MercadoPago, { Payment } from '@src/index';
 
-const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
+const client = new MercadoPago({ accessToken: 'APP_USR-4679935697572392-071411-ed200b57e5c38354adc3f4f6156c2f82-1273205088' });
 
 const payments = new Payment(client);
 
-payments.search({
-	external_reference: '<EXTERNAL_REFERENCE>',
-}).then(console.log).catch(console.log);
+payments.search({ criteria: 'asc' }, { corporationId: 'corporationId', idempotencyKey: 'idepotency', integratorId: 'integrator', plataformId: 'platsformid' }).then(console.log).catch(console.log);
