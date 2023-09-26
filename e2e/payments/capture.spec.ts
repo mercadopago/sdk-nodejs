@@ -3,10 +3,11 @@ import create from '../../src/clients/payments/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Create } from '../../src/clients/payments/create/types';
 import fetch from 'node-fetch';
+import { config } from '../e2e.config';
 
 describe('Testing payments, capture', () => {
 	test('should capture and return partial transaction_amount passed at the request', async () => {
-		const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
+		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
 
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
@@ -22,7 +23,7 @@ describe('Testing payments, capture', () => {
 	});
 
 	test('should capture without transaction_amount and return total transaction_amount ', async () => {
-		const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
+		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
 
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');

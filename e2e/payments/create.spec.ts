@@ -1,12 +1,13 @@
 import create from '../../src/clients/payments/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { config } from '../e2e.config';
 
 import type { Create } from '../../src/clients/payments/create/types';
 
 
 describe('Testing payments, create', () => {
 	test('should create a payment with success', async () => {
-		const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
+		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const body = {
 			'additional_info': {
 				'items': [
