@@ -1,4 +1,4 @@
-import search from '.';
+import search from '../../src/clients/payments/search';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 describe('Testing payments, search', () => {

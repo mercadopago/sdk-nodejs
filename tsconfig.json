@@ -22,5 +22,5 @@
       "@clients/*": ["./src/clients/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "e2e/payments/cancel.spec.ts", "e2e/payments/capture.spec.ts", "e2e/payments/create.spec.ts", "e2e/payments/get.spec.ts", "e2e/payments/search.spec.ts"]
 }

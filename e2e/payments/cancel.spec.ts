@@ -1,11 +1,12 @@
-import cancel from '.';
-import create from '../create';
+import cancel from '../../src/clients/payments/cancel';
+import create from '../../src/clients/payments/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { Create } from '../create/types';
+import type { Create } from '../../src/clients/payments/create/types';
+import { config } from '../e2e.config';
 
 describe('Testing payments, cancel', () => {
 	test('should cancel with success', async () => {
-		const client = new MercadoPagoConfig({ accessToken: 'access_token' });
+		const client = new MercadoPagoConfig({ accessToken: config.access_token });
 
 		const paymentBody = createPayment(client);
 		const payment = await create(paymentBody);

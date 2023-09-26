@@ -1,10 +1,11 @@
-import get from '.';
-import create from '../create';
-import type { Create } from '../create/types';
+import create from '../../src/clients/payments/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-describe('Testing payment, get', () => {
-	test('should get a payment by id', async () => {
+import type { Create } from '../../src/clients/payments/create/types';
+
+
+describe('Testing payments, create', () => {
+	test('should create a payment with success', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const body = {
 			'additional_info': {
@@ -24,14 +25,13 @@ describe('Testing payment, get', () => {
 			'installments': 1,
 			'payment_method_id': 'pix'
 		};
-		const createRequest: Create = {
+		const request: Create = {
 			body: body,
 			config: client
 		};
-		const request = await create(createRequest);
-		const response = await get({ id: String(request.id), config: client });
+		const response = await create(request);
 
 		expect(response).toHaveProperty('id');
-		expect(response.additional_info.items[0]).toHaveProperty('id', 'MLB2907679857');
+		expect(response).toHaveProperty('transaction_amount', 110.00);
 	});
 });

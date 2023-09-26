@@ -1,7 +1,7 @@
-import capture from '.';
-import create from '../create';
+import capture from '../../src/clients/payments/capture';
+import create from '../../src/clients/payments/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { Create } from '../create/types';
+import type { Create } from '../../src/clients/payments/create/types';
 import fetch from 'node-fetch';
 
 describe('Testing payments, capture', () => {
