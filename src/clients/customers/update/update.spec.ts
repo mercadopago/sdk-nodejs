@@ -1,4 +1,5 @@
 import update from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
 
@@ -25,7 +26,7 @@ describe('Testing customer, update', () => {
 				id: '123123',
 				zip_code: '01234567',
 				street_name: 'Rua Exemplo',
-				street_number: '123',
+				street_number: 123,
 				city: {}
 			},
 			date_registered: '2021-10-20T11:37:30.000-04:00',
@@ -36,7 +37,7 @@ describe('Testing customer, update', () => {
 		await update({ customerId: '123', body, config: client });
 
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
-		expect(spyFetch).toHaveBeenCalledWith( '/v1/customers/123', { 
+		expect(spyFetch).toHaveBeenCalledWith( '/v1/customers/123', {
 			'body': JSON.stringify(body),
 			'headers': { 'Authorization': 'Bearer token' }, 'method': 'PUT', 'timeout': 5000 });
 	});

@@ -1,4 +1,4 @@
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type ChangeDeviceOperatingMode = {
   device_id: string;

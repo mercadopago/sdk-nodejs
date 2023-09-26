@@ -1,4 +1,5 @@
 import { RestClient } from '@utils/restClient';
+
 import type { Search, PreApprovalPlanSearchResponse } from './types';
 
 export default function search({ filters, config }: Search): Promise<PreApprovalPlanSearchResponse> {

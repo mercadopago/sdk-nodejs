@@ -1,4 +1,5 @@
 import { RestClient } from '@utils/restClient';
+
 import type { GetPreference } from './types';
 import type { PreferenceResponse } from '@src/clients/preferences/commonTypes';
 

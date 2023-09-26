@@ -20,7 +20,7 @@ export class PreApproval {
 	/**
    * Mercado Pago Create.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preApproval/create.ts Usage Example  }.
    */
 	create({ body, requestOptions }: PreApprovalCreateRequest): Promise<PreApprovalResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -30,7 +30,7 @@ export class PreApproval {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preApproval/get.ts Usage Example  }.
    */
 	get({ id, requestOptions }: PreApprovalGetRequest): Promise<PreApprovalResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -40,7 +40,7 @@ export class PreApproval {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preApproval/search.ts Usage Example  }.
    */
 	search({ filters, requestOptions }: PreApprovalSearchRequest): Promise<PreApprovalSearchResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -50,7 +50,7 @@ export class PreApproval {
 	/**
    * Mercado Pago Update.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preApproval/update.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preApproval/update.ts Usage Example  }.
    */
 	update({ id, body, requestOptions }: PreApprovalUpdateRequest): Promise<PreApprovalUpdateResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };

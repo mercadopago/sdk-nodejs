@@ -27,7 +27,7 @@ export class CustomerCard {
 	/**
 	 * Mercado Pago Customer card create.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/create/create.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/create.ts Usage Example  }.
 	 */
 	create ({ customerId, customerCardBody }: CustomerCardCreate, requestOptions?: Options): Promise<CustomerCardResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -37,7 +37,7 @@ export class CustomerCard {
 	/**
 	 * Mercado Pago customer card get.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/get/get.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/get.ts Usage Example  }.
 	*/
 	get({ customerId, cardId }: CustomerCardIds, requestOptions?: Options): Promise<CustomerCardResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -47,7 +47,7 @@ export class CustomerCard {
 	/**
 	 * Mercado Pago customer card remove.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/remove/remove.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/remove.ts Usage Example  }.
 	 */
 	remove({ customerId, cardId }: CustomerCardIds, requestOptions?: Options): Promise<CustomerCardResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -57,7 +57,7 @@ export class CustomerCard {
 	/**
 	 * Mercado Pago customer card update.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/update/update.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/update.ts Usage Example  }.
 	 */
 	update({ customerId, cardId, customerCardBody }: CustomerCardUpdate, requestOptions?: Options): Promise<CustomerCardResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -67,7 +67,7 @@ export class CustomerCard {
 	/**
 	 * Mercado Pago customer card list.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/customer/list/list.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/list.ts Usage Example  }.
 	 */
 	list({ customerId }: CustomerCardId, requestOptions?: Options): Promise<CustomerCardResponse[]> {
 		this.config.options = { ...this.config.options, ...requestOptions };

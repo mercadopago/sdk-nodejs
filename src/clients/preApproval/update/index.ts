@@ -1,4 +1,5 @@
 import { RestClient } from '@utils/restClient';
+
 import type { UpdatePreApproval, PreApprovalUpdateResponse } from './types';
 
 export default function update({ id, body, config }: UpdatePreApproval): Promise<PreApprovalUpdateResponse> {

@@ -1,6 +1,7 @@
+import list from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import list from '.';
 
 jest.mock('@utils/restClient');
 

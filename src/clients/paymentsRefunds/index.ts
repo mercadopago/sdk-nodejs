@@ -24,7 +24,7 @@ export class PaymentsRefunds {
 	/**
    * Mercado Pago Get Refund.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/get/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefunds/get.ts Usage Example  }.
    */
 	get({ payment_id, refund_id }: GetRefund, requestOptions?: Options): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -34,7 +34,7 @@ export class PaymentsRefunds {
 	/**
    * Mercado Pago Create Refund.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/create/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefunds/create.ts Usage Example  }.
    */
 	create({ payment_id, body }: CreateRefund, requestOptions?: Options): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -44,7 +44,7 @@ export class PaymentsRefunds {
 	/**
    * Mercado Pago Get Refund List.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/paymentRefunds/list/list.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefunds/list.ts Usage Example  }.
    */
 	list({ payment_id }: GetRefundList, requestOptions?: Options): Promise<Array<RefundResponse>> {
 		this.config.options = { ...this.config.options, ...requestOptions };

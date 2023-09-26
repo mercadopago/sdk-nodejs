@@ -1,4 +1,5 @@
 import { RestClient } from '@utils/restClient';
+
 import type { CustomerCardResponse } from '../commonTypes';
 import type { CustomerCardConfigs } from '../get/types';
 

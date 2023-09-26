@@ -25,7 +25,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Create.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/create/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/create.ts Usage Example  }.
    */
 	create(preApprovalPlanRequest: PreApprovalPlanRequest, requestOptions?: Options): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -35,7 +35,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/get/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/get.ts Usage Example  }.
    */
 	get({ preApprovalPlanId }: PreApprovalPlanId, requestOptions?: Options): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -45,7 +45,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Update.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/update/update.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/update.ts Usage Example  }.
    */
 	update({ id, updatePreApprovalPlanRequest }: UpdatePreApprovalPlanRequest, requestOptions?: Options): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -55,7 +55,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/preapprovalplans/search/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/search.ts Usage Example  }.
    */
 	search(filters?: PreApprovalPlanSearchOptions, requestOptions?: Options): Promise<PreApprovalPlanSearchResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };

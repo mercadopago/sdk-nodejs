@@ -1,7 +1,9 @@
+import getPaymentIntentList from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@src/utils/restClient';
-import getPaymentIntentList from '.';
-import { Search } from './types';
+
+import type { Search } from './types';
 
 jest.mock('@utils/restClient');
 

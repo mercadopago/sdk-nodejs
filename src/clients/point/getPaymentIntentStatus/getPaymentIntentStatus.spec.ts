@@ -1,6 +1,7 @@
+import getPaymentIntentStatus from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@src/utils/restClient';
-import getPaymentIntentStatus from '.';
 
 jest.mock('@utils/restClient');
 
