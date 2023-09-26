@@ -1,4 +1,5 @@
-![SDK Node MErcado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/f0e9b85d-1a9f-4c04-a958-0e8f855fe792)
+![SDK Node MErcado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/84211022-6fc5-4db1-8772-117eca84f2d9)
+
 
 # Mercado Pago SDK for NodeJS
 

@@ -1,7 +1,7 @@
 import { RestClient } from '@utils/restClient';
-import type { Search, PreApprovalSearchResponse } from './types';
+import type { SearchPreApproval, PreApprovalSearchResponse } from './types';
 
-export default function search({ filters, config }: Search): Promise<PreApprovalSearchResponse> {
+export default function search({ filters, config }: SearchPreApproval): Promise<PreApprovalSearchResponse> {
 	return RestClient.fetch<PreApprovalSearchResponse>(
 		'/preapproval/search',
 		{

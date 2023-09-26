@@ -20,5 +20,4 @@ preApproval.update({
 			currency_id: '123'
 		}
 	},
-}).then((result) => console.log(result))
-	.catch((error) => console.log(error));
+}).then(console.log).catch(console.log);

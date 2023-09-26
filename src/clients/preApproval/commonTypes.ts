@@ -1,3 +1,5 @@
+import { ApiResponse } from '@src/types';
+
 export declare type AutoRecurringRequest = {
   frequency: number;
   frequency_type: string;
@@ -16,7 +18,7 @@ export declare type FreeTrial = {
   frequency_type: string;
 }
 
-export declare type AutoRecurringResponse = {
+export declare interface AutoRecurringResponse extends ApiResponse {
   frequency: number;
   frequency_type: string;
   transaction_amount?: number;
@@ -35,7 +37,7 @@ export declare type PreApprovalRequest = {
   status?: string;
 }
 
-export declare type SummarizedResponse = {
+export declare interface SummarizedResponse extends ApiResponse {
   charged_amount: number | null,
   charged_quantity: number | null,
   last_charged_amount: string | null
@@ -46,7 +48,7 @@ export declare type SummarizedResponse = {
   semaphore: string | null,
 }
 
-export declare type PreApprovalResponse = {
+export declare interface PreApprovalResponse extends ApiResponse {
   id: string;
   payer_id: number;
   payer_email: string;

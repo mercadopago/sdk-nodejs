@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
-import type { Customer } from '../commonTypes';
+import type { CustomerResponse } from '../commonTypes';
 import type { CustomerUpdateRequest } from './types';
 
-export default function update({ customerId, body, config }: CustomerUpdateRequest): Promise<Customer> {
-	return RestClient.fetch<Customer>(
+export default function update({ customerId, body, config }: CustomerUpdateRequest): Promise<CustomerResponse> {
+	return RestClient.fetch<CustomerResponse>(
 		`/v1/customers/${customerId}`,
 		{
 			headers: {

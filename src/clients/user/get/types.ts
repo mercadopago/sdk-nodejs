@@ -1,10 +1,11 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { ApiResponse } from '@src/types';
 
 export declare type UserGet = {
   config: MercadoPagoConfig;
 };
 
-export declare type UserResponse = {
+export declare interface UserResponse extends ApiResponse {
   id: number;
   nickname: string;
   registration_date?: string;
@@ -34,7 +35,7 @@ export declare type UserResponse = {
   context: Context;
   registration_identifiers: string[];
   country_id: string;
-};
+}
 
 export declare type Identification = {
   number: string;

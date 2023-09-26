@@ -1,6 +1,7 @@
+import { ApiResponse } from '@src/types';
 import type { Identification } from '../commonTypes';
 
-export declare type CustomerCardResponse = {
+export declare interface CustomerCardResponse extends ApiResponse {
   id: string;
   customer_id: string;
   expiration_month: number;
@@ -15,7 +16,7 @@ export declare type CustomerCardResponse = {
   date_last_updated: string;
   user_id: string;
   live_mode: boolean;
-};
+}
 
 export declare type CustomerCardPaymentMethod = {
 	id: string;

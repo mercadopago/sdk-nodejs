@@ -1,17 +1,18 @@
+import { ApiResponse } from '@src/types';
 import { Paging } from '../commonTypes';
 
-export declare type CancelPaymentIntentResponse = {
+export declare interface CancelPaymentIntentResponse extends ApiResponse {
   id?: string;
-};
+}
 
-export declare type PaymentIntentStatusResponse = {
+export declare interface PaymentIntentStatusResponse extends ApiResponse {
   status?: string;
   created_on?: string;
-};
+}
 
-export declare type GetPaymentIntentListResponse = {
+export declare interface GetPaymentIntentListResponse extends ApiResponse {
   events: Array<Event>;
-};
+}
 
 export declare type Event = {
   payment_intent_id: string;
@@ -19,10 +20,10 @@ export declare type Event = {
   created_on: string;
 };
 
-export declare type GetDevicesResponse = {
+export declare interface GetDevicesResponse extends ApiResponse {
   devices: Array<Device>;
   paging: Paging;
-};
+}
 
 export declare type Device = {
   payment_intent_id: string;
@@ -30,11 +31,11 @@ export declare type Device = {
   created_on: string;
 };
 
-export declare type ChangeDeviceOperatingModeResponse = {
+export declare interface ChangeDeviceOperatingModeResponse extends ApiResponse {
   operating_mode?: string;
-};
+}
 
-export declare type PaymentIntentResponse = {
+export declare interface PaymentIntentResponse extends ApiResponse {
   additional_info?: AdditionalInfo;
   amount?: number;
   description?: string;
@@ -43,7 +44,7 @@ export declare type PaymentIntentResponse = {
   payment?: Payment;
   payment_mode?: string;
   state?: string;
-};
+}
 
 export declare type PaymentIntentRequest = {
   additional_info?: AdditionalInfo;
