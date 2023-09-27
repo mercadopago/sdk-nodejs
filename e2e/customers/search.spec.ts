@@ -1,6 +1,7 @@
-import search from '.';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { CustomerSearchOptions } from './types';
+import search from '../../src/clients/customers/search';
+import type { CustomerSearchOptions } from '../../src/clients/customers/search/types';
+import { config } from '../e2e.config.js';
 
 describe('Testing customer, search', () => {
 	test('shoud pass foward request options from search to RestClient.fetch', async () => {

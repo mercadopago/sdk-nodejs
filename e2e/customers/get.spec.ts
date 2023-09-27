@@ -1,7 +1,9 @@
-import get from '.';
-import create from '../create';
-import remove from '../remove';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import create from '../../src/clients/customers/create';
+import get from '../../src/clients/customers/get';
+import remove from '../../src/clients/customers/remove';
+import { config } from '../e2e.config.js';
+
 
 describe('Testing customer, get', () => {
 	test('shoud pass forward request options from get to RestClient.fetch', async () => {

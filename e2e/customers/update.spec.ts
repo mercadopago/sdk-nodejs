@@ -1,6 +1,7 @@
-import update from '.';
-import create from '../create';
-import remove from '../remove';
+import create from '../../src/clients/customers/create';
+import remove from '../../src/clients/customers/remove';
+import { config } from '../e2e.config.js';
+import update from '../../src/clients/customers/update';
 
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
