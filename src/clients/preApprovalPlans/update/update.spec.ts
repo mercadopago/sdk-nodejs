@@ -25,8 +25,7 @@ describe('Testing pre approval plan, update', () => {
 			config: client,
 		};
 		const expectedHeaders = {
-			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
+			'Authorization': 'Bearer token'
 		};
 		await update(preApprovalPlan);
 		const spyFetch = jest.spyOn(RestClient, 'fetch');

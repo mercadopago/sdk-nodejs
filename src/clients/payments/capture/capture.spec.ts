@@ -15,7 +15,6 @@ describe('Testing search payments, capture', () => {
 			body: JSON.stringify(expectedBody),
 			headers: {
 				Authorization: 'Bearer token',
-				'Content-Type': 'application/json',
 			},
 			method: 'PUT',
 		});
