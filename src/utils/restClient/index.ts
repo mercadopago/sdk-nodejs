@@ -71,13 +71,14 @@ class RestClient {
 
 		const url = RestClient.appendQueryParamsToUrl(`${AppConfig.BASE_URL}${endpoint}`, queryParams);
 		customConfig.headers = {
+			...customConfig.headers,
 			[AppConfig.Headers.CONTENT_TYPE]: 'application/json',
-			[AppConfig.Headers.CORPORATION_ID]: corporationId,
-			[AppConfig.Headers.INTEGRATOR_ID]: integratorId,
-			[AppConfig.Headers.PLATFORM_ID]: plataformId,
 			[AppConfig.Headers.PRODUCT_ID]: AppConfig.PRODUCT_ID,
 			[AppConfig.Headers.TRACKING_ID]: AppConfig.getTrackingId(),
 			[AppConfig.Headers.USER_AGENT]: AppConfig.getUserAgent(),
+			...(corporationId ? { [AppConfig.Headers.CORPORATION_ID]: corporationId } : {}),
+			...(integratorId ? { [AppConfig.Headers.INTEGRATOR_ID]: integratorId } : {}),
+			...(plataformId ? { [AppConfig.Headers.PLATFORM_ID]: plataformId } : {}),
 		};
 
 		if (method && method !== 'GET') {

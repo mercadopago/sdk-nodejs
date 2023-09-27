@@ -44,7 +44,11 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'POST',
 			headers: {
-				'Idempotency-Key': idempotencyKey,
+				'Content-Type': expect.any(String),
+				'User-Agent': expect.any(String),
+				'X-Idempotency-Key': idempotencyKey,
+				'X-Product-Id': expect.any(String),
+				'X-Tracking-Id': expect.any(String),
 			},
 			timeout: expect.any(Number),
 		});
@@ -61,6 +65,7 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.stringContaining('param1=value1&param2=value2'), {
 			method: 'GET',
 			timeout: expect.any(Number),
+			headers: expect.any(Object)
 		});
 	});
 
@@ -117,7 +122,13 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'GET',
 			timeout: expect.any(Number),
-			headers: customHeaders,
+			headers: {
+				...customHeaders,
+				'Content-Type': expect.any(String),
+				'User-Agent': expect.any(String),
+				'X-Product-Id': expect.any(String),
+				'X-Tracking-Id': expect.any(String),
+			},
 		});
 	});
 
@@ -164,9 +175,13 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'POST',
 			headers: {
-				'Idempotency-Key': expect.any(String),
+				'Content-Type': expect.any(String),
+				'User-Agent': expect.any(String),
+				'X-Idempotency-Key': expect.any(String),
+				'X-Product-Id': expect.any(String),
+				'X-Tracking-Id': expect.any(String),
 			},
-			timeout: expect.any(Number),
+			timeout: expect.any(Number)
 		});
 	});
 
