@@ -68,7 +68,7 @@ describe('Testing payments, capture', () => {
 		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Bearer ' + 'access_token',
+				'Authorization': 'Bearer ' + config.access_token,
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
