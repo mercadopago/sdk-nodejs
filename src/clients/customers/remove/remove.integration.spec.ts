@@ -1,12 +1,11 @@
-import create from '.';
-import remove from '../remove';
+import remove from '.';
+import create from '../create';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-// import { config } from '../../../../e2e/e2e.config.js';
 
-describe('Testing customer, create', () => {
-	test('should pass foward request options from create to RestClient.fetch', async () => {
+describe('Testing customer, remove', () => {
+	test('shoud pass foward request options from remove to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
-
 		const email = createEmailTestUser();
 
 		const body = {
@@ -16,8 +15,8 @@ describe('Testing customer, create', () => {
 		const createCustomer = await create({ body, config: client });
 		expect(createCustomer).toHaveProperty('id');
 
-		const removeCustomer = await remove({ customerId: createCustomer.id, config: client });
-		expect(removeCustomer).toHaveProperty('id', removeCustomer.id);
+		const customer = await remove({ customerId: createCustomer.id, config: client });
+		expect(customer).toHaveProperty('id', createCustomer.id);
 	});
 
 	function createEmailTestUser() {
