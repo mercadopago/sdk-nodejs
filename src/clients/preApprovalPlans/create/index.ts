@@ -10,7 +10,6 @@ export default function create({ preApprovalPlanRequest, config }: CreatePreAppr
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(preApprovalPlanRequest),
 			...config.options
