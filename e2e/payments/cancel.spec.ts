@@ -1,7 +1,7 @@
 import cancel from '@src/clients/payments/cancel';
 import create from '@src/clients/payments/create';
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Create } from '@src/clients/payments/create/types';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { config } from '../e2e.config';
 
 describe('Testing payments, cancel', () => {

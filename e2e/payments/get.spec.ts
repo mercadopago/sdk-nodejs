@@ -1,7 +1,7 @@
-import get from '../../src/clients/payments/get';
-import create from '../../src/clients/payments/create';
-import type { Create } from '../../src/clients/payments/create/types';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import create from '@src/clients/payments/create';
+import type { Create } from '@src/clients/payments/create/types';
+import get from '@src/clients/payments/get';
 import { config } from '../e2e.config';
 
 describe('Testing payment, get', () => {

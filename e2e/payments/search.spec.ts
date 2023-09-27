@@ -1,5 +1,5 @@
-import search from '../../src/clients/payments/search';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import search from '@src/clients/payments/search';
 import { config } from '../e2e.config';
 
 describe('Testing payments, search', () => {
@@ -23,5 +23,4 @@ describe('Testing payments, search', () => {
 		expect(searchPayment).toHaveProperty('paging');
 		expect(searchPayment.results[0].external_reference).toBe('test_search_payment');
 	});
-
 });

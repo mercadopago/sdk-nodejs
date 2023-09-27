@@ -1,9 +1,7 @@
-import create from '../../src/clients/payments/create';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import create from '@src/clients/payments/create';
+import type { Create } from '@src/clients/payments/create/types';
 import { config } from '../e2e.config';
-
-import type { Create } from '../../src/clients/payments/create/types';
-
 
 describe('Testing payments, create', () => {
 	test('should create a payment with success', async () => {
