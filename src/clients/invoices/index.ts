@@ -17,7 +17,7 @@ export class Invoices {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/invoices/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoices/get.ts Usage Example  }.
    */
 	get({ id, requestOptions }: InvoicesGetRequest): Promise<InvoicesResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -27,7 +27,7 @@ export class Invoices {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/invoices/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoices/search.ts Usage Example  }.
    */
 	search({ filters, requestOptions }: InvoicesSearchRequest): Promise<InvoicesSearchResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };

@@ -1,6 +1,8 @@
 import update from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
 import type { UpdatePreApproval } from './types';
 
 jest.mock('@utils/restClient');

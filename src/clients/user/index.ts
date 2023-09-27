@@ -19,7 +19,7 @@ export class User {
 	/**
    * Mercado Pago User.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/user/get/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/user/get/get.ts Usage Example  }.
    */
 	get(requestOptions?: Options): Promise<UserResponse[]> {
 		this.config.options = { ...this.config.options, ...requestOptions };

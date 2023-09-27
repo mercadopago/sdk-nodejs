@@ -1,4 +1,5 @@
 import { Paging } from '@src/clients/commonTypes';
+
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { CustomerResponse } from '../commonTypes';
 

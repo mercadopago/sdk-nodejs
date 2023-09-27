@@ -18,7 +18,7 @@ import type { Options } from '@src/types';
  *
  * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
  */
-export class Payments {
+export class Payment {
 	private config: MercadoPagoConfig;
 
 	constructor(mercadoPagoConfig: MercadoPagoConfig) {
@@ -28,7 +28,7 @@ export class Payments {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/payments/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payments/search.ts Usage Example  }.
    */
 	search(filters?: PaymentsSearchOptions, requestOptions?: Options): Promise<PaymentsSearch> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -38,7 +38,7 @@ export class Payments {
 	/**
    * Mercado Pago Cancel.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/payments/cancel.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payments/cancel.ts Usage Example  }.
    */
 	cancel({ id }: PaymentCancelRequestBody, requestOptions?: Options): Promise<PaymentsResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -48,7 +48,7 @@ export class Payments {
 	/**
    * Mercado Pago Capture.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/payments/capture.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payments/capture.ts Usage Example  }.
    */
 	capture({ id, transaction_amount }: PaymentCaptureRequestBody, requestOptions?: Options): Promise<PaymentsResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -58,7 +58,7 @@ export class Payments {
 	/**
    * Mercado Pago Create.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/payments/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payments/create.ts Usage Example  }.
    */
 	create(body: PaymentsCreateRequest, requestOptions?: Options): Promise<PaymentsResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -68,7 +68,7 @@ export class Payments {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/payments/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payments/get.ts Usage Example  }.
    */
 	get({ id }: PaymentGetRequestBody, requestOptions?: Options): Promise<PaymentsResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };

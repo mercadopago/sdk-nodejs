@@ -1,5 +1,6 @@
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { PaymentIntentRequest } from '../commonTypes';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
+import type { PaymentIntentRequest } from '../commonTypes';
 
 export declare type CreatePaymentIntent = {
   device_id: string;

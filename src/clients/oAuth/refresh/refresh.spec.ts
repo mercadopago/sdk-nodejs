@@ -1,7 +1,9 @@
-import { RestClient } from '@src/utils/restClient';
-import { OAuthRefresh } from './types';
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import refresh from '.';
+
+import { RestClient } from '@src/utils/restClient';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
+import type { OAuthRefresh } from './types';
 
 jest.mock('@utils/restClient');
 

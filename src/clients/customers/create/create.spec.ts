@@ -1,4 +1,5 @@
 import create from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
 
@@ -25,7 +26,7 @@ describe('Testing customer, create', () => {
 				id: '123123',
 				zip_code: '01234567',
 				street_name: 'Rua Exemplo',
-				street_number: '123',
+				street_number: 123,
 				city: {}
 			},
 			date_registered: '2021-10-20T11:37:30.000-04:00',

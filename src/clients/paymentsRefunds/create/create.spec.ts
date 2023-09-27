@@ -1,6 +1,8 @@
 import create from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
 import type { CreateRefundRequest } from './types';
 
 jest.mock('@utils/restClient');

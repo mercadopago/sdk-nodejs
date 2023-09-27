@@ -7,6 +7,11 @@ export declare type Create = {
   config: MercadoPagoConfig
 };
 
+export declare type qqrcoisatest = {
+  body: PaymentsCreateRequest,
+};
+
+
 export declare type PaymentsCreateRequest = {
   additional_info?: additionalInfo,
   application_fee?: string,

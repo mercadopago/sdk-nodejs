@@ -1,4 +1,4 @@
-import { ApiResponse } from '@src/types';
+import type { ApiResponse } from '@src/types';
 
 export declare type AutoRecurring = {
   frequency: number;

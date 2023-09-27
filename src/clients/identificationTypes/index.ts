@@ -19,7 +19,7 @@ export class IdentificationType {
 	/**
    * Mercado Pago Identification Types get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/src/identificationtypes/list.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/identificationtypes/list.ts Usage Example  }.
    */
 	list(requestOptions?: Options): Promise<IdentificationTypeResponse[]> {
 		this.config.options = { ...this.config.options, ...requestOptions };

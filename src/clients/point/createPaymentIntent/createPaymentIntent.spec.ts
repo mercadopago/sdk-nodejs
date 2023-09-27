@@ -1,7 +1,9 @@
+import createPaymentIntent from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@src/utils/restClient';
-import createPaymentIntent from '.';
-import { PaymentIntentRequest } from '../commonTypes';
+
+import type { PaymentIntentRequest } from '../commonTypes';
 
 jest.mock('@utils/restClient');
 

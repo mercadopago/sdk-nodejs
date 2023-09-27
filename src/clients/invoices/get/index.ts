@@ -1,4 +1,5 @@
 import { RestClient } from '@utils/restClient';
+
 import type { GetInvoicesRequest } from './types';
 import type { InvoicesResponse } from '@src/clients/invoices/commonTypes';
 

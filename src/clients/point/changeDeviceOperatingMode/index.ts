@@ -1,6 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
-import { ChangeDeviceOperatingModeResponse } from '../commonTypes';
-import { ChangeDeviceOperatingMode } from './types';
+
+import type { ChangeDeviceOperatingModeResponse } from '../commonTypes';
+import type { ChangeDeviceOperatingMode } from './types';
 
 export default function changeDeviceOperatingMode({
 	device_id,

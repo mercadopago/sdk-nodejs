@@ -1,6 +1,7 @@
+import changeDeviceOperatingMode from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@src/utils/restClient';
-import changeDeviceOperatingMode from '.';
 
 jest.mock('@utils/restClient');
 
