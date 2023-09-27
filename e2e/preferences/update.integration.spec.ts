@@ -1,12 +1,14 @@
-import update from '../../src/clients/preferences/update';
-import create from '../../src/clients/preferences/create/index';
+import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
+import create from '@src/clients/preferences/create/index';
+import update from '@src/clients/preferences/update';
+import type { UpdatePreference } from '@src/clients/preferences/update/types';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { UpdatePreference } from '../../src/clients/preferences/update/types';
-import type { PreferenceRequest } from '../../src/clients/preferences/commonTypes';
+import { config } from '../e2e.config';
+
 
 describe('Testing preference, update', () => {
 	test('should make a PUT request with the correct parameters', async () => {
-		const client = new MercadoPagoConfig({ accessToken: 'access_token' });
+		const client = new MercadoPagoConfig({ accessToken: config.access_token });
 
 		const preferenceRequest: PreferenceRequest = {
 			items: [

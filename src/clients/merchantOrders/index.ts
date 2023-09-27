@@ -2,6 +2,7 @@ import create from './create';
 import get from './get';
 import update from './update';
 import search from './search';
+
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { MerchantOrderResponse } from './commonTypes';
 import type { MerchantOrderCreate } from './create/types';
@@ -24,7 +25,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order create.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/create/create.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/create.ts Usage Example  }.
 	 */
 	create({ body }: MerchantOrderCreate, requestOptions?: Options): Promise<MerchantOrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -34,7 +35,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order get.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/get/get.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/get.ts Usage Example  }.
 	 */
 	get(merchantOrderId: string, requestOptions?: Options): Promise<MerchantOrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -44,7 +45,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order update.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/update/update.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/update.ts Usage Example  }.
 	 */
 	update({ merchantOrderId, body }: MerchantOrderUpdate, requestOptions?: Options): Promise<MerchantOrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -54,7 +55,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order search.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/src/merchantOrders/search/search.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/search.ts Usage Example  }.
 	 */
 	search(filters?: MerchantOrderSearchOptions, requestOptions?: Options): Promise<MerchantOrderSearchResultsPage> {
 		this.config.options = { ...this.config.options, ...requestOptions };

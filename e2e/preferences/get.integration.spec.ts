@@ -1,11 +1,13 @@
-import get from '../../src/clients/preferences/get';
-import create from '../../src/clients/preferences/create/index';
+import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
+import create from '@src/clients/preferences/create/index';
+import get from '@src/clients/preferences/get';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PreferenceRequest } from '../../src/clients/preferences/commonTypes';
+import { config } from '../e2e.config';
+
 
 describe('Preference IT, get', () => {
 	test('should GET preference with success', async () => {
-		const client = new MercadoPagoConfig({  accessToken: 'access_token', options: { timeout: 5000 } });
+		const client = new MercadoPagoConfig({  accessToken: config.access_token, options: { timeout: 5000 } });
 
 		const preferenceRequest: PreferenceRequest = {
 			items: [

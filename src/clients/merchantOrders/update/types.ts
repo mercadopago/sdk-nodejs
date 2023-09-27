@@ -1,5 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
+import type { Collector, MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
 
 export declare type MerchantOrderUpdateRequest = {
   merchantOrderId: string;
@@ -9,7 +9,7 @@ export declare type MerchantOrderUpdateRequest = {
 
 export declare type MerchantOrderUpdate = {
   merchantOrderId: string;
-  body: MerchantOrderUpdateBody; 
+  body: MerchantOrderUpdateBody;
 }
 
 export declare type MerchantOrderUpdateBody = {
@@ -22,6 +22,10 @@ export declare type MerchantOrderUpdateBody = {
   additional_info?: string;
   external_reference?: string;
   marketplace?: string;
+  preference_id?: string;
+  collector?: Collector;
+  application_id?: string;
+  version?: number;
 }
 
 export declare type MerchantOrderShipmentRequest = {

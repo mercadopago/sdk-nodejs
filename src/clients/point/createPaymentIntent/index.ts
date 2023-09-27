@@ -1,6 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
-import { CreatePaymentIntent } from './types';
-import { PaymentIntentResponse } from '../commonTypes';
+
+import type { CreatePaymentIntent } from './types';
+import type { PaymentIntentResponse } from '../commonTypes';
 
 export default function createPaymentIntent({
 	device_id,

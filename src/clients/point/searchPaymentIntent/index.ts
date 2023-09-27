@@ -1,6 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
-import { PaymentIntentResponse } from '../commonTypes';
-import { SearchPaymentIntent } from './types';
+
+import type { PaymentIntentResponse } from '../commonTypes';
+import type { SearchPaymentIntent } from './types';
 
 export default function searchPaymentIntent({
 	payment_intent_id,

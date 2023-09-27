@@ -1,5 +1,5 @@
-import { ApiResponse } from '@src/types';
-import type { Identification } from '../commonTypes';
+import type { ApiResponse } from '@src/types';
+import type { CustomerCardCardholder } from '../commonTypes';
 
 export declare interface CustomerCardResponse extends ApiResponse {
   id: string;
@@ -34,9 +34,4 @@ export declare type CustomerCardSecurityCode = {
 export declare type CustomerCardIssuer = {
 	id: string;
 	name: string;
-}
-
-export declare type CustomerCardCardholder = {
-	name: string;
-	identification: Identification;
 }

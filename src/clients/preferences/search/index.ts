@@ -1,4 +1,5 @@
 import { RestClient } from '@utils/restClient';
+
 import type { Search, PreferenceSearchResponse } from './types';
 
 export default function search({ filters, config }: Search): Promise<PreferenceSearchResponse> {

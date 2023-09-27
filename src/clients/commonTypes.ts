@@ -58,3 +58,8 @@ export declare type Paging = {
   offset: number;
   limit: number;
 };
+
+export declare type CustomerCardCardholder = {
+  name: string;
+  identification: Identification;
+};

@@ -1,5 +1,5 @@
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
+import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Collector, MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
 
 export declare type MerchantOrderCreate = {
   body: MerchantOrderCreateRequestBody;
@@ -11,6 +11,7 @@ export declare type MerchantOrderCreateRequest = {
 }
 
 export declare type MerchantOrderCreateRequestBody = {
+  collector?: Collector;
   preference_id?: string;
   application_id?: string;
   site_id?: string;
@@ -21,6 +22,6 @@ export declare type MerchantOrderCreateRequestBody = {
   additional_info?: string;
   external_reference?: string;
   marketplace?: string;
+  version?: number
 }
-
 

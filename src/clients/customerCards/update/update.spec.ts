@@ -1,11 +1,12 @@
+import update from '.';
+
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@utils/restClient';
-import update from '.';
 
 jest.mock('@utils/restClient');
 
 describe('Testing customer cards, update', () => {
-	test('shoud pass foward request options from update to RestClient.fetch', async () => {
+	test('should pass foward request options from update to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 
 		const body = {

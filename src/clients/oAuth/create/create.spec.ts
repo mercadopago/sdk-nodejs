@@ -1,7 +1,8 @@
+import create from '.';
+
 import { RestClient } from '@src/utils/restClient';
 import { OAuthRequest } from './types';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import create from '.';
 
 jest.mock('@utils/restClient');
 

@@ -18,9 +18,9 @@ export declare type CustomerRequestBody = {
 
 export declare type CustomerAddressRequest = {
   id: string;
-  zip_code: string;
+  zip_code?: string;
   street_name: string;
-  street_number: string;
+  street_number: number;
   city: CustomerAddressCity;
 };
 

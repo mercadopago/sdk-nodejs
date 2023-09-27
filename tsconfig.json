@@ -10,7 +10,7 @@
     "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",
-    "rootDir": "./src",
+    "rootDir": ".",
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -22,5 +22,5 @@
       "@clients/*": ["./src/clients/*"]
     }
   },
-  "include": ["src/**/*", "e2e/preferences/create.integration.spec.ts", "e2e/preferences/get.integration.spec.ts", "e2e/preferences/search.integration.spec.ts", "e2e/preferences/update.integration.spec.ts"]
+  "include": ["src/**/*", "e2e/**/*"]
 }

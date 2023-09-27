@@ -1,4 +1,4 @@
-import { ApiResponse } from '@src/types';
+import type { ApiResponse } from '@src/types';
 
 export declare interface MerchantOrderResponse extends ApiResponse {
   id: number;
@@ -136,17 +136,21 @@ export declare type MerchantOrderShippingSpeed = {
 }
 
 export declare type MerchantOrderItemRequest = {
-  id: string;
-  title: string;
-  description: string;
-  picture_url: string;
-  category_id: string;
-  quantity: number;
-  unit_price: number;
-  currency_id: string;
+  id?: string;
+  title?: string;
+  description?: string;
+  picture_url?: string;
+  category_id?: string;
+  quantity?: number;
+  unit_price?: number;
+  currency_id?: string;
 }
 
 export declare type MerchantOrderPayerRequest = {
   id: number;
   nickname: string;
+}
+
+export declare type Collector = {
+  id: number
 }

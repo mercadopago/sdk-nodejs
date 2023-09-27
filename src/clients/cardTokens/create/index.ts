@@ -1,6 +1,7 @@
 import { RestClient } from '@utils/restClient';
-import type { CardTokenResponse } from '../get/types';
+
 import type { CardTokenCreate } from './types';
+import type { CardTokenResponse } from '../commonTypes';
 
 export default function create({ body, config }: CardTokenCreate): Promise<CardTokenResponse> {
 	return RestClient.fetch<CardTokenResponse>(

@@ -1,6 +1,8 @@
 import list from '.';
+
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+
 import type { GetRefundByPaymentId } from './types';
 
 jest.mock('@utils/restClient');

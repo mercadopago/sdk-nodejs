@@ -94,6 +94,7 @@ class RestClient {
 					headers: response.headers.raw(),
 				};
 				data.api_response = api_response;
+
 				return data as T;
 			} else {
 				throw response;

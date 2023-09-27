@@ -1,6 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
-import { PaymentIntentStatusResponse } from '../commonTypes';
-import { PaymentIntentStatus } from './types';
+
+import type { PaymentIntentStatusResponse } from '../commonTypes';
+import type { PaymentIntentStatus } from './types';
 
 export default function getPaymentIntentStatus({
 	payment_intent_id,

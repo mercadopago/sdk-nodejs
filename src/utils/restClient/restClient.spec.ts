@@ -74,7 +74,17 @@ describe('RestClient', () => {
 		const response = await RestClient.fetch(endpoint, { retries });
 
 		expect(fetch).toHaveBeenCalledTimes(retries);
-		expect(response).toEqual({ success: true });
+		expect(response).toEqual({
+			success: true,
+			api_response:  {
+				headers:  {
+					'Content-Type': [
+						'text/plain;charset=UTF-8',
+					],
+				},
+				status: 200,
+			}
+		});
 	}, 10000);
 
 	test('Should throw an error if the response status code is not in the 2xx range', async () => {
@@ -182,7 +192,17 @@ describe('RestClient', () => {
 		const response = await RestClient.fetch(endpoint, { retries });
 
 		expect(fetch).toHaveBeenCalledTimes(4);
-		expect(response).toEqual({ success: true });
+		expect(response).toEqual({
+			success: true,
+			api_response:  {
+				headers:  {
+					'Content-Type': [
+						'text/plain;charset=UTF-8',
+					],
+				},
+				status: 200,
+			}
+		});
 	}, 20000);
 
 	test('Should not retry for 4xx errors', async () => {
@@ -209,23 +229,6 @@ describe('RestClient', () => {
 			expect(error.status).toBe(400);
 			expect(error.statusText).toBe('Bad Request');
 		}
-	});
-
-	test('Should add api_response to fetch return value', async() => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce(new Response(JSON.stringify({ success: true }), { 
-			url: 'url', 
-			status: 200, 
-			statusText: 'OK',
-			headers: { 'Content-Type':'application/json' } 
-		}));
-
-		const endpoint = '/test-some-other-endpoint';
-		const response: any = await RestClient.fetch(endpoint);
-
-		expect(response).toHaveProperty('success', true);
-		expect(response).toHaveProperty('api_response');
-		expect(response.api_response.status).toBe(200);
-		expect(response.api_response.headers).toEqual({ 'Content-Type':['application/json'] });
 	});
 
 });
