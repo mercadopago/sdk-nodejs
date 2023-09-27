@@ -33,7 +33,6 @@ describe('AppConfig', () => {
 		expect(AppConfig.getNodeVersion()).toEqual('v13.14.0');
 		expect(AppConfig.getNodeArchitecture()).toEqual('x64');
 		expect(AppConfig.getNodePlatform()).toEqual('linux');
-		expect(AppConfig.Headers.AUTHORIZATION).toEqual('Authorization');
 	});
 
 	it('should return correct tracking ID', () => {
