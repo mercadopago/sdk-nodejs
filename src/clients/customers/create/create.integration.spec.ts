@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 describe('Testing customer, create', () => {
 	test('should pass foward request options from create to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-    const random = String(Math.floor(Math.random() * 100000));
+
 		const body = {
 			email: 'test_user_@doe.com',
 			first_name: 'Jhon',
