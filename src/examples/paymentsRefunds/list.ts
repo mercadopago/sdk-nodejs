@@ -12,5 +12,4 @@ const refund = new PaymentsRefunds(client);
 
 refund.list({
 	payment_id: '<PAYMENT_ID>'
-}).then((result) => console.log(result))
-	.catch((error) => console.log(error));
+}).then(console.log).catch(console.log);

@@ -1,9 +1,11 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { Options } from '@src/types';
 
-export declare type PaymentCancelRequestBody = {
+export declare type PaymentCancelData = {
   id: string;
+  requestOptions?: Options;
 }
 
-export declare interface PaymentCancelRequest extends PaymentCancelRequestBody {
+export declare interface PaymentCancelClient extends PaymentCancelData {
   config: MercadoPagoConfig;
 }

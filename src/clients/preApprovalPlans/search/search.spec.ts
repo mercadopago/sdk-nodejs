@@ -9,8 +9,7 @@ describe('Testing pre approval plan, search', () => {
 	test('should make a SEARCH request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
 		const expectedHeaders = {
-			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
+			'Authorization': 'Bearer token'
 		};
 		await search({ config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');

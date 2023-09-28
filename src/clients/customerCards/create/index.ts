@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { CustomerCard } from './types';
+import type { CustomerCardsCreateClient } from './types';
 import type { CustomerCardResponse } from '../commonTypes';
 
-export default function create({ customerId, body, config }: CustomerCard): Promise<CustomerCardResponse> {
+export default function create({ customerId, body, config }: CustomerCardsCreateClient): Promise<CustomerCardResponse> {
 	return RestClient.fetch<CustomerCardResponse>(
 		`/v1/customers/${customerId}/cards`,
 		{

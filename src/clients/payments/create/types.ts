@@ -1,8 +1,9 @@
 import type { Items, Shipments } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Payer } from '../commonTypes';
+import type { Options } from '@src/types';
 
-export declare type Create = {
+export declare type PaymentCreateClient = {
   body: PaymentsCreateRequest,
   config: MercadoPagoConfig
 };
@@ -11,6 +12,10 @@ export declare type qqrcoisatest = {
   body: PaymentsCreateRequest,
 };
 
+export declare type PaymentCreateData = {
+  body: PaymentsCreateRequest;
+  requestOptions?: Options;
+}
 
 export declare type PaymentsCreateRequest = {
   additional_info?: additionalInfo,

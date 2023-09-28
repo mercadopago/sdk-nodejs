@@ -1,6 +1,7 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options } from '@src/types';
 
-export declare type Search = {
+export declare type PointGetDevicesClient = {
   filters?: GetDevicesSearch;
   config: MercadoPagoConfig;
 };
@@ -15,3 +16,8 @@ export declare type GetDevicesSearch = {
   limit: number;
   offset: number;
 };
+
+export declare type PointGetDevicesData = {
+  request: GetDevicesRequest;
+  requestOptions?: Options;
+}

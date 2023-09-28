@@ -1,6 +1,6 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-export declare type CustomerDeleteRequest = {
+export declare type CustomerRemoveClient = {
   customerId: string;
   config: MercadoPagoConfig;
 };

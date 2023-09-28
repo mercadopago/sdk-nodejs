@@ -1,10 +1,12 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options } from '@src/types';
 
-export declare type GetRefundList = {
-  payment_id: string
+export declare type PaymentsRefoundsListData = {
+  payment_id: string;
+  requestOptions?: Options;
 };
 
-export declare type GetRefundByPaymentId = {
-  payment_id: string
-  config: MercadoPagoConfig
+export declare type PaymentsRefoundsListClient = {
+  payment_id: string;
+  config: MercadoPagoConfig;
 };

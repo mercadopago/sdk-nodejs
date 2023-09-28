@@ -22,4 +22,4 @@ const request = {
 };
 
 point
-	.getDevices(request).then(console.log).catch(console.log);
+	.getDevices({ request }).then(console.log).catch(console.log);

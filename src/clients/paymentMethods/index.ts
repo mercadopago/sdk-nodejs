@@ -21,7 +21,8 @@ export class PaymentMethod {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/paymentmethods/get.ts Usage Example  }.
    */
-	get(requestOptions?: Options): Promise<PaymentMethodResponse[]> {
+	get(paymentMethodsGetOptions: {requestOptions?: Options} = {}): Promise<PaymentMethodResponse[]> {
+		const { requestOptions } =  paymentMethodsGetOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ config: this.config });
 	}

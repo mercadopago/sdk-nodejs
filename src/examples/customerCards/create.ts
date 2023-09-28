@@ -8,6 +8,6 @@ import MercadoPago, { CustomerCard } from '@src/index';
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 const customerClient = new CustomerCard(client);
 
-customerClient.create({ customerId: '<CUSTOMER_ID>', customerCardBody: {
+customerClient.create({ customerId: '<CUSTOMER_ID>', body: {
 	token: '<TOKEN>',
 } }).then(console.log).catch(console.log);

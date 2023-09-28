@@ -11,7 +11,7 @@ describe('Testing create get', () => {
 		await get({ id: mockId, config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(`/v1/payments/${mockId}`, {
-			headers: { Authorization: 'Bearer token', 'Content-Type': 'application/json' },
+			headers: { Authorization: 'Bearer token' },
 			timeout: 5000
 		});
 	});

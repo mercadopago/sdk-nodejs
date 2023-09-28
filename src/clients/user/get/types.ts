@@ -1,7 +1,7 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { ApiResponse } from '@src/types';
+import type { ApiResponse, Options } from '@src/types';
 
-export declare type UserGet = {
+export declare type UserGetClient = {
   config: MercadoPagoConfig;
 };
 
@@ -187,3 +187,7 @@ export declare type StatusImmediatePayment = {
   reasons: string[];
   required: boolean;
 };
+
+export declare type UserGetData = {
+  requestOptions?: Options
+}
