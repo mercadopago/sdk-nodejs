@@ -1,7 +1,7 @@
 import { Paging } from '@src/clients/commonTypes';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { SearchOptions } from '@src/types';
+import type { SearchOptions } from '@src/types';
 import type { CustomerResponse } from '../commonTypes';
 
 export declare type CustomerSearchRequest = {

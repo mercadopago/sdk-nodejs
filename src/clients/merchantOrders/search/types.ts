@@ -1,5 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { SearchOptions } from '@src/types';
+import type { SearchOptions } from '@src/types';
 import type { MerchantOrderResponse } from '../commonTypes';
 
 export declare type MerchantOrderSearchRequest = {
