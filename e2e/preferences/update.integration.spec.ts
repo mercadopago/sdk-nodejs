@@ -1,14 +1,12 @@
 import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
-import create from '@src/clients/preferences/create/index';
-import update from '@src/clients/preferences/update';
-import type { UpdatePreference } from '@src/clients/preferences/update/types';
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { UpdatePreferenceRequest } from '@src/clients/preferences/update/types';
+import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
-
 
 describe('Testing preference, update', () => {
 	test('should make a PUT request with the correct parameters', async () => {
-		const client = new MercadoPagoConfig({ accessToken: config.access_token });
+		const client = new MercadoPago({ accessToken: config.access_token });
+		const preference = new Preference(client);
 
 		const preferenceRequest: PreferenceRequest = {
 			items: [
@@ -20,11 +18,10 @@ describe('Testing preference, update', () => {
 				}
 			],
 		};
-		const request = await create({ preferenceRequest, config : client });
-		const id = request.id;
+		const request = await preference.create(preferenceRequest);
 
-		const updateRequest: UpdatePreference = {
-			id: id,
+		const updateRequest: UpdatePreferenceRequest = {
+			id: request.id,
 			updatePreferenceRequest: {
 				items: [
 					{
@@ -34,12 +31,12 @@ describe('Testing preference, update', () => {
 						'unit_price': 10
 					}
 				],
-			},
-			config: client,
+			}
 		};
-		const response = await update(updateRequest);
+		const response = await preference.update(updateRequest);
+
 		expect(response).toEqual(expect.objectContaining({
-			id: id,
+			id: request.id,
 		}));
 		expect(response).toHaveProperty('items',
 			[

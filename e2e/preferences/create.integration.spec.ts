@@ -1,12 +1,12 @@
 import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
-import create from '@src/clients/preferences/create';
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Testing preference, create', () => {
 	test('should POST a request with success', async () => {
 
-		const client = new MercadoPagoConfig({  accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({  accessToken: config.access_token, options: { timeout: 5000 } });
+		const preference = new Preference(client);
 
 		const preferenceRequest: PreferenceRequest = {
 			items: [
@@ -23,7 +23,7 @@ describe('Testing preference, create', () => {
 			],
 		};
 
-		const response = await create({ preferenceRequest, config : client });
+		const response = await preference.create(preferenceRequest);
 
 		expect(response).toEqual(expect.objectContaining({
 			id: expect.any(String),
