@@ -1,23 +1,22 @@
-import cancel from '@src/clients/payments/cancel';
-import create from '@src/clients/payments/create';
-import type { Create } from '@src/clients/payments/create/types';
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { PaymentsCreateRequest } from '@src/clients/payments/create/types';
+import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Testing payments, cancel', () => {
 	test('should cancel with success', async () => {
-		const client = new MercadoPagoConfig({ accessToken: config.access_token });
+		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const payment = new Payment(client);
 
-		const paymentBody = createPayment(client);
-		const payment = await create(paymentBody);
-		expect(payment).toHaveProperty('id');
+		const paymentBody = createPayment();
+		const paymentCreate = await payment.create(paymentBody);
+		expect(paymentCreate).toHaveProperty('id');
 
-		const cancelation = await cancel({ id: String(payment.id), config : client });
-		expect(cancelation).toHaveProperty('id', payment.id);
+		const cancelation = await payment.cancel({ id: paymentCreate.id });
+		expect(cancelation).toHaveProperty('id', paymentCreate.id);
 		expect(cancelation).toHaveProperty('status', 'cancelled');
 	});
 
-	function createPayment(client: MercadoPagoConfig): Create {
+	function createPayment(): PaymentsCreateRequest {
 		const body = {
 			'additional_info': {
 				'items': [
@@ -36,10 +35,6 @@ describe('Testing payments, cancel', () => {
 			'installments': 1,
 			'payment_method_id': 'pix',
 		};
-		const request: Create = {
-			body: body,
-			config: client
-		};
-		return request;
+		return body;
 	}
 });

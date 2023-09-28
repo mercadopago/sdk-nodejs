@@ -1,13 +1,13 @@
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import create from '@src/clients/payments/create';
-import type { Create } from '@src/clients/payments/create/types';
-import get from '@src/clients/payments/get';
+import type { PaymentsCreateRequest } from '@src/clients/payments/create/types';
+import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Testing payment, get', () => {
 	test('should get a payment by id', async () => {
-		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
-		const body = {
+		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const payment = new Payment(client);
+
+		const body: PaymentsCreateRequest = {
 			'additional_info': {
 				'items': [
 					{
@@ -25,12 +25,9 @@ describe('Testing payment, get', () => {
 			'installments': 1,
 			'payment_method_id': 'pix'
 		};
-		const createRequest: Create = {
-			body: body,
-			config: client
-		};
-		const request = await create(createRequest);
-		const response = await get({ id: String(request.id), config: client });
+
+		const request = await payment.create(body);
+		const response = await payment.get({ id: request.id, });
 
 		expect(response).toHaveProperty('id');
 		expect(response.additional_info.items[0]).toHaveProperty('id', 'MLB2907679857');
