@@ -23,7 +23,6 @@ describe('Testing OAuth, refresh', () => {
 
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await refresh({ oauthRequest, config : client });

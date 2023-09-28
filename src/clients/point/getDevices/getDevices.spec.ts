@@ -19,7 +19,6 @@ describe('Testing devices, get', () => {
 		};
 		const expectedHeaders = {
 			Authorization: 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await getDevices({ filters, config: client });

@@ -10,7 +10,6 @@ export default function update({ id, updatePreferenceRequest, config }: UpdatePr
 			method: 'PUT',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(updatePreferenceRequest),
 			...config.options

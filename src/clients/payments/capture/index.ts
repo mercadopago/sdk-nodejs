@@ -15,7 +15,6 @@ export default function capture({ id, transaction_amount, config }: PaymentCaptu
 			method: 'PUT',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(captureBody),
 			...config.options

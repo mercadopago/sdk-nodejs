@@ -9,7 +9,6 @@ export default function update({ id, body, config }: UpdatePreApproval): Promise
 			method: 'PUT',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(body),
 			...config.options

@@ -9,7 +9,6 @@ export default function get({ id, config }: PaymentGetRequest): Promise<Payments
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			...config.options
 		}
