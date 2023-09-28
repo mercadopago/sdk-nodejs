@@ -1,7 +1,7 @@
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import create from '../../src/clients/customers/create';
 import remove from '../../src/clients/customers/remove';
-import { config } from '../e2e.config.js';
+import { config } from '../e2e.config';
 
 describe('Testing customer, create', () => {
 	test('should pass foward request options from create to RestClient.fetch', async () => {
