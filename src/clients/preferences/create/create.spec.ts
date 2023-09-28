@@ -11,7 +11,7 @@ jest.mock('@utils/restClient');
 describe('Testing preference, create', () => {
 	test('should make a POST request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const preferenceRequest: PreferenceRequest = {
+		const body: PreferenceRequest = {
 			items: [],
 		};
 
@@ -20,14 +20,14 @@ describe('Testing preference, create', () => {
 			'Content-Type': 'application/json',
 		};
 
-		await create({ preferenceRequest, config : client });
+		await create({ body, config : client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
 			'/checkout/preferences/',
 			expect.objectContaining({
 				method: 'POST',
 				headers: expectedHeaders,
-				body: JSON.stringify(preferenceRequest),
+				body: JSON.stringify(body),
 			})
 		);
 

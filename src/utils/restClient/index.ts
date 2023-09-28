@@ -78,8 +78,6 @@ class RestClient {
 			};
 		}
 
-		console.log('url ->>>', url);
-
 		let response: Response;
 
 		const fetchFn = async () => {
