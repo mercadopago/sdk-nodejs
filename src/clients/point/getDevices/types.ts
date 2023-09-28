@@ -1,4 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { SearchOptions } from '@src/types';
 
 export declare type Search = {
   filters?: GetDevicesSearch;
@@ -9,9 +10,7 @@ export declare type GetDevicesRequest = {
   filters?: GetDevicesSearch;
 };
 
-export declare type GetDevicesSearch = {
+export declare interface GetDevicesSearch extends SearchOptions {
   store_id: string;
   pos_id: string;
-  limit: number;
-  offset: number;
-};
+}

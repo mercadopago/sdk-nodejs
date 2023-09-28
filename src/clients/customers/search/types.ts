@@ -1,6 +1,7 @@
 import { Paging } from '@src/clients/commonTypes';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { SearchOptions } from '@src/types';
 import type { CustomerResponse } from '../commonTypes';
 
 export declare type CustomerSearchRequest = {
@@ -8,9 +9,9 @@ export declare type CustomerSearchRequest = {
   config: MercadoPagoConfig;
 };
 
-export declare type CustomerSearchOptions = {
+export declare interface CustomerSearchOptions extends SearchOptions {
   email?: string;
-};
+}
 
 export declare type CustomerSearchResultsPage = {
   results: CustomerResponse[];

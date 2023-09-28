@@ -1,4 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import { SearchOptions } from '@src/types';
 import type { MerchantOrderResponse } from '../commonTypes';
 
 export declare type MerchantOrderSearchRequest = {
@@ -6,7 +7,7 @@ export declare type MerchantOrderSearchRequest = {
   config: MercadoPagoConfig;
 };
 
-export declare type MerchantOrderSearchOptions = {
+export declare interface MerchantOrderSearchOptions extends SearchOptions {
   status?: string;
   preference_id?: string;
   application_id?: string;
@@ -20,9 +21,7 @@ export declare type MerchantOrderSearchOptions = {
   last_udpated_from?: string;
   last_udpated_to?: string;
   items?: string;
-  limit?: string;
-  offset?: string;
-};
+}
 
 export declare type MerchantOrderSearchResultsPage = {
   results: MerchantOrderResponse[];
