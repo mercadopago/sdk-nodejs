@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { UpdatePreference } from './types';
+import type { PreferenceUpdateClient } from './types';
 import type { PreferenceResponse } from '@src/clients/preferences/commonTypes';
 
-export default function update({ id, updatePreferenceRequest, config }: UpdatePreference): Promise<PreferenceResponse> {
+export default function update({ id, updatePreferenceRequest, config }: PreferenceUpdateClient): Promise<PreferenceResponse> {
 	return RestClient.fetch<PreferenceResponse>(
 		`/checkout/preferences/${id}`,
 		{

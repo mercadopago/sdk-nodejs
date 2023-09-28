@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { CreatePreferenceRequest } from './types';
+import type { PreferenceCreateClient } from './types';
 import type { PreferenceResponse } from '@src/clients/preferences/commonTypes';
 
-export default function create({ preferenceRequest, config }: CreatePreferenceRequest): Promise<PreferenceResponse> {
+export default function create({ body, config }: PreferenceCreateClient): Promise<PreferenceResponse> {
 	return RestClient.fetch<PreferenceResponse>(
 		'/checkout/preferences/',
 		{
@@ -11,7 +11,7 @@ export default function create({ preferenceRequest, config }: CreatePreferenceRe
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
 			},
-			body: JSON.stringify(preferenceRequest),
+			body: JSON.stringify(body),
 			...config.options
 		}
 	);

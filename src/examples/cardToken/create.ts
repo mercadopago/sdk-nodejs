@@ -8,4 +8,4 @@ const body = {
 	security_code : '<SECURITY_CODE>'
 };
 
-cardToken.create({ cardTokenBody: body }).then(console.log).catch(console.log);
+cardToken.create({ body }).then(console.log).catch(console.log);

@@ -2,7 +2,7 @@ import type { Options } from '@src/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { SummarizedResponse, AutoRecurringWithFreeTrial } from '@src/clients/preApproval/commonTypes';
 
-export declare type UpdatePreApproval = {
+export declare type PreApprovalUpdateClient = {
   id: string;
   body: updatePreApprovalRequest;
   config: MercadoPagoConfig;
@@ -23,7 +23,7 @@ export declare type AutoRecurringRequest = {
   currency_id: string;
 }
 
-export declare type PreApprovalUpdateRequest = {
+export declare type PreApprovalUpdateData = {
   id: string;
   body: updatePreApprovalRequest;
   requestOptions?: Options;

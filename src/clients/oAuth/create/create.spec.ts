@@ -16,7 +16,7 @@ describe('Testing OAuth, create', () => {
 			redirect_uri: ''
 		};
 
-		const expectedBody = {
+		const body = {
 			...oauthRequest,
 			'grant_type': 'authorization_code',
 		};
@@ -25,14 +25,14 @@ describe('Testing OAuth, create', () => {
 			'Authorization': 'Bearer token'
 		};
 
-		await create({ oauthRequest, config : client });
+		await create({ body, config : client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
 			'/oauth/token',
 			expect.objectContaining({
 				method: 'POST',
 				headers: expectedHeaders,
-				body: JSON.stringify(expectedBody),
+				body: JSON.stringify(body),
 			})
 		);
 

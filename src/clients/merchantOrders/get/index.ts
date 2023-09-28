@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
 import type { MerchantOrderResponse } from '../commonTypes';
-import type { MerchantOrderGetRequest } from './types';
+import type { MerchantOrderGetClient } from './types';
 
-export default function get({ merchantOrderId, config }: MerchantOrderGetRequest): Promise<MerchantOrderResponse> {
+export default function get({ merchantOrderId, config }: MerchantOrderGetClient): Promise<MerchantOrderResponse> {
 	return RestClient.fetch<MerchantOrderResponse>(
 		`/merchant_orders/${merchantOrderId}`,
 		{

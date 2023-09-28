@@ -8,11 +8,13 @@ import searchPaymentIntent from './searchPaymentIntent';
 
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { ChangeDeviceOperatingModeRequest } from './changeDeviceOperatingMode/types';
-import type { CreatePaymentIntentRequest } from './createPaymentIntent/types';
-import type { GetDevicesRequest } from './getDevices/types';
-import type { GetPaymentIntentListRequest } from './getPaymentIntentList/types';
-import type { Options } from '@src/types';
+import type { PointChangeDeviceOperatingModeData } from './changeDeviceOperatingMode/types';
+import type { PointCreatePaymentIntentData } from './createPaymentIntent/types';
+import type { PointGetDevicesData } from './getDevices/types';
+import type { PointGetPaymentIntentListData } from './getPaymentIntentList/types';
+import type { PointSearchPaymentIntentData } from './searchPaymentIntent/types';
+import type { PointCancelPaymentIntentData } from './cancelPaymentIntent/types';
+import type { PointGetPaymentIntentStatusData } from './getPaymentIntentStatus/types';
 import type {
 	CancelPaymentIntentResponse,
 	ChangeDeviceOperatingModeResponse,
@@ -37,9 +39,9 @@ export class Point {
 	/**
    * Mercado Pago Create Payment Intent.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api_paymentintent_mlb/_point_integration-api_devices_deviceid_payment-intents/post Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/createPaymentIntent.ts Usage Example }.
    */
-	createPaymentIntent({ device_id, request }: CreatePaymentIntentRequest, requestOptions?: Options): Promise<PaymentIntentResponse> {
+	createPaymentIntent({ device_id, request, requestOptions }: PointCreatePaymentIntentData): Promise<PaymentIntentResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return createPaymentIntent({ device_id, request, config: this.config });
 	}
@@ -47,49 +49,40 @@ export class Point {
 	/**
    * Mercado Pago Search Payment Intent.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_payment-intents_paymentintentid/get Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/searchPaymentIntent.ts Usage Example }.
    */
-	searchPaymentIntent( payment_intent_id: string, requestOptions?: Options): Promise<PaymentIntentResponse> {
+	searchPaymentIntent({ payment_intent_id, requestOptions }: PointSearchPaymentIntentData): Promise<PaymentIntentResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return searchPaymentIntent({
-			payment_intent_id: payment_intent_id,
-			config: this.config,
-		});
+		return searchPaymentIntent({ payment_intent_id: payment_intent_id,config: this.config });
 	}
 
 	/**
    * Mercado Pago Cancel Payment Intent.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_devices_deviceid_payment-intents_paymentintentid/delete Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/cancelPaymentIntent.ts Usage Example }.
    */
-	cancelPaymentIntent( device_id: string, payment_intent_id: string, requestOptions?: Options): Promise<CancelPaymentIntentResponse> {
+	cancelPaymentIntent({ device_id, payment_intent_id, requestOptions }: PointCancelPaymentIntentData): Promise<CancelPaymentIntentResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return cancelPaymentIntent({
-			device_id,
-			payment_intent_id,
-			config: this.config,
-		});
+		return cancelPaymentIntent({ device_id,payment_intent_id,config: this.config });
 	}
 
 	/**
    * Mercado Pago Get Payment Intent List.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_devices_deviceid_payment-intents_paymentintentid/delete Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/getPaymentIntentList.ts Usage Example }.
    */
-	getPaymentIntentList( request?: GetPaymentIntentListRequest, requestOptions?: Options): Promise<GetPaymentIntentListResponse> {
+	getPaymentIntentList(pointGetPaymentIntentListOptions: PointGetPaymentIntentListData = {}): Promise<GetPaymentIntentListResponse> {
+		const { body, requestOptions } = pointGetPaymentIntentListOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return getPaymentIntentList({
-			filters: request?.filters,
-			config: this.config,
-		});
+		return getPaymentIntentList({ filters: body?.filters,config: this.config });
 	}
 
 	/**
    * Mercado Pago Get Payment Intent Status.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_payment-intents_paymentintentid_events/get Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/getPaymentIntentStatus.ts Usage Example }.
    */
-	getPaymentIntentStatus( payment_intent_id: string, requestOptions?: Options): Promise<PaymentIntentStatusResponse> {
+	getPaymentIntentStatus({ payment_intent_id, requestOptions }: PointGetPaymentIntentStatusData): Promise<PaymentIntentStatusResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return getPaymentIntentStatus({ payment_intent_id, config: this.config });
 	}
@@ -97,9 +90,9 @@ export class Point {
 	/**
    * Mercado Pago Get Devices.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_devices/get Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/getDevices.ts Usage Example }.
    */
-	getDevices(request: GetDevicesRequest, requestOptions?: Options): Promise<GetDevicesResponse> {
+	getDevices({ request, requestOptions }: PointGetDevicesData): Promise<GetDevicesResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return getDevices({ filters: request?.filters, config: this.config });
 	}
@@ -107,14 +100,10 @@ export class Point {
 	/**
    * Mercado Pago Change Device Operating Mode.
    *
-   * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_devices_device-id/patch Usage Example }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/point/changeDeviceOperatingMode.ts Usage Example }.
    */
-	changeDeviceOperatingMode({ device_id,request }: ChangeDeviceOperatingModeRequest, requestOptions?: Options): Promise<ChangeDeviceOperatingModeResponse> {
+	changeDeviceOperatingMode({ device_id, request, requestOptions }: PointChangeDeviceOperatingModeData): Promise<ChangeDeviceOperatingModeResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return changeDeviceOperatingMode({
-			device_id,
-			request,
-			config: this.config,
-		});
+		return changeDeviceOperatingMode({ device_id, request ,config: this.config });
 	}
 }

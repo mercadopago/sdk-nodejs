@@ -10,7 +10,7 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 
 const preApprovalPlan = new PreApprovalPlan(client);
 
-preApprovalPlan.create({
+preApprovalPlan.create({ body: {
 	back_url: '<BACK_URL>',
 	reason: '<REASON>',
 	auto_recurring:	{
@@ -19,4 +19,4 @@ preApprovalPlan.create({
 		frequency: 1,
 		frequency_type: '<FREQUENCY_TYPE>',
 	}
-}).then(console.log).catch(console.log);
+} }).then(console.log).catch(console.log);

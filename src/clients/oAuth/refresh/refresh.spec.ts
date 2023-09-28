@@ -16,7 +16,7 @@ describe('Testing OAuth, refresh', () => {
 			refresh_token: ''
 		};
 
-		const expectedBody = {
+		const body = {
 			...oauthRequest,
 			'grant_type': 'refresh_token',
 		};
@@ -25,14 +25,14 @@ describe('Testing OAuth, refresh', () => {
 			'Authorization': 'Bearer token',
 		};
 
-		await refresh({ oauthRequest, config : client });
+		await refresh({ body, config : client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
 			'/oauth/token',
 			expect.objectContaining({
 				method: 'POST',
 				headers: expectedHeaders,
-				body: JSON.stringify(expectedBody),
+				body: JSON.stringify(body),
 			})
 		);
 

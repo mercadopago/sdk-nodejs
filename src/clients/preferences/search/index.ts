@@ -1,8 +1,8 @@
 import { RestClient } from '@utils/restClient';
 
-import type { Search, PreferenceSearchResponse } from './types';
+import type { PreferenceSearchClient, PreferenceSearchResponse } from './types';
 
-export default function search({ filters, config }: Search): Promise<PreferenceSearchResponse> {
+export default function search({ filters, config }: PreferenceSearchClient): Promise<PreferenceSearchResponse> {
 	return RestClient.fetch<PreferenceSearchResponse>(
 		'/checkout/preferences/search',
 		{

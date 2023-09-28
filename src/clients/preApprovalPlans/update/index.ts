@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { UpdatePreApprovalPlan } from './types';
+import type { UpdatePreApprovalPlanUpdateClient } from './types';
 import type { PreApprovalPlanResponse } from '@src/clients/preApprovalPlans/commonTypes';
 
-export default function update({ id, updatePreApprovalPlanRequest, config }: UpdatePreApprovalPlan): Promise<PreApprovalPlanResponse> {
+export default function update({ id, updatePreApprovalPlanRequest, config }: UpdatePreApprovalPlanUpdateClient): Promise<PreApprovalPlanResponse> {
 	return RestClient.fetch<PreApprovalPlanResponse>(
 		`/preapproval_plan/${id}`,
 		{

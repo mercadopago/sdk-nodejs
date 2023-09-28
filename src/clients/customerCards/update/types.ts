@@ -1,7 +1,8 @@
-import type { CustomerCardCardholder } from '@src/clients/cardTokens/get/types';
+import type { CustomerCardCardholder } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options } from '@src/types';
 
-export declare type CustomerCardConfigUpdate = {
+export declare type CustomerCardsUpdateClient = {
   customerId: string;
   cardId: string;
   body: CustomerCardUpdateBody;
@@ -15,8 +16,9 @@ export declare type CustomerCardUpdateBody = {
   token?: string;
 };
 
-export declare type CustomerCardUpdate = {
+export declare type CustomerCardsUpdateData = {
   customerId: string;
   cardId: string;
   customerCardBody: CustomerCardUpdateBody;
+  requestOptions?: Options
 };

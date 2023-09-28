@@ -1,12 +1,14 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options } from '@src/types';
 
-export declare type CardTokenGet = {
+export declare type CardTokenGetClient = {
   id: string;
   config: MercadoPagoConfig;
 };
 
-export declare type CardTokenId = {
+export declare type CardTokenGetData = {
   cardTokenId: string;
+  requestOptions?: Options
 };
 
 
