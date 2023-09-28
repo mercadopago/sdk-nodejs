@@ -1,7 +1,8 @@
 import type { Identification } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options } from '@src/types';
 
-export declare type Search = {
+export declare type PaymentSearchClient = {
   filters?: PaymentsSearchOptions,
   config: MercadoPagoConfig
 };
@@ -87,4 +88,10 @@ export declare type PaymentsSearchOptions = {
   range?: 'date_created' | 'date_last_updated' | 'date_approved' | 'money_release_date' | 'date_created';
   begin_date?: string;
   end_date?: string;
-};
+}
+
+export declare type PaymentSearchData = {
+  filters?: PaymentsSearchOptions;
+  requestOptions?: Options;
+}
+

@@ -1,8 +1,8 @@
 import { RestClient } from '@utils/restClient';
 
-import type { InvoicesSearch, InvoicesSearchResponse } from './types';
+import type { InvoicesSearchClient, InvoicesSearchResponse } from './types';
 
-export default function search({ filters, config }: InvoicesSearch): Promise<InvoicesSearchResponse> {
+export default function search({ filters, config }: InvoicesSearchClient): Promise<InvoicesSearchResponse> {
 	return RestClient.fetch<InvoicesSearchResponse>(
 		'/authorized_payments/search',
 		{

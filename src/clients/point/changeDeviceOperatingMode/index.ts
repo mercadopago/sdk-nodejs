@@ -1,13 +1,9 @@
 import { RestClient } from '@src/utils/restClient';
 
 import type { ChangeDeviceOperatingModeResponse } from '../commonTypes';
-import type { ChangeDeviceOperatingMode } from './types';
+import type { PointChangeDeviceOperatingModeClient } from './types';
 
-export default function changeDeviceOperatingMode({
-	device_id,
-	request,
-	config,
-}: ChangeDeviceOperatingMode): Promise<ChangeDeviceOperatingModeResponse> {
+export default function changeDeviceOperatingMode({ device_id, request, config }: PointChangeDeviceOperatingModeClient): Promise<ChangeDeviceOperatingModeResponse> {
 	return RestClient.fetch<ChangeDeviceOperatingModeResponse>(
 		`/point/integration-api/devices/${device_id}`,
 		{

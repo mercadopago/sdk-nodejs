@@ -3,14 +3,14 @@ import update from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { UpdatePreApproval } from './types';
+import type { PreApprovalUpdateClient } from './types';
 
 jest.mock('@utils/restClient');
 
 describe('Testing pre approval , update', () => {
 	test('should make a PUT request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
-		const preApproval: UpdatePreApproval = {
+		const preApproval: PreApprovalUpdateClient = {
 			id: '1234',
 			body: {
 				back_url: 'https://www.test.com',

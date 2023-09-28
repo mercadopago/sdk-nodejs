@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { CreatePreApprovalPlanRequest } from './types';
+import type { PreApprovalPlansCreateClient } from './types';
 import type { PreApprovalPlanResponse } from '@src/clients/preApprovalPlans/commonTypes';
 
-export default function create({ preApprovalPlanRequest, config }: CreatePreApprovalPlanRequest): Promise<PreApprovalPlanResponse> {
+export default function create({ body, config }: PreApprovalPlansCreateClient): Promise<PreApprovalPlanResponse> {
 	return RestClient.fetch<PreApprovalPlanResponse>(
 		'/preapproval_plan/',
 		{
@@ -12,7 +12,7 @@ export default function create({ preApprovalPlanRequest, config }: CreatePreAppr
 				'Authorization': `Bearer ${config.accessToken}`,
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(preApprovalPlanRequest),
+			body: JSON.stringify(body),
 			...config.options
 		}
 	);

@@ -1,8 +1,7 @@
 import list from './list';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { IdentificationTypeResponse } from './list/types';
-import type { Options } from '@src/types';
+import type { IdentificationTypeResponse, IdentificationTypesListData } from './list/types';
 
 /**
  * Mercado Pago IdentificationTypes.
@@ -21,7 +20,8 @@ export class IdentificationType {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/identificationtypes/list.ts Usage Example  }.
    */
-	list(requestOptions?: Options): Promise<IdentificationTypeResponse[]> {
+	list(IdentificationTypesListOptions: IdentificationTypesListData = {} as IdentificationTypesListData): Promise<IdentificationTypeResponse[]> {
+		const { requestOptions } =  IdentificationTypesListOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return list({ config: this.config });
 	}

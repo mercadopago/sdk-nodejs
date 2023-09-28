@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { CreatePreApprovalRequest } from './types';
+import type { PreApprovalCreateClient } from './types';
 import type { PreApprovalResponse } from '@src/clients/preApproval/commonTypes';
 
-export default function create({ body, config }: CreatePreApprovalRequest): Promise<PreApprovalResponse> {
+export default function create({ body, config }: PreApprovalCreateClient): Promise<PreApprovalResponse> {
 	return RestClient.fetch<PreApprovalResponse>(
 		'/preapproval/',
 		{

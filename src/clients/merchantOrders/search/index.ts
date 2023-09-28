@@ -1,8 +1,8 @@
 import { RestClient } from '@utils/restClient';
 
-import type { MerchantOrderSearchRequest, MerchantOrderSearchResultsPage } from './types';
+import type { MerchantOrderSearchClient, MerchantOrderSearchResultsPage } from './types';
 
-export default function search({ filters, config }: MerchantOrderSearchRequest): Promise<MerchantOrderSearchResultsPage> {
+export default function search({ filters, config }: MerchantOrderSearchClient): Promise<MerchantOrderSearchResultsPage> {
 	return RestClient.fetch<MerchantOrderSearchResultsPage>(
 		'/merchant_orders/search',
 		{

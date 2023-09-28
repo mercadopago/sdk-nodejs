@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
 import type { PaymentsResponse } from '../commonTypes';
-import type { PaymentCaptureRequest } from './types';
+import type { PaymentCaptureClient } from './types';
 
-export default function capture({ id, transaction_amount, config }: PaymentCaptureRequest): Promise<PaymentsResponse>  {
+export default function capture({ id, transaction_amount, config }: PaymentCaptureClient): Promise<PaymentsResponse>  {
 	const captureBody = {
 		capture: true,
 		transaction_amount

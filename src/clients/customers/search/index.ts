@@ -1,8 +1,8 @@
 import { RestClient } from '@utils/restClient';
 
-import type { CustomerSearchRequest, CustomerSearchResultsPage } from './types';
+import type { CustomerSearchClient, CustomerSearchResultsPage } from './types';
 
-export default function search({ filters, config }: CustomerSearchRequest): Promise<CustomerSearchResultsPage> {
+export default function search({ filters, config }: CustomerSearchClient): Promise<CustomerSearchResultsPage> {
 	return RestClient.fetch<CustomerSearchResultsPage>(
 		'/v1/customers/search',
 		{

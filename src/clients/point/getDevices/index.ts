@@ -1,12 +1,9 @@
 import { RestClient } from '@src/utils/restClient';
 
 import type { GetDevicesResponse } from '../commonTypes';
-import type { Search } from './types';
+import type { PointGetDevicesClient } from './types';
 
-export default function getDevices({
-	filters,
-	config,
-}: Search): Promise<GetDevicesResponse> {
+export default function getDevices({ filters, config }: PointGetDevicesClient): Promise<GetDevicesResponse> {
 	return RestClient.fetch<GetDevicesResponse>(
 		'/point/integration-api/devices',
 		{

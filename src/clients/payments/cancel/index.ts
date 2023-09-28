@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
 import type { PaymentsResponse } from '../commonTypes';
-import type { PaymentCancelRequest } from './types';
+import type { PaymentCancelClient } from './types';
 
-export default function cancel({ id, config }: PaymentCancelRequest): Promise<PaymentsResponse>  {
+export default function cancel({ id, config }: PaymentCancelClient): Promise<PaymentsResponse>  {
 	const cancelBody = {
 		status: 'cancelled'
 	};

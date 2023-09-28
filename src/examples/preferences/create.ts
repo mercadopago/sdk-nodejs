@@ -10,7 +10,7 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 
 const preference = new Preference(client);
 
-preference.create({
+preference.create({ body: {
 	items: [
 		{
 			id: '<ID>',
@@ -19,4 +19,4 @@ preference.create({
 			unit_price: 12.34
 		}
 	],
-}).then(console.log).catch(console.log);
+} }).then(console.log).catch(console.log);

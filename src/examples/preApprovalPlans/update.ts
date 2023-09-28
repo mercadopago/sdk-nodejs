@@ -11,7 +11,7 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 const preApprovalPlan = new PreApprovalPlan(client);
 
 preApprovalPlan.update({
-	id: '2c9380848abc9ff6018abe6511b70150',
+	id: '<ID>',
 	updatePreApprovalPlanRequest: {
 		back_url: '<BACK_URL>',
 		reason: '<REASON>',
