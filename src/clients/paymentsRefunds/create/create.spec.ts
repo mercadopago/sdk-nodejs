@@ -3,14 +3,14 @@ import create from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { CreateRefundRequest } from './types';
+import type { PaymentsRefoundsCreateClient } from './types';
 
 jest.mock('@utils/restClient');
 
 describe('Testing payments refunds, create', () => {
 	test('should successfully make a request with "amount" in the body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const request: CreateRefundRequest = {
+		const request: PaymentsRefoundsCreateClient = {
 			payment_id: '123',
 			body: {
 				amount: 5
@@ -20,7 +20,6 @@ describe('Testing payments refunds, create', () => {
 
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await create(request);
@@ -38,14 +37,13 @@ describe('Testing payments refunds, create', () => {
 
 	test('should successfully make a request without a body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const request: CreateRefundRequest = {
+		const request: PaymentsRefoundsCreateClient = {
 			payment_id: '123',
 			config: client,
 		};
 
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await create(request);

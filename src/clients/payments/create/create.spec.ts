@@ -2,7 +2,7 @@ import create from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { Create } from './types';
+import type { PaymentCreateClient } from './types';
 
 jest.mock('@utils/restClient');
 
@@ -16,7 +16,7 @@ describe('Testing create payments', () => {
 			},
 			transaction_amount: 12.34,
 		};
-		const mockCreate: Create = {
+		const mockCreate: PaymentCreateClient = {
 			body: mockBody,
 			config: client
 		};

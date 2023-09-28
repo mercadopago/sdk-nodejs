@@ -3,12 +3,12 @@ import type { Paging } from '@src/clients/commonTypes';
 import type { InvoicesResponse } from '@src/clients/invoices/commonTypes';
 import type { Options, SearchOptions } from '@src/types';
 
-export declare type InvoicesSearchRequest = {
+export declare type InvoicesSearchData = {
   filters?: InvoicesSearchOptions;
   requestOptions?: Options;
 }
 
-export declare type InvoicesSearch = {
+export declare type InvoicesSearchClient = {
   filters?: InvoicesSearchOptions;
   config: MercadoPagoConfig
 }

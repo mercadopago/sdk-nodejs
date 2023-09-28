@@ -10,6 +10,4 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 
 const payments = new Payment(client);
 
-payments.search({
-	external_reference: '<EXTERNAL_REFERENCE>',
-}).then(console.log).catch(console.log);
+payments.search().then(console.log).catch(console.log);

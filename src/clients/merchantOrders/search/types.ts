@@ -1,11 +1,17 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { SearchOptions } from '@src/types';
 import type { MerchantOrderResponse } from '../commonTypes';
+import type { Options } from '@src/types';
 
-export declare type MerchantOrderSearchRequest = {
+export declare type MerchantOrderSearchClient = {
   filters?: MerchantOrderSearchOptions;
   config: MercadoPagoConfig;
 };
+
+export declare type MerchantOrderSearchData = {
+  filters?: MerchantOrderSearchOptions;
+  requestOptions?: Options;
+}
 
 export declare interface MerchantOrderSearchOptions extends SearchOptions {
   status?: string;

@@ -9,4 +9,4 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 
 const point = new Point(client);
 
-point.searchPaymentIntent('<PAYMENT_INTENT_ID>').then(console.log).catch(console.log);
+point.searchPaymentIntent({ payment_intent_id: '<PAYMENT_INTENT_ID>' }).then(console.log).catch(console.log);

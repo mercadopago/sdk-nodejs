@@ -3,14 +3,14 @@ import get from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { Get } from './types';
+import type { PaymentsRefoundsGetClient } from './types';
 
 jest.mock('@utils/restClient');
 
 describe('Testing payments refunds, get', () => {
 	test('should include the refund_id in the path of the url ', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const request: Get = {
+		const request: PaymentsRefoundsGetClient = {
 			payment_id: '123',
 			refund_id: '456',
 			config: client,

@@ -8,4 +8,4 @@ import MercadoPago, { Customer } from '@src/index';
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 const customerClient = new Customer(client);
 
-customerClient.search({  email: '<EMAIL>' }).then(console.log).catch(console.log);
+customerClient.search({ filters: { email: '<EMAIL>' } }).then(console.log).catch(console.log);

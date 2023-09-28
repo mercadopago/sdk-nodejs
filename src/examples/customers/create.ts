@@ -9,7 +9,7 @@ import MercadoPago from '@src/index';
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 const customerClient = new Customer(client);
 
-customerClient.create({
+customerClient.create({ body: {
 	first_name: '<FIRST_NAME>',
 	last_name: 'LAST_NAME',
-}).then(console.log).catch(console.log);
+} }).then(console.log).catch(console.log);

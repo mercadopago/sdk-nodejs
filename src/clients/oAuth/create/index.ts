@@ -1,10 +1,10 @@
 import { RestClient } from '@utils/restClient';
-import type { CreateOAuthRequest } from './types';
+import type { OAuthCreateClient } from './types';
 import type { OAuthResponse } from '../commonTypes';
 
-export default function create({ oauthRequest, config }: CreateOAuthRequest): Promise<OAuthResponse> {
+export default function create({ body, config }: OAuthCreateClient): Promise<OAuthResponse> {
 	const defaultRequest = {
-		...oauthRequest,
+		...body,
 		'grant_type': 'authorization_code',
 	};
 
@@ -14,7 +14,6 @@ export default function create({ oauthRequest, config }: CreateOAuthRequest): Pr
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(defaultRequest),
 			...config.options

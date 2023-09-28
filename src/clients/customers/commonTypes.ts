@@ -1,7 +1,6 @@
-import { ApiResponse } from '@src/types';
+import { ApiResponse, Options } from '@src/types';
 import type { Identification, Phone } from '../commonTypes';
-import type { CustomerCard } from '../customerCards/create/types';
-
+import type { CustomerCardsCreateClient } from '../customerCards/create/types';
 
 export declare type CustomerRequestBody = {
   email?: string;
@@ -43,7 +42,7 @@ export declare interface CustomerResponse extends ApiResponse {
   date_last_updated: Date;
   metadata: object;
   default_card: string;
-  cards: CustomerCard[];
+  cards: CustomerCardsCreateClient[];
   addresses: CustomerDefaultAddress[];
   live_mode: boolean;
 }
@@ -54,3 +53,8 @@ export declare type CustomerDefaultAddress = {
   street_name: string;
   street_number: string;
 };
+
+export declare type CustomerGetRemoveData = {
+  customerId: string;
+  requestOptions?: Options
+}

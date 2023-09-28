@@ -1,4 +1,4 @@
-import type { ApiResponse } from '@src/types';
+import type { ApiResponse, Options } from '@src/types';
 import type { CustomerCardCardholder } from '../commonTypes';
 
 export declare interface CustomerCardResponse extends ApiResponse {
@@ -35,3 +35,9 @@ export declare type CustomerCardIssuer = {
 	id: string;
 	name: string;
 }
+
+export declare type CustomerCardsGetRemoveData = {
+  customerId: string;
+  cardId: string;
+  requestOptions?: Options
+};

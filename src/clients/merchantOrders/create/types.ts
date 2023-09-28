@@ -1,11 +1,13 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Collector, MerchantOrderItemRequest, MerchantOrderPayerRequest } from '../commonTypes';
+import type { Options } from '@src/types';
 
-export declare type MerchantOrderCreate = {
+export declare type MerchantOrderCreateData = {
   body: MerchantOrderCreateRequestBody;
+  requestOptions?: Options;
 }
 
-export declare type MerchantOrderCreateRequest = {
+export declare type MerchantOrderCreateClient = {
   body: MerchantOrderCreateRequestBody;
   config: MercadoPagoConfig;
 }

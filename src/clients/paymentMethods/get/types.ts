@@ -1,7 +1,7 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { ApiResponse } from '@src/types';
 
-export declare type PaymentMethodGet = {
+export declare type PaymentMethodGetClient = {
   config: MercadoPagoConfig;
 };
 

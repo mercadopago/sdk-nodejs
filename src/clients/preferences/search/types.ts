@@ -1,7 +1,7 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { SearchOptions } from '@src/types';
+import type { Options, SearchOptions } from '@src/types';
 
-export declare type Search = {
+export declare type PreferenceSearchClient = {
   filters?: PreferenceSearchOptions,
   config: MercadoPagoConfig
 };
@@ -45,4 +45,9 @@ export declare interface PreferenceSearchOptions extends SearchOptions {
   external_reference?: string;
   site_id?: string;
   marketplace?: string;
+};
+
+export declare type PreferenceSearchData = {
+  filters?: PreferenceSearchOptions;
+  requestOptions?: Options;
 }

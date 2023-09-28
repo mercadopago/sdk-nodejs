@@ -10,7 +10,7 @@ jest.mock('@utils/restClient');
 describe('Testing pre approval plan, create', () => {
 	test('should make a POST request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const preApprovalPlanRequest: PreApprovalPlanRequest = {
+		const body: PreApprovalPlanRequest = {
 			back_url: 'https://www.test.com',
 			reason: 'test',
 			auto_recurring: {
@@ -22,18 +22,17 @@ describe('Testing pre approval plan, create', () => {
 		};
 
 		const expectedHeaders = {
-			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
+			'Authorization': 'Bearer token'
 		};
 
-		await create({ preApprovalPlanRequest, config : client });
+		await create({ body, config : client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');
 		expect(spyFetch).toHaveBeenCalledWith(
 			'/preapproval_plan/',
 			expect.objectContaining({
 				method: 'POST',
 				headers: expectedHeaders,
-				body: JSON.stringify(preApprovalPlanRequest),
+				body: JSON.stringify(body),
 			})
 		);
 

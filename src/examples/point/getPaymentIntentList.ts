@@ -10,9 +10,9 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 const point = new Point(client);
 
 point
-	.getPaymentIntentList({
+	.getPaymentIntentList({ body: {
 		filters: {
 			startDate: '<START_DATE>',
 			endDate: '<START_DATE>',
 		},
-	}).then(console.log).catch(console.log);
+	} }).then(console.log).catch(console.log);
