@@ -22,7 +22,6 @@ describe('Testing payment intent, list', () => {
 		};
 		const expectedHeaders = {
 			Authorization: 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await getPaymentIntentList(search);

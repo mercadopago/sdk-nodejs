@@ -1,16 +1,12 @@
 import fetch, { Response, RequestInit } from 'node-fetch';
+import { AppConfig } from '@utils/config';
 import { v4 as uuidv4 } from 'uuid';
 
-const DEFAULT_TIMEOUT = 10000;
-const DEFAULT_RETRIES = 2;
-const BASE_DELAY_MS = 1000;
-const BASE_URL = 'https://api.mercadopago.com';
+import type { Options } from '@src/types';
 
-interface RestClientConfig {
-  timeout?: number;
+interface RestClientConfig extends Options {
   queryParams?: Record<string, string | number>;
   retries?: number;
-  idempotencyKey?: string;
 }
 
 class RestClient {
@@ -46,7 +42,7 @@ class RestClient {
 					throw error;
 				}
 
-				const delayMs = BASE_DELAY_MS * 2 ** attempt;
+				const delayMs = AppConfig.BASE_DELAY_MS * 2 ** attempt;
 				await new Promise((resolve) => setTimeout(resolve, delayMs));
 
 				attempt++;
@@ -62,21 +58,36 @@ class RestClient {
 		config?: RestClientConfig & RequestInit
 	): Promise<T> {
 		const {
-			timeout = DEFAULT_TIMEOUT,
+			timeout = AppConfig.DEFAULT_TIMEOUT,
 			idempotencyKey = RestClient.generateIdempotencyKey(),
 			queryParams,
 			method = 'GET',
-			retries = DEFAULT_RETRIES,
+			retries = AppConfig.DEFAULT_RETRIES,
+			corporationId,
+			integratorId,
+			plataformId,
 			...customConfig
 		} = config || {};
 
-		const url = RestClient.appendQueryParamsToUrl(`${BASE_URL}${endpoint}`, queryParams);
+		const url = RestClient.appendQueryParamsToUrl(`${AppConfig.BASE_URL}${endpoint}`, queryParams);
+		customConfig.headers = {
+			...customConfig.headers,
+			[AppConfig.Headers.CONTENT_TYPE]: 'application/json',
+			[AppConfig.Headers.PRODUCT_ID]: AppConfig.PRODUCT_ID,
+			[AppConfig.Headers.TRACKING_ID]: AppConfig.getTrackingId(),
+			[AppConfig.Headers.USER_AGENT]: AppConfig.getUserAgent(),
+			...(corporationId ? { [AppConfig.Headers.CORPORATION_ID]: corporationId } : {}),
+			...(integratorId ? { [AppConfig.Headers.INTEGRATOR_ID]: integratorId } : {}),
+			...(plataformId ? { [AppConfig.Headers.PLATFORM_ID]: plataformId } : {}),
+		};
+
 		if (method && method !== 'GET') {
 			customConfig.headers = {
-				...(customConfig.headers || {}),
-				'Idempotency-Key': idempotencyKey,
+				...customConfig.headers,
+				[AppConfig.Headers.IDEMPOTENCY_KEY]: idempotencyKey,
 			};
 		}
+
 
 		let response: Response;
 

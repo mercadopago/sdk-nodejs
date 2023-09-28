@@ -10,7 +10,6 @@ export default function getDevices({ filters, config }: PointGetDevicesClient): 
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			queryParams: {
 				...filters,

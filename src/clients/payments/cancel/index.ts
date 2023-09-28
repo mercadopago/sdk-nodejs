@@ -13,7 +13,6 @@ export default function cancel({ id, config }: PaymentCancelClient): Promise<Pay
 			method: 'PUT',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(cancelBody),
 			...config.options

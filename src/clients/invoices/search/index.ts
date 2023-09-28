@@ -8,7 +8,6 @@ export default function search({ filters, config }: InvoicesSearchClient): Promi
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			queryParams: {
 				...filters

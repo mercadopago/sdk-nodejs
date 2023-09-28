@@ -10,7 +10,6 @@ export default function create({ payment_id, body, config }: PaymentsRefoundsCre
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(body),
 			...config.options

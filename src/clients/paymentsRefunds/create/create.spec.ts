@@ -20,7 +20,6 @@ describe('Testing payments refunds, create', () => {
 
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await create(request);
@@ -45,7 +44,6 @@ describe('Testing payments refunds, create', () => {
 
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await create(request);

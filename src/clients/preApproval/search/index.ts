@@ -8,7 +8,6 @@ export default function search({ filters, config }: PreApprovalSearchClient): Pr
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			queryParams: {
 				...filters

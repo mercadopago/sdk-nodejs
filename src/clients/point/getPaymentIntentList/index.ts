@@ -10,7 +10,6 @@ export default function getPaymentIntentList({ filters, config }: PointGetPaymen
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			queryParams: {
 				...filters,

@@ -10,7 +10,6 @@ export default function update({ id, updatePreApprovalPlanRequest, config }: Upd
 			method: 'PUT',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(updatePreApprovalPlanRequest),
 			...config.options

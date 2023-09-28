@@ -14,7 +14,6 @@ export default function create({ body, config }: OAuthCreateClient): Promise<OAu
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(defaultRequest),
 			...config.options

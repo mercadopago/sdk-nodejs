@@ -13,7 +13,6 @@ export default function refresh({ body, config }: OAuthRefreshClient): Promise<O
 			method: 'POST',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(defaultRequest),
 			...config.options

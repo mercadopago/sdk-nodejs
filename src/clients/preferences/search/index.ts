@@ -8,7 +8,6 @@ export default function search({ filters, config }: PreferenceSearchClient): Pro
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			queryParams: {
 				...filters
