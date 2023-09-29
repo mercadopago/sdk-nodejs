@@ -3,9 +3,9 @@ import create from './create';
 import list from './list';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PaymentsRefoundsCreateData } from './create/types';
-import type { PaymentsRefoundsGetData } from './get/types';
-import type { PaymentsRefoundsListData } from './list/types';
+import type { PaymentsRefundsCreateData } from './create/types';
+import type { PaymentsRefundsGetData } from './get/types';
+import type { PaymentsRefundsListData } from './list/types';
 import type { RefundResponse } from './commonTypes';
 
 /**
@@ -25,7 +25,7 @@ export class PaymentsRefunds {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefunds/get.ts Usage Example  }.
    */
-	get({ payment_id, refund_id, requestOptions }: PaymentsRefoundsGetData): Promise<RefundResponse> {
+	get({ payment_id, refund_id, requestOptions }: PaymentsRefundsGetData): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ payment_id, refund_id, config: this.config });
 	}
@@ -35,7 +35,7 @@ export class PaymentsRefunds {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefunds/create.ts Usage Example  }.
    */
-	create({ payment_id, body, requestOptions }: PaymentsRefoundsCreateData): Promise<RefundResponse> {
+	create({ payment_id, body, requestOptions }: PaymentsRefundsCreateData): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ payment_id, body, config: this.config });
 	}
@@ -45,7 +45,7 @@ export class PaymentsRefunds {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefunds/list.ts Usage Example  }.
    */
-	list({ payment_id, requestOptions }: PaymentsRefoundsListData): Promise<Array<RefundResponse>> {
+	list({ payment_id, requestOptions }: PaymentsRefundsListData): Promise<Array<RefundResponse>> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return list({ payment_id, config: this.config });
 	}

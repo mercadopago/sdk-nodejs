@@ -14,6 +14,6 @@ export declare type OAuthRequest = {
 }
 
 export declare type OAuthCreateData = {
-  body?: OAuthRequest;
+  body: OAuthRequest;
   requestOptions?: Options;
 }

@@ -55,6 +55,6 @@ export declare type CustomerDefaultAddress = {
 };
 
 export declare type CustomerGetRemoveData = {
-  customerId?: string;
+  customerId: string;
   requestOptions?: Options
 }

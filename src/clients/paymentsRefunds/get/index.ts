@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { PaymentsRefoundsGetClient } from './types';
+import type { PaymentsRefundsGetClient } from './types';
 import type { RefundResponse } from '../commonTypes';
 
-export default function get({ payment_id, refund_id, config }: PaymentsRefoundsGetClient): Promise<RefundResponse> {
+export default function get({ payment_id, refund_id, config }: PaymentsRefundsGetClient): Promise<RefundResponse> {
 	return RestClient.fetch<RefundResponse>(
 		`/v1/payments/${payment_id}/refunds/${refund_id}`,
 		{

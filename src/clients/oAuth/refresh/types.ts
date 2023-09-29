@@ -13,6 +13,6 @@ export declare type OAuthRefresh = {
 }
 
 export declare type OAuthRefreshData = {
-  body?: OAuthRefresh;
+  body: OAuthRefresh;
   requestOptions?: Options;
 }

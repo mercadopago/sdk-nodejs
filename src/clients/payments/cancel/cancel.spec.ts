@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 jest.mock('@utils/restClient');
 
 describe('Testing payments, cancel', () => {
-	test('shoud pass foward request options from cancel to RestClient.cancel', async () => {
+	test('should pass foward request options from cancel to RestClient.cancel', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
 		const mockPaymentId = '00000000';
 		await cancel({ id: mockPaymentId, config : client });

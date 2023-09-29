@@ -24,8 +24,8 @@ export declare type AutoRecurringRequest = {
 }
 
 export declare type PreApprovalUpdateData = {
-  id?: string;
-  body?: updatePreApprovalRequest;
+  id: string;
+  body: updatePreApprovalRequest;
   requestOptions?: Options;
 }
 
