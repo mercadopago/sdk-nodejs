@@ -45,7 +45,7 @@ export declare interface PreferenceSearchOptions extends SearchOptions {
   external_reference?: string;
   site_id?: string;
   marketplace?: string;
-};
+}
 
 export declare type PreferenceSearchData = {
   filters?: PreferenceSearchOptions;
