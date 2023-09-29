@@ -38,16 +38,16 @@ export declare type PreApprovalPlanRequest = {
 };
 
 export declare interface PreApprovalPlanResponse extends ApiResponse {
-  id: string;
-  back_url: string;
-  auto_return: string;
-  collector_id: number;
-  application_id: number;
-  reason: string;
-  status: string;
-  date_created: string;
-  last_modified: string;
-  init_point: string;
-  auto_recurring: AutoRecurring;
-  payment_methods_allowed: PaymentMethodsAllowed;
+  id?: string;
+  back_url?: string;
+  auto_return?: string;
+  collector_id?: number;
+  application_id?: number;
+  reason?: string;
+  status?: string;
+  date_created?: string;
+  last_modified?: string;
+  init_point?: string;
+  auto_recurring?: AutoRecurring;
+  payment_methods_allowed?: PaymentMethodsAllowed;
 }

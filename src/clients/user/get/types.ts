@@ -6,35 +6,35 @@ export declare type UserGetClient = {
 };
 
 export declare interface UserResponse extends ApiResponse {
-  id: number;
-  nickname: string;
+  id?: number;
+  nickname?: string;
   registration_date?: string;
-  first_name: string;
-  last_name: string;
+  first_name?: string;
+  last_name?: string;
   gender?: string;
   contry_id?: string;
-  email: string;
-  identification: Identification;
-  address: Address;
-  phone: Phone;
-  alternative_phone: AlternativePhone;
-  tags: string[];
+  email?: string;
+  identification?: Identification;
+  address?: Address;
+  phone?: Phone;
+  alternative_phone?: AlternativePhone;
+  tags?: string[];
   user_type?: string;
   logo?: string;
   points?: number;
-  site_id: string;
+  site_id?: string;
   permalink?: string;
   seller_experience?: string;
-  bill_data: BillData;
-  seller_reputation: SellerReputation;
-  buyer_reputation: BuyerReputation;
-  status: Status;
+  bill_data?: BillData;
+  seller_reputation?: SellerReputation;
+  buyer_reputation?: BuyerReputation;
+  status?: Status;
   secure_email?: string;
-  company: Company;
-  credit: Credit;
-  context: Context;
-  registration_identifiers: string[];
-  country_id: string;
+  company?: Company;
+  credit?: Credit;
+  context?: Context;
+  registration_identifiers?: string[];
+  country_id?: string;
 }
 
 export declare type Identification = {
