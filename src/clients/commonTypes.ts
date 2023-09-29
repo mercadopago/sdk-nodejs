@@ -63,3 +63,8 @@ export declare type CustomerCardCardholder = {
   name?: string;
   identification?: Identification;
 };
+
+export declare type Tax = {
+  type?: string;
+  value?: number;
+};

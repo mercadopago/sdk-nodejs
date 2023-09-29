@@ -1,4 +1,4 @@
-import type { Address, Identification, Items, Shipments } from '@src/clients/commonTypes';
+import type { Address, Identification, Items, Shipments, Tax } from '@src/clients/commonTypes';
 import { ApiResponse } from '@src/types';
 
 export declare type Phone = {
@@ -60,12 +60,6 @@ export declare type RedirectUrls = {
   failure?: string;
   pending?: string;
 };
-
-export declare type Tax = {
-  type?: string;
-  value?: number;
-};
-
 
 export declare type PreferenceRequest = {
   additional_info?: string;
