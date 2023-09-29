@@ -32,23 +32,26 @@ That's it! Mercado Pago SDK has been successfully installed.
 
 ```javascript
 // Step 1: Import the parts of the module you want to use
-import MercadoPago, { CardToken } from 'mercadopago';
+import MercadoPago, { Payment } from 'mercadopago';
 
 // Step 2: Initialize the client object
 const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000, idempotencyKey: 'abc' } });
 
 // Step 3: Initialize the API object
-const cardToken = new CardToken(client);
+const payment = new Payment(client);
 
 // Step 4: Create the request object
 const body = {
-	card_id : 'card_id',
-	security_code : 'security_code'
+	transaction_amount: 12.34,
+	description: '<DESCRIPTION>',
+	payment_method_id: '<PAYMENT_METHOD_ID>',
+	payer: {
+		email: '<EMAIL>'
+	},
 };
 
 // Step 5: Make the request
-cardToken.create({ cardTokenBody : body })
-	.then((result) => console.log(result));
+payment.create({ body }).then(console.log).catch(console.log);
 ```
 
 ### Step 1: Import the parts of the module you want to use
@@ -56,7 +59,7 @@ cardToken.create({ cardTokenBody : body })
 Import `MercadoPago` and API objects from the MercadoPago module. 
 
 ``` javascript
-import MercadoPago, { CardToken } from 'mercadopago';
+import MercadoPago, { Payment } from 'mercadopago';
 ```
 
 ### Step 2: Initialize the client object
@@ -78,28 +81,30 @@ const client = new MercadoPago({ accessToken: 'access_token', options: { timeout
 Initialize the API object you want to use, passing the `client` object from the previous step. 
 
 ``` javascript
-const cardToken = new CardToken(client);
+const payment = new Payment(client);
 ```
 
 ### Step 4: Create the request object
 
-Create a the request object. For example, for a request to the `/v1/card_tokens` endpoint:
+Create a the request object. For example, for a request to the `/v1/payments` endpoint:
 
 ``` javascript
-  const body = {
-	card_id : 'card_id',
-	security_code : 'security_code'
+const body = {
+	transaction_amount: 12.34,
+	description: '<DESCRIPTION>',
+	payment_method_id: '<PAYMENT_METHOD_ID>',
+	payer: {
+		email: '<EMAIL>'
+	},
 };
 ```
 
 ### Step 5: Make the request
 
-Use the API object's method to make the request. For example, to make a request to the `/v1/card_tokens` endpoint using the `CardToken` object:
+Use the API object's method to make the request. For example, to make a request to the `/v1/payments` endpoint using the `payment` object:
 
 ```
-cardToken.create({ cardTokenBody : body })
-	.then((result) => console.log(result))
-  .catch(error => console.log(error));
+payment.create({ body }).then(console.log).catch(console.log);
 ```
 
 ## 📚 Documentation 
