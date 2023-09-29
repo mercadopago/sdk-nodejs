@@ -2,7 +2,7 @@ import type { Options } from '@src/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 export declare type PreApprovalGetData = {
-  id: string;
+  id?: string;
   requestOptions?: Options;
 }
 

@@ -7,9 +7,9 @@ export declare type CardTokenCreateClient = {
 };
 
 export declare type CardTokenCreateBody = {
-  card_id: string;
+  card_id?: string;
   customer_id?: string;
-  security_code: string;
+  security_code?: string;
 };
 
 export declare type CardTokenCreateData = {

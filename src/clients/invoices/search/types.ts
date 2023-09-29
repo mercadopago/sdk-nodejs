@@ -14,10 +14,10 @@ export declare type InvoicesSearchClient = {
 }
 
 export declare type InvoicesSearchOptions = {
-  id: number;
-  preapproval_id: string;
-  payment_id: number;
-  payer_id: number;
+  id?: number;
+  preapproval_id?: string;
+  payment_id?: number;
+  payer_id?: number;
   offset?: number;
   limit?: number;
 }

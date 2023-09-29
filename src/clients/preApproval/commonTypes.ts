@@ -28,12 +28,12 @@ export declare interface AutoRecurringResponse extends ApiResponse {
 
 export declare type PreApprovalRequest = {
   auto_recurring?: AutoRecurringRequest;
-  back_url: string;
+  back_url?: string;
   card_token_id?: string;
   external_reference?: string;
-  payer_email: string;
+  payer_email?: string;
   preapproval_plan_id?: string;
-  reason: string;
+  reason?: string;
   status?: string;
 }
 

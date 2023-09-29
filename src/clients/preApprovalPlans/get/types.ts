@@ -7,6 +7,6 @@ export declare type PreApprovalPlansGetClient = {
 };
 
 export declare type PreApprovalPlansGetData = {
-  preApprovalPlanId: string;
+  preApprovalPlanId?: string;
   requestOptions?: Options;
 };

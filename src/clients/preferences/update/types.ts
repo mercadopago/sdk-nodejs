@@ -13,7 +13,7 @@ export declare type PreferenceUpdateClient = {
 };
 
 export declare type PreferenceUpdateData = {
-  id: string;
-  updatePreferenceRequest: PreferenceRequest;
+  id?: string;
+  updatePreferenceRequest?: PreferenceRequest;
   requestOptions?: Options;
 }

@@ -37,7 +37,7 @@ export declare type CustomerCardIssuer = {
 }
 
 export declare type CustomerCardsGetRemoveData = {
-  customerId: string;
-  cardId: string;
+  customerId?: string;
+  cardId?: string;
   requestOptions?: Options
 };

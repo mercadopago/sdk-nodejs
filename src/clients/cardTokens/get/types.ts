@@ -7,7 +7,7 @@ export declare type CardTokenGetClient = {
 };
 
 export declare type CardTokenGetData = {
-  cardTokenId: string;
+  cardTokenId?: string;
   requestOptions?: Options
 };
 

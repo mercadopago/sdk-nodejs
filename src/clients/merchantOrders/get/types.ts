@@ -7,6 +7,6 @@ export declare type MerchantOrderGetClient = {
 }
 
 export declare type MerchantOrderGetData = {
-  merchantOrderId: string;
+  merchantOrderId?: string;
   requestOptions?: Options;
 }

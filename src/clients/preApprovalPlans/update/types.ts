@@ -13,7 +13,7 @@ export declare type UpdatePreApprovalPlanUpdateClient = {
 };
 
 export declare type UpdatePreApprovalPlanUpdateData = {
-  id: string;
-  updatePreApprovalPlanRequest: PreApprovalPlanRequest;
+  id?: string;
+  updatePreApprovalPlanRequest?: PreApprovalPlanRequest;
   requestOptions?: Options;
 }

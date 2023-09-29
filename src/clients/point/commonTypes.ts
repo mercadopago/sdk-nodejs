@@ -48,7 +48,7 @@ export declare interface PaymentIntentResponse extends ApiResponse {
 
 export declare type PaymentIntentRequest = {
   additional_info?: AdditionalInfo;
-  amount: number;
+  amount?: number;
   description?: string;
   payment?: Payment;
 };

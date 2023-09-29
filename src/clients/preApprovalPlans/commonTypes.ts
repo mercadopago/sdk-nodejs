@@ -1,10 +1,10 @@
 import type { ApiResponse } from '@src/types';
 
 export declare type AutoRecurring = {
-  frequency: number;
-  frequency_type: string;
-  transaction_amount: number;
-  currency_id: string;
+  frequency?: number;
+  frequency_type?: string;
+  transaction_amount?: number;
+  currency_id?: string;
   repetitions?: number;
   billing_day?: number;
   billing_day_proportional?: boolean;
@@ -31,9 +31,9 @@ export declare type PaymentMethod = {
 };
 
 export declare type PreApprovalPlanRequest = {
-  back_url: string;
-  reason: string;
-  auto_recurring: AutoRecurring;
+  back_url?: string;
+  reason?: string;
+  auto_recurring?: AutoRecurring;
   payment_methods_allowed?: PaymentMethodsAllowed;
 };
 

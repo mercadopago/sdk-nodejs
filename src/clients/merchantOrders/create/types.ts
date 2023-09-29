@@ -3,7 +3,7 @@ import type { Collector, MerchantOrderItemRequest, MerchantOrderPayerRequest } f
 import type { Options } from '@src/types';
 
 export declare type MerchantOrderCreateData = {
-  body: MerchantOrderCreateRequestBody;
+  body?: MerchantOrderCreateRequestBody;
   requestOptions?: Options;
 }
 

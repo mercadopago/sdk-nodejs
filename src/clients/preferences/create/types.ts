@@ -8,6 +8,6 @@ export declare type PreferenceCreateClient = {
 };
 
 export declare type PreferenceCreateData = {
-  body: PreferenceRequest;
+  body?: PreferenceRequest;
   requestOptions?: Options;
 }
