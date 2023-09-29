@@ -1,5 +1,6 @@
 import { ApiResponse } from '@src/types';
-import type { Address, Items } from '../commonTypes';
+import type { Address, Items, Tax } from '../commonTypes';
+import { RefundResponse } from '../paymentsRefunds/commonTypes';
 
 export declare type MerchantAccount = {
   merchant_account_id?: string;
@@ -82,13 +83,9 @@ export declare type AdditionalInfo = {
   items?: Array<Items>;
   payer?: PayerAdditionalInfo;
   shipments?: ShipmentsPayments;
-  available_balance?: any,
-  nsu_processadora?: any,
-  authentication_code?: any
 };
 
 export declare type TransactionDetails = {
-  financial_instit_transaction_detution?: string;
   payment_method_reference_id?: string;
   acquirer_reference?: string;
   net_received_amount?: number;
@@ -116,7 +113,7 @@ export declare type Amounts = {
   refunded?: number;
 }
 
-export declare type ChargesDetail = {
+export declare type ChargesDetails = {
   id?: string;
   name?: string;
   type?: string;
@@ -247,24 +244,24 @@ export declare interface PaymentsResponse extends ApiResponse {
   installments?: number;
   transaction_details?: TransactionDetails;
   fee_details?: Array<FeeDetails>;
-  charges_details?: Array<ChargesDetail>;
+  charges_details?: Array<ChargesDetails>;
   captured?: boolean;
   binary_mode?: boolean;
   call_for_authorize_id?: string;
   statement_descriptor?: string;
   card?: Card;
   notification_url?: string;
-  refunds?: any[];
+  refunds?: Array<RefundResponse>;
   processing_mode?: string;
   merchant_account_id?: string;
   merchant_number?: string;
   point_of_interaction?: PointOfInteraction;
-  accounts_info?: any;
-  tags?: any;
-  financing_group?: any;
-  marketplace_owner?: any;
-  brand_id?: any;
-  acquirer_reconciliation?: any[];
   three_ds_info?: ThreeDSInfo;
+  callback_url?: string;
+  couponCode?: string;
+  net_amount?: number;
+  payment_method_option_id?: string;
+  taxes?: Array<Tax>
+  internal_metadata?: any;
 }
 
