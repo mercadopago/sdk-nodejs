@@ -1,7 +1,5 @@
-import get from './get';
 import create from './create';
 
-import type { CardTokenGetData } from './get/types';
 import type { CardTokenCreateData } from './create/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { CardTokenResponse } from './commonTypes';
@@ -16,16 +14,6 @@ export class CardToken {
 
 	constructor(mercadoPagoConfig: MercadoPagoConfig) {
 		this.config = mercadoPagoConfig;
-	}
-
-	/**
-   * Mercado Pago Search.
-   *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/cardtoken/get.ts Usage Example  }.
-   */
-	get({ cardTokenId, requestOptions }: CardTokenGetData): Promise<CardTokenResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ id: cardTokenId, config: this.config });
 	}
 
 	/**

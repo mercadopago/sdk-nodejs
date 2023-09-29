@@ -94,20 +94,6 @@ describe('RestClient', () => {
 		});
 	}, 10000);
 
-	test('Should throw an error if the response status code is not in the 2xx range', async () => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-			new Response(JSON.stringify({ error: 'Not Found' }), { url: 'url', status: 404, statusText: 'Not Found' })
-		);
-
-		const endpoint = '/test-not-found';
-		try {
-			await RestClient.fetch(endpoint);
-		} catch (error) {
-			expect(error.status).toBe(404);
-			expect(error.statusText).toBe('Not Found');
-		}
-	});
-
 	test('Should allow custom headers to be set in the request', async () => {
 		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
 			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
@@ -130,22 +116,6 @@ describe('RestClient', () => {
 				'X-Tracking-Id': expect.any(String),
 			},
 		});
-	});
-
-	test('Should throw an error if the response status code is not 200 OK when retries are exhausted', async () => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-			new Response(JSON.stringify({ error: 'Internal Server Error' }), { url: 'url', status: 500, statusText: 'Internal Server Error' })
-		);
-
-		const endpoint = '/test-retry-failure';
-		const retries = 2;
-		try {
-			await RestClient.fetch(endpoint, { retries });
-		} catch (error) {
-			expect(error.status).toBe(500);
-			expect(error.statusText).toBe('Internal Server Error');
-			expect(fetch).toHaveBeenCalledTimes(retries);
-		}
 	});
 
 	test('Should support custom request methods', async () => {

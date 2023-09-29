@@ -7,9 +7,9 @@ export declare type PreferenceSearchClient = {
 };
 
 export declare type PreferenceSearchResponse = {
-  elements: Array<Elements>
-  next_offset: number;
-  total: number;
+  elements?: Array<Elements>
+  next_offset?: number;
+  total?: number;
 };
 
 export declare type Elements = {

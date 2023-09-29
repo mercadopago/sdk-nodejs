@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 jest.mock('@utils/restClient');
 
 describe('Testing search payments, capture', () => {
-	test('shoud pass foward request options from capture to RestClient.capture', async () => {
+	test('should pass foward request options from capture to RestClient.capture', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
 		const mockPaymentId = '00000000';
 		await capture({ id: mockPaymentId, transaction_amount: 12.34, config : client });

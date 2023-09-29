@@ -1,17 +1,17 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
 
-export declare type PaymentsRefoundsCreateData = {
+export declare type PaymentsRefundsCreateData = {
   payment_id: string;
-  body?: CreateRefundBody;
+  body: CreateRefundBody;
   requestOptions?: Options;
 };
 
 export declare type CreateRefundBody = {
-  amount: number;
+  amount?: number;
 };
 
-export declare type PaymentsRefoundsCreateClient = {
+export declare type PaymentsRefundsCreateClient = {
   payment_id: string;
   body?: CreateRefundBody;
   config: MercadoPagoConfig

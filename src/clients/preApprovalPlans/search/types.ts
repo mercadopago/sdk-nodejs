@@ -16,8 +16,8 @@ export declare interface PreApprovalPlanSearchOptions extends SearchOptions {
 }
 
 export declare type PreApprovalPlanSearchResponse = {
-  paging: PreApprovalPlanSearchPaging;
-  results: Array<PreApprovalPlanResponse>;
+  paging?: PreApprovalPlanSearchPaging;
+  results?: Array<PreApprovalPlanResponse>;
 };
 
 export declare type PreApprovalPlanSearchPaging = {

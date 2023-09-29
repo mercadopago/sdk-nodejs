@@ -37,8 +37,8 @@ export declare type PaymentsCreateRequest = {
   payment_method_id?: string,
   statement_descriptor?: string,
   token?: string,
-  transaction_amount: number,
-  payer: Payer,
+  transaction_amount?: number,
+  payer?: Payer,
 };
 
 export declare type additionalInfo = {
