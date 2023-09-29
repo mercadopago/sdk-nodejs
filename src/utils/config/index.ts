@@ -3,8 +3,9 @@ export class AppConfig {
 	static readonly DEFAULT_RETRIES = 2;
 	static readonly BASE_DELAY_MS = 1000;
 	static readonly BASE_URL = 'https://api.mercadopago.com';
-	static readonly SDK_VERSION = '2.0.0-beta';
 	static readonly PRODUCT_ID = 'bc32b6ntrpp001u8nhkg';
+
+	static SDK_VERSION = '2.0.0-beta';
 
 	static readonly Headers = {
 		AUTHORIZATION: 'Authorization',
