@@ -13,7 +13,7 @@ export declare type qqrcoisatest = {
 };
 
 export declare type PaymentCreateData = {
-  body?: PaymentsCreateRequest;
+  body: PaymentsCreateRequest;
   requestOptions?: Options;
 }
 

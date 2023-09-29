@@ -12,7 +12,7 @@ export declare type CustomerCardBody = {
 };
 
 export declare type CustomerCardsCreateData = {
-  customerId?: string;
-  body?: CustomerCardBody;
+  customerId: string;
+  body: CustomerCardBody;
   requestOptions?: Options
 };

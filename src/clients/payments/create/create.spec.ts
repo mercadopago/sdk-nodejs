@@ -7,7 +7,7 @@ import type { PaymentCreateClient } from './types';
 jest.mock('@utils/restClient');
 
 describe('Testing create payments', () => {
-	test('shoud pass foward request options from create to RestClient.create', async () => {
+	test('should pass foward request options from create to RestClient.create', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		const mockBody = {
 			description: 'description',
