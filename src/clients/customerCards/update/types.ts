@@ -11,7 +11,7 @@ export declare type CustomerCardsUpdateClient = {
 
 export declare type CustomerCardUpdateBody = {
   expiration_month?: number;
-  expiration_year?: string;
+  expiration_year?: number;
   cardholder?: CustomerCardCardholder;
   token?: string;
 };
