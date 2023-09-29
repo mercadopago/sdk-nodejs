@@ -1,4 +1,4 @@
-import type { Options } from '@src/types';
+import type { Options, SearchOptions } from '@src/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Paging } from '@src/clients/commonTypes';
 import type { AutoRecurringWithFreeTrial, SummarizedResponse } from '@src/clients/preApproval/commonTypes';
@@ -13,7 +13,7 @@ export declare type PreApprovalSearchData = {
   requestOptions?: Options;
 }
 
-export declare type PreApprovalSearchOptions = {
+export declare interface PreApprovalSearchOptions extends SearchOptions {
   q?: string;
   payer_id?: number;
   payer_email?: string;
@@ -22,8 +22,6 @@ export declare type PreApprovalSearchOptions = {
   semaphore?: string;
   status?: string;
   sort?: string;
-  offset?: string;
-  limit?: string;
 }
 
 export declare type PreApprovalSearchResponse = {

@@ -1,6 +1,6 @@
 import type { Identification } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { Options } from '@src/types';
+import type { Options, SearchOptions } from '@src/types';
 
 export declare type PaymentSearchClient = {
   filters?: PaymentsSearchOptions,
@@ -81,7 +81,7 @@ export declare type PaymentsSearchPaging = {
   offset: number;
 };
 
-export declare type PaymentsSearchOptions = {
+export declare interface PaymentsSearchOptions extends SearchOptions {
   sort?: 'date_approved' | 'date_created' | 'date_last_updated' | 'money_release_date';
   criteria?: 'asc' | 'desc';
   external_reference?: string;
@@ -94,4 +94,3 @@ export declare type PaymentSearchData = {
   filters?: PaymentsSearchOptions;
   requestOptions?: Options;
 }
-

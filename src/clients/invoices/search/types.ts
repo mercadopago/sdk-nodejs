@@ -1,7 +1,7 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Paging } from '@src/clients/commonTypes';
 import type { InvoicesResponse } from '@src/clients/invoices/commonTypes';
-import type { Options } from '@src/types';
+import type { Options, SearchOptions } from '@src/types';
 
 export declare type InvoicesSearchData = {
   filters?: InvoicesSearchOptions;
@@ -13,7 +13,7 @@ export declare type InvoicesSearchClient = {
   config: MercadoPagoConfig
 }
 
-export declare type InvoicesSearchOptions = {
+export declare interface InvoicesSearchOptions extends SearchOptions {
   id?: number;
   preapproval_id?: string;
   payment_id?: number;
