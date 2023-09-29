@@ -17,8 +17,8 @@ export declare type CustomerCardUpdateBody = {
 };
 
 export declare type CustomerCardsUpdateData = {
-  customerId: string;
-  cardId: string;
-  customerCardBody: CustomerCardUpdateBody;
+  customerId?: string;
+  cardId?: string;
+  customerCardBody?: CustomerCardUpdateBody;
   requestOptions?: Options
 };

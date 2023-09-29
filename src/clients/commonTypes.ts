@@ -1,6 +1,6 @@
 export declare type Identification = {
-  type: string;
-  number: string;
+  type?: string;
+  number?: string;
   identification?: number;
 };
 
@@ -22,8 +22,8 @@ export declare type Items = {
 };
 
 export declare type Phone = {
-  area_code: string,
-  number: string
+  area_code?: string,
+  number?: string
 }
 
 export declare type Shipments = {
@@ -54,12 +54,12 @@ export declare type ReceiverAddress = {
 };
 
 export declare type Paging = {
-  total: number;
-  offset: number;
-  limit: number;
+  total?: number;
+  offset?: number;
+  limit?: number;
 };
 
 export declare type CustomerCardCardholder = {
-  name: string;
-  identification: Identification;
+  name?: string;
+  identification?: Identification;
 };

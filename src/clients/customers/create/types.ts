@@ -3,7 +3,7 @@ import type { CustomerRequestBody } from '../commonTypes';
 import { Options } from '@src/types';
 
 export declare type CustomerCreateData = {
-  body: CustomerRequestBody;
+  body?: CustomerRequestBody;
   requestOptions?: Options;
 }
 

@@ -9,7 +9,7 @@ export declare type PointCreatePaymentIntentClient = {
 };
 
 export declare type PointCreatePaymentIntentData = {
-  device_id: string;
-  request: PaymentIntentRequest;
+  device_id?: string;
+  request?: PaymentIntentRequest;
   requestOptions?: Options;
 };

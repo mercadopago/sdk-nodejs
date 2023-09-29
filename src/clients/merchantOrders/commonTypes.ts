@@ -1,83 +1,83 @@
 import type { ApiResponse } from '@src/types';
 
 export declare interface MerchantOrderResponse extends ApiResponse {
-  id: number;
-  preference_id: string;
-  application_id: string;
-  status: string;
-  site_id: string;
-  payer: MerchantOrderPayer;
-  collector: MerchantOrderCollector;
-  sponsor_id: string;
-  payments: MerchantOrderPayment[];
-  paid_amount: number;
-  refunded_amount: number;
-  shipping_cost: number;
-  date_created: string;
-  cancelled: boolean;
-  items: MerchantOrderItem[];
-  shipments: MerchantOrderShipment[];
-  notification_url: string;
-  additional_info: string;
-  external_reference: string;
-  marketplace: string;
-  total_amount: number;
-  order_status: string;
-  last_updated: string;
+  id?: number;
+  preference_id?: string;
+  application_id?: string;
+  status?: string;
+  site_id?: string;
+  payer?: MerchantOrderPayer;
+  collector?: MerchantOrderCollector;
+  sponsor_id?: string;
+  payments?: MerchantOrderPayment[];
+  paid_amount?: number;
+  refunded_amount?: number;
+  shipping_cost?: number;
+  date_created?: string;
+  cancelled?: boolean;
+  items?: MerchantOrderItem[];
+  shipments?: MerchantOrderShipment[];
+  notification_url?: string;
+  additional_info?: string;
+  external_reference?: string;
+  marketplace?: string;
+  total_amount?: number;
+  order_status?: string;
+  last_updated?: string;
 }
 
 export declare type MerchantOrderPayer = {
-  id: number;
-  nickname: string;
+  id?: number;
+  nickname?: string;
 };
 
 export declare type MerchantOrderCollector = {
-  id: number;
-  nickname: string;
+  id?: number;
+  nickname?: string;
 };
 
 export declare type MerchantOrderPayment = {
-  id: number;
-  transaction_amount: number;
-  total_paid_amount: number;
-  shipping_cost: number;
-  currency_id: string;
-  status: string;
-  status_details: string;
-  operation_type: string;
-  date_approved: string;
-  date_created: string;
-  last_modified: string;
-  amount_refunded: number;
+  id?: number;
+  transaction_amount?: number;
+  total_paid_amount?: number;
+  shipping_cost?: number;
+  currency_id?: string;
+  status?: string;
+  status_details?: string;
+  operation_type?: string;
+  date_approved?: string;
+  date_created?: string;
+  last_modified?: string;
+  amount_refunded?: number;
 };
 
 export declare type MerchantOrderItem = {
-  id: string;
-  title: string;
-  description: string;
-  pictureUrl: string;
-  categoryId: string;
-  quantity: number;
-  unit_price: number;
-  currency_id: string;
+  id?: string;
+  title?: string;
+  description?: string;
+  pictureUrl?: string;
+  categoryId?: string;
+  quantity?: number;
+  unit_price?: number;
+  currency_id?: string;
 };
 
 export declare type MerchantOrderShipment = {
-  id: number;
-  shipping_type: string;
-  shipping_mode: string;
-  picking_type: string;
-  status: string;
-  shipping_sub_status: string;
-  items: object;
-  date_created: string;
-  last_modified: string;
-  date_first_printed: string;
-  service_id: string;
-  sender_id: number;
-  receiver_id: number;
-  receiver_address: MerchantOrderReceiverAddress;
-  shipping_option: MerchantOrderShippingOption;
+  id?: number;
+  shipping_type?: string;
+  shipping_mode?: string;
+  picking_type?: string;
+  status?: string;
+  shipping_sub_status?: string;
+  items?: object;
+  date_created?: string;
+  last_modified?: string;
+  date_first_printed?: string;
+  service_id?: string;
+  sender_id?: number;
+  receiver_id?: number;
+  receiver_address?: MerchantOrderReceiverAddress;
+  shipping_option?: MerchantOrderShippingOption;
 };
 
 export declare type MerchantOrderReceiverAddress = {

@@ -28,33 +28,33 @@ export declare type CustomerAddressCity = {
 };
 
 export declare interface CustomerResponse extends ApiResponse {
-  id: string;
-  email: string;
-  first_name: string;
-  last_name: string;
-  phone: Phone;
-  identification: Identification;
-  default_address: string;
-  address: CustomerDefaultAddress;
-  date_registered: Date;
-  description: string;
-  date_created: Date;
-  date_last_updated: Date;
-  metadata: object;
-  default_card: string;
-  cards: CustomerCardsCreateClient[];
-  addresses: CustomerDefaultAddress[];
-  live_mode: boolean;
+  id?: string;
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  phone?: Phone;
+  identification?: Identification;
+  default_address?: string;
+  address?: CustomerDefaultAddress;
+  date_registered?: string;
+  description?: string;
+  date_created?: string;
+  date_last_updated?: string;
+  metadata?: any;
+  default_card?: string;
+  cards?: CustomerCardsCreateClient[];
+  addresses?: CustomerDefaultAddress[];
+  live_mode?: boolean;
 }
 
 export declare type CustomerDefaultAddress = {
-  id: string;
-  zip_code: string;
-  street_name: string;
-  street_number: string;
+  id?: string;
+  zip_code?: string;
+  street_name?: string;
+  street_number?: string;
 };
 
 export declare type CustomerGetRemoveData = {
-  customerId: string;
+  customerId?: string;
   requestOptions?: Options
 }

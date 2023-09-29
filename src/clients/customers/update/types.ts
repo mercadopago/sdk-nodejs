@@ -3,8 +3,8 @@ import type { CustomerRequestBody } from '../commonTypes';
 import type { Options } from '@src/types';
 
 export declare type CustomerUpdateData = {
-  customerId: string;
-  body: CustomerRequestBody;
+  customerId?: string;
+  body?: CustomerRequestBody;
   requestOptions?: Options
 };
 

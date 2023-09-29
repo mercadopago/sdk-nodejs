@@ -7,6 +7,6 @@ export declare type PointSearchPaymentIntentClient = {
 }
 
 export declare type PointSearchPaymentIntentData = {
-  payment_intent_id: string;
+  payment_intent_id?: string;
   requestOptions?: Options;
 }

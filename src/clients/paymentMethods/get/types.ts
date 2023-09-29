@@ -6,32 +6,32 @@ export declare type PaymentMethodGetClient = {
 };
 
 export declare interface PaymentMethodResponse extends ApiResponse {
-  id: string;
-  name: string;
-  payment_type_id: string;
-  status: string;
-  secure_thumbnail: string;
-  thumbnail: string;
-  deferred_capture: string;
-  settings: PaymentMethodSettings[];
-  additional_info_needed: string[];
-  min_allowed_amount: number;
-  max_allowed_amount: number;
-  accreditation_time: number;
-  financial_institutions: PaymentMethodFinancialInstitutions[];
-  processing_modes: string[];
+  id?: string;
+  name?: string;
+  payment_type_id?: string;
+  status?: string;
+  secure_thumbnail?: string;
+  thumbnail?: string;
+  deferred_capture?: string;
+  settings?: PaymentMethodSettings[];
+  additional_info_needed?: string[];
+  min_allowed_amount?: number;
+  max_allowed_amount?: number;
+  accreditation_time?: number;
+  financial_institutions?: PaymentMethodFinancialInstitutions[];
+  processing_modes?: string[];
 }
 
 export declare type PaymentMethodSettings = {
-  bin: PaymentMethodSettingsBin;
-  card_number: PaymentMethodSettingsCardNumber;
-  security_code: PaymentMethodSettingsSecurityCode;
+  bin?: PaymentMethodSettingsBin;
+  card_number?: PaymentMethodSettingsCardNumber;
+  security_code?: PaymentMethodSettingsSecurityCode;
 };
 
 
 export declare type PaymentMethodFinancialInstitutions = {
-  id: number;
-  description: string;
+  id?: number;
+  description?: string;
 };
 
 export declare type PaymentMethodSettingsBin = {

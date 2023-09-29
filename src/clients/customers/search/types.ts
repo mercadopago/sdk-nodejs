@@ -19,6 +19,6 @@ export declare type CustomerSearchData = {
 }
 
 export declare type CustomerSearchResultsPage = {
-  results: CustomerResponse[];
-  paging: Paging;
+  results?: CustomerResponse[];
+  paging?: Paging;
 };

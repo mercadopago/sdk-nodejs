@@ -31,8 +31,8 @@ export declare type MerchantOrderSearchOptions = {
 };
 
 export declare type MerchantOrderSearchResultsPage = {
-  results: MerchantOrderResponse[];
-  paging: Paging;
+  results?: MerchantOrderResponse[];
+  paging?: Paging;
 };
 
 export declare type Paging = {

@@ -18,6 +18,6 @@ export declare type GetDevicesSearch = {
 };
 
 export declare type PointGetDevicesData = {
-  request: GetDevicesRequest;
+  request?: GetDevicesRequest;
   requestOptions?: Options;
 }

@@ -8,8 +8,8 @@ export declare type PaymentSearchClient = {
 };
 
 export declare type PaymentsSearch = {
-  paging: PaymentsSearchPaging;
-  results: Array<PaymentsSearchResult>;
+  paging?: PaymentsSearchPaging;
+  results?: Array<PaymentsSearchResult>;
 };
 
 export declare type PaymentsSearchResult = {

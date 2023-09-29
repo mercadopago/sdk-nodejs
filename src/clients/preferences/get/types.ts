@@ -7,6 +7,6 @@ export declare type PreferenceGetClient = {
 };
 
 export declare type PreferenceGetData = {
-  preferenceId: string;
+  preferenceId?: string;
   requestOptions?: Options;
 };

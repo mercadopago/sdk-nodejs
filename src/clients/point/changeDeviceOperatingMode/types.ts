@@ -8,8 +8,8 @@ export declare type PointChangeDeviceOperatingModeClient = {
 };
 
 export declare type PointChangeDeviceOperatingModeData = {
-  device_id: string;
-  request: OperatingMode;
+  device_id?: string;
+  request?: OperatingMode;
   requestOptions?: Options;
 };
 

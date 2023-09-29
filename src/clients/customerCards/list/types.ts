@@ -7,6 +7,6 @@ export declare type CustomerCardsListClient = {
 };
 
 export declare type CustomerCardsListData = {
-  customerId: string;
+  customerId?: string;
   requestOptions?: Options
 };

@@ -8,7 +8,7 @@ export declare type PointCancelPaymentIntentClient = {
 }
 
 export declare type PointCancelPaymentIntentData = {
-  device_id: string;
-  payment_intent_id: string;
+  device_id?: string;
+  payment_intent_id?: string;
   requestOptions?: Options;
 }

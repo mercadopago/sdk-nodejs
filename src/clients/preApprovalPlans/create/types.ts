@@ -8,6 +8,6 @@ export declare type PreApprovalPlansCreateClient = {
 };
 
 export declare type PreApprovalPlansCreateData = {
-  body: PreApprovalPlanRequest;
+  body?: PreApprovalPlanRequest;
   requestOptions?: Options;
 }
