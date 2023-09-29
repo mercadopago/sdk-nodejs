@@ -258,7 +258,7 @@ export declare interface PaymentsResponse extends ApiResponse {
   point_of_interaction?: PointOfInteraction;
   three_ds_info?: ThreeDSInfo;
   callback_url?: string;
-  couponCode?: string;
+  coupon_code?: string;
   net_amount?: number;
   payment_method_option_id?: string;
   taxes?: Array<Tax>
