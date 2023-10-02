@@ -57,9 +57,9 @@ export class CustomerCard {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/update.ts Usage Example  }.
 	 */
-	update({ customerId, cardId, customerCardBody, requestOptions }: CustomerCardsUpdateData ): Promise<CustomerCardResponse> {
+	update({ customerId, cardId, body, requestOptions }: CustomerCardsUpdateData ): Promise<CustomerCardResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return update({ customerId: customerId, cardId: cardId, body: customerCardBody , config: this.config });
+		return update({ customerId: customerId, cardId: cardId, body , config: this.config });
 	}
 
 	/**

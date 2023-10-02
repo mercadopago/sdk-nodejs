@@ -8,7 +8,7 @@ import MercadoPago, { CustomerCard } from '@src/index';
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 const customerClient = new CustomerCard(client);
 
-customerClient.update({ customerId: '<CUSTOMER_ID>', cardId : '<CARD_ID>', customerCardBody: {
+customerClient.update({ customerId: '<CUSTOMER_ID>', cardId : '<CARD_ID>', body: {
 	cardholder: {
 		name: '<NAME>',
 		identification: {

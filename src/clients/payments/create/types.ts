@@ -27,7 +27,7 @@ export declare type PaymentsCreateRequest = {
   coupon_amount?: number,
   coupon_code?: string,
   date_of_expiration?: string,
-  description: string,
+  description?: string,
   differential_pricing_id?: number,
   external_reference?: string,
   installments?: number,
