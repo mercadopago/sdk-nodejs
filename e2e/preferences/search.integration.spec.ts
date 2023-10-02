@@ -13,7 +13,7 @@ describe('Testing preference, search', () => {
 			next_offset: expect.any(Number),
 			total: expect.any(Number),
 		}));
-		expect(searched.elements.length === 0).toBe(false);
+		expect(searched.elements.length).toBeGreaterThan(0);
 	});
 
 });
