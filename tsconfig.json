@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
+    "target": "ES2017",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@clients/*": ["./src/clients/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
