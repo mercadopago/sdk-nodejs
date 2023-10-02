@@ -22,5 +22,5 @@
       "@clients/*": ["./src/clients/*"]
     }
   },
-  "include": ["src/**/*", "examples/**/*"]
+  "include": ["src/**/*"]
 }
