@@ -4,18 +4,18 @@ import list from './list';
 import total from './total';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PaymentsRefundsCreateData } from './create/types';
-import type { PaymentsRefundsGetData } from './get/types';
-import type { PaymentsRefundsListData } from './list/types';
+import type { PaymentRefundCreateData } from './create/types';
+import type { PaymentRefundGetData } from './get/types';
+import type { PaymentRefundListData } from './list/types';
 import type { RefundResponse } from './commonTypes';
-import type { PaymentsRefundTotalData } from './total/types';
+import type { PaymentRefundTotalData } from './total/types';
 
 /**
  * Mercado Pago Refund.
  *
  * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
  */
-export class PaymentsRefund {
+export class PaymentRefund {
 	private config: MercadoPagoConfig;
 
 	constructor(mercadoPagoConfig: MercadoPagoConfig) {
@@ -27,7 +27,7 @@ export class PaymentsRefund {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefund/get.ts Usage Example  }.
    */
-	get({ payment_id, refund_id, requestOptions }: PaymentsRefundsGetData): Promise<RefundResponse> {
+	get({ payment_id, refund_id, requestOptions }: PaymentRefundGetData): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ payment_id, refund_id, config: this.config });
 	}
@@ -37,7 +37,7 @@ export class PaymentsRefund {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefund/create.ts Usage Example  }.
    */
-	create({ payment_id, body, requestOptions }: PaymentsRefundsCreateData): Promise<RefundResponse> {
+	create({ payment_id, body, requestOptions }: PaymentRefundCreateData): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ payment_id, body, config: this.config });
 	}
@@ -47,7 +47,7 @@ export class PaymentsRefund {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefund/create.ts Usage Example  }.
    */
-	total({ payment_id, requestOptions }: PaymentsRefundTotalData): Promise<RefundResponse> {
+	total({ payment_id, requestOptions }: PaymentRefundTotalData): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return total({ payment_id, config: this.config });
 	}
@@ -57,7 +57,7 @@ export class PaymentsRefund {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefund/list.ts Usage Example  }.
    */
-	list({ payment_id, requestOptions }: PaymentsRefundsListData): Promise<Array<RefundResponse>> {
+	list({ payment_id, requestOptions }: PaymentRefundListData): Promise<Array<RefundResponse>> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return list({ payment_id, config: this.config });
 	}

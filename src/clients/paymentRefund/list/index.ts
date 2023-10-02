@@ -1,9 +1,9 @@
 import { RestClient } from '@utils/restClient';
 
-import type { PaymentsRefundsListClient } from './types';
+import type { PaymentRefundListClient } from './types';
 import type { RefundResponse } from '../commonTypes';
 
-export default function list({ payment_id, config }: PaymentsRefundsListClient): Promise<Array<RefundResponse>> {
+export default function list({ payment_id, config }: PaymentRefundListClient): Promise<Array<RefundResponse>> {
 	return RestClient.fetch<Array<RefundResponse>>(
 		`/v1/payments/${payment_id}/refunds/`,
 		{

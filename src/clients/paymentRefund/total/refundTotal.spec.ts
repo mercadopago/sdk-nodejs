@@ -2,14 +2,14 @@ import create from '.';
 
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PaymentsRefundTotalClient } from './types';
+import type { PaymentRefundTotalClient } from './types';
 
 jest.mock('@utils/restClient');
 
 describe('Testing payments refunds, create', () => {
 	test('should successfully make a request with "amount" in the body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const request: PaymentsRefundTotalClient = {
+		const request: PaymentRefundTotalClient = {
 			payment_id: '123',
 			config: client,
 		};
@@ -33,7 +33,7 @@ describe('Testing payments refunds, create', () => {
 
 	test('should successfully make a request without a body', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
-		const request: PaymentsRefundTotalClient = {
+		const request: PaymentRefundTotalClient = {
 			payment_id: '123',
 			config: client,
 		};

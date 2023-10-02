@@ -1,4 +1,4 @@
-import MercadoPago, { PaymentsRefund } from '@src/index';
+import MercadoPago, { PaymentRefund } from '@src/index';
 
 /**
  * Mercado Pago Refund.
@@ -8,7 +8,7 @@ import MercadoPago, { PaymentsRefund } from '@src/index';
 
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>' });
 
-const refund = new PaymentsRefund(client);
+const refund = new PaymentRefund(client);
 
 refund.get({
 	payment_id: '<PAYMENT_ID>',
