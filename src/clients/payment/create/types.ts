@@ -4,20 +4,20 @@ import type { Payer } from '../commonTypes';
 import type { Options } from '@src/types';
 
 export declare type PaymentCreateClient = {
-  body: PaymentsCreateRequest,
+  body: PaymentCreateRequest,
   config: MercadoPagoConfig
 };
 
 export declare type qqrcoisatest = {
-  body: PaymentsCreateRequest,
+  body: PaymentCreateRequest,
 };
 
 export declare type PaymentCreateData = {
-  body: PaymentsCreateRequest;
+  body: PaymentCreateRequest;
   requestOptions?: Options;
 }
 
-export declare type PaymentsCreateRequest = {
+export declare type PaymentCreateRequest = {
   additional_info?: additionalInfo,
   application_fee?: string,
   binary_mode?: boolean,
