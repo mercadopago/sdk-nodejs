@@ -67,7 +67,7 @@ export declare type PayerAdditionalInfo = {
   registration_date?: string;
 };
 
-export declare type ShipmentsPayments = {
+export declare type ShipmentsPayment = {
   receiver_address?: ShipmentsReceiverAddress;
 };
 
@@ -82,7 +82,7 @@ export declare type AdditionalInfo = {
   ip_address?: string;
   items?: Array<Items>;
   payer?: PayerAdditionalInfo;
-  shipments?: ShipmentsPayments;
+  shipments?: ShipmentsPayment;
 };
 
 export declare type TransactionDetails = {
