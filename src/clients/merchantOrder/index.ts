@@ -25,7 +25,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order create.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/create.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrder/create.ts Usage Example  }.
 	 */
 	create({ body, requestOptions }: MerchantOrderCreateData): Promise<MerchantOrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -35,7 +35,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order get.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/get.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrder/get.ts Usage Example  }.
 	 */
 	get({ merchantOrderId, requestOptions }: MerchantOrderGetData): Promise<MerchantOrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -45,7 +45,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order update.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/update.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrder/update.ts Usage Example  }.
 	 */
 	update({ merchantOrderId, body, requestOptions }: MerchantOrderUpdateData): Promise<MerchantOrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -55,7 +55,7 @@ export class MerchantOrder {
 	/**
 	 * Mercado Pago Merchant Order search.
 	 *
-	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/search.ts Usage Example  }.
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrder/search.ts Usage Example  }.
 	 */
 	search(merchantOrderSearchOptions: MerchantOrderSearchData = {}): Promise<MerchantOrderSearchResultsPage> {
 		const { options, requestOptions } = merchantOrderSearchOptions;
