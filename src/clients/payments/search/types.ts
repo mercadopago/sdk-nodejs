@@ -3,7 +3,7 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options, SearchOptions } from '@src/types';
 
 export declare type PaymentSearchClient = {
-  filters?: PaymentsSearchOptions,
+  options?: PaymentsSearchOptions,
   config: MercadoPagoConfig
 };
 
@@ -91,6 +91,6 @@ export declare interface PaymentsSearchOptions extends SearchOptions {
 }
 
 export declare type PaymentSearchData = {
-  filters?: PaymentsSearchOptions;
+  options?: PaymentsSearchOptions;
   requestOptions?: Options;
 }

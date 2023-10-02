@@ -4,12 +4,12 @@ import type { Paging } from '@src/clients/commonTypes';
 import type { AutoRecurringWithFreeTrial, SummarizedResponse } from '@src/clients/preApproval/commonTypes';
 
 export declare type PreApprovalSearchClient = {
-  filters?: PreApprovalSearchOptions;
+  options?: PreApprovalSearchOptions;
   config: MercadoPagoConfig;
 }
 
 export declare type PreApprovalSearchData = {
-  filters?: PreApprovalSearchOptions;
+  options?: PreApprovalSearchOptions;
   requestOptions?: Options;
 }
 

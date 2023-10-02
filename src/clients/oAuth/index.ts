@@ -46,7 +46,7 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/oauth/getAuthorizationURL.ts Usage Example  }.
 	 */
-	getAuthorizationURL({ filters }: OAuthGetAuthorizationURLData): string {
-		return getAuthorizationURL({ filters });
+	getAuthorizationURL({ options }: OAuthGetAuthorizationURLData): string {
+		return getAuthorizationURL({ options });
 	}
 }

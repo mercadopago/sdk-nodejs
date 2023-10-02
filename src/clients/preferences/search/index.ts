@@ -2,7 +2,7 @@ import { RestClient } from '@utils/restClient';
 
 import type { PreferenceSearchClient, PreferenceSearchResponse } from './types';
 
-export default function search({ filters, config }: PreferenceSearchClient): Promise<PreferenceSearchResponse> {
+export default function search({ options, config }: PreferenceSearchClient): Promise<PreferenceSearchResponse> {
 	return RestClient.fetch<PreferenceSearchResponse>(
 		'/checkout/preferences/search',
 		{
@@ -10,7 +10,7 @@ export default function search({ filters, config }: PreferenceSearchClient): Pro
 				'Authorization': `Bearer ${config.accessToken}`,
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

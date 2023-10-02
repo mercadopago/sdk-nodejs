@@ -1,10 +1,10 @@
 import { RestClient } from '@utils/restClient';
 import type { OAuthGetAuthorizationURLClient } from './types';
 
-export default function getAuthorizationURL({ filters }: OAuthGetAuthorizationURLClient): string {
+export default function getAuthorizationURL({ options }: OAuthGetAuthorizationURLClient): string {
 	const defaultFilters =
 		{
-			...filters,
+			...options,
 			response_type: 'code',
 			platform_id: 'mp',
 		};

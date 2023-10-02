@@ -58,9 +58,9 @@ export class Preference {
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/search.ts Usage Example  }.
    */
 	search(preferenceSearchData: PreferenceSearchData = {}): Promise<PreferenceSearchResponse> {
-		const { filters, requestOptions } = preferenceSearchData;
+		const { options, requestOptions } = preferenceSearchData;
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ filters, config: this.config });
+		return search({ options, config: this.config });
 	}
 
 }

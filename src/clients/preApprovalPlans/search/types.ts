@@ -4,7 +4,7 @@ import type { PreApprovalPlanResponse } from '../commonTypes';
 import type { Options } from '@src/types';
 
 export declare type PreApprovalPlansSearchClient = {
-  filters?: PreApprovalPlanSearchOptions,
+  options?: PreApprovalPlanSearchOptions,
   config: MercadoPagoConfig
 };
 
@@ -27,6 +27,6 @@ export declare type PreApprovalPlanSearchPaging = {
 };
 
 export declare type PreApprovalPlansSearchData = {
-  filters?: PreApprovalPlanSearchOptions;
+  options?: PreApprovalPlanSearchOptions;
   requestOptions?: Options;
 }

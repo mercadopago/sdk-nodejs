@@ -4,12 +4,12 @@ import type { InvoicesResponse } from '@src/clients/invoices/commonTypes';
 import type { Options, SearchOptions } from '@src/types';
 
 export declare type InvoicesSearchData = {
-  filters?: InvoicesSearchOptions;
+  options?: InvoicesSearchOptions;
   requestOptions?: Options;
 }
 
 export declare type InvoicesSearchClient = {
-  filters?: InvoicesSearchOptions;
+  options?: InvoicesSearchOptions;
   config: MercadoPagoConfig
 }
 

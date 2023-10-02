@@ -10,7 +10,7 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 
 const preApprovalPlan = new PreApprovalPlan(client);
 
-preApprovalPlan.search({ filters: {
+preApprovalPlan.search({ options: {
 	status: '<STATUS>',
 	q: '<Q>',
 } }).then(console.log).catch(console.log);
