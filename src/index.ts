@@ -6,7 +6,7 @@ export { CustomerCard } from './clients/customerCard';
 export { Customer } from './clients/customer';
 export { Invoices } from './clients/invoices';
 export { IdentificationType } from './clients/identificationType';
-export { PaymentsRefund } from './clients/paymentsRefund';
+export { PaymentsRefund } from './clients/paymentRefund';
 export { PaymentMethod } from './clients/paymentMethod';
 export { Payment } from './clients/payment';
 export { PreApproval } from './clients/preApproval';
