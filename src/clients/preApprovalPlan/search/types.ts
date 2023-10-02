@@ -3,7 +3,7 @@ import type { SearchOptions } from '@src/types';
 import type { PreApprovalPlanResponse } from '../commonTypes';
 import type { Options } from '@src/types';
 
-export declare type PreApprovalPlansSearchClient = {
+export declare type PreApprovalPlanSearchClient = {
   options?: PreApprovalPlanSearchOptions,
   config: MercadoPagoConfig
 };
@@ -26,7 +26,7 @@ export declare type PreApprovalPlanSearchPaging = {
   offset: number;
 };
 
-export declare type PreApprovalPlansSearchData = {
+export declare type PreApprovalPlanSearchData = {
   options?: PreApprovalPlanSearchOptions;
   requestOptions?: Options;
 }

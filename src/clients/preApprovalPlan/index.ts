@@ -4,11 +4,11 @@ import update from './update';
 import search from './search';
 
 import type { MercadoPagoConfig } from '../../mercadoPagoConfig';
-import type { PreApprovalPlansGetData } from './get/types';
+import type { PreApprovalPlanGetData } from './get/types';
 import type { UpdatePreApprovalPlanUpdateData } from './update/types';
-import type { PreApprovalPlanSearchResponse, PreApprovalPlansSearchData } from './search/types';
+import type { PreApprovalPlanSearchResponse, PreApprovalPlanSearchData } from './search/types';
 import type { PreApprovalPlanResponse } from './commonTypes';
-import type { PreApprovalPlansCreateData } from './create/types';
+import type { PreApprovalPlanCreateData } from './create/types';
 
 /**
  * Mercado Pago PreApprovalPlan.
@@ -27,7 +27,7 @@ export class PreApprovalPlan {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/create.ts Usage Example  }.
    */
-	create({ body, requestOptions }: PreApprovalPlansCreateData): Promise<PreApprovalPlanResponse> {
+	create({ body, requestOptions }: PreApprovalPlanCreateData): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ body, config: this.config });
 	}
@@ -37,7 +37,7 @@ export class PreApprovalPlan {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/get.ts Usage Example  }.
    */
-	get({ preApprovalPlanId, requestOptions }: PreApprovalPlansGetData): Promise<PreApprovalPlanResponse> {
+	get({ preApprovalPlanId, requestOptions }: PreApprovalPlanGetData): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id: preApprovalPlanId, config: this.config });
 	}
@@ -57,8 +57,8 @@ export class PreApprovalPlan {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/search.ts Usage Example  }.
    */
-	search(preApprovalPlansSearchData: PreApprovalPlansSearchData = {}): Promise<PreApprovalPlanSearchResponse> {
-		const { options, requestOptions } = preApprovalPlansSearchData;
+	search(preApprovalPlanSearchData: PreApprovalPlanSearchData = {}): Promise<PreApprovalPlanSearchResponse> {
+		const { options, requestOptions } = preApprovalPlanSearchData;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ options, config: this.config });
 	}

@@ -1,9 +1,9 @@
 import { RestClient } from '@src/utils/restClient';
 import type { PaymentCreateClient } from './types';
-import type { PaymentsResponse } from '../commonTypes';
+import type { PaymentResponse } from '../commonTypes';
 
-export default function create({ body, config }: PaymentCreateClient): Promise<PaymentsResponse> {
-	return RestClient.fetch<PaymentsResponse>(
+export default function create({ body, config }: PaymentCreateClient): Promise<PaymentResponse> {
+	return RestClient.fetch<PaymentResponse>(
 		'/v1/payments',
 		{
 			method: 'POST',

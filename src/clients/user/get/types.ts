@@ -127,16 +127,16 @@ export declare type BuyerReputationTransactionsWithUnits = {
 
 export declare type Status = {
   billing: StatusBilling;
-  buy: StatusAllowImmediatePayments;
+  buy: StatusAllowImmediatePayment;
   confirmed_email: boolean;
   shopping_cart: StatusShoppingCart;
   immediate_payment: boolean;
-  list: StatusAllowImmediatePayments;
+  list: StatusAllowImmediatePayment;
   mercadoenvios: string;
   mercadopago_account_type: string;
   mercadopago_tc_accepted: boolean;
   required_action: string | null;
-  sell: StatusAllowImmediatePayments;
+  sell: StatusAllowImmediatePayment;
   site_status: string;
   user_type: string;
 };
@@ -151,7 +151,7 @@ export declare type StatusShoppingCart = {
   sell: string;
 };
 
-export declare type StatusAllowImmediatePayments = {
+export declare type StatusAllowImmediatePayment = {
   allow: boolean;
   codes: string[];
   immediate_payment: StatusImmediatePayment;

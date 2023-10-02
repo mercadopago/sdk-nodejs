@@ -1,14 +1,14 @@
 import MercadoPago, { Invoice } from '@src/index';
 
 /**
- * Mercado Pago Invoices.
+ * Mercado Pago Invoice.
  *
  * @see {@link https://www.mercadopago.com/developers/en/reference/subscriptions/_authorized_payments_search/get Documentation }.
  */
 
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 9000 } });
 
-const invoices = new Invoice(client);
+const invoice = new Invoice(client);
 const options = {
 	id: 1234,
 	preapproval_id: '<PREAPPROVAL_ID>',
@@ -16,4 +16,4 @@ const options = {
 	payer_id: 1234
 };
 
-invoices.search({ options }).then(console.log).catch(console.log);
+invoice.search({ options }).then(console.log).catch(console.log);

@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 jest.mock('@utils/restClient');
 
-describe('Testing invoices, get', () => {
+describe('Testing invoice, get', () => {
 	test('should make a GET request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 		const id = '1234';
