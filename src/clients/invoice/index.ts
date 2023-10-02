@@ -7,7 +7,7 @@ import type { InvoicesSearchData, InvoicesSearchResponse } from './search/types'
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-export class Invoices {
+export class Invoice {
 	private config: MercadoPagoConfig;
 
 	constructor(mercadoPagoConfig: MercadoPagoConfig) {
@@ -17,7 +17,7 @@ export class Invoices {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoices/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoice/get.ts Usage Example  }.
    */
 	get({ id, requestOptions }: InvoicesGetData): Promise<InvoicesResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -27,7 +27,7 @@ export class Invoices {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoices/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoice/search.ts Usage Example  }.
    */
 	search(ivoicesSearchOptions: InvoicesSearchData = {}): Promise<InvoicesSearchResponse> {
 		const { options, requestOptions } = ivoicesSearchOptions;

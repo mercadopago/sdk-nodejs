@@ -25,7 +25,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Create.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/create.ts Usage Example  }.
    */
 	create({ body, requestOptions }: PreApprovalPlansCreateData): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -35,7 +35,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Get.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/get.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/get.ts Usage Example  }.
    */
 	get({ preApprovalPlanId, requestOptions }: PreApprovalPlansGetData): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -45,7 +45,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Update.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/update.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/update.ts Usage Example  }.
    */
 	update({ id, updatePreApprovalPlanRequest, requestOptions }: UpdatePreApprovalPlanUpdateData): Promise<PreApprovalPlanResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
@@ -55,7 +55,7 @@ export class PreApprovalPlan {
 	/**
    * Mercado Pago Search.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplans/search.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/search.ts Usage Example  }.
    */
 	search(preApprovalPlansSearchData: PreApprovalPlansSearchData = {}): Promise<PreApprovalPlanSearchResponse> {
 		const { options, requestOptions } = preApprovalPlansSearchData;

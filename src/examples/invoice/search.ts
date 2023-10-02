@@ -1,4 +1,4 @@
-import MercadoPago, { Invoices } from '@src/index';
+import MercadoPago, { Invoice } from '@src/index';
 
 /**
  * Mercado Pago Invoices.
@@ -8,7 +8,7 @@ import MercadoPago, { Invoices } from '@src/index';
 
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 9000 } });
 
-const invoices = new Invoices(client);
+const invoices = new Invoice(client);
 const options = {
 	id: 1234,
 	preapproval_id: '<PREAPPROVAL_ID>',
