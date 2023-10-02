@@ -14,8 +14,5 @@ export declare type CardTokenCreateBody = {
 
 export declare type CardTokenCreateData = {
   body: CardTokenCreateBody;
-  requestOptions?: Options
+  requestOptions?: Options;
 };
-
-
-

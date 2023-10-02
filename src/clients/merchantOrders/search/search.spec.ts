@@ -8,7 +8,7 @@ import type { MerchantOrderSearchOptions } from './types';
 jest.mock('@utils/restClient');
 
 describe('Testing customer, search', () => {
-	test('should pass foward request options from search to RestClient.fetch', async () => {
+	test('should pass forward request options from search to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 
 		const searchOptions: MerchantOrderSearchOptions = {

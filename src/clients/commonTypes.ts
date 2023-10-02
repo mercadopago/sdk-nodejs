@@ -22,8 +22,8 @@ export declare type Items = {
 };
 
 export declare type Phone = {
-  area_code?: string,
-  number?: string
+  area_code?: string;
+  number?: string;
 }
 
 export declare type Shipments = {

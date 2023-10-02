@@ -1,17 +1,17 @@
 import { RestClient } from '@utils/restClient';
 
-import type { CustomerCardsCreateClient } from './types';
 import type { CustomerCardResponse } from '../commonTypes';
+import type { CustomerCardUpdateClient } from './types';
 
-export default function create({ customerId, body, config }: CustomerCardsCreateClient): Promise<CustomerCardResponse> {
+export default function update({ customerId, cardId, body, config }: CustomerCardUpdateClient): Promise<CustomerCardResponse> {
 	return RestClient.fetch<CustomerCardResponse>(
-		`/v1/customers/${customerId}/cards`,
+		`/v1/customers/${customerId}/cards/${cardId}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`
 			},
 			body: JSON.stringify(body),
-			method: 'POST',
+			method: 'PUT',
 			...config.options
 		}
 	);

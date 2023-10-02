@@ -5,7 +5,7 @@ import type { Options } from '@src/types';
 export declare type CustomerUpdateData = {
   customerId: string;
   body: CustomerRequestBody;
-  requestOptions?: Options
+  requestOptions?: Options;
 };
 
 export declare type CustomerUpdateClient = {

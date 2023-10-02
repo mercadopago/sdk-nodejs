@@ -189,5 +189,5 @@ export declare type StatusImmediatePayment = {
 };
 
 export declare type UserGetData = {
-  requestOptions?: Options
+  requestOptions?: Options;
 }

@@ -3,7 +3,7 @@ import type { Options } from '@src/types';
 
 export declare type PaymentGetData = {
   id: string;
-  requestOptions?: Options
+  requestOptions?: Options;
 }
 
 export declare interface PaymentGetClient extends PaymentGetData {

@@ -2,7 +2,7 @@ import type { CustomerCardCardholder } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
 
-export declare type CustomerCardsUpdateClient = {
+export declare type CustomerCardUpdateClient = {
   customerId: string;
   cardId: string;
   body: CustomerCardUpdateBody;
@@ -16,9 +16,9 @@ export declare type CustomerCardUpdateBody = {
   token?: string;
 };
 
-export declare type CustomerCardsUpdateData = {
+export declare type CustomerCardUpdateData = {
   customerId: string;
   cardId: string;
   body: CustomerCardUpdateBody;
-  requestOptions?: Options
+  requestOptions?: Options;
 };

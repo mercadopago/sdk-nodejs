@@ -6,7 +6,7 @@ import { RestClient } from '@utils/restClient';
 jest.mock('@utils/restClient');
 
 describe('Testing customer cards, create', () => {
-	test('should pass foward request options from create to RestClient.fetch', async () => {
+	test('should pass forward request options from create to RestClient.fetch', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token', options: { timeout: 5000 } });
 
 		const body = {

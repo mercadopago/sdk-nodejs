@@ -11,7 +11,7 @@ export declare type MerchantOrderUpdateClient = {
 export declare type MerchantOrderUpdateData = {
   merchantOrderId: string;
   body: MerchantOrderUpdateBody;
-  requestOptions?: Options
+  requestOptions?: Options;
 }
 
 export declare type MerchantOrderUpdateBody = {
