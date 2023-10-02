@@ -1,10 +1,10 @@
-export declare type InvoicesPayment = {
+export declare type InvoicePayment = {
   id: string;
   status: string;
   status_detail: string;
 };
 
-export declare type InvoicesResponse = {
+export declare type InvoiceResponse = {
   currency_id?: string;
   date_created?: string;
   debit_date?: string;
@@ -12,7 +12,7 @@ export declare type InvoicesResponse = {
   id?: string;
   last_modified?: string;
   payer_id?: number;
-  payment?: InvoicesPayment;
+  payment?: InvoicePayment;
   preapproval_id?: string;
   reason?: string;
   retry_attempt?: number,

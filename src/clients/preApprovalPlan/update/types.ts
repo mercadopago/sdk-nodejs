@@ -1,5 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PreApprovalPlanRequest } from '@src/clients/preApprovalPlans/commonTypes';
+import type { PreApprovalPlanRequest } from '@src/clients/preApprovalPlan/commonTypes';
 import type { Options } from '@src/types';
 
 export declare type PreApprovalPlanId = {

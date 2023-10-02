@@ -3,7 +3,7 @@ import create from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig'
 ;
-import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
+import type { PreferenceRequest } from '@src/clients/preference/commonTypes';
 
 
 jest.mock('@utils/restClient');

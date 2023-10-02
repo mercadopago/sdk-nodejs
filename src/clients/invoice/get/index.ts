@@ -1,10 +1,10 @@
 import { RestClient } from '@utils/restClient';
 
-import type { InvoicesGetClient } from './types';
-import type { InvoicesResponse } from '@src/clients/invoices/commonTypes';
+import type { InvoiceGetClient } from './types';
+import type { InvoiceResponse } from '@src/clients/invoice/commonTypes';
 
-export default function get({ id, config }: InvoicesGetClient): Promise<InvoicesResponse> {
-	return RestClient.fetch<InvoicesResponse>(
+export default function get({ id, config }: InvoiceGetClient): Promise<InvoiceResponse> {
+	return RestClient.fetch<InvoiceResponse>(
 		`/authorized_payments/${id}`,
 		{
 			method: 'GET',

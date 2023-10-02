@@ -57,8 +57,8 @@ export class PreApprovalPlan {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preapprovalplan/search.ts Usage Example  }.
    */
-	search(preApprovalPlansSearchData: PreApprovalPlansSearchData = {}): Promise<PreApprovalPlanSearchResponse> {
-		const { options, requestOptions } = preApprovalPlansSearchData;
+	search(preApprovalPlanSearchData: PreApprovalPlansSearchData = {}): Promise<PreApprovalPlanSearchResponse> {
+		const { options, requestOptions } = preApprovalPlanSearchData;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ options, config: this.config });
 	}

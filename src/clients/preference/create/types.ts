@@ -1,5 +1,5 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
+import type { PreferenceRequest } from '@src/clients/preference/commonTypes';
 import type { Options } from '@src/types';
 
 export declare type PreferenceCreateClient = {

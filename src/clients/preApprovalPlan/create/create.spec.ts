@@ -3,7 +3,7 @@ import create from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { PreApprovalPlanRequest } from '@src/clients/preApprovalPlans/commonTypes';
+import type { PreApprovalPlanRequest } from '@src/clients/preApprovalPlan/commonTypes';
 
 jest.mock('@utils/restClient');
 

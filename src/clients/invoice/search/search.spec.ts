@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 jest.mock('@utils/restClient');
 
-describe('Testing invoices, search', () => {
+describe('Testing invoice, search', () => {
 	test('should make a SEARCH request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
 		const expectedHeaders = {
