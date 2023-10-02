@@ -29,8 +29,8 @@ export class Payment {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payments/search.ts Usage Example  }.
    */
-	search(PaymentSearchOptions: PaymentSearchData = {}): Promise<PaymentsSearch> {
-		const { options, requestOptions } = PaymentSearchOptions;
+	search(paymentSearchOptions: PaymentSearchData = {}): Promise<PaymentsSearch> {
+		const { options, requestOptions } = paymentSearchOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ options, config: this.config });
 	}

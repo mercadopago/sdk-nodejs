@@ -29,8 +29,8 @@ export class Invoices {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoices/search.ts Usage Example  }.
    */
-	search(InvoicesSearchOptions: InvoicesSearchData = {}): Promise<InvoicesSearchResponse> {
-		const { options, requestOptions } = InvoicesSearchOptions;
+	search(ivoicesSearchOptions: InvoicesSearchData = {}): Promise<InvoicesSearchResponse> {
+		const { options, requestOptions } = ivoicesSearchOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ options, config: this.config });
 	}

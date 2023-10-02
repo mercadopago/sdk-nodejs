@@ -57,8 +57,8 @@ export class MerchantOrder {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/merchantOrders/search.ts Usage Example  }.
 	 */
-	search(MerchantOrderSearchOptions: MerchantOrderSearchData = {}): Promise<MerchantOrderSearchResultsPage> {
-		const { options, requestOptions } = MerchantOrderSearchOptions;
+	search(merchantOrderSearchOptions: MerchantOrderSearchData = {}): Promise<MerchantOrderSearchResultsPage> {
+		const { options, requestOptions } = merchantOrderSearchOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return search({ options, config: this.config });
 	}
