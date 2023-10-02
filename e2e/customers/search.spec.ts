@@ -1,18 +1,13 @@
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import search from '../../src/clients/customers/search';
-import type { CustomerSearchOptions } from '../../src/clients/customers/search/types';
-import { config } from '../e2e.config.js';
+import MercadoPago, { Customer } from '@src/index';
+import { config } from '../e2e.config';
 
 describe('Testing customer, search', () => {
-	test('shoud pass foward request options from search to RestClient.fetch', async () => {
-		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should search a client with success', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const customer = new Customer(client);
 
-		const searchFilters: CustomerSearchOptions = {
-			email: 'test_user_309842984u20@testuser.com'
-		};
-
-		const customer = await search({ filters: searchFilters, config: client });
-		expect(customer).toHaveProperty('results');
-		expect(customer.results[0]).toHaveProperty('email', 'test_user_309842984u20@testuser.com');
+		const customerSearch = await customer.search({ filters: { email: 'test_user_309842984u20@testuser.com' } });
+		expect(customerSearch).toHaveProperty('results');
+		expect(customerSearch.results[0]).toHaveProperty('email', 'test_user_309842984u20@testuser.com');
 	});
 });

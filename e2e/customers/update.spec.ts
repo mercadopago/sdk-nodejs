@@ -1,20 +1,17 @@
-import create from '../../src/clients/customers/create';
-import remove from '../../src/clients/customers/remove';
-import { config } from '../e2e.config.js';
-import update from '../../src/clients/customers/update';
-
-import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import MercadoPago, { Customer } from '@src/index';
+import { config } from '../e2e.config';
 
 describe('Testing customer, update', () => {
-	test('shoud pass foward request options from update to RestClient.fetch', async () => {
-		const client = new MercadoPagoConfig({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should update a customer with success', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const customer = new Customer(client);
 
 		const email = createEmailTestUser();
 		const body = {
 			email: email,
 		};
 
-		const createCustomer = await create({ body, config: client });
+		const createCustomer = await customer.create({ body });
 		expect(createCustomer).toHaveProperty('id');
 
 		const updatedBody = {
@@ -22,10 +19,12 @@ describe('Testing customer, update', () => {
 			last_name: 'Doe',
 		};
 
-		const updateCustomer = await update({ customerId: createCustomer.id, body: updatedBody, config: client });
+		const updateCustomer = await customer.update({ customerId: createCustomer.id, body: updatedBody });
 		expect(updateCustomer).toHaveProperty('id', createCustomer.id);
+		expect(updateCustomer).toHaveProperty('first_name', 'Jhon');
+		expect(updateCustomer).toHaveProperty('last_name', 'Doe');
 
-		const removeCustomer = await remove({ customerId: createCustomer.id, config: client });
+		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
 		expect(removeCustomer).toHaveProperty('id', removeCustomer.id);
 	});
 
