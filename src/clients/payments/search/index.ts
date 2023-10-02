@@ -1,7 +1,7 @@
 import { RestClient } from '@src/utils/restClient';
 import type { PaymentsSearch, PaymentSearchClient } from './types';
 
-export default function search({ filters, config }: PaymentSearchClient): Promise<PaymentsSearch> {
+export default function search({ options, config }: PaymentSearchClient): Promise<PaymentsSearch> {
 	return RestClient.fetch<PaymentsSearch>(
 		'/v1/payments/search',
 		{
@@ -9,7 +9,7 @@ export default function search({ filters, config }: PaymentSearchClient): Promis
 				'Authorization': `Bearer ${config.accessToken}`
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

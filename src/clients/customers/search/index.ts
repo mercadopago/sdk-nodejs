@@ -2,7 +2,7 @@ import { RestClient } from '@utils/restClient';
 
 import type { CustomerSearchClient, CustomerSearchResultsPage } from './types';
 
-export default function search({ filters, config }: CustomerSearchClient): Promise<CustomerSearchResultsPage> {
+export default function search({ options, config }: CustomerSearchClient): Promise<CustomerSearchResultsPage> {
 	return RestClient.fetch<CustomerSearchResultsPage>(
 		'/v1/customers/search',
 		{
@@ -10,7 +10,7 @@ export default function search({ filters, config }: CustomerSearchClient): Promi
 				'Authorization': `Bearer ${config.accessToken}`
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

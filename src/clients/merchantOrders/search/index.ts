@@ -2,7 +2,7 @@ import { RestClient } from '@utils/restClient';
 
 import type { MerchantOrderSearchClient, MerchantOrderSearchResultsPage } from './types';
 
-export default function search({ filters, config }: MerchantOrderSearchClient): Promise<MerchantOrderSearchResultsPage> {
+export default function search({ options, config }: MerchantOrderSearchClient): Promise<MerchantOrderSearchResultsPage> {
 	return RestClient.fetch<MerchantOrderSearchResultsPage>(
 		'/merchant_orders/search',
 		{
@@ -10,7 +10,7 @@ export default function search({ filters, config }: MerchantOrderSearchClient): 
 				'Authorization': `Bearer ${config.accessToken}`
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

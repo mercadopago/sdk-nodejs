@@ -2,7 +2,7 @@ import { RestClient } from '@utils/restClient';
 
 import type { InvoicesSearchClient, InvoicesSearchResponse } from './types';
 
-export default function search({ filters, config }: InvoicesSearchClient): Promise<InvoicesSearchResponse> {
+export default function search({ options, config }: InvoicesSearchClient): Promise<InvoicesSearchResponse> {
 	return RestClient.fetch<InvoicesSearchResponse>(
 		'/authorized_payments/search',
 		{
@@ -10,7 +10,7 @@ export default function search({ filters, config }: InvoicesSearchClient): Promi
 				'Authorization': `Bearer ${config.accessToken}`,
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

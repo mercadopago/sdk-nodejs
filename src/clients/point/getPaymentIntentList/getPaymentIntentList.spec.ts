@@ -14,7 +14,7 @@ describe('Testing payment intent, list', () => {
 			options: { timeout: 5000 },
 		});
 		const search: PointGetPaymentIntentListClient = {
-			filters: {
+			options: {
 				startDate: '2023-01-01',
 				endDate: '2023-12-31',
 			},
@@ -32,7 +32,7 @@ describe('Testing payment intent, list', () => {
 				method: 'GET',
 				headers: expectedHeaders,
 				queryParams: {
-					...search.filters,
+					...search.options,
 				},
 				...client.options,
 			})

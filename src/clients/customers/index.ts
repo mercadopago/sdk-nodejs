@@ -74,9 +74,9 @@ export class Customer {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/search.ts Usage Example  }.
 	 */
 	search(CustomerSearchOptions: CustomerSearchData = {}): Promise<CustomerSearchResultsPage> {
-		const { filters, requestOptions } = CustomerSearchOptions;
+		const { options, requestOptions } = CustomerSearchOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ filters, config: this.config });
+		return search({ options, config: this.config });
 	}
 
 	/**

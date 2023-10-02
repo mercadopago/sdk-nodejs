@@ -1,5 +1,5 @@
 export declare type OAuthGetAuthorizationURLClient = {
-  filters: AuthorizationRequest;
+  options: AuthorizationRequest;
 };
 
 export declare type AuthorizationRequest = {
@@ -13,5 +13,5 @@ export declare type AuthorizationResponse = {
 };
 
 export declare type OAuthGetAuthorizationURLData = {
-  filters?: AuthorizationRequest;
+  options?: AuthorizationRequest;
 }

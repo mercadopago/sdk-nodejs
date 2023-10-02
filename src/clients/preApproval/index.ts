@@ -43,9 +43,9 @@ export class PreApproval {
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preApproval/search.ts Usage Example  }.
    */
 	search(preApprovalSearchData: PreApprovalSearchData = {}): Promise<PreApprovalSearchResponse> {
-		const { filters, requestOptions } =  preApprovalSearchData;
+		const { options, requestOptions } =  preApprovalSearchData;
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ filters, config: this.config });
+		return search({ options, config: this.config });
 	}
 
 	/**

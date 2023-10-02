@@ -6,7 +6,7 @@ import type { CustomerResponse } from '../commonTypes';
 import type { Options } from '@src/types';
 
 export declare type CustomerSearchClient = {
-  filters?: CustomerSearchOptions;
+  options?: CustomerSearchOptions;
   config: MercadoPagoConfig;
 };
 
@@ -15,7 +15,7 @@ export declare interface CustomerSearchOptions extends SearchOptions {
 }
 
 export declare type CustomerSearchData = {
-  filters?: CustomerSearchOptions;
+  options?: CustomerSearchOptions;
   requestOptions?: Options;
 }
 
