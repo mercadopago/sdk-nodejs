@@ -1,4 +1,4 @@
-import type { PaymentsCreateRequest } from '@src/clients/payments/create/types';
+import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 
@@ -11,29 +11,31 @@ describe('Testing payments, cancel', () => {
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
-		const cancelation = await payment.cancel({ id: paymentCreate.id });
+		const cancelation = await payment.cancel({ id: String(paymentCreate.id) });
 		expect(cancelation).toHaveProperty('id', paymentCreate.id);
 		expect(cancelation).toHaveProperty('status', 'cancelled');
 	});
 
-	function createPayment(): PaymentsCreateRequest {
+	function createPayment(): PaymentCreateData {
 		const body = {
-			'additional_info': {
-				'items': [
-					{
-						'id': 'MLB2907679857',
-						'title': 'Point Mini',
-						'quantity': 1,
-						'unit_price': 58.8
-					}
-				]
-			},
-			'payer': {
-				'email': 'test_user_123@testuser.com',
-			},
-			'transaction_amount': 110.00,
-			'installments': 1,
-			'payment_method_id': 'pix',
+			body: {
+				'additional_info': {
+					'items': [
+						{
+							'id': 'MLB2907679857',
+							'title': 'Point Mini',
+							'quantity': 1,
+							'unit_price': 58.8
+						}
+					]
+				},
+				'payer': {
+					'email': 'test_user_123@testuser.com',
+				},
+				'transaction_amount': 110.00,
+				'installments': 1,
+				'payment_method_id': 'pix',
+			}
 		};
 		return body;
 	}

@@ -1,4 +1,4 @@
-import type { PaymentsCreateRequest } from '@src/clients/payments/create/types';
+import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import MercadoPago, { Payment } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
@@ -15,7 +15,7 @@ describe('Testing payments, capture', () => {
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
-		const captureResponse = await payment.capture({ id: paymentCreate.id, transaction_amount: 40 });
+		const captureResponse = await payment.capture({ id: String(paymentCreate.id), transaction_amount: 40 });
 		expect(captureResponse).toHaveProperty('id', paymentCreate.id);
 		expect(captureResponse).toHaveProperty('transaction_amount', 40);
 	});
@@ -31,30 +31,32 @@ describe('Testing payments, capture', () => {
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
-		const captureResponse = await payment.capture({ id: paymentCreate.id });
+		const captureResponse = await payment.capture({ id: String(paymentCreate.id) });
 		expect(captureResponse).toHaveProperty('id', paymentCreate.id);
 		expect(captureResponse).toHaveProperty('transaction_amount', 110);
 	});
 
-	function createPayment(token: string): PaymentsCreateRequest {
+	function createPayment(token: string): PaymentCreateData {
 		const body = {
-			'additional_info': {
-				'items': [
-					{
-						'id': 'MLB2907679857',
-						'title': 'Point Mini',
-						'quantity': 1,
-						'unit_price': 58.8
-					}
-				]
-			},
-			'payer': {
-				'email': 'test_user_123@testuser.com',
-			},
-			'transaction_amount': 110.00,
-			'installments': 1,
-			'token': token,
-			'capture': false,
+			body: {
+				'additional_info': {
+					'items': [
+						{
+							'id': 'MLB2907679857',
+							'title': 'Point Mini',
+							'quantity': 1,
+							'unit_price': 58.8
+						}
+					]
+				},
+				'payer': {
+					'email': 'test_user_123@testuser.com',
+				},
+				'transaction_amount': 110.00,
+				'installments': 1,
+				'token': token,
+				'capture': false,
+			}
 		};
 		return body;
 	}

@@ -16,10 +16,12 @@ describe('Testing payments, search', () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);
 
-		const filters = {
-			'external_reference': 'test_search_payment'
+		const options = {
+			options: {
+				'external_reference': 'test_search_payment'
+			}
 		};
-		const searchPayment = await payment.search(filters);
+		const searchPayment = await payment.search(options);
 
 		expect(searchPayment).toHaveProperty('results');
 		expect(searchPayment).toHaveProperty('paging');
