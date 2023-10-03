@@ -45,7 +45,7 @@ export declare type PaymentSearchResult = {
   merchant_account_id: string;
   acquirer: string;
   merchant_number: string;
-  external_reference: string; // o search busca por esse campo, e ele deve retornar no resultado
+  external_reference: string;
 };
 
 export declare type Payer = {
