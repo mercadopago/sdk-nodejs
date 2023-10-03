@@ -1,15 +1,15 @@
 import { RestClient } from '@utils/restClient';
 
-import type { PaymentsResponse } from '../commonTypes';
+import type { PaymentResponse } from '../commonTypes';
 import type { PaymentCaptureClient } from './types';
 
-export default function capture({ id, transaction_amount, config }: PaymentCaptureClient): Promise<PaymentsResponse>  {
+export default function capture({ id, transaction_amount, config }: PaymentCaptureClient): Promise<PaymentResponse>  {
 	const captureBody = {
 		capture: true,
 		transaction_amount
 	};
 
-	return RestClient.fetch<PaymentsResponse>(
+	return RestClient.fetch<PaymentResponse>(
 		`/v1/payments/${id}`,
 		{
 			method: 'PUT',

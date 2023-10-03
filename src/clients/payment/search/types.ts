@@ -3,16 +3,16 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options, SearchOptions } from '@src/types';
 
 export declare type PaymentSearchClient = {
-  options?: PaymentsSearchOptions,
+  options?: PaymentSearchOptions,
   config: MercadoPagoConfig
 };
 
-export declare type PaymentsSearch = {
-  paging?: PaymentsSearchPaging;
-  results?: Array<PaymentsSearchResult>;
+export declare type PaymentSearch = {
+  paging?: PaymentSearchPaging;
+  results?: Array<PaymentSearchResult>;
 };
 
-export declare type PaymentsSearchResult = {
+export declare type PaymentSearchResult = {
   id: string;
   date_created: string;
   date_approved: string;
@@ -76,13 +76,13 @@ export declare type TransactionDetails = {
   acquirer_reference: string;
 };
 
-export declare type PaymentsSearchPaging = {
+export declare type PaymentSearchPaging = {
   total: number;
   limit: number;
   offset: number;
 };
 
-export declare interface PaymentsSearchOptions extends SearchOptions {
+export declare interface PaymentSearchOptions extends SearchOptions {
   sort?: 'date_approved' | 'date_created' | 'date_last_updated' | 'money_release_date';
   criteria?: 'asc' | 'desc';
   external_reference?: string;
@@ -92,6 +92,6 @@ export declare interface PaymentsSearchOptions extends SearchOptions {
 }
 
 export declare type PaymentSearchData = {
-  options?: PaymentsSearchOptions;
+  options?: PaymentSearchOptions;
   requestOptions?: Options;
 }
