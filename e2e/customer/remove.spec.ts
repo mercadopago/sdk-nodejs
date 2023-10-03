@@ -1,7 +1,7 @@
 import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing customer, remove', () => {
+describe('IT customer, remove', () => {
 	test('should delete a customer with success', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const customer = new Customer(client);

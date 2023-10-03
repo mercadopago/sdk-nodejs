@@ -1,12 +1,12 @@
 import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing customer, search', () => {
+describe('IT customer, search', () => {
 	test('should search a client with success', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const customer = new Customer(client);
 
-		const customerSearch = await customer.search({ filters: { email: 'test_user_309842984u20@testuser.com' } });
+		const customerSearch = await customer.search({ options: { email: 'test_user_309842984u20@testuser.com' } });
 		expect(customerSearch).toHaveProperty('results');
 		expect(customerSearch.results[0]).toHaveProperty('email', 'test_user_309842984u20@testuser.com');
 	});

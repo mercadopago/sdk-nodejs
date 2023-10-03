@@ -1,8 +1,8 @@
 import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing customer, get', () => {
-	test('should get a client with success', async () => {
+describe('IT customer, create', () => {
+	test('should create a client with success', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const customer = new Customer(client);
 
@@ -14,11 +14,6 @@ describe('Testing customer, get', () => {
 
 		const createCustomer = await customer.create({ body });
 		expect(createCustomer).toHaveProperty('id');
-
-		const customerGet = await customer.get({ customerId: createCustomer.id });
-
-		expect(customerGet).toHaveProperty('id', createCustomer.id);
-		expect(customerGet).toHaveProperty('email', body.email);
 
 		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
 		expect(removeCustomer).toHaveProperty('id', removeCustomer.id);
