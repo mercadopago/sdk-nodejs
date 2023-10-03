@@ -10,8 +10,8 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 
 const oauth = new OAuth(client);
 
-oauth.refresh({
+oauth.refresh({ body: {
 	client_secret: '<CLIENT_SECRET>',
 	client_id: 'CLIENT_ID',
 	refresh_token: '<REFRESH_TOKEN>'
-}).then(console.log).catch(console.log);
+} }).then(console.log).catch(console.log);

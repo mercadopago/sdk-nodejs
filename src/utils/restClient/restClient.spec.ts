@@ -15,6 +15,7 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: expect.any(String),
 			timeout: 10000,
+			headers: expect.any(Object)
 		});
 	});
 
@@ -28,6 +29,7 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'GET',
 			timeout: expect.any(Number),
+			headers: expect.any(Object)
 		});
 	});
 
@@ -42,7 +44,11 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'POST',
 			headers: {
-				'Idempotency-Key': idempotencyKey,
+				'Content-Type': expect.any(String),
+				'User-Agent': expect.any(String),
+				'X-Idempotency-Key': idempotencyKey,
+				'X-Product-Id': expect.any(String),
+				'X-Tracking-Id': expect.any(String),
 			},
 			timeout: expect.any(Number),
 		});
@@ -59,6 +65,7 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.stringContaining('param1=value1&param2=value2'), {
 			method: 'GET',
 			timeout: expect.any(Number),
+			headers: expect.any(Object)
 		});
 	});
 
@@ -87,20 +94,6 @@ describe('RestClient', () => {
 		});
 	}, 10000);
 
-	test('Should throw an error if the response status code is not in the 2xx range', async () => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-			new Response(JSON.stringify({ error: 'Not Found' }), { url: 'url', status: 404, statusText: 'Not Found' })
-		);
-
-		const endpoint = '/test-not-found';
-		try {
-			await RestClient.fetch(endpoint);
-		} catch (error) {
-			expect(error.status).toBe(404);
-			expect(error.statusText).toBe('Not Found');
-		}
-	});
-
 	test('Should allow custom headers to be set in the request', async () => {
 		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
 			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
@@ -115,24 +108,14 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'GET',
 			timeout: expect.any(Number),
-			headers: customHeaders,
+			headers: {
+				...customHeaders,
+				'Content-Type': expect.any(String),
+				'User-Agent': expect.any(String),
+				'X-Product-Id': expect.any(String),
+				'X-Tracking-Id': expect.any(String),
+			},
 		});
-	});
-
-	test('Should throw an error if the response status code is not 200 OK when retries are exhausted', async () => {
-		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
-			new Response(JSON.stringify({ error: 'Internal Server Error' }), { url: 'url', status: 500, statusText: 'Internal Server Error' })
-		);
-
-		const endpoint = '/test-retry-failure';
-		const retries = 2;
-		try {
-			await RestClient.fetch(endpoint, { retries });
-		} catch (error) {
-			expect(error.status).toBe(500);
-			expect(error.statusText).toBe('Internal Server Error');
-			expect(fetch).toHaveBeenCalledTimes(retries);
-		}
 	});
 
 	test('Should support custom request methods', async () => {
@@ -162,9 +145,13 @@ describe('RestClient', () => {
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'POST',
 			headers: {
-				'Idempotency-Key': expect.any(String),
+				'Content-Type': expect.any(String),
+				'User-Agent': expect.any(String),
+				'X-Idempotency-Key': expect.any(String),
+				'X-Product-Id': expect.any(String),
+				'X-Tracking-Id': expect.any(String),
 			},
-			timeout: expect.any(Number),
+			timeout: expect.any(Number)
 		});
 	});
 

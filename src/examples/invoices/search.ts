@@ -9,11 +9,11 @@ import MercadoPago, { Invoices } from '@src/index';
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 9000 } });
 
 const invoices = new Invoices(client);
-const filters = {
+const options = {
 	id: 1234,
 	preapproval_id: '<PREAPPROVAL_ID>',
 	payment_id: 1234,
 	payer_id: 1234
 };
 
-invoices.search({ filters }).then(console.log).catch(console.log);
+invoices.search({ options }).then(console.log).catch(console.log);

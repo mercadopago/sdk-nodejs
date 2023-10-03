@@ -1,23 +1,23 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { SearchOptions } from '@src/types';
 import type { PreApprovalPlanResponse } from '../commonTypes';
+import type { Options } from '@src/types';
 
-export declare type Search = {
-  filters?: PreApprovalPlanSearchOptions,
+export declare type PreApprovalPlansSearchClient = {
+  options?: PreApprovalPlanSearchOptions,
   config: MercadoPagoConfig
 };
 
-export declare type PreApprovalPlanSearchOptions = {
+export declare interface PreApprovalPlanSearchOptions extends SearchOptions {
   status?: string;
   q?: string;
   sort?: string;
   criteria?: string;
-  offset?: string;
-  limit?: string;
-};
+}
 
 export declare type PreApprovalPlanSearchResponse = {
-  paging: PreApprovalPlanSearchPaging;
-  results: Array<PreApprovalPlanResponse>;
+  paging?: PreApprovalPlanSearchPaging;
+  results?: Array<PreApprovalPlanResponse>;
 };
 
 export declare type PreApprovalPlanSearchPaging = {
@@ -26,4 +26,7 @@ export declare type PreApprovalPlanSearchPaging = {
   offset: number;
 };
 
-
+export declare type PreApprovalPlansSearchData = {
+  options?: PreApprovalPlanSearchOptions;
+  requestOptions?: Options;
+}

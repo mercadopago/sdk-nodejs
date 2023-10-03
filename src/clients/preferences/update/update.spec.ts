@@ -3,14 +3,14 @@ import update from '.';
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { UpdatePreference } from './types';
+import type { PreferenceUpdateClient } from './types';
 
 jest.mock('@utils/restClient');
 
 describe('Testing preference, update', () => {
 	test('should make a PUT request with the correct parameters', async () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
-		const preferenceRequest: UpdatePreference = {
+		const preferenceRequest: PreferenceUpdateClient = {
 			id: '1234',
 			updatePreferenceRequest: {
 				items: [],
@@ -18,8 +18,7 @@ describe('Testing preference, update', () => {
 			config: client,
 		};
 		const expectedHeaders = {
-			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
+			'Authorization': 'Bearer token'
 		};
 		await update(preferenceRequest);
 		const spyFetch = jest.spyOn(RestClient, 'fetch');

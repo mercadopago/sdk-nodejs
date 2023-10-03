@@ -13,6 +13,5 @@ const payment = new Payment(client);
 
 payment.cancel({
 	id: '<PAYMENT_ID>',
-}).then((result) => console.log(result))
-	.catch(console.log);
+}).then(console.log).catch(console.log);
 

@@ -4,11 +4,11 @@ import update from './update';
 import search from './search';
 
 import type { MercadoPagoConfig } from '../../mercadoPagoConfig';
-import type { PreferenceId } from './get/types';
-import type { UpdatePreferenceRequest } from './update/types';
-import type { PreferenceSearchOptions, PreferenceSearchResponse } from './search/types';
-import type { PreferenceRequest, PreferenceResponse } from './commonTypes';
-import type { Options } from '@src/types';
+import type { PreferenceGetData } from './get/types';
+import type { PreferenceUpdateData } from './update/types';
+import type { PreferenceSearchData, PreferenceSearchResponse } from './search/types';
+import type { PreferenceResponse } from './commonTypes';
+import type { PreferenceCreateData } from './create/types';
 
 /**
  * Mercado Pago Preference.
@@ -27,7 +27,7 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/get.ts Usage Example  }.
    */
-	get({ preferenceId }: PreferenceId, requestOptions?: Options): Promise<PreferenceResponse> {
+	get({ preferenceId, requestOptions }: PreferenceGetData): Promise<PreferenceResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id: preferenceId, config: this.config });
 	}
@@ -37,9 +37,9 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/create.ts Usage Example  }.
    */
-	create(preferenceRequest: PreferenceRequest, requestOptions?: Options): Promise<PreferenceResponse> {
+	create({ body, requestOptions }: PreferenceCreateData): Promise<PreferenceResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return create({ preferenceRequest, config: this.config });
+		return create({ body, config: this.config });
 	}
 
 	/**
@@ -47,7 +47,7 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/update.ts Usage Example  }.
    */
-	update({ id, updatePreferenceRequest }: UpdatePreferenceRequest, requestOptions?: Options): Promise<PreferenceResponse> {
+	update({ id, updatePreferenceRequest, requestOptions }: PreferenceUpdateData): Promise<PreferenceResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return update({ id, updatePreferenceRequest, config: this.config });
 	}
@@ -57,9 +57,10 @@ export class Preference {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/preferences/search.ts Usage Example  }.
    */
-	search(filters?: PreferenceSearchOptions, requestOptions?: Options): Promise<PreferenceSearchResponse> {
+	search(preferenceSearchData: PreferenceSearchData = {}): Promise<PreferenceSearchResponse> {
+		const { options, requestOptions } = preferenceSearchData;
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ filters, config: this.config });
+		return search({ options, config: this.config });
 	}
 
 }

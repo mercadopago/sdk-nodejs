@@ -1,17 +1,16 @@
 import { RestClient } from '@utils/restClient';
 
-import type { InvoicesSearch, InvoicesSearchResponse } from './types';
+import type { InvoicesSearchClient, InvoicesSearchResponse } from './types';
 
-export default function search({ filters, config }: InvoicesSearch): Promise<InvoicesSearchResponse> {
+export default function search({ options, config }: InvoicesSearchClient): Promise<InvoicesSearchResponse> {
 	return RestClient.fetch<InvoicesSearchResponse>(
 		'/authorized_payments/search',
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,
-				'Content-Type': 'application/json',
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

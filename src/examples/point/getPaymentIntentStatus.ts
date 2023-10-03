@@ -10,4 +10,4 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>',options: { timeou
 const point = new Point(client);
 
 point
-	.getPaymentIntentStatus('<PAYMENT_INTENT_ID>').then(console.log).catch(console.log);
+	.getPaymentIntentStatus({ payment_intent_id: '<PAYMENT_INTENT_ID>' }).then(console.log).catch(console.log);

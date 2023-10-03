@@ -11,12 +11,12 @@ const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeo
 
 const payment = new Payment(client);
 
-payment.create({
+payment.create({ body: {
 	transaction_amount: 12.34,
 	description: '<DESCRIPTION>',
 	payment_method_id: '<PAYMENT_METHOD_ID>',
 	payer: {
 		email: '<EMAIL>'
 	},
-}).then(console.log).catch(console.log);
+} }).then(console.log).catch(console.log);
 

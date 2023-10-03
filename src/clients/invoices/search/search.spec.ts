@@ -10,7 +10,6 @@ describe('Testing invoices, search', () => {
 		const client = new MercadoPagoConfig({ accessToken: 'token' });
 		const expectedHeaders = {
 			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 		await search({ config: client });
 		const spyFetch = jest.spyOn(RestClient, 'fetch');

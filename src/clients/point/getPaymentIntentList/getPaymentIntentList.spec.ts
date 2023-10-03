@@ -3,7 +3,7 @@ import getPaymentIntentList from '.';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { RestClient } from '@src/utils/restClient';
 
-import type { Search } from './types';
+import type { PointGetPaymentIntentListClient } from './types';
 
 jest.mock('@utils/restClient');
 
@@ -13,8 +13,8 @@ describe('Testing payment intent, list', () => {
 			accessToken: 'token',
 			options: { timeout: 5000 },
 		});
-		const search: Search = {
-			filters: {
+		const search: PointGetPaymentIntentListClient = {
+			options: {
 				startDate: '2023-01-01',
 				endDate: '2023-12-31',
 			},
@@ -22,7 +22,6 @@ describe('Testing payment intent, list', () => {
 		};
 		const expectedHeaders = {
 			Authorization: 'Bearer token',
-			'Content-Type': 'application/json',
 		};
 
 		await getPaymentIntentList(search);
@@ -33,7 +32,7 @@ describe('Testing payment intent, list', () => {
 				method: 'GET',
 				headers: expectedHeaders,
 				queryParams: {
-					...search.filters,
+					...search.options,
 				},
 				...client.options,
 			})

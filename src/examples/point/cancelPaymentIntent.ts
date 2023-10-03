@@ -12,4 +12,4 @@ const client = new MercadoPago({
 
 const point = new Point(client);
 
-point.cancelPaymentIntent('<DEVICE_ID>', '<PAYMENT_INTENT_ID>').then(console.log).catch(console.log);
+point.cancelPaymentIntent({ device_id: '<DEVICE_ID>', payment_intent_id: '<PAYMENT_INTENT_ID>' }).then(console.log).catch(console.log);

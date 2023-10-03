@@ -6,7 +6,16 @@ export declare type Config = {
 export declare type Options = {
   timeout?: number;
   idempotencyKey?: string;
+  plataformId?: string;
+  integratorId?: string;
+  corporationId?: string;
 };
+
+export declare interface SearchOptions {
+  limit?: number;
+  offset?: number;
+  [key: string]: string | number;
+}
 
 export declare interface ApiResponse {
   api_response: ResponseFields;

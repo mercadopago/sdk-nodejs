@@ -1,14 +1,15 @@
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
+import type { Options, SearchOptions } from '@src/types';
 
-export declare type Search = {
-  filters?: PreferenceSearchOptions,
+export declare type PreferenceSearchClient = {
+  options?: PreferenceSearchOptions,
   config: MercadoPagoConfig
 };
 
 export declare type PreferenceSearchResponse = {
-  elements: Array<Elements>
-  next_offset: number;
-  total: number;
+  elements?: Array<Elements>
+  next_offset?: number;
+  total?: number;
 };
 
 export declare type Elements = {
@@ -39,9 +40,14 @@ export declare type Elements = {
   shipping_mode: string;
 }
 
-export declare type PreferenceSearchOptions = {
+export declare interface PreferenceSearchOptions extends SearchOptions {
   sponsor_id?: string;
   external_reference?: string;
   site_id?: string;
   marketplace?: string;
-};
+}
+
+export declare type PreferenceSearchData = {
+  options?: PreferenceSearchOptions;
+  requestOptions?: Options;
+}
