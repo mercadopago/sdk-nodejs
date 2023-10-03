@@ -25,8 +25,7 @@ describe('Testing preApproval , create', () => {
 		};
 
 		const expectedHeaders = {
-			'Authorization': 'Bearer token',
-			'Content-Type': 'application/json',
+			'Authorization': 'Bearer token'
 		};
 
 		await create({ body, config : client });

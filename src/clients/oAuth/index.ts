@@ -4,11 +4,10 @@ import getAuthorizationURL from './getAuthorizationURL';
 
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { OAuthRequest } from './create/types';
-import type { AuthorizationRequest } from './getAuthorizationURL/types';
-import type { OAuthRefresh } from './refresh/types';
+import type { OAuthCreateData } from './create/types';
+import type { OAuthGetAuthorizationURLData } from './getAuthorizationURL/types';
+import type { OAuthRefreshData } from './refresh/types';
 import type { OAuthResponse } from './commonTypes';
-import type { Options } from '@src/types';
 
 /**
  * Mercado Pago OAuth.
@@ -27,9 +26,9 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/oauth/create.ts Usage Example  }.
 	 */
-	create(oauthRequest: OAuthRequest, requestOptions?: Options): Promise<OAuthResponse> {
+	create({ body, requestOptions }: OAuthCreateData): Promise<OAuthResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return create({ oauthRequest, config: this.config });
+		return create({ body, config: this.config });
 	}
 
 	/**
@@ -37,9 +36,9 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/oauth/refresh.ts Usage Example  }.
 	 */
-	refresh(oauthRequest: OAuthRefresh, requestOptions?: Options): Promise<OAuthResponse> {
+	refresh({ body, requestOptions }: OAuthRefreshData): Promise<OAuthResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return refresh({ oauthRequest, config: this.config });
+		return refresh({ body, config: this.config });
 	}
 
 	/**
@@ -47,8 +46,7 @@ export class OAuth {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/oauth/getAuthorizationURL.ts Usage Example  }.
 	 */
-	getAuthorizationURL(filters : AuthorizationRequest): string {
-		return getAuthorizationURL({ filters });
+	getAuthorizationURL({ options }: OAuthGetAuthorizationURLData): string {
+		return getAuthorizationURL({ options });
 	}
-
 }

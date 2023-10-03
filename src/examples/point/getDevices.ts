@@ -13,7 +13,7 @@ const client = new MercadoPago({
 const point = new Point(client);
 
 const request = {
-	filters: {
+	options: {
 		store_id: '<STORE_ID>',
 		pos_id: '<POS_ID>',
 		limit: 10,
@@ -22,4 +22,4 @@ const request = {
 };
 
 point
-	.getDevices(request).then(console.log).catch(console.log);
+	.getDevices({ request }).then(console.log).catch(console.log);

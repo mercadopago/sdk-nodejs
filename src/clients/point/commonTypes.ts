@@ -11,7 +11,7 @@ export declare interface PaymentIntentStatusResponse extends ApiResponse {
 }
 
 export declare interface GetPaymentIntentListResponse extends ApiResponse {
-  events: Array<Event>;
+  events?: Array<Event>;
 }
 
 export declare type Event = {
@@ -21,8 +21,8 @@ export declare type Event = {
 };
 
 export declare interface GetDevicesResponse extends ApiResponse {
-  devices: Array<Device>;
-  paging: Paging;
+  devices?: Array<Device>;
+  paging?: Paging;
 }
 
 export declare type Device = {
@@ -48,7 +48,7 @@ export declare interface PaymentIntentResponse extends ApiResponse {
 
 export declare type PaymentIntentRequest = {
   additional_info?: AdditionalInfo;
-  amount: number;
+  amount?: number;
   description?: string;
   payment?: Payment;
 };

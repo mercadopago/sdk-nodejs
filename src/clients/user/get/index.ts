@@ -1,8 +1,8 @@
 import { RestClient } from '@utils/restClient';
 
-import type { UserGet, UserResponse } from './types';
+import type { UserGetClient, UserResponse } from './types';
 
-export default function get({ config }: UserGet): Promise<UserResponse[]> {
+export default function get({ config }: UserGetClient): Promise<UserResponse[]> {
 	return RestClient.fetch<UserResponse[]>(
 		'/users/me',
 		{
