@@ -108,7 +108,7 @@ class RestClient {
 
 				return data as T;
 			} else {
-				throw response;
+				throw await response.json();
 			}
 		};
 

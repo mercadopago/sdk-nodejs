@@ -74,7 +74,7 @@ export class Point {
 	getPaymentIntentList(pointGetPaymentIntentListOptions: PointGetPaymentIntentListData = {}): Promise<GetPaymentIntentListResponse> {
 		const { body, requestOptions } = pointGetPaymentIntentListOptions;
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return getPaymentIntentList({ filters: body?.filters,config: this.config });
+		return getPaymentIntentList({ options: body?.options,config: this.config });
 	}
 
 	/**
@@ -94,7 +94,7 @@ export class Point {
    */
 	getDevices({ request, requestOptions }: PointGetDevicesData): Promise<GetDevicesResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
-		return getDevices({ filters: request?.filters, config: this.config });
+		return getDevices({ options: request?.options, config: this.config });
 	}
 
 	/**

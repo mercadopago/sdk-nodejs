@@ -1,11 +1,11 @@
 export declare type OAuthGetAuthorizationURLClient = {
-  filters: AuthorizationRequest;
+  options: AuthorizationRequest;
 };
 
 export declare type AuthorizationRequest = {
-  client_id: string;
+  client_id?: string;
   state?: string;
-  redirect_uri: string;
+  redirect_uri?: string;
 };
 
 export declare type AuthorizationResponse = {
@@ -13,5 +13,5 @@ export declare type AuthorizationResponse = {
 };
 
 export declare type OAuthGetAuthorizationURLData = {
-  filters: AuthorizationRequest;
+  options?: AuthorizationRequest;
 }

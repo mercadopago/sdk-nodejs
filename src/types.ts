@@ -11,6 +11,12 @@ export declare type Options = {
   corporationId?: string;
 };
 
+export declare interface SearchOptions {
+  limit?: number;
+  offset?: number;
+  [key: string]: string | number;
+}
+
 export declare interface ApiResponse {
   api_response: ResponseFields;
 }

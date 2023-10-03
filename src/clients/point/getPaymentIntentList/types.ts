@@ -2,12 +2,12 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
 
 export declare type PointGetPaymentIntentListClient = {
-  filters?: GetPaymentIntentList;
+  options?: GetPaymentIntentList;
   config: MercadoPagoConfig;
 };
 
 export declare type GetPaymentIntentListRequest = {
-  filters?: GetPaymentIntentList;
+  options?: GetPaymentIntentList;
 };
 
 export declare type GetPaymentIntentList = {

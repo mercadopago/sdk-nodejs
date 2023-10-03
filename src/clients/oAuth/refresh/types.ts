@@ -7,9 +7,9 @@ export declare type OAuthRefreshClient = {
 }
 
 export declare type OAuthRefresh = {
-  client_secret: string;
+  client_secret?: string;
   client_id?: string;
-  refresh_token: string;
+  refresh_token?: string;
 }
 
 export declare type OAuthRefreshData = {

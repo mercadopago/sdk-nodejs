@@ -2,7 +2,7 @@ import { RestClient } from '@utils/restClient';
 
 import type { PreApprovalSearchClient, PreApprovalSearchResponse } from './types';
 
-export default function search({ filters, config }: PreApprovalSearchClient): Promise<PreApprovalSearchResponse> {
+export default function search({ options, config }: PreApprovalSearchClient): Promise<PreApprovalSearchResponse> {
 	return RestClient.fetch<PreApprovalSearchResponse>(
 		'/preapproval/search',
 		{
@@ -10,7 +10,7 @@ export default function search({ filters, config }: PreApprovalSearchClient): Pr
 				'Authorization': `Bearer ${config.accessToken}`,
 			},
 			queryParams: {
-				...filters
+				...options
 			},
 			...config.options
 		}

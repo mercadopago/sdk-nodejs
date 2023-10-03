@@ -14,6 +14,7 @@ describe('AppConfig', () => {
 		originalNodeArchitecture = AppConfig.getNodeArchitecture();
 		originalNodePlatform = AppConfig.getNodePlatform();
 
+		AppConfig['SDK_VERSION'] = '1.0.0-test';
 		AppConfig['getNodeVersion'] = jest.fn(() => 'v13.14.0');
 		AppConfig['getNodeArchitecture'] = jest.fn(() => 'x64');
 		AppConfig['getNodePlatform'] = jest.fn(() => 'linux');

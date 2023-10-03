@@ -11,7 +11,7 @@ const point = new Point(client);
 
 point
 	.getPaymentIntentList({ body: {
-		filters: {
+		options: {
 			startDate: '<START_DATE>',
 			endDate: '<START_DATE>',
 		},

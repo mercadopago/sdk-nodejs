@@ -4,7 +4,7 @@ describe('Testing oAuth, getAuthorizationURL', () => {
 	test('getAuthorizationURL should correctly append query params to URL', async () => {
 
 		const authorization = {
-			filters: {
+			options: {
 				client_id: 'string',
 				state: '12345',
 				redirect_uri: 'https://httpdump.app/dumps/74cf0638-1a20-4482-b22d-2662a135cfd0',
