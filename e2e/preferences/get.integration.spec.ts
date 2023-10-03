@@ -1,21 +1,22 @@
-import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
+import type { PreferenceCreateData } from '@src/clients/preferences/create/types';
 import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Preference IT, get', () => {
-	test('should GET preference with success', async () => {
-		const client = new MercadoPago({  accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should get preference with success', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const preference = new Preference(client);
 
-		const preferenceRequest: PreferenceRequest = {
-			items: [
-				{
-					'id': '4567',
-					'title': 'Dummy Title Create',
-					'quantity': 1,
-					'unit_price': 10
-				}
-			],
+		const preferenceRequest: PreferenceCreateData = {
+			body: {
+				items: [
+					{
+						'id': '4567',
+						'title': 'Dummy Title Create',
+						'quantity': 1,
+						'unit_price': 10
+					}
+				], }
 		};
 		const request = await preference.create(preferenceRequest);
 
@@ -35,6 +36,12 @@ describe('Preference IT, get', () => {
 			]);
 		expect(response).toEqual(expect.objectContaining({
 			init_point: expect.any(String),
+			client_id: expect.any(String),
+			collector_id: expect.any(Number),
+			date_created: expect.any(String),
+			id: expect.any(String),
+			sandbox_init_point: expect.any(String),
+			site_id: expect.any(String),
 		}));
 	});
 

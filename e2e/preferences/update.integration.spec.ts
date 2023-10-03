@@ -1,26 +1,28 @@
-import type { PreferenceRequest } from '@src/clients/preferences/commonTypes';
-import type { UpdatePreferenceRequest } from '@src/clients/preferences/update/types';
+import { PreferenceCreateData } from '@src/clients/preferences/create/types';
+import type { PreferenceUpdateData } from '@src/clients/preferences/update/types';
 import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing preference, update', () => {
-	test('should make a PUT request with the correct parameters', async () => {
+describe('Preference IT, update', () => {
+	test('should update request with success', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 
-		const preferenceRequest: PreferenceRequest = {
-			items: [
-				{
-					'id': '4567',
-					'title': 'Dummy Title Create',
-					'quantity': 1,
-					'unit_price': 10
-				}
-			],
+		const preferenceRequest: PreferenceCreateData = {
+			body: {
+				items: [
+					{
+						'id': '4567',
+						'title': 'Dummy Title Create',
+						'quantity': 1,
+						'unit_price': 10
+					}
+				],
+			}
 		};
 		const request = await preference.create(preferenceRequest);
 
-		const updateRequest: UpdatePreferenceRequest = {
+		const updateRequest: PreferenceUpdateData = {
 			id: request.id,
 			updatePreferenceRequest: {
 				items: [
@@ -50,5 +52,15 @@ describe('Testing preference, update', () => {
 					'unit_price': 10
 				}
 			]);
+		expect(response).toEqual(expect.objectContaining({
+			init_point: expect.any(String),
+			client_id: expect.any(String),
+			collector_id: expect.any(Number),
+			date_created: expect.any(String),
+			id: expect.any(String),
+			sandbox_init_point: expect.any(String),
+			site_id: expect.any(String),
+		}));
 	});
+
 });
