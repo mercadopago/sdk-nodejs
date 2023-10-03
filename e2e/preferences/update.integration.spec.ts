@@ -1,5 +1,5 @@
-import { PreferenceCreateData } from '@src/clients/preferences/create/types';
-import type { PreferenceUpdateData } from '@src/clients/preferences/update/types';
+import { PreferenceCreateData } from '@src/clients/preference/create/types';
+import type { PreferenceUpdateData } from '@src/clients/preference/update/types';
 import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
 
