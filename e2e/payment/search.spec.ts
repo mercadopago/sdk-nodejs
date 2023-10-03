@@ -1,8 +1,8 @@
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing payments, search', () => {
-	test('should search payments without filters', async () => {
+describe('IT, search', () => {
+	test('should search payments without options', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);
 
@@ -12,7 +12,7 @@ describe('Testing payments, search', () => {
 		expect(searchPayment).toHaveProperty('paging');
 	});
 
-	test('should search payments filtered by external_reference', async () => {
+	test('should search payments with filtered by external_reference', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);
 

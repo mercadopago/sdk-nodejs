@@ -3,7 +3,7 @@ import MercadoPago, { Payment } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
 
-describe('Testing payments, capture', () => {
+describe('IT, capture', () => {
 	test('should capture and return partial transaction_amount passed at the request', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);

@@ -2,7 +2,7 @@ import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing payments, cancel', () => {
+describe('IT, cancel', () => {
 	test('should cancel with success', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);
