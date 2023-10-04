@@ -23,6 +23,22 @@ describe('IT customer, update', () => {
 		expect(updateCustomer).toHaveProperty('id', createCustomer.id);
 		expect(updateCustomer).toHaveProperty('first_name', 'Jhon');
 		expect(updateCustomer).toHaveProperty('last_name', 'Doe');
+		expect(updateCustomer).toHaveProperty('user_id');
+		expect(updateCustomer).toHaveProperty('merchant_id');
+		expect(updateCustomer).toHaveProperty('client_id');
+		expect(updateCustomer).toHaveProperty('status', 'active');
+		expect(createCustomer).toEqual(expect.objectContaining({
+			id: expect.any(String),
+			email: expect.any(String),
+			user_id: expect.any(Number),
+			merchant_id: expect.any(Number),
+			client_id: expect.any(Number),
+			status: expect.any(String),
+			phone: expect.any(Object),
+			identification: expect.any(Object),
+			address: expect.any(Object),
+			date_last_updated: expect.any(String),
+		}));
 
 		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
 		expect(removeCustomer).toHaveProperty('id', removeCustomer.id);

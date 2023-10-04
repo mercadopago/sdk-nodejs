@@ -20,7 +20,7 @@ describe('IT customer, get', () => {
 		expect(customerGet).toHaveProperty('id', createCustomer.id);
 		expect(customerGet).toHaveProperty('email', body.email);
 
-		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
+		const removeCustomer = await customer.remove({ customerId: customerGet.id });
 		expect(removeCustomer).toHaveProperty('id', removeCustomer.id);
 	});
 
