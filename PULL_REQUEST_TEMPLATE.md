@@ -16,7 +16,7 @@
 
 - [ ] Not Apply.<br />
 <br />
-- [ ] Step by step of how to test, specially for bugs.
+- [ ] Step by step of how to test, specially for bugs.<br />
 - [ ] Links of external docs.
 
 ## 📸 Screenshots
@@ -29,6 +29,6 @@
 
 - [ ] Not Apply. <br />
 <br />
-- [ ] Links do external documentation.
-- [ ] Diagrams.
+- [ ] Links do external documentation.<br />
+- [ ] Diagrams.<br />
 - [ ] Useful links.
