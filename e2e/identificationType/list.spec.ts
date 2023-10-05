@@ -1,8 +1,8 @@
 import MercadoPago, { IdentificationType } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing get list identification types', () => {
-	test('should pass forward request options from get to RestClient.fetch', async () => {
+describe('IT identification types', () => {
+	test('should return identification types with success ', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const identificationType = new IdentificationType(client);
 		const getList = await identificationType.list();
