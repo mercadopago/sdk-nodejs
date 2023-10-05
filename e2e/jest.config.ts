@@ -1,8 +1,8 @@
 import jestConfig from '../jest.config';
 
+jestConfig.rootDir = '../';
 jestConfig.testPathIgnorePatterns = [
-	'/node_modules/',
-	'/src/'
+	'src'
 ];
 
 export default jestConfig;

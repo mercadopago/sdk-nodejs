@@ -12,7 +12,7 @@ const jestConfig: JestConfigWithTsJest = {
 		'text-summary'
 	],
 	testMatch: [
-		'**/?(*.)+(spec|test).[tj]s?(x)'
+		'**/?(*.)spec.ts'
 	],
 	transform: { '^.+\\.(ts|tsx)$': 'ts-jest' },
 	moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
