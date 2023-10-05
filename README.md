@@ -103,7 +103,7 @@ const body = {
 
 Use the API object's method to make the request. For example, to make a request to the `/v1/payments` endpoint using the `payment` object:
 
-```
+```javascript
 payment.create({ body }).then(console.log).catch(console.log);
 ```
 
