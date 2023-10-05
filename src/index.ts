@@ -1,6 +1,6 @@
-import { MercadoPagoConfig } from './mercadoPagoConfig';
-export default MercadoPagoConfig;
-export { MercadoPagoConfig };
+import { MercadoPago } from './mercadoPagoConfig';
+export default MercadoPago;
+export { MercadoPago };
 
 export { CardToken } from './clients/cardToken';
 export { CustomerCard } from './clients/customerCard';
