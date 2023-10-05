@@ -2,7 +2,7 @@ import MercadoPago, { User } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Testing User, get method', () => {
-	test('should pass forward request options from get to RestClient.fetch', async () => {
+	test('should return user data with success', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const user = new User(client);
 
