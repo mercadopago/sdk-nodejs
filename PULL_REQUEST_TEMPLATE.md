@@ -14,21 +14,18 @@
 
 ## 🧰 How to reproduce
 
-- [ ] Not Apply.<br />
-<br />
-- [ ] Step by step of how to test, specially for bugs.<br />
+- [ ] Not Apply.
+- [ ] Step by step of how to test, specially for bugs.
 - [ ] Links of external docs.
 
 ## 📸 Screenshots
 
-- [ ] Not Apply.<br />
-<br />
+- [ ] Not Apply.
 - [ ] Before and after, if it's a fix for a bug.
 
 ## 📄 References
 
-- [ ] Not Apply. <br />
-<br />
-- [ ] Links do external documentation.<br />
-- [ ] Diagrams.<br />
+- [ ] Not Apply.
+- [ ] Links do external documentation.
+- [ ] Diagrams.
 - [ ] Useful links.
