@@ -1,3 +1,5 @@
+e2e.config.ts
+
 # ============= Lint =============
 # Cache eslint
 .eslintcache
