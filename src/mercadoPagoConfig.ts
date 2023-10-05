@@ -5,7 +5,7 @@ import type { Config, Options } from './types';
  *
  * @see {@link https://github.com/mercadopago/sdk-nodejs Documentation }.
  */
-export class MercadoPago {
+export class MercadoPagoConfig {
 	accessToken: string;
 	options?: Options;
 
