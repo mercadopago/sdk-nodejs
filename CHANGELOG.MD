@@ -4,6 +4,7 @@
 - Added named export to MercadoPago configuration module
 - Modified integration example in readme
 - Adjusted PR template
+- Adjusted gitflow files
 
 ## VERSION 2.0.0
 
