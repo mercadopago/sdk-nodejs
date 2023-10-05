@@ -6,6 +6,7 @@
 ### ✅ Checklist:
 
 - [ ] I followed the instructions indicated in [Contribution Guidelines](CONTRIBUTING.md)
+- [ ] I added the changes to CHANGELOG
 - [ ] Added the necessary tests for the code or functionality that I'm working on
 - [ ] I ran the tests and made sure they work
 - [ ] My branch coverage is at least 80%
@@ -13,15 +14,18 @@
 
 ## 🧰 How to reproduce
 
-- Step by step of how to test, specially for bugs.
-- Links of external docs.
+- [ ] Not Apply.
+- [ ] Step by step of how to test, specially for bugs.
+- [ ] Links of external docs.
 
 ## 📸 Screenshots
 
-- Before and after, if it's a fix for a bug.
+- [ ] Not Apply.
+- [ ] Before and after, if it's a fix for a bug.
 
 ## 📄 References
 
-- Links do external documentation
-- Diagrams
-- Useful links
+- [ ] Not Apply.
+- [ ] Links do external documentation.
+- [ ] Diagrams.
+- [ ] Useful links.
