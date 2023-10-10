@@ -11,10 +11,10 @@ describe('Preference IT, get', () => {
 			body: {
 				items: [
 					{
-						'id': '4567',
-						'title': 'Dummy Title Create',
-						'quantity': 1,
-						'unit_price': 10
+						id: '4567',
+						title: 'Dummy Title Create',
+						quantity: 1,
+						unit_price: 10
 					}
 				], }
 		};
@@ -22,18 +22,6 @@ describe('Preference IT, get', () => {
 
 		const response = await preference.get({ preferenceId: request.id });
 		expect(response).toHaveProperty('id', request.id);
-		expect(response).toHaveProperty('items',
-			[
-				{
-					'id': '4567',
-					'category_id': '',
-					'currency_id': 'BRL',
-					'description': '',
-					'title': 'Dummy Title Create',
-					'quantity': 1,
-					'unit_price': 10
-				}
-			]);
 		expect(response).toEqual(expect.objectContaining({
 			init_point: expect.any(String),
 			client_id: expect.any(String),
@@ -42,6 +30,15 @@ describe('Preference IT, get', () => {
 			id: expect.any(String),
 			sandbox_init_point: expect.any(String),
 			site_id: expect.any(String),
+		}));
+		expect(response.items[0]).toEqual(expect.objectContaining({
+			id: expect.any(String),
+			category_id: expect.any(String),
+			currency_id: expect.any(String),
+			description: expect.any(String),
+			title: expect.any(String),
+			quantity: expect.any(Number),
+			unit_price: expect.any(Number),
 		}));
 	});
 

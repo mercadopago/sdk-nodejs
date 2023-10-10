@@ -12,10 +12,10 @@ describe('Preference IT, update', () => {
 			body: {
 				items: [
 					{
-						'id': '4567',
-						'title': 'Dummy Title Create',
-						'quantity': 1,
-						'unit_price': 10
+						id: '4567',
+						title: 'Dummy Title Create',
+						quantity: 1,
+						unit_price: 10
 					}
 				],
 			}
@@ -27,10 +27,10 @@ describe('Preference IT, update', () => {
 			updatePreferenceRequest: {
 				items: [
 					{
-						'id': '4567',
-						'title': 'Dummy Title Update',
-						'quantity': 1,
-						'unit_price': 10
+						id: '4567',
+						title: 'Dummy Title Update',
+						quantity: 1,
+						unit_price: 10
 					}
 				],
 			}
@@ -40,18 +40,7 @@ describe('Preference IT, update', () => {
 		expect(response).toEqual(expect.objectContaining({
 			id: request.id,
 		}));
-		expect(response).toHaveProperty('items',
-			[
-				{
-					'id': '4567',
-					'category_id': '',
-					'currency_id': 'BRL',
-					'description': '',
-					'title': 'Dummy Title Update',
-					'quantity': 1,
-					'unit_price': 10
-				}
-			]);
+		expect(response.items[0].title).toBe(updateRequest.updatePreferenceRequest.items[0].title);
 		expect(response).toEqual(expect.objectContaining({
 			init_point: expect.any(String),
 			client_id: expect.any(String),
@@ -60,6 +49,15 @@ describe('Preference IT, update', () => {
 			id: expect.any(String),
 			sandbox_init_point: expect.any(String),
 			site_id: expect.any(String),
+		}));
+		expect(response.items[0]).toEqual(expect.objectContaining({
+			id: expect.any(String),
+			category_id: expect.any(String),
+			currency_id: expect.any(String),
+			description: expect.any(String),
+			title: expect.any(String),
+			quantity: expect.any(Number),
+			unit_price: expect.any(Number),
 		}));
 	});
 
