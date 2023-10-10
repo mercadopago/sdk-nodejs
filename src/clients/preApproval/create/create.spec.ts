@@ -18,7 +18,7 @@ describe('Testing preApproval , create', () => {
 				frequency: 1,
 				frequency_type: 'days',
 				transaction_amount: 10,
-				currency_id: '123'
+				currency_id: 'BRL'
 			},
 			back_url: 'https://www.test.com',
 			status: 'pending'
