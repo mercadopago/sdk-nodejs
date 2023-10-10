@@ -4,7 +4,7 @@ import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Preference IT, update', () => {
-	test('should update request with success', async () => {
+	test('should update request and match response object', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 

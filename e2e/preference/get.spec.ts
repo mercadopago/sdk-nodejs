@@ -3,7 +3,7 @@ import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Preference IT, get', () => {
-	test('should get preference with success', async () => {
+	test('should get preference and match response object', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const preference = new Preference(client);
 
