@@ -1,4 +1,4 @@
-![SDK Node MErcado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/84211022-6fc5-4db1-8772-117eca84f2d9)
+![SDK Node Mercado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/84211022-6fc5-4db1-8772-117eca84f2d9)
 
 
 # Mercado Pago SDK for NodeJS
@@ -32,10 +32,10 @@ That's it! Mercado Pago SDK has been successfully installed.
 
 ```javascript
 // Step 1: Import the parts of the module you want to use
-import MercadoPago, { Payment } from 'mercadopago';
+import { MercadoPagoConfig, Payment } from 'mercadopago';
 
 // Step 2: Initialize the client object
-const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000, idempotencyKey: 'abc' } });
+const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000, idempotencyKey: 'abc' } });
 
 // Step 3: Initialize the API object
 const payment = new Payment(client);
@@ -56,10 +56,10 @@ payment.create({ body }).then(console.log).catch(console.log);
 
 ### Step 1: Import the parts of the module you want to use
 
-Import `MercadoPago` and API objects from the MercadoPago module. 
+Import `MercadoPagoConfig` and API objects from the MercadoPago module. 
 
 ``` javascript
-import MercadoPago, { Payment } from 'mercadopago';
+import { MercadoPagoConfig, Payment } from 'mercadopago';
 ```
 
 ### Step 2: Initialize the client object
@@ -73,7 +73,7 @@ Initialize the client object, passing the following:
 For example:
 
 ``` javascript
-const client = new MercadoPago({ accessToken: 'access_token', options: { timeout: 5000, idempotencyKey: 'abc' } });
+const client = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000, idempotencyKey: 'abc' } });
 ```
 
 ### Step 3: Initialize the API object
@@ -103,7 +103,7 @@ const body = {
 
 Use the API object's method to make the request. For example, to make a request to the `/v1/payments` endpoint using the `payment` object:
 
-```
+```javascript
 payment.create({ body }).then(console.log).catch(console.log);
 ```
 
