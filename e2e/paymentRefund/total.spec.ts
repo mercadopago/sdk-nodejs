@@ -1,7 +1,6 @@
 import MercadoPago, { Payment, PaymentRefund } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
-import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import type { PaymentRefundTotalData } from '@src/clients/paymentRefund/total/types';
 
 describe('IT refunds, total', () => {
@@ -12,18 +11,38 @@ describe('IT refunds, total', () => {
 
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
-		const paymentBody = createPayment(cardToken.id);
 
+		const paymentBody = {
+			body: {
+				additional_info: {
+					items: [
+						{
+							id: 'MLB2907679857',
+							title: 'Point Mini',
+							quantity: 1,
+							unit_price: 58.8
+						}
+					]
+				},
+				payer: {
+					email: 'test_user_123@testuser.com',
+				},
+				transaction_amount: 110.00,
+				installments: 1,
+				token: cardToken.id,
+				payment_method_id: 'master',
+			}
+		};
 		const createdPayment = await payment.create(paymentBody);
 		expect(createdPayment).toHaveProperty('id');
 
 		const request: PaymentRefundTotalData = {
-			payment_id: String(createdPayment.id),
+			payment_id: createdPayment.id,
 		};
 
 		const refunded = await refund.total(request);
 		expect(refunded).toHaveProperty('id');
-		expect(refunded).toHaveProperty('payment_id', Number(request.payment_id));
+		expect(refunded).toHaveProperty('payment_id', request.payment_id);
 		expect(refunded).toHaveProperty('amount', 110.00);
 		expect(refunded).toEqual(expect.objectContaining({
 			payment_id: expect.any(Number),
@@ -40,34 +59,7 @@ describe('IT refunds, total', () => {
 			status: expect.any(String),
 			amount_refunded_to_payer: expect.any(Number),
 		}));
-
 	});
-
-
-	function createPayment(token: string): PaymentCreateData {
-		const body = {
-			body: {
-				'additional_info': {
-					'items': [
-						{
-							'id': 'MLB2907679857',
-							'title': 'Point Mini',
-							'quantity': 1,
-							'unit_price': 58.8
-						}
-					]
-				},
-				'payer': {
-					'email': 'test_user_123@testuser.com',
-				},
-				'transaction_amount': 110.00,
-				'installments': 1,
-				'token': token,
-				'payment_method_id': 'master',
-			}
-		};
-		return body;
-	}
 
 	async function createCardToken() {
 		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {

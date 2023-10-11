@@ -1,9 +1,8 @@
-import { PaymentCreateData } from '@src/clients/payment/create/types';
-import { PaymentRefundCreateData } from '@src/clients/paymentRefund/create/types';
-import { PaymentRefundListData } from '@src/clients/paymentRefund/list/types';
 import MercadoPago, { Payment, PaymentRefund } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
+import type { PaymentRefundCreateData } from '@src/clients/paymentRefund/create/types';
+import type { PaymentRefundListData } from '@src/clients/paymentRefund/list/types';
 
 describe('IT refunds, list', () => {
 	test('should make a request, return a list and match response object', async () => {
@@ -13,13 +12,34 @@ describe('IT refunds, list', () => {
 
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
-		const paymentBody = createPayment(cardToken.id);
+
+		const paymentBody = {
+			body: {
+				additional_info: {
+					items: [
+						{
+							id: 'MLB2907679857',
+							title: 'Point Mini',
+							quantity: 1,
+							unit_price: 58.8
+						}
+					]
+				},
+				payer: {
+					email: 'test_user_123@testuser.com',
+				},
+				transaction_amount: 110.00,
+				installments: 1,
+				token: cardToken.id,
+				payment_method_id: 'master',
+			}
+		};
 
 		const createdPayment = await payment.create(paymentBody);
 		expect(createdPayment).toHaveProperty('id');
 
 		const requestRefund: PaymentRefundCreateData = {
-			payment_id: String(createdPayment.id),
+			payment_id: createdPayment.id,
 			body: {
 				amount: 5
 			},
@@ -28,11 +48,11 @@ describe('IT refunds, list', () => {
 		expect(refunded).toHaveProperty('id');
 
 		const requestList: PaymentRefundListData = {
-			payment_id: String(refunded.payment_id),
+			payment_id: refunded.payment_id,
 		};
 
 		const refundList = await refund.list(requestList);
-		expect(refundList[0]).toHaveProperty('payment_id', Number(requestList.payment_id));
+		expect(refundList[0]).toHaveProperty('payment_id', requestList.payment_id);
 		expect(Array.isArray(refundList)).toBe(true);
 		expect(refundList[0]).toEqual(expect.objectContaining({
 			id: expect.any(Number),
@@ -50,33 +70,7 @@ describe('IT refunds, list', () => {
 			amount_refunded_to_payer: expect.any(Number),
 		})
 		);
-
 	});
-
-	function createPayment(token: string): PaymentCreateData {
-		const body = {
-			body: {
-				'additional_info': {
-					'items': [
-						{
-							'id': 'MLB2907679857',
-							'title': 'Point Mini',
-							'quantity': 1,
-							'unit_price': 58.8
-						}
-					]
-				},
-				'payer': {
-					'email': 'test_user_123@testuser.com',
-				},
-				'transaction_amount': 110.00,
-				'installments': 1,
-				'token': token,
-				'payment_method_id': 'master',
-			}
-		};
-		return body;
-	}
 
 	async function createCardToken() {
 		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {
