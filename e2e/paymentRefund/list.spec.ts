@@ -6,8 +6,8 @@ import fetch from 'node-fetch';
 import { config } from '../e2e.config';
 
 describe('IT refunds, list', () => {
-	test('should make a request with payment_id and return a list ', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should make a request, return a list and match response object', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const refund = new PaymentRefund(client);
 		const payment = new Payment(client);
 

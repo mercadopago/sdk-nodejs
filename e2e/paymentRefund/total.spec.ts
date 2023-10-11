@@ -1,12 +1,12 @@
-import { PaymentCreateData } from '@src/clients/payment/create/types';
-import { PaymentRefundTotalData } from '@src/clients/paymentRefund/total/types';
 import MercadoPago, { Payment, PaymentRefund } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
+import type { PaymentCreateData } from '@src/clients/payment/create/types';
+import type { PaymentRefundTotalData } from '@src/clients/paymentRefund/total/types';
 
 describe('IT refunds, total', () => {
-	test('should successfully make a request and refund total amount', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should make a request, refund total amount and match response object', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const refund = new PaymentRefund(client);
 		const payment = new Payment(client);
 
