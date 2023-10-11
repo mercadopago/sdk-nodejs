@@ -8,17 +8,13 @@ export declare type PaymentCreateClient = {
   config: MercadoPagoConfig
 };
 
-export declare type qqrcoisatest = {
-  body: PaymentCreateRequest,
-};
-
 export declare type PaymentCreateData = {
   body: PaymentCreateRequest;
   requestOptions?: Options;
 }
 
 export declare type PaymentCreateRequest = {
-  additional_info?: additionalInfo,
+  additional_info?: AdditionalInfo,
   application_fee?: string,
   binary_mode?: boolean,
   callback_url?: string,
@@ -41,7 +37,7 @@ export declare type PaymentCreateRequest = {
   payer?: Payer,
 };
 
-export declare type additionalInfo = {
+export declare type AdditionalInfo = {
   ip_address?: string,
   items?: Array<Items>,
   payer?: Payer,
