@@ -2,8 +2,8 @@ import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('IT customer, search', () => {
-	test('should search a client and match response object ', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should search a client and match response object', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const customer = new Customer(client);
 
 		const customerSearch = await customer.search({ options: { email: 'test_user_309842984u20@testuser.com' } });
