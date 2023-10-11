@@ -2,7 +2,7 @@ import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('IT, search', () => {
-	test('should search payments without options', async () => {
+	test('should search Payment and match response object', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);
 

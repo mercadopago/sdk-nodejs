@@ -1,9 +1,9 @@
-import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
+import type { PaymentCreateData } from '@src/clients/payment/create/types';
 
 describe('IT, cancel', () => {
-	test('should cancel with success', async () => {
+	test('should cancel Payment and match response object ', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const payment = new Payment(client);
 
@@ -19,22 +19,22 @@ describe('IT, cancel', () => {
 	function createPayment(): PaymentCreateData {
 		const body = {
 			body: {
-				'additional_info': {
-					'items': [
+				additional_info: {
+					items: [
 						{
-							'id': 'MLB2907679857',
-							'title': 'Point Mini',
-							'quantity': 1,
-							'unit_price': 58.8
+							id: 'MLB2907679857',
+							title: 'Point Mini',
+							quantity: 1,
+							unit_price: 58.8
 						}
 					]
 				},
-				'payer': {
-					'email': 'test_user_123@testuser.com',
+				payer: {
+					email: 'test_user_123@testuser.com',
 				},
-				'transaction_amount': 110.00,
-				'installments': 1,
-				'payment_method_id': 'pix',
+				transaction_amount: 110.00,
+				installments: 1,
+				payment_method_id: 'pix',
 			}
 		};
 		return body;
