@@ -4,7 +4,7 @@ import type { PaymentCreateData } from '@src/clients/payment/create/types';
 
 describe('IT, get', () => {
 	test('should get Payment and match response object', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
 		const body: PaymentCreateData = {

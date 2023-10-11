@@ -3,7 +3,7 @@ import { config } from '../e2e.config';
 
 describe('IT, search', () => {
 	test('should search Payment and match response object', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
 		const searchPayment = await payment.search();
@@ -13,7 +13,7 @@ describe('IT, search', () => {
 	});
 
 	test('should search payments with filtered by external_reference', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
 		const options = {

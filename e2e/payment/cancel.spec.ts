@@ -1,23 +1,12 @@
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
-import type { PaymentCreateData } from '@src/clients/payment/create/types';
 
 describe('IT, cancel', () => {
-	test('should cancel Payment and match response object ', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should cancel Payment and match response object', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
-		const paymentBody = createPayment();
-		const paymentCreate = await payment.create(paymentBody);
-		expect(paymentCreate).toHaveProperty('id');
-
-		const cancelation = await payment.cancel({ id: paymentCreate.id });
-		expect(cancelation).toHaveProperty('id', paymentCreate.id);
-		expect(cancelation).toHaveProperty('status', 'cancelled');
-	});
-
-	function createPayment(): PaymentCreateData {
-		const body = {
+		const paymentBody = {
 			body: {
 				additional_info: {
 					items: [
@@ -37,6 +26,11 @@ describe('IT, cancel', () => {
 				payment_method_id: 'pix',
 			}
 		};
-		return body;
-	}
+		const paymentCreate = await payment.create(paymentBody);
+		expect(paymentCreate).toHaveProperty('id');
+
+		const cancelation = await payment.cancel({ id: paymentCreate.id });
+		expect(cancelation).toHaveProperty('id', paymentCreate.id);
+		expect(cancelation).toHaveProperty('status', 'cancelled');
+	});
 });

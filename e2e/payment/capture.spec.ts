@@ -1,17 +1,36 @@
 import MercadoPago, { Payment } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
-import type { PaymentCreateData } from '@src/clients/payment/create/types';
 
 describe('IT, capture', () => {
 	test('should capture, return partial transaction_amount passed at the request and match response object', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
 
-		const paymentBody = createPayment(cardToken.id);
+		const paymentBody = {
+			body: {
+				additional_info: {
+					items: [
+						{
+							id: 'MLB2907679857',
+							title: 'Point Mini',
+							quantity: 1,
+							unit_price: 58.8
+						}
+					]
+				},
+				payer: {
+					email: 'test_user_123@testuser.com',
+				},
+				transaction_amount: 110.00,
+				installments: 1,
+				token: cardToken.id,
+				capture: false,
+			}
+		};
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
@@ -57,13 +76,33 @@ describe('IT, capture', () => {
 	});
 
 	test('should capture without transaction_amount, return total transaction_amount and match response object', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
 
-		const paymentBody = createPayment(cardToken.id);
+		const paymentBody = {
+			body: {
+				additional_info: {
+					items: [
+						{
+							id: 'MLB2907679857',
+							title: 'Point Mini',
+							quantity: 1,
+							unit_price: 58.8
+						}
+					]
+				},
+				payer: {
+					email: 'test_user_123@testuser.com',
+				},
+				transaction_amount: 110.00,
+				installments: 1,
+				token: cardToken.id,
+				capture: false,
+			}
+		};
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
@@ -107,31 +146,6 @@ describe('IT, capture', () => {
 			transaction_amount_refunded: expect.any(Number),
 		}));
 	});
-
-	function createPayment(token: string): PaymentCreateData {
-		const body = {
-			body: {
-				additional_info: {
-					items: [
-						{
-							id: 'MLB2907679857',
-							title: 'Point Mini',
-							quantity: 1,
-							unit_price: 58.8
-						}
-					]
-				},
-				payer: {
-					email: 'test_user_123@testuser.com',
-				},
-				transaction_amount: 110.00,
-				installments: 1,
-				token: token,
-				capture: false,
-			}
-		};
-		return body;
-	}
 
 	async function createCardToken() {
 		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {
