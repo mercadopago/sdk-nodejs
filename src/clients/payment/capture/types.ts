@@ -2,7 +2,7 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
 
 export declare type PaymentCaptureData = {
-  id: string;
+  id: string | number;
   transaction_amount?: number;
   requestOptions?: Options;
 }

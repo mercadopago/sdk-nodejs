@@ -11,7 +11,7 @@ describe('IT, cancel', () => {
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
-		const cancelation = await payment.cancel({ id: String(paymentCreate.id) });
+		const cancelation = await payment.cancel({ id: paymentCreate.id });
 		expect(cancelation).toHaveProperty('id', paymentCreate.id);
 		expect(cancelation).toHaveProperty('status', 'cancelled');
 	});

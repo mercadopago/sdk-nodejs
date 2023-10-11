@@ -177,7 +177,7 @@ export declare type TransactionData = {
   transaction_id?: string;
   bank_transfer_id?: number;
   financial_institution?: number;
-  bankInfo?: BankInfo;
+  bank_info?: BankInfo;
   ticket_url?: string;
 };
 

@@ -29,7 +29,7 @@ describe('IT, get', () => {
 		};
 
 		const request = await payment.create(body);
-		const response = await payment.get({ id: String(request.id) });
+		const response = await payment.get({ id: request.id });
 
 		expect(response).toHaveProperty('id');
 		expect(response.additional_info.items[0]).toEqual(expect.objectContaining({

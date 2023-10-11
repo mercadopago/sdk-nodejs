@@ -15,7 +15,7 @@ describe('IT, capture', () => {
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
-		const captureResponse = await payment.capture({ id: String(paymentCreate.id), transaction_amount: 40 });
+		const captureResponse = await payment.capture({ id: paymentCreate.id, transaction_amount: 40 });
 		expect(captureResponse).toHaveProperty('id', paymentCreate.id);
 		expect(captureResponse).toHaveProperty('transaction_amount', 40);
 		expect(captureResponse).toEqual(expect.objectContaining({
@@ -67,7 +67,7 @@ describe('IT, capture', () => {
 		const paymentCreate = await payment.create(paymentBody);
 		expect(paymentCreate).toHaveProperty('id');
 
-		const captureResponse = await payment.capture({ id: String(paymentCreate.id) });
+		const captureResponse = await payment.capture({ id: paymentCreate.id });
 		expect(captureResponse).toHaveProperty('id', paymentCreate.id);
 		expect(captureResponse).toHaveProperty('transaction_amount', 110);
 		expect(captureResponse).toEqual(expect.objectContaining({
