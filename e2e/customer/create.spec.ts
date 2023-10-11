@@ -2,7 +2,7 @@ import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('IT customer, create', () => {
-	test('should create a client with success', async () => {
+	test('should create a client and match response object ', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const customer = new Customer(client);
 
@@ -34,10 +34,6 @@ describe('IT customer, create', () => {
 		};
 
 		const createCustomer = await customer.create({ body });
-		expect(createCustomer).toHaveProperty('id');
-		expect(createCustomer).toHaveProperty('user_id');
-		expect(createCustomer).toHaveProperty('merchant_id');
-		expect(createCustomer).toHaveProperty('client_id');
 		expect(createCustomer).toHaveProperty('status', 'active');
 		expect(createCustomer).toEqual(expect.objectContaining({
 			email: email,

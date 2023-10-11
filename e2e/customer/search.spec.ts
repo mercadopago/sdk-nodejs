@@ -2,7 +2,7 @@ import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('IT customer, search', () => {
-	test('should search a client with success', async () => {
+	test('should search a client and match response object ', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
 		const customer = new Customer(client);
 
