@@ -3,7 +3,7 @@ import { config } from '../e2e.config';
 
 describe('Preference IT, search', () => {
 	test('should search a request and match response object', async () => {
-		const client = new MercadoPago({  accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({  accessToken: config.access_token });
 		const preference = new Preference(client);
 
 		const searched = await preference.search();
