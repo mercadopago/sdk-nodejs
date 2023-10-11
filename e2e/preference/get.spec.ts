@@ -1,6 +1,6 @@
-import type { PreferenceCreateData } from '@src/clients/preference/create/types';
 import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
+import type { PreferenceCreateData } from '@src/clients/preference/create/types';
 
 describe('Preference IT, get', () => {
 	test('should get preference and match response object', async () => {

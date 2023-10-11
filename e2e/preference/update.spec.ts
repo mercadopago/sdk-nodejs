@@ -1,7 +1,7 @@
-import { PreferenceCreateData } from '@src/clients/preference/create/types';
-import type { PreferenceUpdateData } from '@src/clients/preference/update/types';
 import MercadoPago, { Preference } from '@src/index';
 import { config } from '../e2e.config';
+import type { PreferenceCreateData } from '@src/clients/preference/create/types';
+import type { PreferenceUpdateData } from '@src/clients/preference/update/types';
 
 describe('Preference IT, update', () => {
 	test('should update request and match response object', async () => {

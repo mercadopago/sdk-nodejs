@@ -14,6 +14,18 @@ describe('Preference IT, search', () => {
 			total: expect.any(Number),
 		}));
 		expect(searched.elements.length).toBeGreaterThan(0);
+		expect(searched.elements[0]).toEqual(expect.objectContaining({
+			id: expect.any(String),
+			client_id: expect.any(String),
+			collector_id: expect.any(Number),
+			date_created: expect.any(String),
+			expires: expect.any(Boolean),
+			live_mode: expect.any(Boolean),
+			marketplace: expect.any(String),
+			operation_type: expect.any(String),
+			site_id:  expect.any(String),
+			sponsor_id: expect.any(Number),
+			shipping_mode: expect.any(String),
+		}));
 	});
-
 });
