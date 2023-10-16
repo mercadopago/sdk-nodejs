@@ -32,7 +32,7 @@ export declare type CustomerCardSecurityCode = {
 }
 
 export declare type CustomerCardIssuer = {
-	id?: string;
+	id?: number;
 	name?: string;
 }
 
