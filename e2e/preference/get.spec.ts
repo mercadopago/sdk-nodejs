@@ -4,7 +4,7 @@ import type { PreferenceCreateData } from '@src/clients/preference/create/types'
 
 describe('Preference IT, get', () => {
 	test('should get preference and match response object', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 
 		const preferenceRequest: PreferenceCreateData = {
