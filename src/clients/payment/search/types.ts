@@ -45,6 +45,7 @@ export declare type PaymentSearchResult = {
   merchant_account_id: string;
   acquirer: string;
   merchant_number: string;
+  external_reference: string;
 };
 
 export declare type Payer = {
