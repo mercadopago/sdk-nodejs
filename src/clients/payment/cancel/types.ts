@@ -2,7 +2,7 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { Options } from '@src/types';
 
 export declare type PaymentCancelData = {
-  id: string;
+  id: string | number;
   requestOptions?: Options;
 }
 
