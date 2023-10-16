@@ -3,7 +3,7 @@ import type { Options } from '@src/types';
 
 export declare type PaymentRefundCreateData = {
   payment_id: string | number;
-  body: CreateRefundBody;
+  body?: CreateRefundBody;
   requestOptions?: Options;
 };
 
