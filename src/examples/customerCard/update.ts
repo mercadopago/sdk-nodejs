@@ -12,7 +12,6 @@ customerClient.update({ customerId: '<CUSTOMER_ID>', cardId : '<CARD_ID>', body:
 	cardholder: {
 		name: '<NAME>',
 		identification: {
-			number: 'NUMBRT',
 			type: '<TYPE>',
 		}
 	},
