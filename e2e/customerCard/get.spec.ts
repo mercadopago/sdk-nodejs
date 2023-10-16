@@ -10,14 +10,14 @@ describe('Testing customer card, get', () => {
 
 		const email = createEmailTestUser();
 		const emailBody = {
-			'email': email,
+			email: email,
 		};
 		const createCustomer = await customer.create({ body: emailBody });
 		expect(createCustomer).toHaveProperty('id');
 
 		const createToken = await createCardToken();
 		const customerBody = {
-			'token': createToken.id
+			token: createToken.id
 		};
 
 		const createCustomerCard = await customerCard.create({ customerId: createCustomer.id, body: customerBody });
@@ -62,7 +62,7 @@ describe('Testing customer card, get', () => {
 		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
 		expect(removeCustomer.api_response.status).toBe(200);
 	});
-  
+
 	function createEmailTestUser() {
 		const random = Math.floor(Math.random() * 1000000);
 		const email = 'test_user' + random + '@testuser.com';
