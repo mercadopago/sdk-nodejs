@@ -20,7 +20,7 @@ export class User {
    *
    * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/examples/user/get/get.ts Usage Example  }.
    */
-	get(userGetData: UserGetData = {}): Promise<UserResponse[]> {
+	get(userGetData: UserGetData = {}): Promise<UserResponse> {
 		const { requestOptions } =  userGetData;
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ config: this.config });

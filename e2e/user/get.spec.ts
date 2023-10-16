@@ -38,8 +38,5 @@ describe('Testing User, get method', () => {
 			context: expect.any(Object),
 			registration_identifiers: expect.any(Array),
 		}));
-
-
-
 	});
 });
