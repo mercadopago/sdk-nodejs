@@ -1,22 +1,22 @@
 import MercadoPago, { CardToken, Customer, CustomerCard } from '@src/index';
 import { config } from '../e2e.config';
 describe('IT, create card token', () => {
-	test('should create card token', async () => {
-		const client = new MercadoPago({ accessToken: config.test_access_token, options: { timeout: 5000 } });
+	test('should make a request and return created card token id', async () => {
+		const client = new MercadoPago({ accessToken: config.test_access_token });
 		const cardToken = new CardToken(client);
 		const customerCard = new CustomerCard(client);
 		const customer = new Customer(client);
 
 		const email = createEmailTestUser();
 		const emailBody = {
-			'email': email,
+			email: email,
 		};
 		const createCustomer = await customer.create({ body: emailBody });
 		expect(createCustomer).toHaveProperty('id');
 
 		const createToken = await createCardToken();
 		const customerBody = {
-			'token': createToken.id
+			token: createToken.id
 		};
 
 		const createCustomerCard = await customerCard.create({ customerId: createCustomer.id, body: customerBody });
