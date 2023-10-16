@@ -3,13 +3,13 @@ import type { Collector, MerchantOrderItemRequest, MerchantOrderPayerRequest } f
 import type { Options } from '@src/types';
 
 export declare type MerchantOrderUpdateClient = {
-  merchantOrderId: string;
+  merchantOrderId: string | number;
   config: MercadoPagoConfig;
   body: MerchantOrderUpdateBody;
 }
 
 export declare type MerchantOrderUpdateData = {
-  merchantOrderId: string;
+  merchantOrderId: string | number;
   body: MerchantOrderUpdateBody;
   requestOptions?: Options;
 }

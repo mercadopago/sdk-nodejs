@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig",
-  "exclude": ["node_modules", "**/*spec.ts", "src/examples/**/*"]
+  "exclude": ["node_modules", "**/*spec.ts", "src/examples", "e2e"]
 }

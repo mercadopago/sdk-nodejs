@@ -30,12 +30,7 @@ export declare interface MerchantOrderSearchOptions extends SearchOptions {
 }
 
 export declare type MerchantOrderSearchResultsPage = {
-  results?: MerchantOrderResponse[];
-  paging?: Paging;
-};
-
-export declare type Paging = {
+  elements?: MerchantOrderResponse[];
+  next_offset?: number;
   total: number;
-  offset: number;
-  limit: number;
 };
