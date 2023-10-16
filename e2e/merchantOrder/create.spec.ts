@@ -3,8 +3,8 @@ import MercadoPago, { MerchantOrder, Preference } from '@src/index';
 import { config } from '../e2e.config';
 
 describe('Testing merchantOrder, create', () => {
-	test('should pass forward request options from create to RestClient.fetch', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+	test('should generate an order and match with declared shape', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 		const merchantOrder = new MerchantOrder(client);
 

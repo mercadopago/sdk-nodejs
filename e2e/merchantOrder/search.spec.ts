@@ -2,9 +2,9 @@ import { PreferenceCreateData } from '@src/clients/preference/create/types';
 import MercadoPago, { MerchantOrder, Preference } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing merchantOrder, create', () => {
-	test('should pass forward request options from create to RestClient.fetch', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+describe('Testing merchantOrder, search', () => {
+	test('should search an order and match with declared shape', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 		const merchantOrder = new MerchantOrder(client);
 
@@ -32,15 +32,21 @@ describe('Testing merchantOrder, create', () => {
 		const createOrder = await merchantOrder.create({ body });
 		expect(createOrder).toHaveProperty('id');
 
+		console.log('oi');
+		await new Promise(res => setTimeout(res, 10000));
+		console.log('oioi');
+
 		const options = {
-			preferente_id: preferenceCreate.id
+			preference_id: preferenceCreate.id,
 		};
+
 		const searchOrder = await merchantOrder.search({ options: options });
 		expect(searchOrder).toEqual(expect.objectContaining({
 			elements: expect.any(Array),
 			next_offset: expect.any(Number),
 			total: expect.any(Number),
 		}));
+		expect(searchOrder.elements[0].preference_id).toBe(options.preference_id);
 		expect(searchOrder.elements[0]).toEqual(expect.objectContaining({
 			id: expect.any(Number),
 			preference_id: expect.any(String),
@@ -57,5 +63,5 @@ describe('Testing merchantOrder, create', () => {
 			order_status: expect.any(String),
 			is_test: expect.any(Boolean),
 		}));
-	});
+	}, 15000);
 });

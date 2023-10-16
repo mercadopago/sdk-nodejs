@@ -2,9 +2,9 @@ import { PreferenceCreateData } from '@src/clients/preference/create/types';
 import MercadoPago, { MerchantOrder, Preference } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing merchantOrder, create', () => {
-	test('should pass forward request options from create to RestClient.fetch', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+describe('Testing merchantOrder, get', () => {
+	test('should get an order and match with declared shape', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 		const merchantOrder = new MerchantOrder(client);
 
@@ -32,7 +32,7 @@ describe('Testing merchantOrder, create', () => {
 		const createOrder = await merchantOrder.create({ body });
 		expect(createOrder).toHaveProperty('id');
 
-		const getOrder = await merchantOrder.get({ merchantOrderId: String(createOrder.id) });
+		const getOrder = await merchantOrder.get({ merchantOrderId: createOrder.id });
 		expect(getOrder.id).toBe(createOrder.id);
 		expect(getOrder).toEqual(expect.objectContaining({
 			id: expect.any(Number),

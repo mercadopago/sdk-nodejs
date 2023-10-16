@@ -2,9 +2,9 @@ import { PreferenceCreateData } from '@src/clients/preference/create/types';
 import MercadoPago, { MerchantOrder, Preference } from '@src/index';
 import { config } from '../e2e.config';
 
-describe('Testing merchantOrder, create', () => {
-	test('should pass forward request options from create to RestClient.fetch', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+describe('Testing merchantOrder, update', () => {
+	test('should update an order and match with declared shape', async () => {
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const preference = new Preference(client);
 		const merchantOrder = new MerchantOrder(client);
 
@@ -36,7 +36,7 @@ describe('Testing merchantOrder, create', () => {
 			notification_url: 'https://www.test.com'
 		};
 
-		const updateOrder = await merchantOrder.update({ merchantOrderId: String(createOrder.id), body: updateBody });
+		const updateOrder = await merchantOrder.update({ merchantOrderId: createOrder.id, body: updateBody });
 		expect(updateOrder.preference_id).toBe(preferenceCreate.id);
 		expect(updateOrder.notification_url).toBe(updateBody.notification_url);
 		expect(updateOrder).toEqual(expect.objectContaining({

@@ -34,9 +34,3 @@ export declare type MerchantOrderSearchResultsPage = {
   next_offset?: number;
   total: number;
 };
-
-export declare type Paging = {
-  total: number;
-  offset: number;
-  limit: number;
-};

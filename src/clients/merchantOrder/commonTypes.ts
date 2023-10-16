@@ -24,6 +24,7 @@ export declare interface MerchantOrderResponse extends ApiResponse {
   total_amount?: number;
   order_status?: string;
   last_updated?: string;
+  is_test: boolean;
 }
 
 export declare type MerchantOrderPayer = {
