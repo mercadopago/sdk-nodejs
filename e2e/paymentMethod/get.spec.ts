@@ -3,7 +3,7 @@ import { config } from '../e2e.config';
 
 describe('Testing get payment methods, get', () => {
 	test('should return all available payment methods ', async () => {
-		const client = new MercadoPago({ accessToken: config.access_token, options: { timeout: 5000 } });
+		const client = new MercadoPago({ accessToken: config.access_token });
 		const paymentMethod = new PaymentMethod(client);
 
 		const paymentMethodGet = await paymentMethod.get();
