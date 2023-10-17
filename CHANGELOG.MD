@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 2.0.2
+- Adjusted user types
+- Adjusted user merchant order
+- Integration tests added
+
 ## VERSION 2.0.1
 - Added named export to MercadoPago configuration module
 - Modified integration example in readme
