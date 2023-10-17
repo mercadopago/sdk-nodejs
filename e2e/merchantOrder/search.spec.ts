@@ -32,9 +32,7 @@ describe('Testing merchantOrder, search', () => {
 		const createOrder = await merchantOrder.create({ body });
 		expect(createOrder).toHaveProperty('id');
 
-		console.log('oi');
 		await new Promise(res => setTimeout(res, 10000));
-		console.log('oioi');
 
 		const options = {
 			preference_id: preferenceCreate.id,

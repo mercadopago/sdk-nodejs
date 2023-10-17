@@ -71,7 +71,7 @@ describe('IT refunds, get', () => {
 				amount_refunded_to_payer: expect.any(Number),
 			}));
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, 10000);
 

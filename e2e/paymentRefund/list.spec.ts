@@ -71,7 +71,7 @@ describe('IT refunds, list', () => {
 			})
 			);
 		} catch(e) {
-			console.log(e);
+			console.error(e);
 		}
 	}, 10000);
 

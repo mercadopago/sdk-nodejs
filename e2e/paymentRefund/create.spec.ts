@@ -63,7 +63,7 @@ describe('IT refunds, create', () => {
 				amount_refunded_to_payer: expect.any(Number),
 			}));
 		} catch(e) {
-			console.log(e, 'error');
+			console.error(e, 'error');
 		}
 	}, 10000);
 
