@@ -10,7 +10,7 @@
     "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",
-    "rootDir": ".",
+    "rootDir": "./src",
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

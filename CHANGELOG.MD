@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.3
+- Hotfix build
+
 ## VERSION 2.0.2
 - Adjusted user types
 - Adjusted user merchant order
