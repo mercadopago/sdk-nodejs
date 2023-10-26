@@ -49,7 +49,7 @@ export declare type PaymentSearchResult = {
   statement_descriptor: string;
   installments: number;
   card: any;
-  notification_urld: string;
+  notification_url: string;
   processing_mode: string;
   merchant_account_id: string;
   acquirer: string;
