@@ -33,26 +33,7 @@ export declare type PaymentSearchResult = {
   money_release_schema: string;
   counter_currency: string;
   collector_id: string;
-  payer: Payer
-  captured: boolean;
-  binary_mode: boolean;
-  call_for_authorize_id: string;
-  statement_descriptor: string;
-  installments: number;
-  card: any;
-  carnotification_urld: string;
-  processing_mode: string;
-  merchant_account_id: string;
-  acquirer: string;
-  merchant_number: string;
-  external_reference: string;
-};
-
-export declare type Payer = {
-  id: string;
-  email: string;
-  identification: Identification;
-  type: string;
+  payer: Payer;
   metadata: any;
   additional_info: any;
   external_reference: string;
@@ -62,6 +43,24 @@ export declare type Payer = {
   differential_pricing_id: string;
   deduction_schema: string;
   transaction_details: TransactionDetails;
+  captured: boolean;
+  binary_mode: boolean;
+  call_for_authorize_id: string;
+  statement_descriptor: string;
+  installments: number;
+  card: any;
+  notification_url: string;
+  processing_mode: string;
+  merchant_account_id: string;
+  acquirer: string;
+  merchant_number: string;
+};
+
+export declare type Payer = {
+  id: string;
+  email: string;
+  identification: Identification;
+  type: string;
 };
 
 export declare type TransactionDetails = {
