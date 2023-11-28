@@ -1,6 +1,6 @@
-import type { Items, Shipments } from '@src/clients/commonTypes';
+import type { Address, Items, Shipments } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import type { Payer } from '../commonTypes';
+import type { Identification, Payer, Phone } from '../commonTypes';
 import type { Options } from '@src/types';
 
 export declare type PaymentCreateClient = {
@@ -34,7 +34,55 @@ export declare type PaymentCreateRequest = {
   statement_descriptor?: string,
   token?: string,
   transaction_amount?: number,
-  payer?: Payer,
+  payer?: PayerRequest,
+  point_of_interaction?: PointOfInteractionRequest,
+};
+
+export declare type PayerRequest = {
+  type?: string,
+  id?: string,
+  email?: string,
+  identification?: Identification,
+  phone?: Phone,
+  first_name?: string,
+  last_name?: string,
+  entity_type?: string,
+  address?: AddressRequest,
+}
+
+export declare interface AddressRequest extends Address {
+  neighborhood?: string,
+  city?: string,
+  federal_unit?: string,
+}
+
+export declare type PointOfInteractionRequest = {
+  linkedTo?: string,
+  type?: string,
+  transaction_data?: TransactionDataRequest,
+};
+
+export declare type TransactionDataRequest = {
+  first_time_use?: boolean,
+  subscription_sequence?: SubscriptionSequenceRequest,
+  subscription_id?: string,
+  invoice_period?: InvoicePeriodRequest,
+  payment_reference?: PaymentReferenceRequest,
+  billing_date?: string,
+};
+
+export declare type SubscriptionSequenceRequest = {
+  number?: number,
+  total?: number,
+};
+
+export declare type InvoicePeriodRequest = {
+  period?: number;
+  type?: string;
+};
+
+export declare type PaymentReferenceRequest = {
+  id?: string;
 };
 
 export declare type AdditionalInfo = {
