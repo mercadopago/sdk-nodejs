@@ -1,6 +1,7 @@
 import MercadoPago, { Customer, CustomerCard } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
 describe('Testing customer card, get', () => {
 	test('should remove card and match response object', async () => {
@@ -61,12 +62,6 @@ describe('Testing customer card, get', () => {
 		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
 		expect(removeCustomer.api_response.status).toBe(200);
 	});
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
-	}
 
 	async function createCardToken() {
 		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {

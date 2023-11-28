@@ -1,6 +1,8 @@
 import MercadoPago, { CardToken, Customer, CustomerCard } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
+
 describe('IT, create card token', () => {
 	test('should make a request and return created card token id', async () => {
 		const client = new MercadoPago({ accessToken: config.test_access_token });
@@ -43,12 +45,6 @@ describe('IT, create card token', () => {
 			security_code_length: expect.any(Number),
 		}));
 	});
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
-	}
 
 	async function createCardToken() {
 		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {

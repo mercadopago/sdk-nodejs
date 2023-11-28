@@ -1,5 +1,6 @@
 import MercadoPago, { Customer } from '@src/index';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
 describe('IT customer, update', () => {
 	test('should update a customer and match response object', async () => {
@@ -40,10 +41,4 @@ describe('IT customer, update', () => {
 		const removeCustomer = await customer.remove({ customerId: createCustomer.id });
 		expect(removeCustomer).toHaveProperty('id', removeCustomer.id);
 	});
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
-	}
 });
