@@ -9,7 +9,7 @@ describe('IT customer, remove', () => {
 		const email = createEmailTestUser();
 
 		const body = {
-			email: email,
+			email,
 		};
 
 		const createCustomer = await customer.create({ body });

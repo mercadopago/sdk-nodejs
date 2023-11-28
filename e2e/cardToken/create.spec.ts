@@ -10,7 +10,7 @@ describe('IT, create card token', () => {
 
 		const email = createEmailTestUser();
 		const emailBody = {
-			email: email,
+			email,
 		};
 		const createCustomer = await customer.create({ body: emailBody });
 		expect(createCustomer).toHaveProperty('id');

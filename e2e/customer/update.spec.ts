@@ -8,7 +8,7 @@ describe('IT customer, update', () => {
 
 		const email = createEmailTestUser();
 		const body = {
-			email: email,
+			email,
 		};
 
 		const createCustomer = await customer.create({ body });

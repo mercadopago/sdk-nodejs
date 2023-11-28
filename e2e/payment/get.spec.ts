@@ -22,7 +22,7 @@ describe('IT, get', () => {
 					]
 				},
 				payer: {
-					email: email,
+					email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,

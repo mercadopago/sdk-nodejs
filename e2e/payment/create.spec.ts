@@ -22,7 +22,7 @@ describe('IT, create', () => {
 					]
 				},
 				payer: {
-					email: email,
+					email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
@@ -82,7 +82,7 @@ describe('IT, create', () => {
 					]
 				},
 				payer: {
-					email: email,
+					email,
 					address: {
 						zip_code: '06233200',
 						street_name: 'street_name',

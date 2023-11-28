@@ -24,7 +24,7 @@ describe('IT, capture', () => {
 					]
 				},
 				payer: {
-					email: email,
+					email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
@@ -97,7 +97,7 @@ describe('IT, capture', () => {
 					]
 				},
 				payer: {
-					email: email,
+					email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
