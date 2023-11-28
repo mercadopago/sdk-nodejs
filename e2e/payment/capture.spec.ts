@@ -10,6 +10,7 @@ describe('IT, capture', () => {
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
 
+		const email = createEmailTestUser();
 		const paymentBody = {
 			body: {
 				additional_info: {
@@ -23,7 +24,7 @@ describe('IT, capture', () => {
 					]
 				},
 				payer: {
-					email: 'test_user_123@testuser.com',
+					email: email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
@@ -82,6 +83,7 @@ describe('IT, capture', () => {
 		const cardToken = await createCardToken();
 		expect(cardToken).toHaveProperty('id');
 
+		const email = createEmailTestUser();
 		const paymentBody = {
 			body: {
 				additional_info: {
@@ -95,7 +97,7 @@ describe('IT, capture', () => {
 					]
 				},
 				payer: {
-					email: 'test_user_123@testuser.com',
+					email: email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
@@ -169,5 +171,11 @@ describe('IT, capture', () => {
 			})
 		});
 		return await response.json();
+	}
+
+	function createEmailTestUser() {
+		const random = Math.floor(Math.random() * 1000000);
+		const email = 'test_user' + random + '@testuser.com';
+		return email;
 	}
 });

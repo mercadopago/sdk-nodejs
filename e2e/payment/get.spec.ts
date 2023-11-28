@@ -7,6 +7,8 @@ describe('IT, get', () => {
 		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
+		const email = createEmailTestUser();
+
 		const body: PaymentCreateData = {
 			body: {
 				additional_info: {
@@ -20,7 +22,7 @@ describe('IT, get', () => {
 					]
 				},
 				payer: {
-					email: 'test_user_123@testuser.com',
+					email: email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
@@ -61,4 +63,10 @@ describe('IT, get', () => {
 			}),
 		}));
 	});
+
+	function createEmailTestUser() {
+		const random = Math.floor(Math.random() * 1000000);
+		const email = 'test_user' + random + '@testuser.com';
+		return email;
+	}
 });

@@ -6,6 +6,8 @@ describe('IT, cancel', () => {
 		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
 
+		const email = createEmailTestUser();
+
 		const paymentBody = {
 			body: {
 				additional_info: {
@@ -19,7 +21,7 @@ describe('IT, cancel', () => {
 					]
 				},
 				payer: {
-					email: 'test_user_123@testuser.com',
+					email: email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,
@@ -33,4 +35,10 @@ describe('IT, cancel', () => {
 		expect(cancelation).toHaveProperty('id', paymentCreate.id);
 		expect(cancelation).toHaveProperty('status', 'cancelled');
 	});
+
+	function createEmailTestUser() {
+		const random = Math.floor(Math.random() * 1000000);
+		const email = 'test_user' + random + '@testuser.com';
+		return email;
+	}
 });

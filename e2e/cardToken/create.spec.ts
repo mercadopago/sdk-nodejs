@@ -1,4 +1,5 @@
 import MercadoPago, { CardToken, Customer, CustomerCard } from '@src/index';
+import fetch from 'node-fetch';
 import { config } from '../e2e.config';
 describe('IT, create card token', () => {
 	test('should make a request and return created card token id', async () => {
