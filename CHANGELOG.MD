@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.0.4
+- Fix payment search types
+- Optional returns on payment search
+
 ## VERSION 2.0.3
 - Hotfix build
 

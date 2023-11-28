@@ -13,39 +13,47 @@ export declare type PaymentSearch = {
 };
 
 export declare type PaymentSearchResult = {
-  id: string;
-  date_created: string;
-  date_approved: string;
-  date_last_updated: string;
-  date_of_expiration: string;
-  money_release_date: string;
-  operation_type: string;
-  issuer_id: string;
-  payment_method_id: string;
-  payment_type_id: string;
-  status: string;
-  status_detail: string;
-  currency_id: string;
-  description: string;
-  live_mode: boolean;
-  sponsor_id: string;
-  authorization_code: string;
-  money_release_schema: string;
-  counter_currency: string;
-  collector_id: string;
-  payer: Payer
-  captured: boolean;
-  binary_mode: boolean;
-  call_for_authorize_id: string;
-  statement_descriptor: string;
-  installments: number;
-  card: any;
-  carnotification_urld: string;
-  processing_mode: string;
-  merchant_account_id: string;
-  acquirer: string;
-  merchant_number: string;
-  external_reference: string;
+  id?: string;
+  date_created?: string;
+  date_approved?: string;
+  date_last_updated?: string;
+  date_of_expiration?: string;
+  money_release_date?: string;
+  operation_type?: string;
+  issuer_id?: string;
+  payment_method_id?: string;
+  payment_type_id?: string;
+  status?: string;
+  status_detail?: string;
+  currency_id?: string;
+  description?: string;
+  live_mode?: boolean;
+  sponsor_id?: string;
+  authorization_code?: string;
+  money_release_schema?: string;
+  counter_currency?: string;
+  collector_id?: string;
+  payer?: Payer;
+  metadata?: any;
+  additional_info?: any;
+  external_reference?: string;
+  transaction_amount?: number;
+  transaction_amount_refunded?: number;
+  coupon_amount?: number;
+  differential_pricing_id?: string;
+  deduction_schema?: string;
+  transaction_details?: TransactionDetails;
+  captured?: boolean;
+  binary_mode?: boolean;
+  call_for_authorize_id?: string;
+  statement_descriptor?: string;
+  installments?: number;
+  card?: any;
+  notification_url?: string;
+  processing_mode?: string;
+  merchant_account_id?: string;
+  acquirer?: string;
+  merchant_number?: string;
 };
 
 export declare type Payer = {
@@ -53,15 +61,6 @@ export declare type Payer = {
   email: string;
   identification: Identification;
   type: string;
-  metadata: any;
-  additional_info: any;
-  external_reference: string;
-  transaction_amount: number;
-  transaction_amount_refunded: number;
-  coupon_amount: number;
-  differential_pricing_id: string;
-  deduction_schema: string;
-  transaction_details: TransactionDetails;
 };
 
 export declare type TransactionDetails = {
