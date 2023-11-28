@@ -1,8 +1,8 @@
 import MercadoPago, { Payment, PaymentRefund } from '@src/index';
-import fetch from 'node-fetch';
 import { config } from '../e2e.config';
 import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import type { PaymentRefundTotalData } from '@src/clients/paymentRefund/total/types';
+import { createCardToken } from '@src/mocks/createCardToken';
 
 describe('IT refunds, total', () => {
 	test('should make a request, refund total amount and match response object', async () => {
@@ -10,7 +10,7 @@ describe('IT refunds, total', () => {
 		const refund = new PaymentRefund(client);
 		const payment = new Payment(client);
 		try {
-			const cardToken = await createCardToken();
+			const cardToken = await createCardToken(client.accessToken);
 			expect(cardToken).toHaveProperty('id');
 			const paymentBody = createPayment(cardToken.id);
 
@@ -69,29 +69,5 @@ describe('IT refunds, total', () => {
 			}
 		};
 		return body;
-	}
-
-	async function createCardToken() {
-		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {
-			method: 'POST',
-			headers: {
-				'Authorization': 'Bearer ' + config.access_token,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				card_number: '5031433215406351',
-				expiration_year: '2025',
-				expiration_month: '11',
-				security_code: '123',
-				cardholder: {
-					identification: {
-						type: 'CPF',
-						number: '01234567890'
-					},
-					name: 'APRO'
-				}
-			})
-		});
-		return await response.json();
 	}
 });
