@@ -1,5 +1,6 @@
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
 describe('IT, cancel', () => {
 	test('should cancel Payment and match response object', async () => {
@@ -35,10 +36,4 @@ describe('IT, cancel', () => {
 		expect(cancelation).toHaveProperty('id', paymentCreate.id);
 		expect(cancelation).toHaveProperty('status', 'cancelled');
 	});
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
-	}
 });

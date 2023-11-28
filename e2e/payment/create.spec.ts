@@ -1,6 +1,7 @@
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
 import type { PaymentCreateData } from '@src/clients/payment/create/types';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
 describe('IT, create', () => {
 	test('should create Payment and match response object', async () => {
@@ -130,11 +131,5 @@ describe('IT, create', () => {
 			}),
 		}));
 	});
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
-	}
 });
 

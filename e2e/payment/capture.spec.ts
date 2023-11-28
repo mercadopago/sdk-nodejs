@@ -1,6 +1,7 @@
 import MercadoPago, { Payment } from '@src/index';
 import fetch from 'node-fetch';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
 describe('IT, capture', () => {
 	test('should capture, return partial transaction_amount passed at the request and match response object', async () => {
@@ -84,6 +85,7 @@ describe('IT, capture', () => {
 		expect(cardToken).toHaveProperty('id');
 
 		const email = createEmailTestUser();
+
 		const paymentBody = {
 			body: {
 				additional_info: {
@@ -171,11 +173,5 @@ describe('IT, capture', () => {
 			})
 		});
 		return await response.json();
-	}
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
 	}
 });
