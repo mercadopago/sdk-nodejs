@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.0.5
+- Add Point of Interaction to the root and Address to Payer
+- Refactoring e2e tests, createCardToken and createEmailTestUser
+
 ## VERSION 2.0.4
 - Fix payment search types
 - Optional returns on payment search
