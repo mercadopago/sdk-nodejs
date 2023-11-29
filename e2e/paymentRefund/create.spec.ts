@@ -1,6 +1,7 @@
 import MercadoPago, { Payment, PaymentRefund } from '@src/index';
 import { config } from '../e2e.config';
 import { createCardToken } from '@src/mocks/createCardToken';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 import type { PaymentRefundCreateData } from '@src/clients/paymentRefund/create/types';
 
 describe('IT refunds, create', () => {
@@ -11,6 +12,8 @@ describe('IT refunds, create', () => {
 		try {
 			const cardToken = await createCardToken(client.accessToken);
 			expect(cardToken).toHaveProperty('id');
+
+			const email = createEmailTestUser();
 
 			const paymentBody = {
 				body: {
@@ -25,7 +28,7 @@ describe('IT refunds, create', () => {
 						]
 					},
 					payer: {
-						email: 'test_user_123@testuser.com',
+						email,
 					},
 					transaction_amount: 110.00,
 					installments: 1,
