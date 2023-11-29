@@ -1,6 +1,6 @@
 import { ApiResponse } from '@src/types';
-import type { Address, Items, Tax } from '../commonTypes';
 import { RefundResponse } from '../paymentRefund/commonTypes';
+import type { Address, Items, Tax } from '../commonTypes';
 
 export declare type MerchantAccount = {
   merchant_account_id?: string;

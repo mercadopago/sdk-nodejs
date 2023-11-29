@@ -1,5 +1,4 @@
 import { RestClient } from '@utils/restClient';
-
 import type { PaymentResponse } from '../commonTypes';
 import type { PaymentCancelClient } from './types';
 

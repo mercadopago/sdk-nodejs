@@ -1,11 +1,14 @@
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 import type { PaymentCreateData } from '@src/clients/payment/create/types';
 
 describe('IT, get', () => {
 	test('should get Payment and match response object', async () => {
 		const client = new MercadoPago({ accessToken: config.access_token });
 		const payment = new Payment(client);
+
+		const email = createEmailTestUser();
 
 		const body: PaymentCreateData = {
 			body: {
@@ -20,7 +23,7 @@ describe('IT, get', () => {
 					]
 				},
 				payer: {
-					email: 'test_user_123@testuser.com',
+					email,
 				},
 				transaction_amount: 110.00,
 				installments: 1,

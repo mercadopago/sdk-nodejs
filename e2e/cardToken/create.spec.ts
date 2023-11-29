@@ -1,5 +1,8 @@
 import MercadoPago, { CardToken, Customer, CustomerCard } from '@src/index';
 import { config } from '../e2e.config';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
+import { createCardToken } from '@src/mocks/createCardToken';
+
 describe('IT, create card token', () => {
 	test('should make a request and return created card token id', async () => {
 		const client = new MercadoPago({ accessToken: config.test_access_token });
@@ -9,12 +12,12 @@ describe('IT, create card token', () => {
 
 		const email = createEmailTestUser();
 		const emailBody = {
-			email: email,
+			email,
 		};
 		const createCustomer = await customer.create({ body: emailBody });
 		expect(createCustomer).toHaveProperty('id');
 
-		const createToken = await createCardToken();
+		const createToken = await createCardToken(client.accessToken);
 		const customerBody = {
 			token: createToken.id
 		};
@@ -42,35 +45,4 @@ describe('IT, create card token', () => {
 			security_code_length: expect.any(Number),
 		}));
 	});
-
-	function createEmailTestUser() {
-		const random = Math.floor(Math.random() * 1000000);
-		const email = 'test_user' + random + '@testuser.com';
-		return email;
-	}
-
-	async function createCardToken() {
-		const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {
-			method: 'POST',
-			headers: {
-				'Authorization': 'Bearer ' + config.test_access_token,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				site_id: 'MLB',
-				card_number: '5031433215406351',
-				expiration_year: '2025',
-				expiration_month: '11',
-				security_code: '123',
-				cardholder: {
-					identification: {
-						type: 'CPF',
-						number: '01234567890'
-					},
-					name: 'APRO'
-				}
-			})
-		});
-		return await response.json();
-	}
 });
