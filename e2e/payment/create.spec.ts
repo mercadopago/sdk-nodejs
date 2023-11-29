@@ -1,7 +1,7 @@
 import MercadoPago, { Payment } from '@src/index';
 import { config } from '../e2e.config';
-import type { PaymentCreateData } from '@src/clients/payment/create/types';
 import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
+import type { PaymentCreateData } from '@src/clients/payment/create/types';
 
 describe('IT, create', () => {
 	test('should create Payment and match response object', async () => {

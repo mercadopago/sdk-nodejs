@@ -1,8 +1,8 @@
 import MercadoPago, { Payment, PaymentRefund } from '@src/index';
 import { config } from '../e2e.config';
+import { createCardToken } from '@src/mocks/createCardToken';
 import type { PaymentRefundCreateData } from '@src/clients/paymentRefund/create/types';
 import type { PaymentRefundListData } from '@src/clients/paymentRefund/list/types';
-import { createCardToken } from '@src/mocks/createCardToken';
 
 describe('IT refunds, list', () => {
 	test('should make a request, return a list and match response object', async () => {
