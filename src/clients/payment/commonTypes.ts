@@ -95,6 +95,7 @@ export declare type TransactionDetails = {
   installment_amount?: number;
   financial_institution?: string;
   payable_deferral_period?: any;
+  transaction_id?: string;
 }
 
 export declare type FeeDetails = {
