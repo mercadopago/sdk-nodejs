@@ -1,7 +1,6 @@
 import type { Identification } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options, SearchOptions } from '@src/types';
-import type { TransactionDetails } from '@src/clients/payment/commonTypes';
 
 export declare type PaymentSearchClient = {
   options?: PaymentSearchOptions,
@@ -62,6 +61,19 @@ export declare type Payer = {
   email: string;
   identification: Identification;
   type: string;
+};
+
+export declare type TransactionDetails = {
+  net_received_amount: number;
+  total_paid_amount: number;
+  overpaid_amount: number;
+  external_resource_url: string;
+  installment_amount: number;
+  financial_institution: string;
+  payment_method_reference_id: string;
+  payable_deferral_period: string;
+  acquirer_reference: string;
+  transaction_id?: string;
 };
 
 export declare type PaymentSearchPaging = {
