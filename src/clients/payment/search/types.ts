@@ -73,6 +73,7 @@ export declare type TransactionDetails = {
   payment_method_reference_id: string;
   payable_deferral_period: string;
   acquirer_reference: string;
+  transaction_id?: string;
 };
 
 export declare type PaymentSearchPaging = {

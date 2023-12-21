@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.6
+- Add transaction_id to TransactionDetails
+
 ## VERSION 2.0.5
 - Add Point of Interaction to the root and Address to Payer
 - Refactoring e2e tests, createCardToken and createEmailTestUser
