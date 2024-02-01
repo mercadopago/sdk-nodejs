@@ -96,6 +96,13 @@ export declare type TransactionDetails = {
   financial_institution?: string;
   payable_deferral_period?: any;
   transaction_id?: string;
+  barcode?: Barcode;
+  digitable_line?: string;
+  verification_code?: string;
+}
+
+export declare type Barcode = {
+  content?: string;
 }
 
 export declare type FeeDetails = {
