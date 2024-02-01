@@ -1,8 +1,5 @@
 # Releases
 
-## VERSION 2.0.7
-- Add barcode, digitable_line, verification_code to TransactionDetails
-
 ## VERSION 2.0.6
 - Add transaction_id to TransactionDetails
 
