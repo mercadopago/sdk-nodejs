@@ -13,5 +13,8 @@ const payment = new Payment(client);
 
 payment.cancel({
 	id: '<PAYMENT_ID>',
+	requestOptions: {
+		idempotencyKey: '<IDEMPOTENCY_KEY>'
+	},
 }).then(console.log).catch(console.log);
 

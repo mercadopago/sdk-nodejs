@@ -18,5 +18,8 @@ payment.create({ body: {
 	payer: {
 		email: '<EMAIL>'
 	},
+},
+requestOptions: {
+	idempotencyKey: '<IDEMPOTENCY_KEY>'
 } }).then(console.log).catch(console.log);
 
