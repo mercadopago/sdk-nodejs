@@ -14,5 +14,8 @@ const payment = new Payment(client);
 payment.capture({
 	id: '<PAYMENT_ID>',
 	transaction_amount: 12.34,
+	requestOptions: {
+		idempotencyKey: '<IDEMPOTENCY_KEY>'
+	},
 }).then(console.log).catch(console.log);
 

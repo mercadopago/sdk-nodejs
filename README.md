@@ -50,8 +50,13 @@ const body = {
 	},
 };
 
-// Step 5: Make the request
-payment.create({ body }).then(console.log).catch(console.log);
+// Step 5: Create request options object - Optional
+const requestOptions = {
+	idempotencyKey: '<IDEMPOTENCY_KEY>',
+};
+
+// Step 6: Make the request
+payment.create({ body, requestOptions }).then(console.log).catch(console.log);
 ```
 
 ### Step 1: Import the parts of the module you want to use
