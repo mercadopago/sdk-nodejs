@@ -99,6 +99,7 @@ export declare type TransactionDetails = {
   barcode?: Barcode;
   digitable_line?: string;
   verification_code?: string;
+  bank_transfer_id?: string;
 }
 
 export declare type Barcode = {
