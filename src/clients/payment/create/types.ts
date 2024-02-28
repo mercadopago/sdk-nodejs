@@ -31,6 +31,7 @@ export declare type PaymentCreateRequest = {
   metadata?: any,
   notification_url?: string,
   payment_method_id?: string,
+  payment_method?: PaymentMethod,
   statement_descriptor?: string,
   token?: string,
   transaction_amount?: number,
@@ -92,3 +93,22 @@ export declare type AdditionalInfo = {
   shipments?: Shipments,
 };
 
+export declare type PaymentMethod = {
+  data?: PaymentMethodData,
+  type?: string,
+}
+
+export declare type PaymentMethodData = {
+  authentication?: PaymentMethodDataAuthentication,
+}
+
+export declare type PaymentMethodDataAuthentication = {
+  acs_trans_id?: string,
+  authentication_status?: string,
+  cryptogram?: string,
+  ds_trans_id?: string,
+  eci?: string,
+  three_ds_server_trans_id?: string,
+  three_ds_version?: string,
+  type?: string,
+}
