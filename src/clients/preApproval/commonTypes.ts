@@ -65,4 +65,5 @@ export declare interface PreApprovalResponse extends ApiResponse {
   payment_method_id?: string | null;
   first_invoice_offset?: string | null;
   back_url?: string;
+  next_payment_date?: string;
 }
