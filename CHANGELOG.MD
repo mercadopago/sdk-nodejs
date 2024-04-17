@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.9
+- Add sponsor_id to PaymentCreateRequest
+
 ## VERSION 2.0.7
 - Add barcode, digitable_line, verification_code to TransactionDetails
 
