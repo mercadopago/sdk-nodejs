@@ -37,6 +37,7 @@ export declare type PaymentCreateRequest = {
   payer?: PayerRequest,
   point_of_interaction?: PointOfInteractionRequest,
   sponsor_id?: number,
+  transaction_details?: TransactionDetails
 };
 
 export declare type PayerRequest = {
@@ -93,3 +94,6 @@ export declare type AdditionalInfo = {
   shipments?: Shipments,
 };
 
+export declare type TransactionDetails = {
+  financial_institution?: string,
+};
