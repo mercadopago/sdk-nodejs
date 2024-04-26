@@ -15,6 +15,9 @@ payment.create({ body: {
 	transaction_amount: 12.34,
 	description: '<DESCRIPTION>',
 	payment_method_id: '<PAYMENT_METHOD_ID>',
+	transaction_details: {
+		financial_institution: '<FINANCIAL_INSTITUCION>',
+	},
 	payer: {
 		email: '<EMAIL>'
 	},
@@ -22,4 +25,5 @@ payment.create({ body: {
 requestOptions: {
 	idempotencyKey: '<IDEMPOTENCY_KEY>'
 } }).then(console.log).catch(console.log);
+
 

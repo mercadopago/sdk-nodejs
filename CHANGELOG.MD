@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.10
+- Add transaction_details to PaymentCreateRequest
+
 ## VERSION 2.0.9
 - Add sponsor_id to PaymentCreateRequest
 
