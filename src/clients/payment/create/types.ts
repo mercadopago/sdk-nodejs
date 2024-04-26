@@ -97,3 +97,4 @@ export declare type AdditionalInfo = {
 export declare type TransactionDetails = {
   financial_institution?: string,
 };
+
