@@ -53,6 +53,7 @@ export declare type PayerRequest = {
 
 export declare interface AddressRequest extends Address {
   neighborhood?: string,
+  complement?: string;
   city?: string,
   federal_unit?: string,
 }
