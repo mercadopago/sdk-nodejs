@@ -7,7 +7,7 @@ export declare type Identification = {
 export declare type Address = {
   zip_code?: string;
   street_name?: string;
-  street_number?: number;
+  street_number?: string;
 };
 
 export declare type Items = {
