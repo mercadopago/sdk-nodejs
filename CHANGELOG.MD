@@ -1,7 +1,7 @@
 # Releases
 
 ## VERSION 2.0.10
-- Update braces
+- Update braces from 3.0.2 to 3.0.3
 - Fix the properties street_number to string
 - Include TransactionDetailsRequest in Create Payment
 
