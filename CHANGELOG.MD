@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 2.0.10
+- Update braces
+- Fix the properties street_number to string
+- Include TransactionDetailsRequest in Create Payment
+
 ## VERSION 2.0.9
 - Add sponsor_id to PaymentCreateRequest
 
