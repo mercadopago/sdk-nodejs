@@ -68,3 +68,21 @@ export declare type Tax = {
   type?: string;
   value?: number;
 };
+
+export declare type SubMerchant = {
+  sub_merchant_id?: string;
+  mcc?: string;
+  country?: string;
+  address_door_number?: number;
+  zip?: string;
+  document_number?: string;
+  city?: string;
+  address_street?: string;
+	business_name?: string;
+  region_code_iso?: string;
+  region_code?: string;
+  document_type?: string;
+  phone?: string;
+  url?: string;
+
+}

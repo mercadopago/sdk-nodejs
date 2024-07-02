@@ -1,4 +1,4 @@
-import type { Address, Items, Shipments } from '@src/clients/commonTypes';
+import type { Address, Items, Shipments, SubMerchant } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Identification, Payer, Phone } from '../commonTypes';
 import type { Options } from '@src/types';
@@ -52,10 +52,31 @@ export declare type PayerRequest = {
   address?: AddressRequest,
 }
 
+export declare type ForwardDataRequest = {
+  sub_merchant?: SubMerchant,
+}
+
 export declare interface AddressRequest extends Address {
   neighborhood?: string,
   city?: string,
   federal_unit?: string,
+}
+
+export declare type SubMerchant = {
+    sub_merchant_id?: string;
+    mcc?: string;
+    country?: string;
+    address_door_number?: number;
+    zip?: string;
+    document_number?: string;
+    city?: string;
+    address_street?: string;
+    business_name?: string;
+    region_code_iso?: string;
+    region_code?: string;
+    document_type?: string;
+    phone?: string;
+    url?: string;
 }
 
 export declare type PointOfInteractionRequest = {
