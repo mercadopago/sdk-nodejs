@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.11
+- Include SubMerchant in ForwardData in Payment
+
 ## VERSION 2.0.10
 - Update braces from 3.0.2 to 3.0.3
 - Fix the properties street_number to string
