@@ -1,4 +1,4 @@
-import type { Address, Items, Shipments, SubMerchant } from '@src/clients/commonTypes';
+import type { Address, Items, Shipments } from '@src/clients/commonTypes';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Identification, Payer, Phone } from '../commonTypes';
 import type { Options } from '@src/types';
