@@ -1,5 +1,16 @@
 # Releases
 
+## VERSION 2.0.11
+- Include SubMerchant in ForwardData in Payment
+
+## VERSION 2.0.10
+- Update braces from 3.0.2 to 3.0.3
+- Fix the properties street_number to string
+- Include TransactionDetailsRequest in Create Payment
+
+## VERSION 2.0.9
+- Add sponsor_id to PaymentCreateRequest
+
 ## VERSION 2.0.7
 - Add barcode, digitable_line, verification_code to TransactionDetails
 
