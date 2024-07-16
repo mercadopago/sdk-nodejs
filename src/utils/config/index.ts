@@ -38,4 +38,5 @@ export class AppConfig {
 	static getUserAgent(): string {
 		return 'MercadoPago Node.js SDK v' + this.SDK_VERSION + ' (node ' + this.getNodeVersion() + '-' + this.getNodeArchitecture() + '-' + this.getNodePlatform() + ')';
 	}
+
 }
