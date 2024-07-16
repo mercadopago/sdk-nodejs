@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.12
+- Include 3DS MPI Externo fields in Payment
+
 ## VERSION 2.0.11
 - Include SubMerchant in ForwardData in Payment
 

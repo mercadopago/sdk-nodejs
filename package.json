@@ -1,6 +1,6 @@
 {
   "name": "mercadopago",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "Mercadopago SDK for Node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -51,6 +51,7 @@
     "dist"
   ],
   "dependencies": {
+    "mercadopago": "^2.0.11",
     "node-fetch": "^2.6.12",
     "uuid": "^9.0.0"
   }
