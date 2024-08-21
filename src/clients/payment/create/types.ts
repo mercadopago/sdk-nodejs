@@ -84,6 +84,7 @@ export declare type SubMerchant = {
 export declare type PointOfInteractionRequest = {
   linkedTo?: string,
   type?: string,
+  sub_type?: string,
   transaction_data?: TransactionDataRequest,
 };
 

@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.13
+- Include point of interaction sub type
+
 ## VERSION 2.0.12
 - Include 3DS MPI Externo fields in Payment
 
