@@ -11,7 +11,7 @@ This library provides developers with a simple set of bindings to help you integ
 
 ## 💡 Requirements
 
-The SDK Supports NodeJS version 12 or higher.
+The SDK Supports NodeJS version 16 or higher.
 
 ## 📲 Installation 
 
@@ -138,6 +138,6 @@ site: [English](https://www.mercadopago.com/developers/en/support/center/contact
 ## 🏻 License 
 
 ```
-MIT license. Copyright (c) 2023 - Mercado Pago / Mercado Libre 
+MIT license. Copyright (c) 2024 - Mercado Pago / Mercado Libre 
 For more information, see the LICENSE file.
 ```
