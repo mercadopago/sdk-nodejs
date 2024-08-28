@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 2.0.14
+- Change application_fee type for number
+
 ## VERSION 2.0.13
 - Include point of interaction sub type
 
