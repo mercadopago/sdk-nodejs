@@ -15,7 +15,7 @@ export declare type PaymentCreateData = {
 
 export declare type PaymentCreateRequest = {
   additional_info?: AdditionalInfo,
-  application_fee?: string,
+  application_fee?: number,
   binary_mode?: boolean,
   callback_url?: string,
   campaign_id?: string,
