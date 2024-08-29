@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 2.0.15
+- Include reference_id in Data in Payment Method in Payment
+- Include external_reference_id in Data in Payment Method in Payment
+- Include external_resource_url in Data in Payment Method in Payment
+
 ## VERSION 2.0.14
 - Change application_fee type for number
 

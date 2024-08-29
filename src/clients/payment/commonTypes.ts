@@ -26,6 +26,9 @@ export declare type Rules = {
 export declare type Data = {
   routing_data?: MerchantAccount;
   rules?: Rules;
+  reference_id?: string;
+  external_reference_id?: string;
+  external_resource_url?: string;
 };
 
 export declare type PaymentMethod = {
