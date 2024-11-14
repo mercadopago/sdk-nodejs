@@ -3,6 +3,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 import type { CreateOrderClient, CreateOrderRequest } from './types';
 import create from '.';
+import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
 jest.mock('@utils/restClient');
 
@@ -27,7 +28,7 @@ describe('Create Order', () => {
 				],
 			},
 			payer: {
-				email: 'test_1731350184@testuser.com',
+				email: createEmailTestUser(),
 			},
 		};
 		const mockCreate: CreateOrderClient = {
