@@ -28,6 +28,8 @@ export declare interface OrderResponse extends ApiResponse {
   type?: string;
   external_reference?: string;
   site_id?: string;
+  created_date?: string;
+  last_updated_date?: string;
   status?: string;
   status_detail?: string;
   transactions?: TransactionsResponse;
@@ -68,6 +70,7 @@ export declare type PaymentResponse = {
   reference_id?: string;
   amount?: string;
   status?: string;
+  status_detail?: string;
   payment_method?: PaymentMethodResponse;
 }
 
