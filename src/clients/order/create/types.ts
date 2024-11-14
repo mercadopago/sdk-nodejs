@@ -1,7 +1,13 @@
 // API version: 5d077b6f-61b2-4b3a-8333-7a64ee547448
 
 import { Phone } from '@src/clients/commonTypes';
+import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { ApiResponse, Options } from '@src/types';
+
+export declare type CreateOrderClient = {
+  body: CreateOrderRequest,
+  config: MercadoPagoConfig
+};
 
 export declare type CreateOrderData = {
   body: CreateOrderRequest;
