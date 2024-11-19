@@ -2,7 +2,8 @@
 
 import { Phone } from '@src/clients/commonTypes';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { ApiResponse, Options } from '@src/types';
+import { Options } from '@src/types';
+import { Address, Identification, Item, TypeConfig } from '../commonTypes';
 
 export declare type CreateOrderClient = {
   body: CreateOrderRequest,
@@ -29,63 +30,16 @@ export declare type CreateOrderRequest = {
   expiration_time?: string;
 }
 
-export declare interface OrderResponse extends ApiResponse {
-  id?: string;
-  type?: string;
-  external_reference?: string;
-  site_id?: string;
-  created_date?: string;
-  last_updated_date?: string;
-  status?: string;
-  status_detail?: string;
-  transactions?: TransactionsResponse;
-  payer?: PayerResponse;
-  type_config?: TypeConfig;
-  total_amount?: string;
-  processing_mode?: string;
-  description?: string;
-  marketplace?: string;
-  marketplace_fee?: string;
-  items?: Item[];
-  expiration_time?: string;
-}
-
-export declare type TypeConfig = {
-  capture_mode?: string;
-}
-
 export declare type TransactionsRequest = {
   payments?: PaymentRequest[];
 }
 
-export declare type TransactionsResponse = {
-  payments?: PaymentResponse[];
-  refunds?: Refund[];
-}
-
 export declare type PaymentRequest = {
   amount?: string;
-  automatic_payments?: AutomaticPayments;
+  automatic_payments?: AutomaticPaymentsRequest;
   payment_method?: PaymentMethodRequest;
-  stored_credential?: StoredCredential;
-  subscription_data?: SubscriptionData;
-}
-
-export declare type PaymentResponse = {
-  id?: string;
-  reference_id?: string;
-  amount?: string;
-  status?: string;
-  status_detail?: string;
-  payment_method?: PaymentMethodResponse;
-}
-
-export declare type Refund = {
-  id?: string;
-  transaction_id?: string;
-  reference_id?: string;
-  amount?: string;
-  status?: string;
+  stored_credential?: StoredCredentialRequest;
+  subscription_data?: SubscriptionDataRequest;
 }
 
 export declare type PaymentMethodRequest = {
@@ -95,21 +49,6 @@ export declare type PaymentMethodRequest = {
   installments?: number;
   issuer_id?: string;
   statement_descriptor?: string;
-}
-
-export declare type PaymentMethodResponse = {
-  id?: string;
-  type?: string;
-  card_id?: string;
-  token?: string;
-  installments?: number;
-  issuer_id?: string;
-  statement_descriptor?: string;
-  external_resource_url?: string;
-  barcode_content?: string;
-  reference?: string;
-  verification_code?: string;
-  financial_institution?: string;
 }
 
 export declare type PayerRequest = {
@@ -122,50 +61,21 @@ export declare type PayerRequest = {
   address?: Address;
 }
 
-export declare type PayerResponse = {
-  email?: string;
-  first_name?: string;
-  last_name?: string;
-  identification?: Identification;
-  phone?: Phone;
-  address?: Address;
-}
-
-export declare type Identification = {
-  type?: string;
-  number?: string;
-}
-
-export declare type Address = {
-  street_name?: string;
-  street_number?: string;
-}
-
-export declare type Item = {
-  title?: string;
-  unit_price?: string;
-  quantity?: number;
-  id?: string;
-  category_id?: string;
-  description?: string;
-  picture_url?: string;
-}
-
-export declare type AutomaticPayments = {
+export declare type AutomaticPaymentsRequest = {
   payment_profile_id?: string;
   retries?: number;
   schedule_date?: string;
   due_date?: string;
 }
 
-export declare type StoredCredential = {
+export declare type StoredCredentialRequest = {
   payment_initiator?: string;
   reason?: string;
   store_payment_method?: boolean;
   first_payment?: boolean;
 }
 
-export declare type SubscriptionData = {
+export declare type SubscriptionDataRequest = {
   subscription_sequence?: SubscriptionSequence;
   invoice_id?: string;
   invoice_period?: InvoicePeriod;
