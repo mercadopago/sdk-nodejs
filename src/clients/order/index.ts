@@ -5,6 +5,8 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { CreateOrderData } from './create/types';
 import { OrderResponse } from './commonTypes';
 import { GetOrderData } from './get/types';
+import { ProcessOrderData } from './process/types';
+import process from './process';
 
 /**
  * Mercado Pago Order.
@@ -36,5 +38,15 @@ export class Order {
 	get({ id, requestOptions }: GetOrderData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id, config: this.config });
+	}
+
+	/**
+   * Process Order.
+   *
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/process.ts Usage Example }.
+   */
+	process({ id, requestOptions }: ProcessOrderData): Promise<OrderResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return process({ id, config: this.config });
 	}
 }

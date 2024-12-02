@@ -51,7 +51,7 @@
     "dist"
   ],
   "dependencies": {
-    "node-fetch": "^2.6.12",
+    "node-fetch": "^2.7.0",
     "uuid": "^9.0.0"
   }
 }
