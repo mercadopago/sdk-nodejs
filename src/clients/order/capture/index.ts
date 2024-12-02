@@ -1,10 +1,10 @@
 import { RestClient } from '@src/utils/restClient';
-import { ProcessOrderClient } from './types';
+import { CaptureOrderClient } from './types';
 import { OrderResponse } from '../commonTypes';
 
-export default function process({ id, config }: ProcessOrderClient): Promise<OrderResponse> {
+export default function capture({ id, config }: CaptureOrderClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}/process`,
+		`/v1/orders/${id}/capture`,
 		{
 			method: 'POST',
 			headers: {
