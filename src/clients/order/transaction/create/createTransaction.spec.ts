@@ -3,7 +3,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
 import type { CreateOrderTransactionClient, CreateOrderTransactionRequest } from './types';
 import createTransaction from '.';
-import { TransactionsResponse } from '../../commonTypes';
+import { TransactionsApiResponse } from '../../commonTypes';
 
 jest.mock('@utils/restClient');
 
@@ -29,7 +29,7 @@ describe('Create Order transaction', () => {
 			body: mockRequestBody,
 			config
 		};
-		const mockResponse: TransactionsResponse = {
+		const mockResponse: TransactionsApiResponse = {
 			api_response: {
 				status: 201,
 				headers: [

@@ -10,7 +10,7 @@ export declare type CreateOrderClient = {
   config: MercadoPagoConfig
 };
 
-export declare type CreateOrderData = {
+export declare type OrderCreateData = {
   body: CreateOrderRequest;
   requestOptions?: Options;
 }

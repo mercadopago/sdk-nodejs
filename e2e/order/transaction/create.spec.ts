@@ -1,13 +1,13 @@
 import MercadoPago from '@src/index';
 import { config } from '../../e2e.config';
 import { Order } from '@src/clients/order';
-import { CreateOrderData } from '@src/clients/order/create/types';
+import { OrderCreateData } from '@src/clients/order/create/types';
 
 describe('Create Order transaction integration test', () => {
 	test('should create Order transaction', async () => {
 		const mercadoPagoConfig = new MercadoPago({ accessToken: config.access_token });
 		const order = new Order(mercadoPagoConfig);
-		const createOrderRequestBody: CreateOrderData = {
+		const createOrderRequestBody: OrderCreateData = {
 			body: {
 				type: 'online',
 				processing_mode: 'manual',

@@ -24,7 +24,12 @@ export declare interface OrderResponse extends ApiResponse {
 	expiration_time?: string;
 }
 
-export declare interface TransactionsResponse extends ApiResponse {
+export declare type TransactionsResponse = {
+	payments?: PaymentResponse[];
+	refunds?: RefundResponse[];
+}
+
+export declare interface TransactionsApiResponse extends ApiResponse {
 	payments?: PaymentResponse[];
 	refunds?: RefundResponse[];
 }

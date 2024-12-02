@@ -1,9 +1,9 @@
 import { RestClient } from '@src/utils/restClient';
-import { TransactionsResponse } from '../../commonTypes';
+import { TransactionsApiResponse } from '../../commonTypes';
 import { CreateOrderTransactionClient } from './types';
 
-export default function createTransaction({ id, body, config }: CreateOrderTransactionClient): Promise<TransactionsResponse> {
-	return RestClient.fetch<TransactionsResponse>(
+export default function createTransaction({ id, body, config }: CreateOrderTransactionClient): Promise<TransactionsApiResponse> {
+	return RestClient.fetch<TransactionsApiResponse>(
 		`/v1/orders/${id}/transactions`,
 		{
 			method: 'POST',
