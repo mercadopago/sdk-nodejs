@@ -29,7 +29,7 @@ function createBodyOrder(token: string): CreateOrderData {
 			payer: {
 				email: 'test_1731350184@testuser.com'
 			},
-			type_config:{
+			type_config: {
 				capture_mode: 'manual'
 			}
 		}
