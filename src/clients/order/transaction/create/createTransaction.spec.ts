@@ -1,7 +1,7 @@
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { CreateOrderTransactionClient, CreateOrderTransactionRequest } from './types';
+import type { OrderCreateTransactionClient, OrderCreateTransactionRequest } from './types';
 import createTransaction from '.';
 import { TransactionsApiResponse } from '../../commonTypes';
 
@@ -10,7 +10,7 @@ jest.mock('@utils/restClient');
 describe('Create Order transaction', () => {
 	test('should create Order transaction', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
-		const mockRequestBody: CreateOrderTransactionRequest = {
+		const mockRequestBody: OrderCreateTransactionRequest = {
 			payments: [
 				{
 					amount: '100.00',
@@ -24,7 +24,7 @@ describe('Create Order transaction', () => {
 			]
 		};
 		const orderId = '01JE3XD9V38N19CSFH40K6G3EY';
-		const mockCreate: CreateOrderTransactionClient = {
+		const mockCreate: OrderCreateTransactionClient = {
 			id: orderId,
 			body: mockRequestBody,
 			config

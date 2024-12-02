@@ -3,19 +3,19 @@
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
 
-export declare type CreateOrderTransactionClient = {
+export declare type OrderCreateTransactionClient = {
 	id: string;
-	body: CreateOrderTransactionRequest;
+	body: OrderCreateTransactionRequest;
 	config: MercadoPagoConfig;
 }
 
-export declare type CreateOrderTransactionData = {
+export declare type OrderCreateTransactionData = {
 	id: string;
-	body: CreateOrderTransactionRequest;
+	body: OrderCreateTransactionRequest;
 	requestOptions?: Options;
 }
 
-export declare type CreateOrderTransactionRequest = {
+export declare type OrderCreateTransactionRequest = {
 	payments?: PaymentRequest[];
 }
 

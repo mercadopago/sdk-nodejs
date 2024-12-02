@@ -6,7 +6,7 @@ import createTransaction from './transaction/create';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse, TransactionsApiResponse } from './commonTypes';
-import { CreateOrderTransactionData } from './transaction/create/types';
+import { OrderCreateTransactionData } from './transaction/create/types';
 import { OrderCreateData } from './create/types';
 import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
@@ -69,7 +69,7 @@ export class Order {
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/create.ts Usage Example }.
 	 */
-	createTransaction({ id, body, requestOptions }: CreateOrderTransactionData): Promise<TransactionsApiResponse> {
+	createTransaction({ id, body, requestOptions }: OrderCreateTransactionData): Promise<TransactionsApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return createTransaction({ id, body, config: this.config });
 	}
