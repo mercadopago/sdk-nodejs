@@ -4,7 +4,7 @@ import { CreateOrderTransactionClient } from './types';
 
 export default function createTransaction({ id, body, config }: CreateOrderTransactionClient): Promise<TransactionsResponse> {
 	return RestClient.fetch<TransactionsResponse>(
-		`v1/orders/${id}/transactions`,
+		`/v1/orders/${id}/transactions`,
 		{
 			method: 'POST',
 			headers: {

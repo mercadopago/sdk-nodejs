@@ -7,7 +7,7 @@ import { TransactionsResponse } from '../../commonTypes';
 
 jest.mock('@utils/restClient');
 
-describe('Create Order Transaction', () => {
+describe('Create Order transaction', () => {
 	test('should create Order transaction', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const mockRequestBody: CreateOrderTransactionRequest = {
@@ -19,7 +19,6 @@ describe('Create Order Transaction', () => {
 						type: 'credit_card',
 						token: 'card_token',
 						installments: 1,
-						statement_descriptor: 'description'
 					},
 				}
 			]
@@ -54,7 +53,7 @@ describe('Create Order Transaction', () => {
 
 		const createdTransaction = await createTransaction(mockCreate);
 
-		expect(spyFetch).toHaveBeenCalledWith(`v1/orders/${orderId}/transactions`,
+		expect(spyFetch).toHaveBeenCalledWith(`/v1/orders/${orderId}/transactions`,
 			{
 				body: JSON.stringify(mockRequestBody),
 				headers: {

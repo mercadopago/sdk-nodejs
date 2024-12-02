@@ -9,7 +9,7 @@ export declare type CreateOrderTransactionClient = {
 	config: MercadoPagoConfig;
 }
 
-export declare type CreateOrderData = {
+export declare type CreateOrderTransactionData = {
 	id: string;
 	body: CreateOrderTransactionRequest;
 	requestOptions?: Options;
@@ -29,5 +29,4 @@ export declare type PaymentMethodRequest = {
 	type?: string;
 	token?: string;
 	installments?: number;
-	statement_descriptor?: string;
 }
