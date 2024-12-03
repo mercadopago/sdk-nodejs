@@ -10,7 +10,7 @@ async function createCardToken(token: string) {
 		body: JSON.stringify({
 			site_id: 'MLB',
 			card_number: '5031433215406351',
-			expiration_year: '2025',
+			expiration_year: '2099',
 			expiration_month: '11',
 			security_code: '123',
 			cardholder: {

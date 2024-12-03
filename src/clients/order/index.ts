@@ -3,14 +3,16 @@ import get from './get';
 import process from './process';
 import capture from './capture';
 import createTransaction from './transaction/create';
+import updateTransaction from './transaction/update';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { OrderResponse, TransactionsApiResponse } from './commonTypes';
+import { OrderResponse, PaymentApiResponse, TransactionsApiResponse } from './commonTypes';
 import { OrderCreateTransactionData } from './transaction/create/types';
 import { OrderCreateData } from './create/types';
 import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
+import { OrderUpdateTransactionData } from './transaction/update/types';
 
 /**
  * Mercado Pago Order.
@@ -72,5 +74,15 @@ export class Order {
 	createTransaction({ id, body, requestOptions }: OrderCreateTransactionData): Promise<TransactionsApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return createTransaction({ id, body, config: this.config });
+	}
+
+	/**
+	 * Update Order transaction.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/update.ts Usage Example }.
+	 */
+	updateTransaction({ id, transactionId, body, requestOptions }: OrderUpdateTransactionData): Promise<PaymentApiResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return updateTransaction({ id, transactionId, body, config: this.config });
 	}
 }
