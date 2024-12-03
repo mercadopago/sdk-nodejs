@@ -2,6 +2,7 @@
 
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';
+import { PaymentRequest } from '../../commonTypes';
 
 export declare type OrderCreateTransactionClient = {
 	id: string;
@@ -17,16 +18,4 @@ export declare type OrderCreateTransactionData = {
 
 export declare type OrderCreateTransactionRequest = {
 	payments?: PaymentRequest[];
-}
-
-export declare type PaymentRequest = {
-	amount?: string;
-	payment_method?: PaymentMethodRequest;
-}
-
-export declare type PaymentMethodRequest = {
-	id?: string;
-	type?: string;
-	token?: string;
-	installments?: number;
 }

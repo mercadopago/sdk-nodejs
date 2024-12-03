@@ -43,6 +43,12 @@ export declare type PaymentResponse = {
 	payment_method?: PaymentMethodResponse;
 }
 
+export declare interface PaymentApiResponse extends ApiResponse {
+	id?: string;
+	amount?: string;
+	payment_method?: PaymentMethodResponse;
+}
+
 export declare type PaymentMethodResponse = {
 	id?: string;
 	type?: string;
@@ -97,4 +103,16 @@ export declare type Item = {
 	category_id?: string;
 	description?: string;
 	picture_url?: string;
+}
+
+export declare type PaymentRequest = {
+	amount?: string;
+	payment_method?: PaymentMethodRequest;
+}
+
+export declare type PaymentMethodRequest = {
+	id?: string;
+	type?: string;
+	token?: string;
+	installments?: number;
 }
