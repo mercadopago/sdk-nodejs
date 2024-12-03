@@ -44,7 +44,6 @@ describe('Create Order transaction', () => {
 						id: 'master',
 						type: 'credit_card',
 						installments: 1,
-						statement_descriptor: 'description'
 					}
 				}
 			]
