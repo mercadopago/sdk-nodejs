@@ -1,8 +1,8 @@
 import { RestClient } from '@src/utils/restClient';
-import { CreateOrderClient } from './types';
+import { OrderCreateClient } from './types';
 import { OrderResponse } from '../commonTypes';
 
-export default function create({ body, config }: CreateOrderClient): Promise<OrderResponse> {
+export default function create({ body, config }: OrderCreateClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
 		'/v1/orders',
 		{
