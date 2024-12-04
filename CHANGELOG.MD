@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 2.1.0
+
+- Add `X-Expand-Response-Nodes` header to request options
+- Add `X-Card-Validation` header to request options
+
 ## VERSION 2.0.15
 
 - Include `reference_id` in Data in Payment Method in Payment
