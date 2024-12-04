@@ -4,6 +4,7 @@
 
 - Add `X-Expand-Response-Nodes` header to request options
 - Add `X-Card-Validation` header to request options
+- Add `X-Meli-Session-Id` header to request options
 
 ## VERSION 2.0.15
 

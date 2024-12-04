@@ -17,6 +17,7 @@ export class AppConfig {
 		CORPORATION_ID: 'X-Corporation-Id',
 		INTEGRATOR_ID: 'X-Integrator-Id',
 		PLATFORM_ID: 'X-Platform-Id',
+		MELI_SESSION_ID: 'X-Meli-Session-Id',
 		EXPAND_RESPONSE_NODES: 'X-Expand-Response-Nodes',
 		CARD_VALIDATION: 'X-Card-Validation',
 	};

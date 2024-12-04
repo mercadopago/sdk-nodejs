@@ -107,6 +107,7 @@ describe('RestClient', () => {
 			headers: customHeaders,
 			expandResponseNodes: 'gateway.reference',
 			cardValidation: 'card_validation',
+			meliSessionId: 'device_id',
 		});
 
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -118,6 +119,7 @@ describe('RestClient', () => {
 				'User-Agent': expect.any(String),
 				'X-Product-Id': expect.any(String),
 				'X-Tracking-Id': expect.any(String),
+				'X-Meli-Session-Id': 'device_id',
 				'X-Expand-Response-Nodes': 'gateway.reference',
 				'X-Card-Validation': 'card_validation',
 			},

@@ -9,6 +9,7 @@ export declare type Options = {
 	plataformId?: string;
 	integratorId?: string;
 	corporationId?: string;
+	meliSessionId?: string;
 	expandResponseNodes?: string;
 	cardValidation?: string;
 };
