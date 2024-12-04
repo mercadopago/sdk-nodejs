@@ -1,7 +1,7 @@
 import { RestClient } from '@utils/restClient';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 
-import type { CreateOrderClient, CreateOrderRequest } from './types';
+import type { OrderCreateClient, CreateOrderRequest } from './types';
 import create from '.';
 import { createEmailTestUser } from '@src/mocks/createEmailTestUser';
 
@@ -31,7 +31,7 @@ describe('Create Order', () => {
 				email: createEmailTestUser(),
 			},
 		};
-		const mockCreate: CreateOrderClient = {
+		const mockCreate: OrderCreateClient = {
 			body: mockBody,
 			config
 		};

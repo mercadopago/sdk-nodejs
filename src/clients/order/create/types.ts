@@ -5,7 +5,7 @@ import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { Options } from '@src/types';
 import { Address, Identification, Item, TypeConfig } from '../commonTypes';
 
-export declare type CreateOrderClient = {
+export declare type OrderCreateClient = {
   body: CreateOrderRequest,
   config: MercadoPagoConfig
 };

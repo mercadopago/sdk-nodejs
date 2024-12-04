@@ -4,6 +4,7 @@ import process from './process';
 import capture from './capture';
 import createTransaction from './transaction/create';
 import updateTransaction from './transaction/update';
+import cancel from './cancel';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse, PaymentApiResponse, TransactionsApiResponse } from './commonTypes';
@@ -13,6 +14,7 @@ import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
 import { OrderUpdateTransactionData } from './transaction/update/types';
+import { OrderCancelData } from './cancel/types';
 
 /**
  * Mercado Pago Order.
@@ -64,6 +66,16 @@ export class Order {
 	capture({ id, requestOptions }: OrderCaptureData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return capture({ id, config: this.config });
+	}
+
+	/**
+	 * Cancel Order.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example }.
+	 */
+	cancel({ id, requestOptions }: OrderCancelData): Promise<OrderResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return cancel({ id, config: this.config });
 	}
 
 	/**

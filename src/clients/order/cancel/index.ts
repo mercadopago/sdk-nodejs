@@ -1,10 +1,11 @@
 import { RestClient } from '@src/utils/restClient';
-import { OrderCaptureClient } from './types';
+import { OrderCancelClient } from './types';
 import { OrderResponse } from '../commonTypes';
 
-export default function capture({ id, config }: OrderCaptureClient): Promise<OrderResponse> {
+export default function cancel({ id, config }: 
+  OrderCancelClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}/capture`,
+		`/v1/orders/${id}/cancel`,
 		{
 			method: 'POST',
 			headers: {
