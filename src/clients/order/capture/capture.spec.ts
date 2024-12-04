@@ -30,7 +30,6 @@ describe('Capture Order', () => {
 					}
 				]
 			}
-			
 		};
 		const spyFetch = jest.spyOn(RestClient, 'fetch').mockResolvedValue(mockOrderResponse);
 
