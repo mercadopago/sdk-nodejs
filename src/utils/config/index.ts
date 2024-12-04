@@ -5,7 +5,7 @@ export class AppConfig {
 	static readonly BASE_URL = 'https://api.mercadopago.com';
 	static readonly PRODUCT_ID = 'bc32b6ntrpp001u8nhkg';
 
-	static SDK_VERSION = '2.0.15';
+	static SDK_VERSION = '2.1.0';
 
 	static readonly Headers = {
 		AUTHORIZATION: 'Authorization',
@@ -16,7 +16,10 @@ export class AppConfig {
 		TRACKING_ID: 'X-Tracking-Id',
 		CORPORATION_ID: 'X-Corporation-Id',
 		INTEGRATOR_ID: 'X-Integrator-Id',
-		PLATFORM_ID: 'X-Platform-Id'
+		PLATFORM_ID: 'X-Platform-Id',
+		MELI_SESSION_ID: 'X-Meli-Session-Id',
+		EXPAND_RESPONSE_NODES: 'X-Expand-Response-Nodes',
+		CARD_VALIDATION: 'X-Card-Validation',
 	};
 
 	static getNodeVersion(): string {
@@ -32,7 +35,7 @@ export class AppConfig {
 	}
 
 	static getTrackingId(): string {
-		return 'platform:' + this.getNodeVersion().substring(0, this.getNodeVersion().indexOf('.')) + '|' + this.getNodeVersion() + ',type:SDK'+ this.SDK_VERSION + ',so;';
+		return 'platform:' + this.getNodeVersion().substring(0, this.getNodeVersion().indexOf('.')) + '|' + this.getNodeVersion() + ',type:SDK' + this.SDK_VERSION + ',so;';
 	}
 
 	static getUserAgent(): string {

@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import type { Options } from '@src/types';
 
 interface RestClientConfig extends Options {
-  queryParams?: Record<string, string | number>;
-  retries?: number;
+	queryParams?: Record<string, string | number>;
+	retries?: number;
 }
 
 class RestClient {
@@ -66,6 +66,9 @@ class RestClient {
 			corporationId,
 			integratorId,
 			plataformId,
+			meliSessionId,
+			expandResponseNodes,
+			cardValidation,
 			...customConfig
 		} = config || {};
 
@@ -79,6 +82,9 @@ class RestClient {
 			...(corporationId ? { [AppConfig.Headers.CORPORATION_ID]: corporationId } : {}),
 			...(integratorId ? { [AppConfig.Headers.INTEGRATOR_ID]: integratorId } : {}),
 			...(plataformId ? { [AppConfig.Headers.PLATFORM_ID]: plataformId } : {}),
+			...(meliSessionId ? { [AppConfig.Headers.MELI_SESSION_ID]: meliSessionId } : {}),
+			...(expandResponseNodes ? { [AppConfig.Headers.EXPAND_RESPONSE_NODES]: expandResponseNodes } : {}),
+			...(cardValidation ? { [AppConfig.Headers.CARD_VALIDATION]: cardValidation } : {}),
 		};
 
 		if (method && method !== 'GET') {
