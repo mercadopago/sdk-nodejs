@@ -1,27 +1,29 @@
 export declare type Config = {
-  accessToken: string;
-  options?: Options;
+	accessToken: string;
+	options?: Options;
 };
 
 export declare type Options = {
-  timeout?: number;
-  idempotencyKey?: string;
-  plataformId?: string;
-  integratorId?: string;
-  corporationId?: string;
+	timeout?: number;
+	idempotencyKey?: string;
+	plataformId?: string;
+	integratorId?: string;
+	corporationId?: string;
+	expandResponseNodes?: string;
+	cardValidation?: string;
 };
 
 export declare interface SearchOptions {
-  limit?: number;
-  offset?: number;
-  [key: string]: string | number;
+	limit?: number;
+	offset?: number;
+	[key: string]: string | number;
 }
 
 export declare interface ApiResponse {
-  api_response: ResponseFields;
+	api_response: ResponseFields;
 }
 
 export declare type ResponseFields = {
-  status: number;
-  headers: [string, string[]];
+	status: number;
+	headers: [string, string[]];
 };

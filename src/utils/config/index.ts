@@ -16,7 +16,9 @@ export class AppConfig {
 		TRACKING_ID: 'X-Tracking-Id',
 		CORPORATION_ID: 'X-Corporation-Id',
 		INTEGRATOR_ID: 'X-Integrator-Id',
-		PLATFORM_ID: 'X-Platform-Id'
+		PLATFORM_ID: 'X-Platform-Id',
+		EXPAND_RESPONSE_NODES: 'X-Expand-Response-Nodes',
+		CARD_VALIDATION: 'X-Card-Validation',
 	};
 
 	static getNodeVersion(): string {
@@ -32,7 +34,7 @@ export class AppConfig {
 	}
 
 	static getTrackingId(): string {
-		return 'platform:' + this.getNodeVersion().substring(0, this.getNodeVersion().indexOf('.')) + '|' + this.getNodeVersion() + ',type:SDK'+ this.SDK_VERSION + ',so;';
+		return 'platform:' + this.getNodeVersion().substring(0, this.getNodeVersion().indexOf('.')) + '|' + this.getNodeVersion() + ',type:SDK' + this.SDK_VERSION + ',so;';
 	}
 
 	static getUserAgent(): string {
