@@ -37,6 +37,9 @@ export declare type TransactionsRequest = {
 export declare type PaymentRequest = {
 	amount?: string;
 	payment_method?: PaymentMethodRequest;
+	automatic_payments?: AutomaticPaymentsRequest;
+	stored_credential?: StoredCredentialRequest;
+	subscription_data?: SubscriptionDataRequest;
 }
 
 export declare type PaymentMethodRequest = {
@@ -54,4 +57,35 @@ export declare type PayerRequest = {
 	identification?: Identification;
 	phone?: Phone;
 	address?: Address;
+}
+
+export declare type AutomaticPaymentsRequest = {
+	payment_profile_id?: string;
+	retries?: number;
+	schedule_date?: string;
+	due_date?: string;
+}
+
+export declare type StoredCredentialRequest = {
+	payment_initiator?: string;
+	reason?: string;
+	store_payment_method?: boolean;
+	first_payment?: boolean;
+}
+
+export declare type SubscriptionDataRequest = {
+	subscription_sequence?: SubscriptionSequence;
+	invoice_id?: string;
+	invoice_period?: InvoicePeriod;
+	billing_date?: string;
+}
+
+export declare type SubscriptionSequence = {
+	number?: number;
+	total?: number;
+}
+
+export declare type InvoicePeriod = {
+	type?: string;
+	period?: number;
 }
