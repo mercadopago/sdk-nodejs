@@ -11,6 +11,7 @@ function createBodyOrder(token: string): OrderCreateData {
 		body: {
 			type: 'online',
 			processing_mode: 'automatic',
+			capture_mode: 'manual',
 			total_amount: '200.00',
 			external_reference: 'ext_ref_1234',
 			transactions: {
@@ -29,9 +30,6 @@ function createBodyOrder(token: string): OrderCreateData {
 			payer: {
 				email: 'test_1731350184@testuser.com'
 			},
-			type_config: {
-				capture_mode: 'manual'
-			}
 		}
 	};
 }
@@ -40,19 +38,18 @@ describe('Capture Order integration test', () => {
 	test('should capture an Order successfully', async () => {
 		const cardToken = await createCardToken(config.access_token);
 		const token = cardToken.id;
-		const body = createBodyOrder(token); 
+		const body = createBodyOrder(token);
 
 		const orderClient = new Order(mercadoPagoConfig);
 		const order = await orderClient.create(body);
 		const orderId = order.id;
-		const processOrder = await orderClient.capture({ id: orderId });
+		const capturedOrder = await orderClient.capture({ id: orderId });
 
-		expect(processOrder.id).toBeTruthy();
-		expect(processOrder.id).toBe(orderId);
-		expect(processOrder.status).toBe('processed');
-		expect(processOrder.status_detail).toBe('accredited');
-		expect(processOrder.transactions.payments[0].amount).toBe('200.00');
-		expect(processOrder.transactions.payments[0].status).toBe('processed');
-		expect(processOrder.transactions.payments[0].status_detail).toBe('accredited');
+		expect(capturedOrder.id).toBe(orderId);
+		expect(capturedOrder.status).toBe('processed');
+		expect(capturedOrder.status_detail).toBe('accredited');
+		expect(capturedOrder.transactions.payments[0].amount).toBe('200.00');
+		expect(capturedOrder.transactions.payments[0].status).toBe('processed');
+		expect(capturedOrder.transactions.payments[0].status_detail).toBe('accredited');
 	});
 });

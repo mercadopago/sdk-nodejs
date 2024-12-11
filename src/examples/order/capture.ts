@@ -17,13 +17,11 @@ async function createOrder(): Promise<string> {
 			body: {
 				type: 'online',
 				processing_mode: 'automatic',
+				capture_mode: 'manual',
 				total_amount: '100.00',
 				external_reference: 'ext_ref_1234',
-				type_config: {
-					capture_mode: 'manual'
-				},
 				payer: {
-					email: 'test_1731350184@testuser.com'
+					email: '<PAYER_EMAIL>'
 				},
 				transactions: {
 					payments: [
@@ -43,7 +41,7 @@ async function createOrder(): Promise<string> {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order created successfully:', orderResponse);
+		console.log('Order created successfully:', orderResponse.id);
 		return orderResponse.id;
 	} catch (error) {
 		console.error('Error creating order:', error);
@@ -53,14 +51,14 @@ async function createOrder(): Promise<string> {
 (async () => {
 	try {
 		const orderId = await createOrder();
-		const captureResponse = await order.capture({
+		const capturedOrder = await order.capture({
 			id: orderId,
 			requestOptions: {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order captured successfully:', captureResponse);
+		console.log('Order captured successfully:', capturedOrder);
 	} catch (error) {
-		console.error('Error processing order:', error);
+		console.error('Error capturing order:', error);
 	}
 })();
