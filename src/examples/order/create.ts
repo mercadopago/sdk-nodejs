@@ -15,11 +15,10 @@ const order = new Order(mercadoPagoConfig);
 order.create({
 	body: {
 		type: 'online',
+		processing_mode: 'automatic',
+		capture_mode: 'automatic',
 		total_amount: '1000.00',
 		external_reference: 'ext_ref_1234',
-		type_config: {
-			capture_mode: 'automatic'
-		},
 		transactions: {
 			payments: [
 				{
@@ -34,7 +33,6 @@ order.create({
 				}
 			]
 		},
-		processing_mode: 'automatic',
 		description: 'some description',
 		payer: {
 			email: '<PAYER_EMAIL>',
