@@ -12,10 +12,4 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 const order = new Order(mercadoPagoConfig);
 
 const orderId = '<ORDER_ID>';
-
-order.get({
-	id: orderId,
-	requestOptions: {
-		idempotencyKey: '<IDEMPOTENCY_KEY>'
-	}
-}).then(console.log).catch(console.error);
+order.get({ id: orderId }).then(console.log).catch(console.error);
