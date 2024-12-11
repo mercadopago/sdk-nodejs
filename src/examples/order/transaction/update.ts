@@ -56,7 +56,9 @@ async function createOrder(): Promise<OrderResponse> {
 			id: createdOrder.id,
 			transactionId: createdOrder.transactions.payments[0].id,
 			body: {
-				amount: '89.90',
+				payment_method: {
+					installments: 3,
+				}
 			},
 			requestOptions: {
 				idempotencyKey: '<IDEMPOTENCY_KEY>'

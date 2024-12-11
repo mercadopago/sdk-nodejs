@@ -11,11 +11,7 @@ describe('Update Order transaction', () => {
 	test('should update Order transaction', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const mockRequestBody: PaymentRequest = {
-			amount: '89.90',
 			payment_method: {
-				id: 'visa',
-				type: 'credit_card',
-				token: 'card_token',
 				installments: 3,
 			}
 		};
@@ -34,11 +30,7 @@ describe('Update Order transaction', () => {
 					'Content-Type', ['application/json']
 				]
 			},
-			id: transactionId,
-			amount: '89.90',
 			payment_method: {
-				id: 'visa',
-				type: 'credit_card',
 				installments: 3,
 			},
 		};
@@ -52,7 +44,7 @@ describe('Update Order transaction', () => {
 				headers: {
 					Authorization: 'Bearer access_token'
 				},
-				method: 'PATCH',
+				method: 'PUT',
 				timeout: 5000
 			}
 		);

@@ -39,14 +39,12 @@ describe('Update Order transaction integration test', () => {
 			id: orderResponse.id,
 			transactionId: orderResponse.transactions.payments[0].id,
 			body: {
-				amount: '89.90',
+				payment_method: {
+					installments: 3,
+				}
 			},
 		});
 
-		expect(updatedTransaction.id).toBeTruthy();
-		expect(updatedTransaction.amount).toBe('89.90');
-		expect(updatedTransaction.payment_method.id).toBe('master');
-		expect(updatedTransaction.payment_method.type).toBe('credit_card');
-		expect(updatedTransaction.payment_method.installments).toBe(1);
+		expect(updatedTransaction.payment_method.installments).toBe(3);
 	});
 });
