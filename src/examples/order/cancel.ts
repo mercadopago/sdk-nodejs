@@ -17,11 +17,9 @@ async function createOrder(): Promise<string> {
 			body: {
 				type: 'online',
 				processing_mode: 'automatic',
+				capture_mode: 'manual',
 				total_amount: '100.00',
 				external_reference: 'ext_ref_1234',
-				type_config: {
-					capture_mode: 'manual'
-				},
 				payer: {
 					email: 'test_1731350184@testuser.com'
 				},
@@ -50,7 +48,6 @@ async function createOrder(): Promise<string> {
 	}
 }
 
-// Create an Order and then Cancel the Order.
 (async () => {
 	try {
 		const orderId = await createOrder();
