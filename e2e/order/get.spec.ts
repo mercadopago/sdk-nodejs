@@ -33,7 +33,6 @@ describe('Get Order integration test', () => {
 		const orderId = order.id;
 		const getOrder = await orderClient.get({ id: orderId });
 
-		expect(getOrder.id).toBeTruthy();
 		expect(getOrder.id).toBe(orderId);
 		expect(getOrder.type).toBe('online');
 		expect(getOrder.total_amount).toBe('1000.00');
