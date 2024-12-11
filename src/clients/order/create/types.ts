@@ -6,8 +6,8 @@ import { Options } from '@src/types';
 import { Address, Identification, Item } from '../commonTypes';
 
 export declare type OrderCreateClient = {
-	body: CreateOrderRequest,
-	config: MercadoPagoConfig
+	body: CreateOrderRequest;
+	config: MercadoPagoConfig;
 }
 
 export declare type OrderCreateData = {
