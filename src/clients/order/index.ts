@@ -2,21 +2,26 @@ import create from './create';
 import get from './get';
 import process from './process';
 import capture from './capture';
-import createTransaction from './transaction/create';
-import updateTransaction from './transaction/update';
 import cancel from './cancel';
 import refund from './refund';
+import createTransaction from './transaction/create';
+import updateTransaction from './transaction/update';
+import deleteTransaction from './transaction/delete';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { OrderResponse, PaymentApiResponse, TransactionsApiResponse } from './commonTypes';
-import { OrderCreateTransactionData } from './transaction/create/types';
 import { OrderCreateData } from './create/types';
 import { OrderGetData } from './get/types';
 import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
-import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderCancelData } from './cancel/types';
 import { OrderRefundData } from './refund/types';
+import { OrderCreateTransactionData } from './transaction/create/types';
+import { OrderUpdateTransactionData } from './transaction/update/types';
+import { OrderDeleteTransactionData } from './transaction/delete/types';
+import { ApiResponse } from '@src/types';
+
+
 
 
 /**
@@ -110,5 +115,15 @@ export class Order {
 	updateTransaction({ id, transactionId, body, requestOptions }: OrderUpdateTransactionData): Promise<PaymentApiResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return updateTransaction({ id, transactionId, body, config: this.config });
+	}
+
+	/**
+	 * Delete Order transaction.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/delete.ts Usage Example }.
+	 */
+	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<ApiResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return deleteTransaction({ id, transactionId, config: this.config });
 	}
 }

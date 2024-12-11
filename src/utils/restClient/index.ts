@@ -4,9 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import type { Options } from '@src/types';
 
+const NO_CONTENT = 204;
+
 interface RestClientConfig extends Options {
-  queryParams?: Record<string, string | number>;
-  retries?: number;
+	queryParams?: Record<string, string | number>;
+	retries?: number;
 }
 
 class RestClient {
@@ -99,6 +101,15 @@ class RestClient {
 			});
 
 			if (response.ok) {
+				if (response.status === NO_CONTENT) {
+					return {
+						api_response: {
+							status: response.status,
+							headers: response.headers.raw(),
+						}
+					} as T;
+				}
+
 				const data = await response.json();
 				const api_response = {
 					status: response.status,
