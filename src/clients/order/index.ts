@@ -21,9 +21,6 @@ import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
 import { ApiResponse } from '@src/types';
 
-
-
-
 /**
  * Mercado Pago Order.
  *

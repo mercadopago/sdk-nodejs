@@ -2,7 +2,7 @@
  * Mercado Pago Cancel Order.
  *
  * @see {@link [TODO: insert Order documentation URL] Documentation }.
-  */
+ */
 
 import { Order } from '@src/clients/order';
 import MercadoPago from '@src/index';
@@ -11,7 +11,6 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 
 const order = new Order(mercadoPagoConfig);
 
-// Creates an order and returns its ID.
 async function createOrder(): Promise<string> {
 	try {
 		const orderResponse = await order.create({
@@ -45,7 +44,7 @@ async function createOrder(): Promise<string> {
 			}
 		});
 		console.log('Order created successfully:', orderResponse);
-		return orderResponse.id; 
+		return orderResponse.id;
 	} catch (error) {
 		console.error('Error creating order:', error);
 	}
@@ -54,15 +53,15 @@ async function createOrder(): Promise<string> {
 // Create an Order and then Cancel the Order.
 (async () => {
 	try {
-		const orderId = await createOrder(); 
+		const orderId = await createOrder();
 		const cancelledOrder = await order.cancel({
-			id: orderId, 
+			id: orderId,
 			requestOptions: {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
 		console.log('Order cancelled successfully:', cancelledOrder);
 	} catch (error) {
-		console.error('Error cancelling order:', error); 
+		console.error('Error cancelling order:', error);
 	}
 })();

@@ -2,7 +2,7 @@
  * Mercado Pago Create Order.
  *
  * @see {@link [TODO: insert Order documentation URL] Documentation }.
-  */
+ */
 
 import { Order } from '@src/clients/order';
 import MercadoPago from '@src/index';
@@ -11,7 +11,7 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 
 const order = new Order(mercadoPagoConfig);
 
-// full order example
+// Full Order example
 order.create({
 	body: {
 		type: 'online',
