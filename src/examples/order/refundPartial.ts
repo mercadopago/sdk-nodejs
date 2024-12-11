@@ -42,6 +42,7 @@ async function createOrder(): Promise<OrderResponse> {
 			}
 		});
 
+		console.log('Order created successfully:', orderResponse.id);
 		return orderResponse;
 	} catch (error) {
 		console.error('Error creating order:', error);
@@ -54,7 +55,7 @@ async function createOrder(): Promise<OrderResponse> {
 	const transactionId = createdOrder.transactions.payments[0].id;
 	try {
 		const refundedOrder = await order.refund({
-			id: id,
+			id,
 			body: {
 				transactions: [
 					{

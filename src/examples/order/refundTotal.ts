@@ -40,7 +40,7 @@ async function createOrder(): Promise<string> {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order created successfully:', orderResponse);
+		console.log('Order created successfully:', orderResponse.id);
 		return orderResponse.id;
 	} catch (error) {
 		console.error('Error creating order:', error);

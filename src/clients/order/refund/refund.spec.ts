@@ -7,7 +7,7 @@ import { RefundRequest } from './types';
 jest.mock('@utils/restClient');
 
 describe('Refund Total Order', () => {
-	test('should refund an Order Completely', async () => {
+	test('should refund an Order totally', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token' });
 		const orderId = '01JE6EZVK4FGMM4AYVQF23K17B';
 		const mockOrderResponse: OrderResponse = {
@@ -47,7 +47,7 @@ describe('Refund Total Order', () => {
 		expect(result).toEqual(mockOrderResponse);
 	});
 
-	test('should refund an Order Partially', async () => {
+	test('should refund an Order partially', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token' });
 		const orderId = '01JE6T2CWF7FDDD08HJNXBKM37';
 		const refundRequest: RefundRequest = {
@@ -94,6 +94,5 @@ describe('Refund Total Order', () => {
 			}
 		);
 		expect(result).toEqual(mockOrderResponse);
-
 	});
 });
