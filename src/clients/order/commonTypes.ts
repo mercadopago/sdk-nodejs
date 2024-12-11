@@ -115,4 +115,5 @@ export declare type PaymentMethodRequest = {
 	type?: string;
 	token?: string;
 	installments?: number;
+	statement_descriptor?: string;
 }
