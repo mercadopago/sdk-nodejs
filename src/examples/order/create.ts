@@ -48,7 +48,8 @@ order.create({
 			},
 			address: {
 				street_name: 'Av. das Nações Unidas',
-				street_number: '99'
+				street_number: '99',
+				zip_code: '00000000'
 			}
 		},
 		marketplace: 'NONE',
