@@ -21,7 +21,7 @@ async function createOrder(): Promise<string> {
 				total_amount: '100.00',
 				external_reference: 'ext_ref_1234',
 				payer: {
-					email: 'test_1731350184@testuser.com'
+					email: '<PAYER_EMAIL>'
 				},
 				transactions: {
 					payments: [
@@ -41,7 +41,7 @@ async function createOrder(): Promise<string> {
 				idempotencyKey: '<IDEMPOTENCY_KEY>',
 			}
 		});
-		console.log('Order created successfully:', orderResponse);
+		console.log('Order created successfully:', orderResponse.id);
 		return orderResponse.id;
 	} catch (error) {
 		console.error('Error creating order:', error);
