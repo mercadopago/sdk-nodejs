@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Update Order transaction.
  *
- * @see {@link [TODO: insert Order documentation URL] Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/update-transaction/put Documentation }.
  */
 
 import { Order } from '@src/clients/order';
