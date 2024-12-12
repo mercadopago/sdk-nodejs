@@ -112,7 +112,7 @@ const order = new Order(client);
 
 ### Step 4: Create the request object
 
-Create a the request object. For example, for a request to the `/v1/orders` endpoint:
+Create the request object. For example, for a request to the `/v1/orders` endpoint:
 
 ```javascript
 const body = {
