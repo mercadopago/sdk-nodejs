@@ -51,6 +51,7 @@ export declare type PaymentMethodRequest = {
 }
 
 export declare type PayerRequest = {
+	customer_id?: string;
 	email?: string;
 	first_name?: string;
 	last_name?: string;
