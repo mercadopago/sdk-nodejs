@@ -38,7 +38,7 @@ describe('Refund Order Integration test', () => {
 	test('should refund partially an Order successfully', async () => {
 		const cardToken = await createCardToken(config.access_token);
 		const token = cardToken.id;
-		const body = createBodyOrder(token); 
+		const body = createBodyOrder(token);
 
 		const orderClient = new Order(mercadoPagoConfig);
 		const order = await orderClient.create(body);
@@ -54,7 +54,6 @@ describe('Refund Order Integration test', () => {
 		};
 		const refundedPartialOrder = await orderClient.refund({ id: orderId, body: bodyRefund });
 
-		expect(refundedPartialOrder.id).toBeTruthy();
 		expect(refundedPartialOrder.id).toBe(orderId);
 		expect(refundedPartialOrder.status).toBe('processed');
 		expect(refundedPartialOrder.status_detail).toBe('partially_refunded');
@@ -65,14 +64,13 @@ describe('Refund Order Integration test', () => {
 	test('should refund the total amount of an Order successfully', async () => {
 		const cardToken = await createCardToken(config.access_token);
 		const token = cardToken.id;
-		const body = createBodyOrder(token); 
+		const body = createBodyOrder(token);
 
 		const orderClient = new Order(mercadoPagoConfig);
 		const order = await orderClient.create(body);
 		const orderId = order.id;
 		const refundedTotalOrder = await orderClient.refund({ id: orderId });
 
-		expect(refundedTotalOrder.id).toBeTruthy();
 		expect(refundedTotalOrder.id).toBe(orderId);
 		expect(refundedTotalOrder.status).toBe('refunded');
 		expect(refundedTotalOrder.status_detail).toBe('refunded');

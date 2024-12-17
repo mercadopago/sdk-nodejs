@@ -6,7 +6,7 @@ export default function updateTransaction({ id, transactionId, body, config }: O
 	return RestClient.fetch<PaymentApiResponse>(
 		`/v1/orders/${id}/transactions/${transactionId}`,
 		{
-			method: 'PATCH',
+			method: 'PUT',
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`
 			},

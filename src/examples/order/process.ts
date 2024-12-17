@@ -1,8 +1,8 @@
 /**
  * Mercado Pago Process Order.
  *
- * @see {@link [TODO: insert Order documentation URL] Documentation }.
-  */
+ * @see {@link https://mercadopago.com/developers/en/reference/order/online/process-order/post Documentation }.
+ */
 
 import { Order } from '@src/clients/order';
 import MercadoPago from '@src/index';

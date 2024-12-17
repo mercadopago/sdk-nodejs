@@ -1,4 +1,4 @@
-// API version: 5d077b6f-61b2-4b3a-8333-7a64ee547448
+// API version: b950ae02-4f49-4686-9ad3-7929b21b6495
 
 import { ApiResponse } from '@src/types';
 import { Phone } from '../commonTypes';
@@ -7,20 +7,20 @@ export declare interface OrderResponse extends ApiResponse {
 	id?: string;
 	type?: string;
 	external_reference?: string;
-	site_id?: string;
-	created_date?: string;
-	last_updated_date?: string;
+	country_code?: string;
 	status?: string;
 	status_detail?: string;
+	capture_mode?: string;
 	transactions?: TransactionsResponse;
 	payer?: PayerResponse;
-	type_config?: TypeConfig;
 	total_amount?: string;
 	processing_mode?: string;
 	description?: string;
 	marketplace?: string;
 	marketplace_fee?: string;
 	items?: Item[];
+	created_date?: string;
+	last_updated_date?: string;
 	expiration_time?: string;
 }
 
@@ -37,9 +37,9 @@ export declare interface TransactionsApiResponse extends ApiResponse {
 export declare type PaymentResponse = {
 	id?: string;
 	reference_id?: string;
-	amount?: string;
 	status?: string;
 	status_detail?: string;
+	amount?: string;
 	payment_method?: PaymentMethodResponse;
 }
 
@@ -51,17 +51,20 @@ export declare interface PaymentApiResponse extends ApiResponse {
 
 export declare type PaymentMethodResponse = {
 	id?: string;
-	type?: string;
 	card_id?: string;
+	type?: string;
 	token?: string;
-	installments?: number;
 	issuer_id?: string;
+	installments?: number;
 	statement_descriptor?: string;
 	external_resource_url?: string;
 	barcode_content?: string;
 	reference?: string;
 	verification_code?: string;
 	financial_institution?: string;
+	qr_code?: string;
+	qr_code_base64?: string;
+	digitable_line?: string;
 }
 
 export declare type RefundResponse = {
@@ -89,10 +92,7 @@ export declare type Identification = {
 export declare type Address = {
 	street_name?: string;
 	street_number?: string;
-}
-
-export declare type TypeConfig = {
-	capture_mode?: string;
+	zip_code?: string;
 }
 
 export declare type Item = {
@@ -115,4 +115,5 @@ export declare type PaymentMethodRequest = {
 	type?: string;
 	token?: string;
 	installments?: number;
+	statement_descriptor?: string;
 }

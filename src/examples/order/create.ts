@@ -1,8 +1,8 @@
 /**
  * Mercado Pago Create Order.
  *
- * @see {@link [TODO: insert Order documentation URL] Documentation }.
-  */
+ * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/create/post Documentation }.
+ */
 
 import { Order } from '@src/clients/order';
 import MercadoPago from '@src/index';
@@ -11,15 +11,14 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 
 const order = new Order(mercadoPagoConfig);
 
-// full order example
+// Full Order example
 order.create({
 	body: {
 		type: 'online',
+		processing_mode: 'automatic',
+		capture_mode: 'automatic',
 		total_amount: '1000.00',
 		external_reference: 'ext_ref_1234',
-		type_config: {
-			capture_mode: 'automatic'
-		},
 		transactions: {
 			payments: [
 				{
@@ -34,7 +33,6 @@ order.create({
 				}
 			]
 		},
-		processing_mode: 'automatic',
 		description: 'some description',
 		payer: {
 			email: '<PAYER_EMAIL>',
@@ -50,7 +48,8 @@ order.create({
 			},
 			address: {
 				street_name: 'Av. das Nações Unidas',
-				street_number: '99'
+				street_number: '99',
+				zip_code: '00000000'
 			}
 		},
 		marketplace: 'NONE',

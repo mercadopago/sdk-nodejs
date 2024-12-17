@@ -21,13 +21,10 @@ import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
 import { ApiResponse } from '@src/types';
 
-
-
-
 /**
  * Mercado Pago Order.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/docs/order/landing Documentation }.
  */
 export class Order {
 	private config: MercadoPagoConfig;

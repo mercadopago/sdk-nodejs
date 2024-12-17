@@ -1,8 +1,8 @@
 /**
  * Mercado Pago Get Order.
  *
- * @see {@link [TODO: insert Order documentation URL] Documentation }.
-  */
+ * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/get-order/get Documentation }.
+ */
 
 import { Order } from '@src/clients/order';
 import MercadoPago from '@src/index';
@@ -12,10 +12,4 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 const order = new Order(mercadoPagoConfig);
 
 const orderId = '<ORDER_ID>';
-
-order.get({
-	id: orderId,
-	requestOptions: {
-		idempotencyKey: '<IDEMPOTENCY_KEY>'
-	}
-}).then(console.log).catch(console.error);
+order.get({ id: orderId }).then(console.log).catch(console.error);

@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Delete Order transaction.
  *
- * @see {@link [TODO: insert Order documentation URL] Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/delete-transaction/delete Documentation }.
  */
 
 import { Order } from '@src/clients/order';

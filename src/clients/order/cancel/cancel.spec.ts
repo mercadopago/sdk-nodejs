@@ -19,20 +19,20 @@ describe('Cancel Order', () => {
 			id: orderId,
 			type: 'online',
 			processing_mode: 'manual',
-			status: 'cancelled',
-			status_detail: 'cancelled',
+			status: 'canceled',
+			status_detail: 'canceled',
 			total_amount: '200.00',
 			transactions: {
 				payments: [
 					{
-						status: 'cancelled',
-						status_detail: 'cancelled_transaction'
+						status: 'canceled',
+						status_detail: 'canceled_transaction'
 					}
 				]
 			}
 		};
 		const spyFetch = jest.spyOn(RestClient, 'fetch').mockResolvedValue(mockOrderResponse);
-		
+
 		const result = await cancel({ id: orderId, config });
 
 		expect(spyFetch).toHaveBeenCalledWith('/v1/orders/01JE48XZBYRK6W22V7DFQRABEV/cancel',
