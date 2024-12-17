@@ -46,10 +46,10 @@ describe('Cancel Order integration test', () => {
 		const cancelledOrder = await orderClient.cancel({ id: orderId });
 
 		expect(cancelledOrder.id).toBe(orderId);
-		expect(cancelledOrder.status).toBe('cancelled');
-		expect(cancelledOrder.status_detail).toBe('cancelled');
+		expect(cancelledOrder.status).toBe('canceled');
+		expect(cancelledOrder.status_detail).toBe('canceled');
 		expect(cancelledOrder.transactions.payments[0].amount).toBe('200.00');
-		expect(cancelledOrder.transactions.payments[0].status).toBe('cancelled');
-		expect(cancelledOrder.transactions.payments[0].status_detail).toBe('cancelled_transaction');
+		expect(cancelledOrder.transactions.payments[0].status).toBe('canceled');
+		expect(cancelledOrder.transactions.payments[0].status_detail).toBe('canceled_transaction');
 	}, 10000);
 });
