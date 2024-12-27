@@ -83,7 +83,7 @@ class RestClient {
 			...(integratorId ? { [AppConfig.Headers.INTEGRATOR_ID]: integratorId } : {}),
 			...(plataformId ? { [AppConfig.Headers.PLATFORM_ID]: plataformId } : {}),
 			...(meliSessionId ? { [AppConfig.Headers.MELI_SESSION_ID]: meliSessionId } : {}),
-			...(expandRespondeNodes ? { [AppConfig.Headers.EXPAND_RESPONDE_NODES]: expandRespondeNodes } : {}),
+			...(expandResponseNodes ? { [AppConfig.Headers.EXPAND_RESPONDE_NODES]: expandResponseNodes } : {}),
 			...(cardValidation ? { [AppConfig.Headers.CARD_VALIDATION]: cardValidation } : {}),
 		};
 
