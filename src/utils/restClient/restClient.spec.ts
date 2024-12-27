@@ -120,7 +120,7 @@ describe('RestClient', () => {
 				'X-Product-Id': expect.any(String),
 				'X-Tracking-Id': expect.any(String),
 				'X-Meli-Session-Id': 'device_id',
-				'X-Expand-Response-Nodes': 'gateway.reference',
+				'X-Expand-Responde-Nodes': 'gateway.reference',
 				'X-Card-Validation': 'card_validation',
 			},
 		});
