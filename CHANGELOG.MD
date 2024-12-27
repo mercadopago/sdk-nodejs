@@ -1,4 +1,6 @@
 # Releases
+## VERSION 2.1.1
+- Fix `X-Expand-Responde-Nodes` header to request options
 
 ## VERSION 2.1.0
 
