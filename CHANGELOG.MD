@@ -1,7 +1,7 @@
 # Releases
 
 ## VERSION 2.2.0
-- Include `network_transaction_date` in ForwardData in Payment
+- Include `network_transaction_data` in `forward_data` in Payment
 
 ## VERSION 2.1.1
 - Fix `X-Expand-Responde-Nodes` header to request options
