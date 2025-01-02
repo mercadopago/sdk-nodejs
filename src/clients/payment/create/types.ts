@@ -56,6 +56,11 @@ export declare type PayerRequest = {
 
 export declare type ForwardDataRequest = {
   sub_merchant?: SubMerchant,
+  network_transaction_data?: NetworkTransactionData,
+}
+
+export declare type NetworkTransactionData = {
+  network_transaction_id?: string,
 }
 
 export declare interface AddressRequest extends Address {
