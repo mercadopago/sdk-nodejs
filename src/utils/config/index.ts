@@ -20,6 +20,7 @@ export class AppConfig {
 		MELI_SESSION_ID: 'X-Meli-Session-Id',
 		EXPAND_RESPONDE_NODES: 'X-Expand-Responde-Nodes',
 		CARD_VALIDATION: 'X-Card-Validation',
+		TEST_TOKEN: 'X-Test-Token',
 	};
 
 	static getNodeVersion(): string {

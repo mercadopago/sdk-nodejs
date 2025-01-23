@@ -12,6 +12,7 @@ export declare type Options = {
 	meliSessionId?: string;
 	expandResponseNodes?: string;
 	cardValidation?: string;
+	testToken?: boolean;
 };
 
 export declare interface SearchOptions {
