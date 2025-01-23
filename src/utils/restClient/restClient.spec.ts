@@ -109,7 +109,6 @@ describe('RestClient', () => {
 			cardValidation: 'card_validation',
 			meliSessionId: 'device_id',
 			testToken: true,
-			
 		});
 
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
