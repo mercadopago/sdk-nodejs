@@ -124,7 +124,7 @@ describe('RestClient', () => {
 				'X-Meli-Session-Id': 'device_id',
 				'X-Expand-Responde-Nodes': 'gateway.reference',
 				'X-Card-Validation': 'card_validation',
-				'X-Test-Token': true,
+				'X-Test-Token': 'true',
 			},
 		});
 	});
