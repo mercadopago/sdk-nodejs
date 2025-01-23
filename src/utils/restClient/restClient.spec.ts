@@ -108,6 +108,7 @@ describe('RestClient', () => {
 			expandResponseNodes: 'gateway.reference',
 			cardValidation: 'card_validation',
 			meliSessionId: 'device_id',
+			testToken: true,
 		});
 
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
@@ -122,6 +123,7 @@ describe('RestClient', () => {
 				'X-Meli-Session-Id': 'device_id',
 				'X-Expand-Responde-Nodes': 'gateway.reference',
 				'X-Card-Validation': 'card_validation',
+				'X-Test-Token': 'true',
 			},
 		});
 	});

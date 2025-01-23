@@ -5,7 +5,7 @@ export class AppConfig {
 	static readonly BASE_URL = 'https://api.mercadopago.com';
 	static readonly PRODUCT_ID = 'bc32b6ntrpp001u8nhkg';
 
-	static SDK_VERSION = '2.2.0';
+	static SDK_VERSION = '2.3.0';
 
 	static readonly Headers = {
 		AUTHORIZATION: 'Authorization',
@@ -20,6 +20,7 @@ export class AppConfig {
 		MELI_SESSION_ID: 'X-Meli-Session-Id',
 		EXPAND_RESPONDE_NODES: 'X-Expand-Responde-Nodes',
 		CARD_VALIDATION: 'X-Card-Validation',
+		TEST_TOKEN: 'X-Test-Token',
 	};
 
 	static getNodeVersion(): string {

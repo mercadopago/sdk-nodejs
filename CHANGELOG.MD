@@ -1,9 +1,15 @@
 # Releases
 
+## VERSION 2.3.0
+
+- Add `X-Test-Token` header to request options
+
 ## VERSION 2.2.0
+
 - Include `network_transaction_data` in `forward_data` in Payment
 
 ## VERSION 2.1.1
+
 - Fix `X-Expand-Responde-Nodes` header to request options
 
 ## VERSION 2.1.0
