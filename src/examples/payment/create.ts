@@ -18,6 +18,9 @@ payment.create({ body: {
 	payer: {
 		email: '<EMAIL>'
 	},
+  installments: 1, // if not an installment payment, set to 1
+  token: '<String>', // Card token required for credit card payments
+  transaction_amount: '<string||number>' // Ensure integer for Chile (MLC).
 },
 requestOptions: {
 	idempotencyKey: '<IDEMPOTENCY_KEY>'
