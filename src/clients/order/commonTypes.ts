@@ -14,6 +14,7 @@ export declare interface OrderResponse extends ApiResponse {
 	client_token?: string;
 	capture_mode?: string;
 	integration_data?: IntegrationDataResponse;
+	payer?: PayerResponse;
 	transactions?: TransactionsResponse;
 	total_amount?: string;
 	processing_mode?: string;
@@ -23,9 +24,13 @@ export declare interface OrderResponse extends ApiResponse {
 	items?: Item[];
 	config?: Config;
 	checkout_available_at?: string;
-	// created_date?: string;
-	// last_updated_date?: string;
+	created_date?: string;
+	last_updated_date?: string;
 	expiration_time?: string;
+}
+
+export declare type PayerResponse = {
+	customer_id?: string;
 }
 
 export declare type Config = {
@@ -76,8 +81,17 @@ export declare type PaymentResponse = {
 	id?: string;
 	reference_id?: string;
 	status?: string;
-	// status_detail?: string;
+	status_detail?: string;
+	attempt_number?: number;
+	attempts?: Attempt[];
 	amount?: string;
+	payment_method?: PaymentMethodResponse;
+}
+
+export declare type Attempt = {
+	id?: string;
+	status?: string;
+	status_detail?: string;
 	payment_method?: PaymentMethodResponse;
 }
 
@@ -91,11 +105,13 @@ export declare type PaymentMethodResponse = {
 	id?: string;
 	card_id?: string;
 	type?: string;
+	token?: string;
 	installments?: number;
 	statement_descriptor?: string;
 	ticket_url?: string;
 	barcode_content?: string;
 	reference?: string;
+	reference_id?: string;
 	verification_code?: string;
 	financial_institution?: string;
 	qr_code?: string;
@@ -109,6 +125,7 @@ export declare type RefundResponse = {
 	reference_id?: string;
 	amount?: string;
 	status?: string;
+	items?: Item[];
 }
 
 export declare type Identification = {
@@ -126,6 +143,7 @@ export declare type Item = {
 	title?: string;
 	unit_price?: string;
 	quantity?: number;
+	external_code?: string;
 	category_id?: string;
 	description?: string;
 	picture_url?: string;
