@@ -1,9 +1,9 @@
-// API version: b950ae02-4f49-4686-9ad3-7929b21b6495
+// API version: 6edf8ce2-881a-4505-9cd3-6b7b902842b5
 
 import { Phone } from '@src/clients/commonTypes';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import { Options } from '@src/types';
-import { Address, Identification, Item } from '../commonTypes';
+import { Address, Config, Identification, Item } from '../commonTypes';
 
 export declare type OrderCreateClient = {
 	body: CreateOrderRequest;
@@ -27,6 +27,8 @@ export declare type CreateOrderRequest = {
 	marketplace?: string;
 	marketplace_fee?: string;
 	items?: Item[];
+	config?: Config;
+	checkout_available_at?: string;
 	expiration_time?: string;
 }
 
