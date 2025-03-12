@@ -1,18 +1,18 @@
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
-import { PaymentRequest } from '../../commonTypes';
+import { PaymentMethodRequest } from '../../commonTypes';
 import { Options } from '@src/types';
 
 
 export declare type OrderUpdateTransactionClient = {
 	id: string;
 	transactionId: string;
-	body: PaymentRequest;
+	body: PaymentMethodRequest;
 	config: MercadoPagoConfig;
 }
 
 export declare type OrderUpdateTransactionData = {
 	id: string;
 	transactionId: string;
-	body: PaymentRequest;
+	body: PaymentMethodRequest;
 	requestOptions?: Options;
 }

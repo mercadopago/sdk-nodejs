@@ -74,7 +74,6 @@ export declare type TransactionsResponse = {
 
 export declare interface TransactionsApiResponse extends ApiResponse {
 	payments?: PaymentResponse[];
-	refunds?: RefundResponse[];
 }
 
 export declare type PaymentResponse = {
@@ -96,8 +95,6 @@ export declare type Attempt = {
 }
 
 export declare interface PaymentApiResponse extends ApiResponse {
-	id?: string;
-	amount?: string;
 	payment_method?: PaymentMethodResponse;
 }
 
