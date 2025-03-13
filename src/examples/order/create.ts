@@ -49,7 +49,12 @@ order.create({
 			address: {
 				street_name: 'Av. das Nações Unidas',
 				street_number: '99',
-				zip_code: '00000000'
+				zip_code: '00000000',
+				city: 'Osasco',
+				state: 'SP',
+				neighborhood: 'Bonfim',
+				complement: 'complement',
+				floor: 'floor',
 			}
 		},
 		marketplace: 'NONE',
@@ -60,7 +65,6 @@ order.create({
 				unit_price: '1000.00',
 				quantity: 1,
 				description: 'Some item description',
-				id: 'item_id',
 				category_id: 'category_id',
 				picture_url: 'https://mysite.com/img/item.jpg'
 			}

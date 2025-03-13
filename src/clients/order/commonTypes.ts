@@ -134,6 +134,11 @@ export declare type Address = {
 	street_name?: string;
 	street_number?: string;
 	zip_code?: string;
+	neighborhood?: string;
+	state?: string;
+	city?: string;
+	complement?: string;
+	floor?: string;
 }
 
 export declare type Item = {
