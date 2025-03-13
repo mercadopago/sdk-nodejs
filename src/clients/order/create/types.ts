@@ -1,4 +1,4 @@
-// API version: 6edf8ce2-881a-4505-9cd3-6b7b902842b5
+// API version: 1ff4822a-2dfd-4393-800e-a562edb3fe32
 
 import { Phone } from '@src/clients/commonTypes';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
