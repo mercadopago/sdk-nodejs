@@ -1,4 +1,4 @@
-// API version: 1ff4822a-2dfd-4393-800e-a562edb3fe32
+// API version: 7d364c51-04c7-45e3-af61-f82423bcc39c
 
 import { ApiResponse } from '@src/types';
 import { DifferentialPricing } from '../commonTypes';
@@ -17,6 +17,7 @@ export declare interface OrderResponse extends ApiResponse {
 	payer?: PayerResponse;
 	transactions?: TransactionsResponse;
 	total_amount?: string;
+	total_paid_amount?: string;
 	processing_mode?: string;
 	description?: string;
 	marketplace?: string;
@@ -84,7 +85,10 @@ export declare type PaymentResponse = {
 	attempt_number?: number;
 	attempts?: Attempt[];
 	amount?: string;
+	paid_amount?: string;
 	payment_method?: PaymentMethodResponse;
+	date_of_expiration?: string;
+	expiration_time?: string;
 }
 
 export declare type Attempt = {

@@ -1,4 +1,4 @@
-// API version: 1ff4822a-2dfd-4393-800e-a562edb3fe32
+// API version: 7d364c51-04c7-45e3-af61-f82423bcc39c
 
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { Options } from '@src/types';

@@ -1,4 +1,4 @@
-// API version: 1ff4822a-2dfd-4393-800e-a562edb3fe32
+// API version: 7d364c51-04c7-45e3-af61-f82423bcc39c
 
 import { Phone } from '@src/clients/commonTypes';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
@@ -42,6 +42,7 @@ export declare type PaymentRequest = {
 	automatic_payments?: AutomaticPaymentsRequest;
 	stored_credential?: StoredCredentialRequest;
 	subscription_data?: SubscriptionDataRequest;
+	expiration_time?: string;
 }
 
 export declare type PaymentMethodRequest = {
