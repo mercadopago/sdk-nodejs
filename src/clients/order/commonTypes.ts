@@ -1,7 +1,7 @@
-// API version: b950ae02-4f49-4686-9ad3-7929b21b6495
+// API version: 7d364c51-04c7-45e3-af61-f82423bcc39c
 
 import { ApiResponse } from '@src/types';
-import { Phone } from '../commonTypes';
+import { DifferentialPricing } from '../commonTypes';
 
 export declare interface OrderResponse extends ApiResponse {
 	id?: string;
@@ -10,18 +10,62 @@ export declare interface OrderResponse extends ApiResponse {
 	country_code?: string;
 	status?: string;
 	status_detail?: string;
+	user_id?: string;
+	client_token?: string;
 	capture_mode?: string;
-	transactions?: TransactionsResponse;
+	integration_data?: IntegrationDataResponse;
 	payer?: PayerResponse;
+	transactions?: TransactionsResponse;
 	total_amount?: string;
+	total_paid_amount?: string;
 	processing_mode?: string;
 	description?: string;
 	marketplace?: string;
 	marketplace_fee?: string;
 	items?: Item[];
+	config?: Config;
+	checkout_available_at?: string;
 	created_date?: string;
 	last_updated_date?: string;
 	expiration_time?: string;
+}
+
+export declare type PayerResponse = {
+	customer_id?: string;
+}
+
+export declare type Config = {
+	payment_method?: PaymentMethodConfig;
+	online?: OnlineConfig;
+}
+
+export declare type PaymentMethodConfig = {
+	not_allowed_ids?: string[];
+	not_allowed_types?: string[];
+	default_id?: string;
+	max_installments?: number;
+	default_installments?: number;
+}
+
+export declare type OnlineConfig = {
+	callback_url?: string;
+	success_url?: string;
+	pending_url?: string;
+	failure_url?: string;
+	auto_return_url?: string;
+	differential_pricing?: DifferentialPricing;
+}
+
+export declare type IntegrationDataResponse = {
+	corporation_id?: string;
+	application_id?: string;
+	integrator_id?: string;
+	platform_id?: string;
+	sponsor?: SponsorResponse;
+}
+
+export declare type SponsorResponse = {
+	id?: string;
 }
 
 export declare type TransactionsResponse = {
@@ -31,7 +75,6 @@ export declare type TransactionsResponse = {
 
 export declare interface TransactionsApiResponse extends ApiResponse {
 	payments?: PaymentResponse[];
-	refunds?: RefundResponse[];
 }
 
 export declare type PaymentResponse = {
@@ -39,13 +82,23 @@ export declare type PaymentResponse = {
 	reference_id?: string;
 	status?: string;
 	status_detail?: string;
+	attempt_number?: number;
+	attempts?: Attempt[];
 	amount?: string;
+	paid_amount?: string;
+	payment_method?: PaymentMethodResponse;
+	date_of_expiration?: string;
+	expiration_time?: string;
+}
+
+export declare type Attempt = {
+	id?: string;
+	status?: string;
+	status_detail?: string;
 	payment_method?: PaymentMethodResponse;
 }
 
 export declare interface PaymentApiResponse extends ApiResponse {
-	id?: string;
-	amount?: string;
 	payment_method?: PaymentMethodResponse;
 }
 
@@ -54,12 +107,12 @@ export declare type PaymentMethodResponse = {
 	card_id?: string;
 	type?: string;
 	token?: string;
-	issuer_id?: string;
 	installments?: number;
 	statement_descriptor?: string;
-	external_resource_url?: string;
+	ticket_url?: string;
 	barcode_content?: string;
 	reference?: string;
+	reference_id?: string;
 	verification_code?: string;
 	financial_institution?: string;
 	qr_code?: string;
@@ -73,15 +126,7 @@ export declare type RefundResponse = {
 	reference_id?: string;
 	amount?: string;
 	status?: string;
-}
-
-export declare type PayerResponse = {
-	email?: string;
-	first_name?: string;
-	last_name?: string;
-	identification?: Identification;
-	phone?: Phone;
-	address?: Address;
+	items?: Item[];
 }
 
 export declare type Identification = {
@@ -93,13 +138,18 @@ export declare type Address = {
 	street_name?: string;
 	street_number?: string;
 	zip_code?: string;
+	neighborhood?: string;
+	state?: string;
+	city?: string;
+	complement?: string;
+	floor?: string;
 }
 
 export declare type Item = {
-	id?: string;
 	title?: string;
 	unit_price?: string;
 	quantity?: number;
+	external_code?: string;
 	category_id?: string;
 	description?: string;
 	picture_url?: string;
