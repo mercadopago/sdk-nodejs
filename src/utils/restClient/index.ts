@@ -20,7 +20,7 @@ class RestClient {
 		const searchParams = new URLSearchParams();
 
 		for (const key in queryParams) {
-			if (Object.prototype.hasOwnProperty.call(queryParams, key)) {
+			if (Object.prototype.hasOwnProperty.call(queryParams,key) && typeof queryParams[key] !== 'undefined') {
 				searchParams.append(key, queryParams[key].toString());
 			}
 		}
