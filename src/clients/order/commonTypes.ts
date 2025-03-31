@@ -87,8 +87,42 @@ export declare type PaymentResponse = {
 	amount?: string;
 	paid_amount?: string;
 	payment_method?: PaymentMethodResponse;
+	automatic_payments?: AutomaticPayments;
+	stored_credential?: StoredCredential;
+	subscription_data?: SubscriptionData;
 	date_of_expiration?: string;
 	expiration_time?: string;
+}
+
+export declare type AutomaticPayments = {
+	payment_profile_id?: string;
+	retries?: number;
+	schedule_date?: string;
+	due_date?: string;
+}
+
+export declare type StoredCredential = {
+	payment_initiator?: string;
+	reason?: string;
+	store_payment_method?: boolean;
+	first_payment?: boolean;
+}
+
+export declare type SubscriptionData = {
+	subscription_sequence?: SubscriptionSequence;
+	invoice_id?: string;
+	invoice_period?: InvoicePeriod;
+	billing_date?: string;
+}
+
+export declare type SubscriptionSequence = {
+	number?: number;
+	total?: number;
+}
+
+export declare type InvoicePeriod = {
+	type?: string;
+	period?: number;
 }
 
 export declare type Attempt = {
