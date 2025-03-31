@@ -16,7 +16,7 @@ order.create({
 	body: {
 		type: 'online',
 		processing_mode: 'automatic',
-		capture_mode: 'automatic',
+		capture_mode: 'automatic_async',
 		total_amount: '1000.00',
 		external_reference: 'ext_ref_1234',
 		transactions: {
