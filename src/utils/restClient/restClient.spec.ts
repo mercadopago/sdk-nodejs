@@ -5,6 +5,10 @@ jest.mock('node-fetch', () => jest.fn());
 const { Response } = jest.requireActual('node-fetch');
 
 describe('RestClient', () => {
+	beforeEach(() => {
+		jest.resetAllMocks();
+	});
+
 	test('Should set 10000 timeout as default', async () => {
 		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
 			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
@@ -228,4 +232,22 @@ describe('RestClient', () => {
 		}
 	});
 
+	test('Should return only the api_response when response status is NO_CONTENT', async () => {
+		const expectedStatus = 204;
+		const expectedHeaders = {
+			'Content-Type': ['application/json'],
+		};
+		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
+			new Response(null, { url: 'url', status: expectedStatus, headers: expectedHeaders })
+		);
+
+		const response = await RestClient.fetch('/test-no-content');
+
+		expect(response).toEqual({
+			api_response: {
+				status: expectedStatus,
+				headers: expectedHeaders,
+			}
+		});
+	});
 });
