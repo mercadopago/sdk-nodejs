@@ -17,3 +17,4 @@ export { Preference } from './clients/preference';
 export { OAuth } from './clients/oAuth';
 export { MerchantOrder } from './clients/merchantOrder';
 export { User } from './clients/user';
+export { Order } from './clients/order';

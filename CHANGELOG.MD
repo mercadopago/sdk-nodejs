@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.4.0
+
+- Feature: Order
+
 ## VERSION 2.3.0
 
 - Add `X-Test-Token` header to request options
