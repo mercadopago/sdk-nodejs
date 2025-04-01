@@ -102,12 +102,18 @@ describe('RestClient', () => {
 		(fetch as jest.MockedFunction<typeof fetch>).mockResolvedValue(
 			new Response(JSON.stringify({ success: true }), { url: 'url', status: 200, statusText: 'OK' })
 		);
-
 		const customHeaders = {
 			Authorization: 'Bearer Token123',
 		};
 		const endpoint = '/test-custom-headers';
-		await RestClient.fetch(endpoint, { headers: customHeaders });
+
+		await RestClient.fetch(endpoint, {
+			headers: customHeaders,
+			expandResponseNodes: 'gateway.reference',
+			cardValidation: 'card_validation',
+			meliSessionId: 'device_id',
+			testToken: true,
+		});
 
 		expect(fetch).toHaveBeenCalledWith(expect.any(String), {
 			method: 'GET',
@@ -118,6 +124,10 @@ describe('RestClient', () => {
 				'User-Agent': expect.any(String),
 				'X-Product-Id': expect.any(String),
 				'X-Tracking-Id': expect.any(String),
+				'X-Meli-Session-Id': 'device_id',
+				'X-Expand-Responde-Nodes': 'gateway.reference',
+				'X-Card-Validation': 'card_validation',
+				'X-Test-Token': 'true',
 			},
 		});
 	});

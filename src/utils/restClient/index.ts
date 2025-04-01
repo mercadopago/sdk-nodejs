@@ -68,6 +68,10 @@ class RestClient {
 			corporationId,
 			integratorId,
 			plataformId,
+			meliSessionId,
+			expandResponseNodes,
+			cardValidation,
+			testToken,
 			...customConfig
 		} = config || {};
 
@@ -81,6 +85,10 @@ class RestClient {
 			...(corporationId ? { [AppConfig.Headers.CORPORATION_ID]: corporationId } : {}),
 			...(integratorId ? { [AppConfig.Headers.INTEGRATOR_ID]: integratorId } : {}),
 			...(plataformId ? { [AppConfig.Headers.PLATFORM_ID]: plataformId } : {}),
+			...(meliSessionId ? { [AppConfig.Headers.MELI_SESSION_ID]: meliSessionId } : {}),
+			...(expandResponseNodes ? { [AppConfig.Headers.EXPAND_RESPONDE_NODES]: expandResponseNodes } : {}),
+			...(cardValidation ? { [AppConfig.Headers.CARD_VALIDATION]: cardValidation } : {}),
+			...(testToken ? { [AppConfig.Headers.TEST_TOKEN]: testToken.toString() } : {}),
 		};
 
 		if (method && method !== 'GET') {
