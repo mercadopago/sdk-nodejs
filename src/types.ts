@@ -18,7 +18,7 @@ export declare type Options = {
 export declare interface SearchOptions {
 	limit?: number;
 	offset?: number;
-	[key: string]: string | number;
+	[key: string]: string | number | undefined;
 }
 
 export declare interface ApiResponse {
