@@ -1,3 +1,5 @@
+This is a fork of mercadopago with the pull request #370 integrated.
+
 ![SDK Node Mercado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/84211022-6fc5-4db1-8772-117eca84f2d9)
 
 # Mercado Pago SDK for NodeJS
