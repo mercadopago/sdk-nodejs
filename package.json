@@ -1,7 +1,7 @@
 {
-	"name": "mercadopago",
-	"version": "2.4.0",
-	"description": "Mercadopago SDK for Node.js",
+	"name": "mpago-fixed",
+	"version": "2.4.0-fixed1",
+	"description": "Fork of mercadopago with the pull request #370 integrated",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
@@ -26,11 +26,11 @@
 		"sdk",
 		"integration"
 	],
-	"author": "Mercado Pago (https://www.mercadopago.com/developers/en)",
+	"author": "Mario R. Carro",
 	"bugs": {
-		"url": "https://github.com/mercadopago/sdk-nodejs/issues"
+		"url": "https://github.com/mariocarro/mercadopago-sdk-nodejs/issues"
 	},
-	"homepage": "https://github.com/mercadopago/sdk-nodejs#readme",
+	"homepage": "https://github.com/mariocarro/mercadopago-sdk-nodejs#readme",
 	"devDependencies": {
 		"@types/jest": "^29.5.3",
 		"@types/node": "^20.4.8",
