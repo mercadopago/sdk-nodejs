@@ -1,5 +1,5 @@
 {
-	"name": "mpago-fixed",
+	"name": "mercadopago",
 	"version": "2.4.0-fixed1",
 	"description": "Fork of mercadopago with the pull request #370 integrated",
 	"main": "dist/index.js",
