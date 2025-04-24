@@ -4,7 +4,6 @@
  * @see {@link https://www.mercadopago.com/developers/en/reference/payments/_payments/post Documentation }.
  */
 
-
 import MercadoPago, { Payment } from '@src/index';
 
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 5000 } });
@@ -18,8 +17,8 @@ payment.create({ body: {
 	payer: {
 		email: '<EMAIL>'
 	},
-  	// installments: 1, // Required for credit card payments
-	// token: '<CARD_TOKEN>', // Required for credit card payments
+// installments: 1, // Required for credit card payments
+// token: '<CARD_TOKEN>', // Required for credit card payments
 },
 requestOptions: {
 	idempotencyKey: '<IDEMPOTENCY_KEY>'
