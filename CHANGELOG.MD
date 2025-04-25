@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.5.0
+
+- Add three_d_secure_mode to types.ts
+
 ## VERSION 2.4.0
 
 - Feature: Order
