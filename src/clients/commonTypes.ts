@@ -13,12 +13,15 @@ export declare type Address = {
 export declare type Items = {
 	id: string;
 	title: string;
+	type?: string;
 	description?: string;
 	picture_url?: string;
 	category_id?: string;
 	quantity: number;
 	currency_id?: string;
 	unit_price: number;
+	warranty?: boolean;
+	category_descriptor?: CategoryDescriptor;
 };
 
 export declare type Phone = {
@@ -71,4 +74,26 @@ export declare type Tax = {
 
 export declare type DifferentialPricing = {
 	id?: number;
+};
+
+export declare type CategoryDescriptor = {
+	passenger?: Passenger;
+	route?: Route;
+	event_date?: string;
+	type?: string;
+};
+
+export declare type Passenger = {
+	first_name?: string;
+	last_name?: string;
+	identification_type?: string;
+	identification_number?: string;
+};
+
+export declare type Route = {
+	departure?: string;
+	destination?: string;
+	departure_date_time?: string;
+	arrival_date_time?: string;
+	company?: string;
 };

@@ -14,7 +14,11 @@ export declare type Payer = {
 	identification?: Identification;
 	address?: Address;
 	date_created?: string;
-	last_purchase?: string;
+	authentication_type?: string,
+  is_prime_user?: boolean,
+  is_first_purchase_online?: boolean,
+  registration_date?: string,
+  last_purchase?: string,
 };
 
 export declare type ExcludedPaymentMethods = {

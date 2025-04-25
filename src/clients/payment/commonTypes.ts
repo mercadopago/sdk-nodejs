@@ -60,6 +60,11 @@ export declare type Payer = {
   last_name?: string;
   entity_type?: string;
   address?: Address;
+  authentication_type?: string,
+  is_prime_user?: boolean,
+  is_first_purchase_online?: boolean,
+  registration_date?: string,
+  last_purchase?: string,
 }
 
 export declare type PayerAdditionalInfo = {
