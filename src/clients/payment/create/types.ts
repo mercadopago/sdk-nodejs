@@ -35,6 +35,7 @@ export declare type PaymentCreateRequest = {
   statement_descriptor?: string,
   token?: string,
   transaction_amount?: number,
+  three_d_secure_mode?: string,
   payer?: PayerRequest,
   forward_data?:ForwardDataRequest,
   point_of_interaction?: PointOfInteractionRequest,
