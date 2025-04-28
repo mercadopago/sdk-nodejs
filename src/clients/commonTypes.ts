@@ -1,3 +1,4 @@
+import { Identification } from '@src/clients/commonTypes';
 export declare type Identification = {
 	type?: string;
 	number?: string;
@@ -13,7 +14,6 @@ export declare type Address = {
 export declare type Items = {
 	id: string;
 	title: string;
-	type?: string;
 	description?: string;
 	picture_url?: string;
 	category_id?: string;
@@ -48,7 +48,7 @@ export declare type FreeMethods = {
 export declare type ReceiverAddress = {
 	zip_code?: string;
 	street_name?: string;
-	street_number?: number;
+	street_number?: string;
 	floor?: string;
 	apartment?: string;
 	city_name?: string;
@@ -86,14 +86,15 @@ export declare type CategoryDescriptor = {
 export declare type Passenger = {
 	first_name?: string;
 	last_name?: string;
-	identification_type?: string;
-	identification_number?: string;
+	identification?: Identification;
 };
 
 export declare type Route = {
 	departure?: string;
 	destination?: string;
 	departure_date_time?: string;
-	arrival_date_time?: string;
+	arrival_date_time: string;
+	origin_id?: string;
+	destination_id?: string;
 	company?: string;
 };

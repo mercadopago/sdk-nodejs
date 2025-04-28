@@ -85,6 +85,7 @@ export declare type SubMerchant = {
     document_type?: string;
     phone?: string;
     url?: string;
+    legal_name?: string;
 }
 
 export declare type PointOfInteractionRequest = {
