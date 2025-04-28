@@ -33,16 +33,16 @@ payment
 				last_name: 'Sobrenome',
 				identification: {
 					type: 'CPF',
-					number: '12345678909',
+					number: '{{DOC_NUMBER}}',
 				},
 				phone: {
-					area_code: '11',
-					number: '999999999',
+					area_code: '{{CODE}}',
+					number: '{{PHONE_NUMBER}}',
 				},
 				address: {
 					street_name: 'Av. das Nações Unidas',
 					street_number: '99',
-					zip_code: '00000000',
+					zip_code: '{{CODE}}',
 				},
 			},
 			forward_data: {
@@ -51,15 +51,15 @@ payment
 					mcc: '1234',
 					country: 'BR',
 					address_door_number: 123,
-					zip: '00000000',
-					document_number: '12345678909',
+					zip: '{{CODE}}',
+					document_number: '{{DOC_NUMBER}}',
 					city: 'São Paulo',
 					address_street: 'Av. das Nações Unidas',
 					legal_name: 'Nome do sub-merchant',
 					region_code_iso: 'BR-SP',
 					region_code: 'SP',
 					document_type: 'CPF',
-					phone: '11999999999',
+					phone: '{{PHONE_NUMBER}}',
 					url: 'https://www.mercadopago.com.br',
 				},
 			},
@@ -80,7 +80,7 @@ payment
 								last_name: 'Sobrenome',
 								identification: {
 									type: 'CPF',
-									number: '12345678909',
+									number: '{{DOC_NUMBER}}',
 								},
 							},
 							route: {
@@ -102,20 +102,20 @@ payment
 					last_purchase: '2023-01-01T00:00:00Z',
 					authentication_type: 'Gmail',
 					phone: {
-						area_code: '11',
-						number: '999999999',
+						area_code: '{{CODE}}',
+						number: '{{PHONE_NUMBER}}',
 					},
 					address: {
 						street_name: 'Av. das Nações Unidas',
 						street_number: '99',
-						zip_code: '00000000',
+						zip_code: '{{CODE}}',
 					},
 				},
 				shipments: {
 					local_pickup: true,
 					express_shipment: true,
 					receiver_address: {
-						zip_code: '00000000',
+						zip_code: '{{CODE}}',
 						street_name: 'Av. das Nações Unidas',
 						street_number: '99',
 						floor: '5',
