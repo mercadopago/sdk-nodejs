@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.6.0
+
+- Add industry data and create a sample of PaymentCreateRequest with industry data fields.
+
 ## VERSION 2.5.0
 
 - Add three_d_secure_mode to types.ts
