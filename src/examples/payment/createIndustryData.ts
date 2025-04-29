@@ -1,5 +1,5 @@
 /**
- * Mercado Pago Payment Capture.
+ * Mercado Pago Payment with Industry Data.
  *
  * @see {@link https://www.mercadopago.com/developers/en/reference/payments/_payments/post Documentation }.
  */
@@ -17,7 +17,7 @@ payment
 	.create({
 		body: {
 			transaction_amount: 120.34,
-			description: 'Título do produto',
+			description: 'Product title',
 			payment_method_id: 'pix',
 			binary_mode: true,
 			capture: true,
@@ -26,11 +26,11 @@ payment
 				orderNumber: '123456',
 			},
 			notification_url: '{{URL}}',
-			statement_descriptor: 'Nome do produto',
+			statement_descriptor: 'Statement descriptor',
 			payer: {
 				email: '{{PAYER_EMAIL}}',
-				first_name: 'Nome',
-				last_name: 'Sobrenome',
+				first_name: 'Name',
+				last_name: 'Surname',
 				identification: {
 					type: 'CPF',
 					number: '{{DOC_NUMBER}}',
@@ -55,7 +55,7 @@ payment
 					document_number: '{{DOC_NUMBER}}',
 					city: 'São Paulo',
 					address_street: 'Av. das Nações Unidas',
-					legal_name: 'Nome do sub-merchant',
+					legal_name: 'Sub-merchant name',
 					region_code_iso: 'BR-SP',
 					region_code: 'SP',
 					document_type: 'CPF',
@@ -67,8 +67,8 @@ payment
 				items: [
 					{
 						id: '1234',
-						title: 'Título do produto',
-						description: 'Descrição do produto',
+						title: 'Product title',
+						description: 'Product description',  
 						picture_url: 'https://www.mercadopago.com.br/picture.jpg',
 						category_id: '1234',
 						quantity: 1,
@@ -76,8 +76,8 @@ payment
 						warranty: true,
 						category_descriptor: {
 							passenger: {
-								first_name: 'Nome',
-								last_name: 'Sobrenome',
+								first_name: 'Name',
+								last_name: 'Surname',
 								identification: {
 									type: 'CPF',
 									number: '{{DOC_NUMBER}}',
@@ -94,8 +94,8 @@ payment
 					},
 				],
 				payer: {
-					first_name: 'Nome',
-					last_name: 'Sobrenome',
+					first_name: 'Name',
+					last_name: 'Surname',
 					is_prime_user: true,
 					is_first_purchase_online: true,
 					registration_date: '2023-01-01T00:00:00Z',
