@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.6.1
+
+- Fixed self import conflict of Identification type in clients/commonTypes.ts.
+
 ## VERSION 2.6.0
 
 - Add industry data and create a sample of PaymentCreateRequest with industry data fields.

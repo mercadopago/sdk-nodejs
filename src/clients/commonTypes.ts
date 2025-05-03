@@ -1,4 +1,3 @@
-import { Identification } from '@src/clients/commonTypes';
 export declare type Identification = {
 	type?: string;
 	number?: string;
