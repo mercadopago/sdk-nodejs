@@ -30,7 +30,38 @@ export declare type CreateOrderRequest = {
 	config?: Config;
 	checkout_available_at?: string;
 	expiration_time?: string;
-	additional_info?: AdditionalInfoRequest;
+	additional_info?: {
+		'payer.authentication_type'?: string;
+		'payer.registration_date'?: string;
+		'payer.is_prime_user'?: boolean;
+		'payer.is_first_purchase_online'?: boolean;
+		'payer.last_purchase'?: string;
+		'payer.address'?: Address;
+		'shipment.express'?: boolean;
+		'shipment.local_pickup'?: boolean;
+		'platform.shipment.delivery_promise'?: string;
+		'platform.shipment.drop_shipping'?: string;
+		'platform.shipment.safety'?: string;
+		'platform.shipment.tracking.code'?: string;
+		'platform.shipment.tracking.status'?: string;
+		'platform.shipment.withdrawn'?: boolean;
+		'platform.seller.id'?: string;
+		'platform.seller.name'?: string;
+		'platform.seller.email'?: string;
+		'platform.seller.status'?: string;
+		'platform.seller.referral_url'?: string;
+		'platform.seller.registration_date'?: string;
+		'platform.seller.hired_plan'?: string;
+		'platform.seller.business_type'?: string;
+		'platform.seller.address'?: Address;
+		'platform.seller.identification.type'?: string;
+		'platform.seller.identification.number'?: string;
+		'platform.seller.phone.area_code'?: string;
+		'platform.seller.phone.number'?: string;
+		'platform.authentication'?: string;
+		'travel.passengers'?: PassengerRequest[];
+		'travel.routes'?: RouteRequest[];
+	};
 }
 
 export declare type TransactionsRequest = {
@@ -63,65 +94,6 @@ export declare type PayerRequest = {
 	identification?: Identification;
 	phone?: Phone;
 	address?: Address;
-}
-
-export declare type AdditionalInfoRequest = {
-	payer?: AdditionalInfoPayerRequest;
-	shipment?: AdditionalInfoShipmentRequest;
-	platform?: AdditionalInfoPlatformRequest;
-	travel?: AdditionalInfoTravelRequest;
-}
-
-export declare type AdditionalInfoPayerRequest = {
-	authentication_type?: string;
-	registration_date?: string;
-	is_prime_user?: boolean;
-	is_first_purchase_online?: boolean;
-	last_purchase?: string;
-	address?: Address;
-}
-
-export declare type AdditionalInfoShipmentRequest = {
-	express?: boolean;
-	local_pickup?: boolean;
-}
-
-export declare type AdditionalInfoPlatformRequest = {
-	shipment?: PlatformShipmentRequest;
-	seller?: PlatformSellerRequest;
-	authentication?: string;
-}
-
-export declare type PlatformShipmentRequest = {
-	delivery_promise?: string;
-	drop_shipping?: string;
-	safety?: string;
-	tracking?: ShipmentTrackingRequest;
-	withdrawn?: boolean;
-}
-
-export declare type ShipmentTrackingRequest = {
-	code?: string;
-	status?: string;
-}
-
-export declare type PlatformSellerRequest = {
-	id?: string;
-	name?: string;
-	email?: string;
-	status?: string;
-	referral_url?: string;
-	registration_date?: string;
-	hired_plan?: string;
-	business_type?: string;
-	address?: Address;
-	identification?: Identification;
-	phone?: Phone;
-}
-
-export declare type AdditionalInfoTravelRequest = {
-	passengers?: PassengerRequest[];
-	routes?: RouteRequest[];
 }
 
 export declare type PassengerRequest = {
