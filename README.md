@@ -174,6 +174,6 @@ site: [English](https://www.mercadopago.com/developers/en/support/center/contact
 ## 🏻 License
 
 ```
-MIT license. Copyright (c) 2024 - Mercado Pago / Mercado Libre
+MIT license. Copyright (c) 2025 - Mercado Pago / Mercado Libre
 For more information, see the LICENSE file.
 ```
