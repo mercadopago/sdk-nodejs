@@ -35,6 +35,7 @@ order.create({
 		},
 		description: 'some description',
 		payer: {
+			entity_type: 'individual',
 			email: '<PAYER_EMAIL>',
 			first_name: 'John',
 			last_name: 'Doe',
@@ -54,7 +55,6 @@ order.create({
 				state: 'SP',
 				neighborhood: 'Bonfim',
 				complement: 'complement',
-				floor: 'floor',
 			}
 		},
 		marketplace: 'NONE',
@@ -66,7 +66,10 @@ order.create({
 				quantity: 1,
 				description: 'Some item description',
 				category_id: 'category_id',
-				picture_url: 'https://mysite.com/img/item.jpg'
+				picture_url: 'https://mysite.com/img/item.jpg',
+				external_code: 'external_code',
+				type: 'item type',
+				warranty: false,
 			}
 		],
 		expiration_time: 'P3D'

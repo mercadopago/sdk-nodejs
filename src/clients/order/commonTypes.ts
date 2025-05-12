@@ -176,7 +176,7 @@ export declare type Address = {
 	state?: string;
 	city?: string;
 	complement?: string;
-	floor?: string;
+	country?: string;
 }
 
 export declare type Item = {
@@ -185,8 +185,11 @@ export declare type Item = {
 	quantity?: number;
 	external_code?: string;
 	category_id?: string;
+	type?: string;
 	description?: string;
 	picture_url?: string;
+	warranty?: boolean;
+	event_date?: string;
 }
 
 export declare type PaymentRequest = {
