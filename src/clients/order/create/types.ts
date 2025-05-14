@@ -36,7 +36,6 @@ export declare type CreateOrderRequest = {
 		'payer.is_prime_user'?: boolean;
 		'payer.is_first_purchase_online'?: boolean;
 		'payer.last_purchase'?: string;
-		'payer.address'?: Address;
 		'shipment.express'?: boolean;
 		'shipment.local_pickup'?: boolean;
 		'platform.shipment.delivery_promise'?: string;
@@ -53,7 +52,14 @@ export declare type CreateOrderRequest = {
 		'platform.seller.registration_date'?: string;
 		'platform.seller.hired_plan'?: string;
 		'platform.seller.business_type'?: string;
-		'platform.seller.address'?: Address;
+		'platform.seller.address.city'?: string,
+		'platform.seller.address.state'?: string,
+		'platform.seller.address.neighborhood'?: string,
+		'platform.seller.address.street_name'?: string,
+		'platform.seller.address.street_number'?: string,
+		'platform.seller.address.zip_code'?: string,
+		'platform.seller.address.complement'?: string,
+		'platform.seller.address.country'?: string,
 		'platform.seller.identification.type'?: string;
 		'platform.seller.identification.number'?: string;
 		'platform.seller.phone.area_code'?: string;
