@@ -1,4 +1,4 @@
-// API version: 7d364c51-04c7-45e3-af61-f82423bcc39c
+// API version: acd67b14-97c4-4a4a-840d-0a018c09654f
 
 import { Phone } from '@src/clients/commonTypes';
 import { MercadoPagoConfig } from '@src/mercadoPagoConfig';
@@ -30,6 +30,44 @@ export declare type CreateOrderRequest = {
 	config?: Config;
 	checkout_available_at?: string;
 	expiration_time?: string;
+	additional_info?: {
+		'payer.authentication_type'?: string;
+		'payer.registration_date'?: string;
+		'payer.is_prime_user'?: boolean;
+		'payer.is_first_purchase_online'?: boolean;
+		'payer.last_purchase'?: string;
+		'shipment.express'?: boolean;
+		'shipment.local_pickup'?: boolean;
+		'platform.shipment.delivery_promise'?: string;
+		'platform.shipment.drop_shipping'?: string;
+		'platform.shipment.safety'?: string;
+		'platform.shipment.tracking.code'?: string;
+		'platform.shipment.tracking.status'?: string;
+		'platform.shipment.withdrawn'?: boolean;
+		'platform.seller.id'?: string;
+		'platform.seller.name'?: string;
+		'platform.seller.email'?: string;
+		'platform.seller.status'?: string;
+		'platform.seller.referral_url'?: string;
+		'platform.seller.registration_date'?: string;
+		'platform.seller.hired_plan'?: string;
+		'platform.seller.business_type'?: string;
+		'platform.seller.address.city'?: string,
+		'platform.seller.address.state'?: string,
+		'platform.seller.address.neighborhood'?: string,
+		'platform.seller.address.street_name'?: string,
+		'platform.seller.address.street_number'?: string,
+		'platform.seller.address.zip_code'?: string,
+		'platform.seller.address.complement'?: string,
+		'platform.seller.address.country'?: string,
+		'platform.seller.identification.type'?: string;
+		'platform.seller.identification.number'?: string;
+		'platform.seller.phone.area_code'?: string;
+		'platform.seller.phone.number'?: string;
+		'platform.authentication'?: string;
+		'travel.passengers'?: PassengerRequest[];
+		'travel.routes'?: RouteRequest[];
+	};
 }
 
 export declare type TransactionsRequest = {
@@ -55,10 +93,25 @@ export declare type PaymentMethodRequest = {
 
 export declare type PayerRequest = {
 	customer_id?: string;
+	entity_type?: string;
 	email?: string;
 	first_name?: string;
 	last_name?: string;
 	identification?: Identification;
 	phone?: Phone;
 	address?: Address;
+}
+
+export declare type PassengerRequest = {
+	first_name?: string;
+	last_name?: string;
+	identification?: Identification;
+}
+
+export declare type RouteRequest = {
+	departure?: string;
+	destination?: string;
+	departure_date_time?: string;
+	arrival_date_time?: string;
+	company?: string;
 }

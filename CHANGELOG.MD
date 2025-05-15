@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 2.7.0
+
+- Add Order industry fields
+- Fix Identification cycling import
+
 ## VERSION 2.6.0
 
 - Add industry data and create a sample of PaymentCreateRequest with industry data fields.

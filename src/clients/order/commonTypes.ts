@@ -1,4 +1,4 @@
-// API version: 7d364c51-04c7-45e3-af61-f82423bcc39c
+// API version: acd67b14-97c4-4a4a-840d-0a018c09654f
 
 import { ApiResponse } from '@src/types';
 import { DifferentialPricing } from '../commonTypes';
@@ -176,7 +176,7 @@ export declare type Address = {
 	state?: string;
 	city?: string;
 	complement?: string;
-	floor?: string;
+	country?: string;
 }
 
 export declare type Item = {
@@ -185,8 +185,11 @@ export declare type Item = {
 	quantity?: number;
 	external_code?: string;
 	category_id?: string;
+	type?: string;
 	description?: string;
 	picture_url?: string;
+	warranty?: boolean;
+	event_date?: string;
 }
 
 export declare type PaymentRequest = {
