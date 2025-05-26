@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 2.8.0
+
+- Add Network-Transaction-ID
+
 ## VERSION 2.7.0
 
 - Add Order industry fields
