@@ -1,6 +1,7 @@
 import { ApiResponse } from '@src/types';
 import { RefundResponse } from '../paymentRefund/commonTypes';
 import type { Address, Items, Tax } from '../commonTypes';
+import type { ForwardData } from './forwardDataTypes';
 
 export declare type MerchantAccount = {
   merchant_account_id?: string;
@@ -299,28 +300,7 @@ export declare interface PaymentResponse extends ApiResponse {
     financial_institution_code?: string;
   };
   tags?: Array<string>;
-  forward_data?: {
-    sub_merchant?: {
-      sub_merchant_id?: string;
-      mcc?: string;
-      country?: string;
-      address_door_number?: number;
-      zip?: string;
-      document_number?: string;
-      city?: string;
-      address_street?: string;
-      business_name?: string;
-      region_code_iso?: string;
-      region_code?: string;
-      document_type?: string;
-      phone?: string;
-      url?: string;
-      legal_name?: string;
-    };
-    network_transaction_data?: {
-      network_transaction_id?: string;
-    };
-  };
+  forward_data?: ForwardData;
   expanded?: {
     payment_method?: Record<string, any>;
     payer?: Record<string, any>;
