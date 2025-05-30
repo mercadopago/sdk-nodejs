@@ -2,6 +2,7 @@ import { MercadoPagoConfig } from './mercadoPagoConfig';
 export default MercadoPagoConfig;
 export { MercadoPagoConfig };
 
+export { AdvancedPayment } from './clients/advancedPayment';
 export { CardToken } from './clients/cardToken';
 export { CustomerCard } from './clients/customerCard';
 export { Customer } from './clients/customer';
