@@ -1,5 +1,6 @@
 import get from './get';
 import create from './create';
+import createByEmail from './createByEmail';
 import remove from './remove';
 import update from './update';
 import search from './search';
@@ -12,6 +13,7 @@ import type { CustomerSearchData, CustomerSearchResultsPage } from './search/typ
 import type { CustomerCardResponse, CustomerCardGetRemoveData } from '../customerCard/commonTypes';
 import type { CustomerCardListData } from '../customerCard/list/types';
 import type { CustomerCreateData } from './create/types';
+import type { CustomerCreateByEmailData } from './createByEmail/types';
 import type { CustomerCardCreateData } from '../customerCard/create/types';
 
 /**
@@ -36,6 +38,16 @@ export class Customer {
 	create ({ body, requestOptions }: CustomerCreateData): Promise<CustomerResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return create({ body, config: this.config });
+	}
+
+	/**
+	 * Mercado Pago Customer create by email.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/createByEmail.ts Usage Example  }.
+	 */
+	createByEmail({ email, first_name, last_name, requestOptions }: CustomerCreateByEmailData): Promise<CustomerResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return createByEmail({ email, first_name, last_name, config: this.config });
 	}
 
 	/**

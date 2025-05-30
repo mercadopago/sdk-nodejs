@@ -89,9 +89,17 @@ export declare interface PaymentSearchOptions extends SearchOptions {
   range?: 'date_created' | 'date_last_updated' | 'date_approved' | 'money_release_date' | 'date_created';
   begin_date?: string;
   end_date?: string;
+  status?: 'pending' | 'approved' | 'authorized' | 'in_process' | 'in_mediation' | 'rejected' | 'cancelled' | 'refunded' | 'charged_back';
+  site_id?: string;
+  operation_type?: string;
 }
 
 export declare type PaymentSearchData = {
   options?: PaymentSearchOptions;
+  requestOptions?: Options;
+}
+
+export declare type PaymentSearchAuthorizedData = {
+  options?: Omit<PaymentSearchOptions, 'status'>;
   requestOptions?: Options;
 }
