@@ -1,0 +1,409 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Mercado Pago Node.js SDK - Cursor Rules
+
+## Visão Geral do Projeto
+Este é o SDK oficial do Mercado Pago para Node.js, uma biblioteca de processamento de pagamentos escrita em TypeScript que segue as melhores práticas de desenvolvimento Node.js e TypeScript. O SDK é distribuído como um pacote npm e segue uma arquitetura modular com clara separação de responsabilidades.
+
+## Estrutura e Organização do Projeto
+
+### Estrutura de Diretórios Principal
+```
+src/
+├── index.ts                      # Ponto de entrada principal
+├── mercadoPagoConfig.ts          # Configuração global
+├── types.ts                      # Tipos e interfaces comuns
+├── clients/                      # Clientes de API
+│   ├── base.client.ts           # Cliente base abstrato
+│   └── {resource}.client.ts     # Clientes específicos
+├── utils/                        # Utilitários
+│   ├── http.util.ts             # Utilitários HTTP
+│   └── validation.util.ts       # Utilitários de validação
+├── examples/                     # Exemplos de uso
+└── mocks/                       # Mocks para testes
+tests/
+├── unit/                        # Testes unitários
+└── integration/                 # Testes de integração
+```
+
+## Convenções de Nomenclatura
+
+### Classes e Interfaces
+- **Clientes**: `{Resource}Client` (ex: `PaymentClient`, `OrderClient`)
+- **Interfaces**: Prefixo `I` (ex: `IPayment`, `IConfig`)
+- **Types**: Sufixo `Type` (ex: `PaymentType`, `ConfigType`)
+- **Enums**: Sufixo `Enum` (ex: `StatusEnum`, `CurrencyEnum`)
+
+### Métodos e Variáveis
+- Usar **camelCase** para métodos e variáveis
+- Métodos privados com prefixo `_`
+- Constantes em **SCREAMING_SNAKE_CASE**
+- Props em **camelCase**
+
+### Arquivos e Diretórios
+- Arquivos em **kebab-case.ts**
+- Sufixo `.client.ts` para clientes
+- Sufixo `.type.ts` para tipos
+- Sufixo `.test.ts` para testes
+
+## Padrões de Código
+
+### Estilo TypeScript
+```typescript
+import { Injectable } from '@decorators/di';
+import { IPayment, PaymentCreateParams } from '../types';
+import { BaseClient } from './base.client';
+
+@Injectable()
+export class PaymentClient extends BaseClient {
+  private readonly basePath = '/v1/payments';
+
+  public async create(params: PaymentCreateParams): Promise<IPayment> {
+    return this.post<IPayment>(this.basePath, params);
+  }
+
+  public async get(id: string): Promise<IPayment> {
+    return this.get<IPayment>(`${this.basePath}/${id}`);
+  }
+}
+```
+
+### Tipos e Interfaces
+```typescript
+export interface IPayment {
+  id: string;
+  status: PaymentStatus;
+  amount: number;
+  currency: string;
+  description?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export type PaymentCreateParams = Omit<IPayment, 'id' | 'status'>;
+
+export enum PaymentStatus {
+  PENDING = 'pending',
+  APPROVED = 'approved',
+  REJECTED = 'rejected',
+}
+```
+
+### Configuração
+```typescript
+import { IConfig } from './types';
+
+export class MercadoPagoConfig {
+  private static instance: MercadoPagoConfig;
+  private config: IConfig;
+
+  private constructor() {
+    this.config = {
+      accessToken: process.env.MP_ACCESS_TOKEN,
+      timeout: 5000,
+    };
+  }
+
+  public static getInstance(): MercadoPagoConfig {
+    if (!MercadoPagoConfig.instance) {
+      MercadoPagoConfig.instance = new MercadoPagoConfig();
+    }
+    return MercadoPagoConfig.instance;
+  }
+}
+```
+
+## Práticas de Desenvolvimento
+
+### Geral
+- Usar TypeScript strict mode
+- Implementar interfaces para contratos
+- Usar injeção de dependência
+- Seguir princípios SOLID
+- Documentar com JSDoc
+
+### Tratamento de Erros
+```typescript
+export class MercadoPagoError extends Error {
+  constructor(
+    message: string,
+    public readonly statusCode?: number,
+    public readonly details?: Record<string, unknown>,
+  ) {
+    super(message);
+    this.name = 'MercadoPagoError';
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+```
+
+### Logging
+```typescript
+import { Logger } from './logger';
+
+export class PaymentService {
+  private readonly logger = new Logger(PaymentService.name);
+
+  public async processPayment(payment: IPayment): Promise<void> {
+    try {
+      this.logger.info('Processing payment', { paymentId: payment.id });
+      // Processamento
+      this.logger.info('Payment processed successfully');
+    } catch (error) {
+      this.logger.error('Failed to process payment', error);
+      throw error;
+    }
+  }
+}
+```
+
+## Testes
+
+### Jest Configuration
+```typescript
+// jest.config.ts
+export default {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/src'],
+  collectCoverageFrom: ['src/**/*.ts'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
+};
+```
+
+### Padrões de Teste
+```typescript
+import { PaymentClient } from './payment.client';
+import { mockPayment } from '../mocks';
+
+describe('PaymentClient', () => {
+  let client: PaymentClient;
+
+  beforeEach(() => {
+    client = new PaymentClient();
+  });
+
+  describe('create', () => {
+    it('should create a payment successfully', async () => {
+      const result = await client.create(mockPayment);
+      
+      expect(result.id).toBeDefined();
+      expect(result.status).toBe('pending');
+    });
+  });
+});
+```
+
+## Documentação
+
+### JSDoc
+```typescript
+/**
+ * Processa um pagamento.
+ * @param {IPayment} payment - O pagamento a ser processado
+ * @returns {Promise<void>} Promise que resolve quando o processamento é concluído
+ * @throws {ValidationError} Se os dados do pagamento forem inválidos
+ * @throws {ProcessingError} Se houver erro no processamento
+ */
+async function processPayment(payment: IPayment): Promise<void> {
+  // Implementação
+}
+```
+
+## Gerenciamento de Dependências
+
+### package.json
+```json
+{
+  "name": "mercadopago",
+  "version": "2.0.0",
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "class-validator": "^0.13.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "jest": "^27.0.0",
+    "ts-jest": "^27.0.0",
+    "typescript": "^4.5.0"
+  }
+}
+```
+
+## Segurança
+
+### Práticas
+- Validar todas as entradas
+- Usar HTTPS
+- Implementar rate limiting
+- Seguir OWASP guidelines
+
+### Validação
+```typescript
+import { IsString, IsNumber, Min } from 'class-validator';
+
+export class PaymentDTO {
+  @IsString()
+  public description: string;
+
+  @IsNumber()
+  @Min(0)
+  public amount: number;
+
+  @IsString()
+  public currency: string;
+}
+```
+
+## Performance
+
+### Otimizações
+- Usar HTTP keep-alive
+- Implementar caching
+- Otimizar imports
+- Usar streams quando apropriado
+
+### Concorrência
+```typescript
+import { Promise as BluebirdPromise } from 'bluebird';
+
+async function processPayments(payments: IPayment[]): Promise<void> {
+  await BluebirdPromise.map(
+    payments,
+    async (payment) => {
+      await processPayment(payment);
+    },
+    { concurrency: 5 },
+  );
+}
+```
+
+## Controle de Versão
+
+### Git
+- Commits atômicos
+- Mensagens descritivas
+- Feature branches
+- Pull requests
+
+### Releases
+- Semantic Versioning
+- CHANGELOG.md
+- Release tags
+- Breaking changes documentados
+
+## Qualidade de Código
+
+### Ferramentas
+- ESLint para linting
+- Prettier para formatação
+- Jest para testes
+- TypeDoc para documentação
+
+### CI/CD
+- GitHub Actions
+- Testes automatizados
+- Code coverage
+- Deploy automático
+## Internacionalização
+
+### i18n
+- Usar i18next
+- Strings externalizadas
+- Suporte a múltiplos idiomas
+- Formatação local-aware
+
+## Manutenção
+
+### Práticas
+- Refatoração contínua
+- Remoção de código morto
+- Atualização de dependências
+- Documentação atualizada
+
+### Monitoramento
+- Logging estruturado
+- APM tools
+- Error tracking
+- Health checks
+
+## Configuração do Editor
+
+### VSCode
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "relative"
+}
+```
+
+### ESLint
+```javascript
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+  },
+};
+```
+
+## Scripts NPM
+
+### package.json
+```json
+{
+  "scripts": {
+    "build": "tsc -p tsconfig.production.json",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint 'src/**/*.ts'",
+    "format": "prettier --write 'src/**/*.ts'",
+    "docs": "typedoc src/",
+    "prepare": "husky install"
+  }
+}
+```
+
+## Hooks Git
+
+### pre-commit
+```yaml
+repos:
+  - repo: local
+    hooks:
+      - id: lint
+        name: lint
+        entry: npm run lint
+        language: system
+        types: [ts]
+      - id: test
+        name: test
+        entry: npm run test
+        language: system
+        pass_filenames: false
+``` 
