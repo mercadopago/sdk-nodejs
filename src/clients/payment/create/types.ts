@@ -40,7 +40,12 @@ export declare type PaymentCreateRequest = {
   forward_data?:ForwardDataRequest,
   point_of_interaction?: PointOfInteractionRequest,
   sponsor_id?: number,
-  transaction_details?: TransactionDetailsRequest
+  transaction_details?: TransactionDetailsRequest,
+  processing_mode?: string,
+  merchant_account_id?: string,
+  payment_method_option_id?: string,
+  net_amount?: number,
+  marketplace?: string,
 };
 
 export declare type PayerRequest = {
