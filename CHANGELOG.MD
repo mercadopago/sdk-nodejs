@@ -3,6 +3,8 @@
 ## VERSION 2.8.0
 
 - Add Network-Transaction-ID
+- Add `card_number`, `expiration_month` and `expiration_year` fields to Card Token request
+- Add `email` to create customer example
 
 ## VERSION 2.7.0
 
