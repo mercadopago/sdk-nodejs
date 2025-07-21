@@ -24,7 +24,17 @@ payment.create({
 		// installments: 1, // Required for credit card payments
 		// token: '<CARD_TOKEN>', // Required for credit card payments
 	},
+
 	requestOptions: {
 		idempotencyKey: '<IDEMPOTENCY_KEY>'
 	}
 }).then(console.log).catch(console.log);
+
+// installments: 1, // Required for credit card payments
+// token: '<CARD_TOKEN>', // Required for credit card payments
+},
+requestOptions: {
+	idempotencyKey: '<IDEMPOTENCY_KEY>'
+} }).then(console.log).catch(console.log);
+
+
