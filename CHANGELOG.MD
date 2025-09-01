@@ -1,5 +1,16 @@
 # Releases
 
+## VERSION 2.8.1
+
+- Chore: Atualização do projeto local alinhada ao release 2.8.0
+- Chore: Atualização de dependências e validação de build/testes
+- Fix: Remoção de campo inválido `aa` em `CreateOrderRequest` em `order/create`
+
+## VERSION 2.4.1
+
+- Chore: Atualização de dependências de desenvolvimento e runtime
+- Fix: Remoção de campo inválido `aa` em `CreateOrderRequest` em `order/create`
+
 ## VERSION 2.4.0
 
 - Feature: Order
