@@ -1,8 +1,6 @@
 {
 	"name": "mercadopago",
-
 	"version": "2.9.0",
-
 	"description": "Mercadopago SDK for Node.js",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -35,7 +33,7 @@
 	"homepage": "https://github.com/mercadopago/sdk-nodejs#readme",
 	"devDependencies": {
 		"@types/jest": "^29.5.3",
-		"@types/node": "^20.4.8",
+		"@types/node": "^20.19.11",
 		"@types/node-fetch": "^2.6.4",
 		"@types/uuid": "^9.0.3",
 		"@typescript-eslint/eslint-plugin": "^6.3.0",
