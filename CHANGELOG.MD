@@ -1,6 +1,6 @@
 # Releases
 
-## VERSION 2.8.1
+## VERSION 2.9.0
 
 - Chore: Atualização do projeto local alinhada ao release 2.8.0
 - Chore: Atualização de dependências e validação de build/testes
