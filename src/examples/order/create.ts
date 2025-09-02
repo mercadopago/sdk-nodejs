@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Create Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/create/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/orders/online-payments/create/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';
@@ -11,7 +11,6 @@ const mercadoPagoConfig = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', optio
 
 const order = new Order(mercadoPagoConfig);
 
-// Full Order example
 order.create({
 	body: {
 		type: 'online',
@@ -35,6 +34,7 @@ order.create({
 		},
 		description: 'some description',
 		payer: {
+			entity_type: 'individual',
 			email: '<PAYER_EMAIL>',
 			first_name: 'John',
 			last_name: 'Doe',
@@ -54,7 +54,6 @@ order.create({
 				state: 'SP',
 				neighborhood: 'Bonfim',
 				complement: 'complement',
-				floor: 'floor',
 			}
 		},
 		marketplace: 'NONE',
@@ -66,7 +65,10 @@ order.create({
 				quantity: 1,
 				description: 'Some item description',
 				category_id: 'category_id',
-				picture_url: 'https://mysite.com/img/item.jpg'
+				picture_url: 'https://mysite.com/img/item.jpg',
+				external_code: 'external_code',
+				type: 'item type',
+				warranty: false,
 			}
 		],
 		expiration_time: 'P3D'

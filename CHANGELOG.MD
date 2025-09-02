@@ -11,6 +11,25 @@
 - Chore: Atualização de dependências de desenvolvimento e runtime
 - Fix: Remoção de campo inválido `aa` em `CreateOrderRequest` em `order/create`
 
+## VERSION 2.8.0
+
+- Add Network-Transaction-ID
+- Add `card_number`, `expiration_month` and `expiration_year` fields to Card Token request
+- Add `email` to create customer example
+
+## VERSION 2.7.0
+
+- Add Order industry fields
+- Fix Identification cycling import
+
+## VERSION 2.6.0
+
+- Add industry data and create a sample of PaymentCreateRequest with industry data fields.
+
+## VERSION 2.5.0
+
+- Add three_d_secure_mode to types.ts
+
 ## VERSION 2.4.0
 
 - Feature: Order

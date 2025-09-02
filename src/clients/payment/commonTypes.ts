@@ -60,6 +60,11 @@ export declare type Payer = {
   last_name?: string;
   entity_type?: string;
   address?: Address;
+  authentication_type?: string,
+  is_prime_user?: boolean,
+  is_first_purchase_online?: boolean,
+  registration_date?: string,
+  last_purchase?: string,
 }
 
 export declare type PayerAdditionalInfo = {
@@ -212,6 +217,18 @@ export declare type ThreeDSInfo = {
   creq?: string;
 };
 
+export declare type GatewayReference = {
+  network_transaction_id?: string;
+};
+
+export declare type Gateway = {
+  reference?: GatewayReference;
+};
+
+export declare type Expanded = {
+  gateway?: Gateway;
+};
+
 export declare interface PaymentResponse extends ApiResponse {
   id?: number;
   date_created?: string;
@@ -275,5 +292,6 @@ export declare interface PaymentResponse extends ApiResponse {
   payment_method_option_id?: string;
   taxes?: Array<Tax>
   internal_metadata?: any;
+  expanded?: Expanded;
 }
 
