@@ -11,7 +11,7 @@ function createBodyOrder(token: string): OrderCreateData {
 		body: {
 			type: 'online',
 			processing_mode: 'automatic',
-			capture_mode: 'manual',
+			capture_mode: 'automatic_async',
 			total_amount: '200.00',
 			external_reference: 'ext_ref_1234',
 			transactions: {
