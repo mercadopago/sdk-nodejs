@@ -6,6 +6,7 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "rm -rf dist && tsc --build tsconfig.production.json && tsc-alias -p tsconfig.production.json",
+		"build:ci": "npm ci && npm run build && npm prune --omit=dev",
 		"test": "jest",
 		"test:e2e": "jest --config e2e/jest.config.ts",
 		"lint": "eslint 'src/**/*.{ts,tsx}' 'src/examples/**/*.{ts,tsx}' --cache",
