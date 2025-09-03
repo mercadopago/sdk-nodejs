@@ -1,4 +1,8 @@
 # Releases
+## VERSION 2.9.0
+- Task: Update the local project to comply with release 2.8.0
+- Task: Update dependencies and validate builds/tests
+- Fix: Removed invalid 'aa' field in 'CreateOrderRequest' in 'order/create'
 
 ## VERSION 2.8.0
 
