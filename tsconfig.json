@@ -16,7 +16,7 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "paths": {
       "@src/*": ["./src/*"],
       "@utils/*": ["./src/utils/*"],
