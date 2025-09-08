@@ -1,4 +1,7 @@
 # Releases
+## VERSION 2.9.1
+- Fix: Corrected 'plataformId' typo to 'platformId'.
+
 ## VERSION 2.9.0
 - Task: Update the local project to comply with release 2.8.0
 - Task: Update dependencies and validate builds/tests
