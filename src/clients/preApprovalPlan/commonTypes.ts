@@ -33,6 +33,7 @@ export declare type PaymentMethod = {
 export declare type PreApprovalPlanRequest = {
   back_url?: string;
   reason?: string;
+  status?: string;  
   auto_recurring?: AutoRecurring;
   payment_methods_allowed?: PaymentMethodsAllowed;
 };
