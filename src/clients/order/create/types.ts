@@ -1,7 +1,7 @@
 import { Phone } from '../../../clients/commonTypes';
 import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
 import { Options } from '../../../types';
-import { Address, AutomaticPayments, Config, Identification, Item, StoredCredential, SubscriptionData } from '../commonTypes';
+import { Address, AutomaticPayments, Config, Identification, Item, StoredCredential, SubscriptionData, TransactionSecurity } from '../commonTypes';
 export declare type OrderCreateClient = {
 	body: CreateOrderRequest;
 	config: MercadoPagoConfig;
@@ -45,6 +45,7 @@ export declare type PaymentMethodRequest = {
 	token?: string;
 	installments?: number;
 	statement_descriptor?: string;
+	transaction_security?: TransactionSecurity;
 };
 export declare type PayerRequest = {
 	customer_id?: string;
