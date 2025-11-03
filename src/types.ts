@@ -6,7 +6,7 @@ export declare type Config = {
 export declare type Options = {
 	timeout?: number;
 	idempotencyKey?: string;
-	plataformId?: string;
+	platformId?: string;
 	integratorId?: string;
 	corporationId?: string;
 	meliSessionId?: string;
