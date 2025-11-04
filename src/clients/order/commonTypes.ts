@@ -54,6 +54,7 @@ export declare type OnlineConfig = {
 	failure_url?: string;
 	auto_return_url?: string;
 	differential_pricing?: DifferentialPricing;
+	transaction_security?: TransactionSecurity;
 }
 
 export declare type IntegrationDataResponse = {
@@ -152,6 +153,7 @@ export declare type PaymentMethodResponse = {
 	qr_code?: string;
 	qr_code_base64?: string;
 	digitable_line?: string;
+	transaction_security?: TransactionSecurityResponse;
 }
 
 export declare type RefundResponse = {
@@ -203,4 +205,23 @@ export declare type PaymentMethodRequest = {
 	token?: string;
 	installments?: number;
 	statement_descriptor?: string;
+}
+
+/**
+ * 3DS Transaction Security types for requests
+ */
+export declare type TransactionSecurity = {
+	validation?: 'always' | 'on_fraud_risk' | 'never';
+	liability_shift?: 'required' | 'preferred';
+}
+
+/**
+ * 3DS Transaction Security types for responses
+ */
+export declare type TransactionSecurityResponse = {
+	validation?: 'always' | 'on_fraud_risk' | 'never';
+	liability_shift?: 'required' | 'preferred';
+	url?: string;
+	type?: string;
+	status?: string;
 }
