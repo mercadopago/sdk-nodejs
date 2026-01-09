@@ -21,6 +21,7 @@ export declare type Items = {
 	unit_price: number;
 	warranty?: boolean;
 	category_descriptor?: CategoryDescriptor;
+	event_date?: string;
 };
 
 export declare type Phone = {
