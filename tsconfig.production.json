@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-    "types": []
+    "types": ["node", "node-fetch", "uuid"]
   },
   "exclude": ["node_modules", "**/*spec.ts", "src/examples", "e2e", "src/mocks"]
 }
