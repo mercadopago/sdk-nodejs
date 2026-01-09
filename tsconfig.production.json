@@ -1,4 +1,7 @@
 {
   "extends": "./tsconfig",
+  "compilerOptions": {
+    "types": ["node"]
+  },
   "exclude": ["node_modules", "**/*spec.ts", "src/examples", "e2e", "src/mocks"]
 }
