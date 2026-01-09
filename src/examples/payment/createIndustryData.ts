@@ -74,24 +74,24 @@ payment
 						quantity: 1,
 						unit_price: 120.34,
 						warranty: true,
-					event_date: '2023-01-01T00:00:00Z',
-					category_descriptor: {
-						passenger: {
-							first_name: 'Name',
-							last_name: 'Surname',
-							identification: {
-								type: 'CPF',
-								number: '{{DOC_NUMBER}}',
+						event_date: '2023-01-01T00:00:00Z',
+						category_descriptor: {
+							passenger: {
+								first_name: 'Name',
+								last_name: 'Surname',
+								identification: {
+									type: 'CPF',
+									number: '{{DOC_NUMBER}}',
+								},
+							},
+							route: {
+								departure: 'São Paulo',
+								company: 'Companhia Aérea',
+								arrival_date_time: '2023-01-01T00:00:00Z',
+								departure_date_time: '2023-01-01T00:00:00Z',
+								destination: 'Rio de Janeiro',
 							},
 						},
-						route: {
-							departure: 'São Paulo',
-							company: 'Companhia Aérea',
-							arrival_date_time: '2023-01-01T00:00:00Z',
-							departure_date_time: '2023-01-01T00:00:00Z',
-							destination: 'Rio de Janeiro',
-						},
-					},
 					},
 				],
 				payer: {
