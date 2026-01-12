@@ -74,6 +74,7 @@ payment
 						quantity: 1,
 						unit_price: 120.34,
 						warranty: true,
+						event_date: '2023-01-01T00:00:00Z',
 						category_descriptor: {
 							passenger: {
 								first_name: 'Name',
