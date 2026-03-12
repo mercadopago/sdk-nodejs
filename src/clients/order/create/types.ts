@@ -27,6 +27,7 @@ export declare type CreateOrderRequest = {
 	expiration_time?: string;
 	currency?: string;
 	additional_info?: Record<string, any>;
+	shipment?: ShipmentRequest;
 };
 export declare type TransactionsRequest = {
 	payments?: PaymentRequest[];
@@ -57,3 +58,17 @@ export declare type PayerRequest = {
 	address?: Address;
 };
 
+export declare type ShipmentRequest = {
+	address?: ShipmentAddressRequest;
+};
+
+export declare type ShipmentAddressRequest = {
+	zip_code?: string;
+	street_name?: string;
+	street_number?: string;
+	neighborhood?: string;
+	city?: string;
+	state?: string;
+	complement?: string;
+	country?: string;
+};

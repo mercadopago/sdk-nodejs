@@ -4,6 +4,7 @@ import process from './process';
 import capture from './capture';
 import cancel from './cancel';
 import refund from './refund';
+import search from './search';
 import createTransaction from './transaction/create';
 import updateTransaction from './transaction/update';
 import deleteTransaction from './transaction/delete';
@@ -16,6 +17,7 @@ import { OrderProcessData } from './process/types';
 import { OrderCaptureData } from './capture/types';
 import { OrderCancelData } from './cancel/types';
 import { OrderRefundData } from './refund/types';
+import { OrderSearchData, OrderSearchResponse } from './search/types';
 import { OrderCreateTransactionData } from './transaction/create/types';
 import { OrderUpdateTransactionData } from './transaction/update/types';
 import { OrderDeleteTransactionData } from './transaction/delete/types';
@@ -92,6 +94,18 @@ export class Order {
 	refund({ id, body, requestOptions }: OrderRefundData): Promise<OrderResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return refund({ id, body, config: this.config });
+	}
+
+	/**
+	 * Search Orders.
+	 *
+	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/search.ts Usage Example }.
+	 */
+	search(searchData?: OrderSearchData): Promise<OrderSearchResponse> {
+		const options = searchData?.options;
+		const requestOptions = searchData?.requestOptions;
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return search({ options, config: this.config });
 	}
 
 	/**
