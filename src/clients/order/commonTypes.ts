@@ -28,10 +28,15 @@ export declare interface OrderResponse extends ApiResponse {
 	created_date?: string;
 	last_updated_date?: string;
 	expiration_time?: string;
+	currency?: string;
+	taxes?: TaxResponse[];
+	discounts?: DiscountsResponse;
+	type_response?: TypeResponse;
 }
 
 export declare type PayerResponse = {
 	customer_id?: string;
+	entity_type?: string;
 }
 
 export declare type Config = {
@@ -45,6 +50,10 @@ export declare type PaymentMethodConfig = {
 	default_id?: string;
 	max_installments?: number;
 	default_installments?: number;
+	default_type?: string;
+	installments_cost?: string;
+	installments?: InstallmentsResponse;
+	min_installments?: number;
 }
 
 export declare type OnlineConfig = {
@@ -72,6 +81,7 @@ export declare type SponsorResponse = {
 export declare type TransactionsResponse = {
 	payments?: PaymentResponse[];
 	refunds?: RefundResponse[];
+	chargebacks?: ChargebackResponse[];
 }
 
 export declare interface TransactionsApiResponse extends ApiResponse {
@@ -87,12 +97,15 @@ export declare type PaymentResponse = {
 	attempts?: Attempt[];
 	amount?: string;
 	paid_amount?: string;
+	refunded_amount?: string;
+	provider?: string;
 	payment_method?: PaymentMethodResponse;
 	automatic_payments?: AutomaticPayments;
 	stored_credential?: StoredCredential;
 	subscription_data?: SubscriptionData;
 	date_of_expiration?: string;
 	expiration_time?: string;
+	discounts?: DiscountResponse[];
 }
 
 export declare type AutomaticPayments = {
@@ -153,6 +166,8 @@ export declare type PaymentMethodResponse = {
 	qr_code?: string;
 	qr_code_base64?: string;
 	digitable_line?: string;
+	e2e_id?: string;
+	redirect_url?: string;
 	transaction_security?: TransactionSecurityResponse;
 }
 
@@ -163,6 +178,7 @@ export declare type RefundResponse = {
 	amount?: string;
 	status?: string;
 	items?: Item[];
+	e2e_id?: string;
 }
 
 export declare type Identification = {
@@ -192,6 +208,8 @@ export declare type Item = {
 	picture_url?: string;
 	warranty?: boolean;
 	event_date?: string;
+	unit_measure?: string;
+	external_categories?: ExternalCategoryResponse[];
 }
 
 export declare type PaymentRequest = {
@@ -219,9 +237,59 @@ export declare type TransactionSecurity = {
  * 3DS Transaction Security types for responses
  */
 export declare type TransactionSecurityResponse = {
+	id?: string;
 	validation?: 'always' | 'on_fraud_risk' | 'never';
 	liability_shift?: 'required' | 'preferred';
 	url?: string;
 	type?: string;
 	status?: string;
+}
+
+export declare type TypeResponse = {
+	qr_data?: string;
+}
+
+export declare type TaxResponse = {
+	payer_condition?: string;
+	type?: string;
+	value?: string;
+}
+
+export declare type DiscountsResponse = {
+	payment_methods?: DiscountPaymentMethodResponse[];
+}
+
+export declare type DiscountPaymentMethodResponse = {
+	type?: string;
+	new_total_amount?: string;
+}
+
+export declare type DiscountResponse = {
+	type?: string;
+}
+
+export declare type InstallmentsResponse = {
+	interest_free?: InstallmentsInterestFreeResponse;
+	available?: InstallmentsAvailableResponse;
+}
+
+export declare type InstallmentsInterestFreeResponse = {
+	type?: string;
+	values?: number[];
+}
+
+export declare type InstallmentsAvailableResponse = {
+	type?: string;
+}
+
+export declare type ChargebackResponse = {
+	id?: string;
+	transaction_id?: string;
+	case_id?: string;
+	status?: string;
+	references?: string[];
+}
+
+export declare type ExternalCategoryResponse = {
+	id?: string;
 }
