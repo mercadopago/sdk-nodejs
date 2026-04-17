@@ -1,4 +1,9 @@
 # Releases
+
+## VERSION 2.12.1
+
+Add search orders
+
 ## VERSION 2.9.1
 - Fix: Corrected 'plataformId' typo to 'platformId'.
 
