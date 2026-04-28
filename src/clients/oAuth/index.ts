@@ -26,7 +26,7 @@ import type { OAuthResponse } from './commonTypes';
  * authorization-code grant, obtain access/refresh token pairs, and
  * refresh tokens before they expire.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/oauth/_oauth_token/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/authentication/oauth/_oauth_token/post Documentation }.
  */
 export class OAuth {
 	/** SDK configuration providing credentials and HTTP options. */

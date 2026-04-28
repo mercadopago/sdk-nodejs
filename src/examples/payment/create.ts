@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Payment Capture.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/payments/_payments/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api-payments/create-payment/post Documentation }.
  */
 
 import MercadoPago, { Payment } from '@src/index';

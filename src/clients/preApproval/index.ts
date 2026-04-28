@@ -30,7 +30,7 @@ import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
  * The `init_point` URL redirects the buyer to authorize the
  * recurring charge.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/subscriptions/_preapproval/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/subscriptions/create-preapproval/post Documentation }.
  */
 export class PreApproval {
 	private config: MercadoPagoConfig;

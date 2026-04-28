@@ -4,7 +4,7 @@
  * This example demonstrates how to create an order with 3DS (3D Secure) authentication
  * for enhanced security in credit card transactions.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/orders/online-payments/create/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/create-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';

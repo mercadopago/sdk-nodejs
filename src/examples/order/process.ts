@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Process Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/order/online/process-order/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/process-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';

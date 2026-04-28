@@ -3,7 +3,7 @@ import MercadoPago, { Point } from '@src/index';
 /**
  * Mercado Pago Cancel Payment Intent.
  *
- * @see {@link https://www.mercadopago.com.br/developers/en/reference/integrations_api/_point_integration-api_devices_deviceid_payment-intents_paymentintentid/delete Documentation }.
+ * @see {@link https://www.mercadopago.com.ar/developers/en/reference/in-person-payments/point/orders/cancel-order/post Documentation }.
  */
 const client = new MercadoPago({
 	accessToken: '<ACCESS_TOKEN>',

@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Capture Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/capture/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/capture-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';

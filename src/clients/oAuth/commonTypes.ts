@@ -12,7 +12,7 @@ import { ApiResponse } from '@src/types';
 /**
  * Response returned after a successful OAuth token exchange or refresh.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/oauth/_oauth_token/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/authentication/oauth/_oauth_token/post Documentation }.
  */
 export declare interface OAuthResponse extends ApiResponse {
   /** Bearer token used to authenticate subsequent API requests. */

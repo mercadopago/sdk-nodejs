@@ -1,7 +1,7 @@
 /**
  * Mercado Pago OAuth getAuthorizationURL.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/oauth/_oauth_token/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/authentication/oauth/_oauth_token/post Documentation }.
  */
 
 import MercadoPago, { OAuth } from '@src/index';

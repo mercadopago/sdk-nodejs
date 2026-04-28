@@ -6,7 +6,7 @@
  * that calls the underlying {@link RestClient}.
  *
  * @module clients/payment
- * @see {@link https://www.mercadopago.com/developers/en/reference/payments/_payments/post Payments API reference}
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api-payments/create-payment/post Payments API reference}
  */
 import capture from './capture';
 import search from './search';

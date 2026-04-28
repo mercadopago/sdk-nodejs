@@ -26,7 +26,7 @@ import type { MerchantOrderGetData } from './get/types';
  * Use this class to manage orders that aggregate payments, items, and
  * shipments originating from checkout preferences or marketplace flows.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/merchant_orders/_merchant_orders/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-pro/merchant_orders/get-merchant-order/get Documentation }.
  */
 export class MerchantOrder {
 	/** SDK configuration providing credentials and HTTP options. */

@@ -6,7 +6,7 @@
  * convenience methods delegate to the {@link CustomerCard} client
  * internally.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/customers/_customers/post MercadoPago Customers API reference}
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/customers/create-customer/post MercadoPago Customers API reference}
  * @module clients/customer
  */
 
@@ -32,7 +32,7 @@ import type { CustomerCardCreateData } from '../customerCard/create/types';
  * Exposes CRUD operations on customers as well as convenience methods
  * for managing the saved payment cards associated with each customer.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/customers/_customers/post API reference}
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/customers/create-customer/post API reference}
  */
 export class Customer {
 	private config: MercadoPagoConfig;

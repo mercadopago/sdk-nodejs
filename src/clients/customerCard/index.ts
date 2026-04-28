@@ -5,7 +5,7 @@
  * associated with a customer through the
  * `/v1/customers/:customer_id/cards` resource.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/cards/_customers_customer_id_cards/post MercadoPago Customer Cards API reference}
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/cards/save-card/post MercadoPago Customer Cards API reference}
  * @module clients/customerCard
  */
 
@@ -27,7 +27,7 @@ import type { CustomerCardResponse, CustomerCardGetRemoveData } from './commonTy
  * Exposes CRUD and list operations on the saved payment cards that
  * belong to a specific customer.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/cards/_customers_customer_id_cards/post API reference}
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/cards/save-card/post API reference}
  */
 export class CustomerCard {
 	private config: MercadoPagoConfig;

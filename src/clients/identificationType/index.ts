@@ -20,7 +20,7 @@ import type { IdentificationTypeResponse, IdentificationTypeListData } from './l
  * types. Use this class to retrieve them so you can present the correct
  * options to the buyer during checkout.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/identification_types/_identification_types/get Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/identification-types/get Documentation }.
  */
 export class IdentificationType {
 	/** SDK configuration providing credentials and HTTP options. */
