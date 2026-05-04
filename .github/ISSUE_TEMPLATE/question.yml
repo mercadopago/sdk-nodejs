@@ -1,0 +1,95 @@
+name: 💬 Question
+description: Ask a question about the Mercado Pago SDK
+title: "[QUESTION]: "
+labels: ["question", "needs-triage"]
+assignees: ["danielalfarourrea","luismeli10","orojaspardo"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👋 Thanks for using the Mercado Pago SDK!
+
+        Before asking your question, please:
+        - 🔍 **Search [existing issues](./issues?q=is%3Aissue) to see if it was already answered**
+        - 📚 **Check the [official documentation](https://www.mercadopago.com/developers/es/docs)**
+        - 💡 **Review the repository examples**
+
+  - type: input
+    id: sdk-version
+    attributes:
+      label: 📦 SDK Version
+      description: "Example: 2.1.0"
+      placeholder: "x.y.z"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: country
+    attributes:
+      label: 🌎 Country
+      description: In which country are you operating?
+      options:
+        - Argentina (MLA)
+        - Brazil (MLB)
+        - Chile (MLC)
+        - Colombia (MCO)
+        - Mexico (MLM)
+        - Peru (MPE)
+        - Uruguay (MLU)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🖥️ Environment Details
+      description: |
+        Provide details about your environment to help us understand your setup:
+        - Platform (Web, Mobile, Backend)
+        - Framework used
+        - Relevant error messages
+        - Documentation consulted
+      placeholder: |
+        - Platform: [e.g. Backend, Web, Mobile]
+        - Language Version: [e.g. Python 3.9.0, Node.js 18.0.0]
+        - Framework: [e.g. Django 4.0, Express 4.18]
+        - Other relevant dependencies: ...
+
+  - type: textarea
+    id: question
+    attributes:
+      label: ❓ Your Question
+      description: Ask your question as clearly and specifically as possible. The more detail you provide, the faster we can help.
+      placeholder: |
+        What are you trying to do?
+        What have you tried so far?
+        What is the result you are getting vs. what you expected?
+        Is there an error message involved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: 💻 Code Example (optional)
+      description: If applicable, share a code snippet that illustrates your question. **Remember to remove all sensitive data (tokens, credentials, etc)**
+      render: python
+      placeholder: |
+        import mercadopago
+
+        sdk = mercadopago.SDK("YOUR_ACCESS_TOKEN")  # ⚠️ DO NOT USE REAL TOKENS
+        # Your code here...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: ✅ Checklist
+      options:
+        - label: I have searched existing issues
+          required: true
+        - label: I have checked the official documentation
+          required: true
+        - label: I have removed sensitive information (tokens, credentials, etc)
+          required: true
