@@ -1,0 +1,23 @@
+package.json
+  3db28d0d1288e51a 56-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "59a062e0f2d9904e08a8eed3544bc3e0134a32f3",
+  "prompts": {
+    "3db28d0d1288e51a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1efe60b6-79c1-4907-9782-0020c13d78b6",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Daniel Alfaro",
+      "messages": [],
+      "total_additions": 562,
+      "total_deletions": 0,
+      "accepted_lines": 562,
+      "overriden_lines": 0
+    }
+  }
+}
