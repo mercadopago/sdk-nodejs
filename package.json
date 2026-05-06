@@ -53,5 +53,8 @@
 	"dependencies": {
 		"node-fetch": "^2.7.0",
 		"uuid": "^9.0.0"
+	},
+	"overrides": {
+		"brace-expansion": "^2.0.2"
 	}
 }
