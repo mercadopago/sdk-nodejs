@@ -43,9 +43,9 @@ export class PaymentRefund {
 	}
 
 	/**
-   * Mercado Pago Create Refund.
+   * Mercado Pago Total Refund.
    *
-   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefund/create.ts Usage Example  }.
+   * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/paymentRefund/total.ts Usage Example  }.
    */
 	total({ payment_id, requestOptions }: PaymentRefundTotalData): Promise<RefundResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
