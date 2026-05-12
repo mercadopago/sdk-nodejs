@@ -31,10 +31,12 @@
 		"url": "https://github.com/mercadopago/sdk-nodejs/issues"
 	},
 	"homepage": "https://github.com/mercadopago/sdk-nodejs#readme",
+	"engines": {
+		"node": ">=18"
+	},
 	"devDependencies": {
 		"@types/jest": "^29.5.3",
 		"@types/node": "^20.4.8",
-		"@types/node-fetch": "^2.6.4",
 		"@types/uuid": "^9.0.3",
 		"@typescript-eslint/eslint-plugin": "^6.3.0",
 		"@typescript-eslint/parser": "^6.3.0",
@@ -51,7 +53,6 @@
 		"dist"
 	],
 	"dependencies": {
-		"node-fetch": "^2.7.0",
 		"uuid": "^9.0.0"
 	}
 }

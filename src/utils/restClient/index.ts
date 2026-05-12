@@ -1,19 +1,3 @@
-/**
- * Low-level HTTP client used by every API operation in the SDK.
- *
- * Wraps `node-fetch` and adds:
- * - Automatic header injection (auth, tracking, idempotency).
- * - Query-string serialisation.
- * - Exponential back-off retry for transient server errors (HTTP 5xx).
- * - Standard response envelope (`api_response`) appended to every result.
- *
- * No API client calls `fetch` directly — they all delegate to
- * {@link RestClient.fetch}.
- *
- * @module utils/restClient
- */
-
-import fetch, { Response, RequestInit } from 'node-fetch';
 import { AppConfig } from '@utils/config';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -35,16 +19,15 @@ interface RestClientConfig extends Options {
 	retries?: number;
 }
 
-/**
- * Static HTTP client — every SDK operation delegates to {@link RestClient.fetch}.
- *
- * Responsibilities:
- * 1. Build the full URL (base + endpoint + query string).
- * 2. Inject mandatory and optional HTTP headers.
- * 3. Add an idempotency key for non-GET methods.
- * 4. Execute the request with retry + exponential back-off.
- * 5. Normalise the response into `{ ...payload, api_response }`.
- */
+function headersToRecord(headers: Headers): Record<string, string[]> {
+	const out: Record<string, string[]> = {};
+	headers.forEach((value, key) => {
+		if (!out[key]) out[key] = [];
+		out[key].push(value);
+	});
+	return out;
+}
+
 class RestClient {
 	/** Generates a UUID v4 idempotency key for write operations. */
 	private static generateIdempotencyKey(): string {
@@ -174,18 +157,24 @@ class RestClient {
 		let response: Response;
 
 		const fetchFn = async () => {
-			response = await fetch(url, {
-				...customConfig,
-				method,
-				timeout,
-			});
+			const controller = new AbortController();
+			const timeoutId = setTimeout(() => controller.abort(), timeout);
+			try {
+				response = await fetch(url, {
+					...customConfig,
+					method,
+					signal: controller.signal,
+				});
+			} finally {
+				clearTimeout(timeoutId);
+			}
 
 			if (response.ok) {
 				if (response.status === NO_CONTENT) {
 					return {
 						api_response: {
 							status: response.status,
-							headers: response.headers.raw(),
+							headers: headersToRecord(response.headers),
 						}
 					} as T;
 				}
@@ -193,7 +182,7 @@ class RestClient {
 				const data = await response.json();
 				const api_response = {
 					status: response.status,
-					headers: response.headers.raw(),
+					headers: headersToRecord(response.headers),
 				};
 				data.api_response = api_response;
 
