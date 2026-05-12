@@ -1,4 +1,3 @@
-import fetch, { Response, RequestInit } from 'node-fetch';
 import { AppConfig } from '@utils/config';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,6 +8,15 @@ const NO_CONTENT = 204;
 interface RestClientConfig extends Options {
 	queryParams?: Record<string, string | number>;
 	retries?: number;
+}
+
+function headersToRecord(headers: Headers): Record<string, string[]> {
+	const out: Record<string, string[]> = {};
+	headers.forEach((value, key) => {
+		if (!out[key]) out[key] = [];
+		out[key].push(value);
+	});
+	return out;
 }
 
 class RestClient {
@@ -102,18 +110,24 @@ class RestClient {
 		let response: Response;
 
 		const fetchFn = async () => {
-			response = await fetch(url, {
-				...customConfig,
-				method,
-				timeout,
-			});
+			const controller = new AbortController();
+			const timeoutId = setTimeout(() => controller.abort(), timeout);
+			try {
+				response = await fetch(url, {
+					...customConfig,
+					method,
+					signal: controller.signal,
+				});
+			} finally {
+				clearTimeout(timeoutId);
+			}
 
 			if (response.ok) {
 				if (response.status === NO_CONTENT) {
 					return {
 						api_response: {
 							status: response.status,
-							headers: response.headers.raw(),
+							headers: headersToRecord(response.headers),
 						}
 					} as T;
 				}
@@ -121,7 +135,7 @@ class RestClient {
 				const data = await response.json();
 				const api_response = {
 					status: response.status,
-					headers: response.headers.raw(),
+					headers: headersToRecord(response.headers),
 				};
 				data.api_response = api_response;
 
