@@ -1,0 +1,33 @@
+src/utils/restClient/index.ts
+  s_3db28d0d1288e5::t_be82a877ed3a0e 13-19
+  s_3db28d0d1288e5::t_4513a15dcac527 113-123,130,138
+package.json
+  s_3db28d0d1288e5::t_ac473a37d5c209 34-36
+src/utils/restClient/restClient.spec.ts
+  s_3db28d0d1288e5::t_3385b2a84f16e2 3-4
+  s_3db28d0d1288e5::t_10f075dd25161b 12,26,40,61,78,101,135,151,233
+  s_3db28d0d1288e5::t_6b807f85cea5b3 13,27,41,62,79,102,136,152
+  s_3db28d0d1288e5::t_22481201003ec4 234,242-244
+  s_3db28d0d1288e5::t_e1554093e81222 76-77
+  s_3db28d0d1288e5::t_b4bd07cbd4987f 34,56,70,119,145
+  s_3db28d0d1288e5::t_0831c066fdf440 167
+  s_3db28d0d1288e5::t_24c3fbea6c54e9 182,212
+  s_3db28d0d1288e5::t_136e03a2aa54af 91,197
+  s_3db28d0d1288e5::t_3c625aad762685 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.6",
+  "base_commit_sha": "cde9d82f905afaf506b6fd060616c3acfe27b82c",
+  "prompts": {},
+  "sessions": {
+    "s_3db28d0d1288e5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1efe60b6-79c1-4907-9782-0020c13d78b6",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
