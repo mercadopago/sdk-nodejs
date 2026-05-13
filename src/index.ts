@@ -18,3 +18,10 @@ export { OAuth } from './clients/oAuth';
 export { MerchantOrder } from './clients/merchantOrder';
 export { User } from './clients/user';
 export { Order } from './clients/order';
+
+export {
+	WebhookSignatureValidator,
+	InvalidWebhookSignatureError,
+	SignatureFailureReason,
+} from './utils/webhook';
+export type { ValidateOptions } from './utils/webhook';
