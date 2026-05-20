@@ -1,0 +1,19 @@
+README.md
+  s_69fabdbcb9c498::t_8ce08729963e08 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.11",
+  "base_commit_sha": "efd008df223384d3888762f2e19278a9d088334b",
+  "prompts": {},
+  "sessions": {
+    "s_69fabdbcb9c498": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6841e5d1-e091-4d60-b9db-cbe4c995446d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
