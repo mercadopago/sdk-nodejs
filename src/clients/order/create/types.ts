@@ -47,12 +47,14 @@ export declare type PaymentMethodRequest = {
 	installments?: number;
 	statement_descriptor?: string;
 	transaction_security?: TransactionSecurity;
+	financial_institution?: string;
 };
 export declare type PayerRequest = {
 	customer_id?: string;
 	email?: string;
 	first_name?: string;
 	last_name?: string;
+	entity_type?: string;
 	identification?: Identification;
 	phone?: Phone;
 	address?: Address;
