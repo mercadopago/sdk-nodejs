@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 3.0.0
+
+ - Bump runtime to minimum Node 18 and Fix dependencies vulns [node-fetch and others]
+
+
 ## VERSION 2.12.1
 
 Add search orders
