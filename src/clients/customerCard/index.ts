@@ -1,14 +1,3 @@
-/**
- * CustomerCard API client for the MercadoPago Node.js SDK.
- *
- * Provides a high-level facade for managing the saved payment cards
- * associated with a customer through the
- * `/v1/customers/:customer_id/cards` resource.
- *
- * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/cards/save-card/post MercadoPago Customer Cards API reference}
- * @module clients/customerCard
- */
-
 import get from './get';
 import create from './create';
 import remove from './remove';
@@ -22,12 +11,9 @@ import type { CustomerCardListData } from './list/types';
 import type { CustomerCardResponse, CustomerCardGetRemoveData } from './commonTypes';
 
 /**
- * Client for the MercadoPago Customer Cards API.
+ * Mercado Pago Customer card.
  *
- * Exposes CRUD and list operations on the saved payment cards that
- * belong to a specific customer.
- *
- * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/cards/save-card/post API reference}
+ * @see {@link https://www.mercadopago.com/developers/en/reference/cards/_customers_customer_id_cards/post Documentation }.
  */
 export class CustomerCard {
 	private config: MercadoPagoConfig;
@@ -37,7 +23,7 @@ export class CustomerCard {
 	}
 
 	/**
-	 * Save a new payment card for a customer using a card token.
+	 * Mercado Pago Customer card create.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/create.ts Usage Example  }.
 	 */
@@ -47,7 +33,7 @@ export class CustomerCard {
 	}
 
 	/**
-	 * Retrieve a specific saved card for a customer.
+	 * Mercado Pago customer card get.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/get.ts Usage Example  }.
 	*/
@@ -57,7 +43,7 @@ export class CustomerCard {
 	}
 
 	/**
-	 * Remove a saved card from a customer's wallet.
+	 * Mercado Pago customer card remove.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/remove.ts Usage Example  }.
 	 */
@@ -67,7 +53,7 @@ export class CustomerCard {
 	}
 
 	/**
-	 * Update the details of an existing saved card (e.g. expiration date or cardholder info).
+	 * Mercado Pago customer card update.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/update.ts Usage Example  }.
 	 */
@@ -77,7 +63,7 @@ export class CustomerCard {
 	}
 
 	/**
-	 * List all saved payment cards for a customer.
+	 * Mercado Pago customer card list.
 	 *
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/customer/list.ts Usage Example  }.
 	 */
