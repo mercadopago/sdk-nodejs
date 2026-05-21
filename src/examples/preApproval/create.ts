@@ -3,7 +3,7 @@ import MercadoPago, { PreApproval } from '@src/index';
 /**
  * Mercado Pago Pre Approval .
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/subscriptions/_preapproval/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/subscriptions/create-preapproval/post Documentation }.
  */
 
 const client = new MercadoPago({ accessToken: '<ACCESS_TOKEN>', options: { timeout: 5000 } });

@@ -4,7 +4,7 @@
  * This example demonstrates how to handle different 3DS authentication scenarios
  * and check the status of transactions after 3DS challenge completion.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/orders/online-payments/get/get Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/get-order/get Documentation }.
  */
 
 import { Order } from '@src/clients/order';
