@@ -114,6 +114,7 @@ export declare type PaymentMethodRequest = {
 	statement_descriptor?: string;
 	/** 3-D Secure transaction security settings. */
 	transaction_security?: TransactionSecurity;
+	financial_institution?: string;
 };
 
 /**
@@ -128,7 +129,10 @@ export declare type PayerRequest = {
 	first_name?: string;
 	/** Buyer's last name. */
 	last_name?: string;
-	/** Government-issued identification document. */
+  
+	entity_type?: string;
+  
+  /** Government-issued identification document. */
 	identification?: Identification;
 	/** Buyer's phone number. */
 	phone?: Phone;
