@@ -1,0 +1,11 @@
+package.json
+  ai_agent 3
+src/utils/config/index.ts
+  ai_agent 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.11",
+  "base_commit_sha": "3ece29dd151bd76abf408208b130440e5fc0eb55",
+  "prompts": {}
+}
