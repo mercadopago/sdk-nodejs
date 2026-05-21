@@ -47,3 +47,10 @@ export { MerchantOrder } from './clients/merchantOrder';
 export { User } from './clients/user';
 /** Order client — creates, processes, captures, cancels, and refunds orders (v2 API). */
 export { Order } from './clients/order';
+
+export {
+	WebhookSignatureValidator,
+	InvalidWebhookSignatureError,
+	SignatureFailureReason,
+} from './utils/webhook';
+export type { ValidateOptions } from './utils/webhook';
