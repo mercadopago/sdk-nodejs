@@ -1,5 +1,11 @@
 # Releases
 
+## VERSION 2.13.0
+
+- Added webhook capability
+- Inline comments in codebase
+- PSE support in orders
+
 ## VERSION 2.12.1
 
 Add search orders
