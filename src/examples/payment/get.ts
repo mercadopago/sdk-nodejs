@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Payment Update.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/payments/_payments_id/put Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/online-payments/checkout-api-payments/get-payment/get Documentation }.
  */
 
 import MercadoPago, { Payment } from '@src/index';
