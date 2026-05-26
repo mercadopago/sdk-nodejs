@@ -2,7 +2,7 @@ name: 💬 Question
 description: Ask a question about the Mercado Pago SDK
 title: "[QUESTION]: "
 labels: ["question"]
-assignees: ["danielalfarourrea","luismeli10","orojaspardo","barajas-d"]
+assignees: ["luismeli10","orojaspardo","barajas-d"]
 
 body:
   - type: markdown
