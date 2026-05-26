@@ -1,8 +1,8 @@
 name: ✨ Feature Request
 description: Propose a new feature for the Mercado Pago SDK
 title: "[FEATURE]: "
-labels: ["enhancement", "needs-triage"]
-assignees: ["danielalfarourrea","luismeli10","orojaspardo"]
+labels: ["enhancement"]
+assignees: ["danielalfarourrea","luismeli10","orojaspardo","barajas-d"]
 
 body:
   - type: markdown
