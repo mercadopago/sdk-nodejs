@@ -25,3 +25,5 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - run: npm run build
       - run: npm test
+      - name: Dependency audit
+        run: npm audit --audit-level=high
