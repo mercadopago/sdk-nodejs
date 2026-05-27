@@ -9,7 +9,7 @@ This library provides developers with a simple set of bindings to help you integ
 
 ## 💡 Requirements
 
-The SDK Supports NodeJS version 16 or higher.
+The SDK Supports NodeJS version 18 or higher.
 
 ## 📲 Installation
 

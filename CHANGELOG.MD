@@ -1,4 +1,19 @@
 # Releases
+
+## VERSION 3.0.0
+
+ - Bump runtime to minimum Node 18 and Fix dependencies vulns [node-fetch and others]
+
+## VERSION 2.13.0
+
+- Added webhook capability
+- Inline comments in codebase
+- PSE support in orders
+
+## VERSION 2.12.1
+
+Add search orders
+
 ## VERSION 2.9.1
 - Fix: Corrected 'plataformId' typo to 'platformId'.
 

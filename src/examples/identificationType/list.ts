@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Identification Types get.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/identification_types/_identification_types/get Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/identification-types/get Documentation }.
  */
 import MercadoPago, { IdentificationType } from '@src/index';
 

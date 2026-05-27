@@ -6,7 +6,7 @@ describe('Testing pre approval plan, create', () => {
 		const client = new MercadoPago({ accessToken: config.test_access_token, options: { timeout: 5000 } });
 		const preApprovalPlan = new PreApprovalPlan(client);
 		const body = {
-			back_url: 'https://www.mercadopago.com.br/developers/pt/reference/subscriptions/_preapproval_plan/post',
+			back_url: 'https://www.mercadopago.com.br/developers/pt/reference/online-payments/subscriptions/create-preapproval-plan/post',
 			reason: 'yoga class',
 			auto_recurring:	{
 				currency_id: 'BRL',

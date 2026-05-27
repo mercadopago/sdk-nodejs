@@ -1,0 +1,150 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior in the SDK
+title: "[BUG]: "
+labels: ["bug", "needs-triage"]
+assignees: ["danielalfarourrea","luismeli10","orojaspardo"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Thanks for reporting this issue!
+
+        Please make sure you tested with the latest version of the relevant packages and/or checked existing issues to avoid duplicates. If the bug persists, open the issue with a clear and concise description including screenshots, if applicable. We appreciate your feedback!
+
+        **Before reporting a bug:**
+        - 🔍 **Search [existing issues](./issues?q=is%3Aissue) to avoid duplicates**
+        - 📚 **Verify you are using the [latest version](../../releases)**
+        - 💡 **Try to reproduce the problem in sandbox environment**
+        - ⚠️ **IMPORTANT: Your bug will be resolved faster if you can share a self-contained example that doesn't rely on internal or private dependencies.**
+
+        > **🔒 SECURITY WARNING:** Issues without reproduction steps or code examples may be immediately closed as not actionable. Always remember to **REMOVE ALL PII AND PERSONAL INFORMATION** from your examples. **Bugs opened with real data will be immediately reported and closed.**
+
+  - type: input
+    id: sdk-version
+    attributes:
+      label: 📦 SDK Version
+      description: "Example: 2.1.0"
+      placeholder: "x.y.z"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment-details
+    attributes:
+      label: 🖥️ Environment Details
+      description: |
+        System and dependencies information
+      placeholder: |
+        - Operating System: [e.g. Ubuntu 20.04, Windows 11, macOS 13]
+        - Language Version: [e.g. Python 3.9.0, Node.js 18.0.0]
+        - Framework: [e.g. Django 4.0, Express 4.18]
+        - Package Manager: [e.g. pip 21.0, npm 8.0]
+        - Other relevant dependencies: ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: country
+    attributes:
+      label: 🌎 Country
+      description: Country where the issue occurs
+      options:
+        - Argentina (MLA)
+        - Brazil (MLB)
+        - Chile (MLC)
+        - Colombia (MCO)
+        - Mexico (MLM)
+        - Peru (MPE)
+        - Uruguay (MLU)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: The SDK fails when I try to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: ✅ Expected Behavior
+      description: A clear description of the behavior you expected from the SDK
+      placeholder: I expected the SDK to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: ❌ Actual Behavior
+      description: A description of what the SDK actually does instead
+      placeholder: Instead, the SDK...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 🔄 Steps To Reproduce
+      description: Detailed steps to reproduce the problem
+      placeholder: |
+        1. Configure the SDK with...
+        2. Execute the method...
+        3. Send the following parameters...
+        4. Observe the error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: 💻 Code Example
+      description: |
+        Minimal code that reproduces the problem. **REMOVE ALL CREDENTIALS AND SENSITIVE DATA.**
+
+        You can provide:
+        - A CodeSandbox (https://codepen.io/pen/)
+        - A link to a GitHub repository
+        - A minimal code example that reproduces the problem
+        - A screenshot of the application if you think it is relevant
+
+        **Remember to REMOVE ALL SENSITIVE DATA FIRST.**
+      render: python
+      placeholder: |
+        import mercadopago
+
+        sdk = mercadopago.SDK("YOUR_ACCESS_TOKEN")  # ⚠️ DO NOT USE REAL TOKENS
+
+        # Your code here that reproduces the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-logs
+    attributes:
+      label: 📋 Logs and Error Messages
+      description: Copy complete logs, stack traces, or error messages
+      render: shell
+      placeholder: |
+        Error: ...
+        Stack trace: ...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: ✅ Checklist
+      options:
+        - label: I have verified that I am using the latest SDK version
+          required: true
+        - label: I have searched existing issues and this bug has not been reported
+          required: true
+        - label: I have included a minimal code example to reproduce the problem
+          required: true
+        - label: I have removed all sensitive information (tokens, credentials, real data)
+          required: true

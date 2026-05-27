@@ -1,0 +1,86 @@
+name: ✨ Feature Request
+description: Propose a new feature for the Mercado Pago SDK
+title: "[FEATURE]: "
+labels: ["enhancement", "needs-triage"]
+assignees: ["danielalfarourrea","luismeli10","orojaspardo"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Thanks for contributing with ideas!
+
+        Your feedback is valuable to improve the SDK. Before submitting:
+        - 🔍 **Search [existing issues](./issues?q=is%3Aissue) to avoid duplicates**.
+        - 📚 **Check the [documentation](https://www.mercadopago.com/developers/es/docs) to confirm this isn't already supported**.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: ⚙️ Feature Type
+      description: What type of improvement are you proposing?
+      options:
+        - New feature
+        - Enhancement of existing feature
+        - Support for new Mercado Pago product
+        - Better error handling
+        - Documentation improvement
+        - Performance optimization
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🎯 Problem to solve
+      description: Describe the problem or need this feature would solve.
+      placeholder: |
+        As a developer of [application type]...
+        I need [feature]...
+        To be able to [goal]...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Proposed Solution
+      description: Describe how you would like this new feature to work.
+      placeholder: |
+        I would like the SDK to support...
+        The implementation could be...
+        Usage example:
+        ```
+        // example code
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 Alternatives Considered
+      description: |
+        Have you tried any workarounds?
+        Are there similar features in other SDKs or libraries?
+      placeholder: |
+        - Alternative 1: ...
+        - Alternative 2: ...
+        - In the [language] SDK they do...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: ✅ Checklist
+      options:
+        - label: I have searched existing issues and this feature has not been requested before
+          required: true
+        - label: I have clearly described the problem I am trying to solve
+          required: true
+        - label: I have proposed a concrete solution or API design
+          required: true
+        - label: This feature would benefit other users, not just my specific use case
+          required: true
+        - label: I have not included any sensitive information (tokens, credentials, real data)
+          required: true

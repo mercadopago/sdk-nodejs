@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Cancel Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/cancel-order/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/cancel-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';
