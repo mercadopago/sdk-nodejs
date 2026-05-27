@@ -14,7 +14,9 @@ updates:
       timezone: "America/Bogota"
     open-pull-requests-limit: 5
     assignees:
-      - "mercadopago/backend-sdks"
+      - "luismeli10"
+      - "orojaspardo"
+      - "barajas-d"
     labels:
       - "dependencies"
     commit-message:
