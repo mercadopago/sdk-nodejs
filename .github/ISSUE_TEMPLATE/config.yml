@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support Center Mercado Pago - ES
+    url: https://www.mercadopago.com/developers/es/support/center
+    about: Problems with payments, account, or general inquiries
+  - name: Support Center Mercado Pago - PT
+    url: https://www.mercadopago.com/developers/pt/support/center
+    about: Problems with payments, account, or general inquiries
