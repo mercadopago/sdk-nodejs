@@ -1,0 +1,19 @@
+.github/workflows/ci.yml
+  s_0590c80567cf7a::t_b7254ec098981c 28-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "ddb220c28d5b81d2b539346e341fe14e0196c7cc",
+  "prompts": {},
+  "sessions": {
+    "s_0590c80567cf7a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55918395-0343-419e-a085-13daadb925f8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
