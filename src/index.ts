@@ -21,6 +21,12 @@ export { CardToken } from './clients/cardToken';
 export { CustomerCard } from './clients/customerCard';
 /** Customer client — CRUD operations on buyer profiles stored in MercadoPago. */
 export { Customer } from './clients/customer';
+/** Advanced-payment client — marketplace split-payment management. */
+export { AdvancedPayment } from './clients/advancedPayment';
+/** Chargeback client — retrieves and searches payment dispute records. */
+export { Chargeback } from './clients/chargeback';
+/** Disbursement-refund client — manages refunds for split-payment disbursements. */
+export { DisbursementRefund } from './clients/disbursementRefund';
 /** Invoice client — retrieves and searches subscription-generated invoices. */
 export { Invoice } from './clients/invoice';
 /** Identification-type client — lists accepted ID document types per country. */
