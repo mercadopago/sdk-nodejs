@@ -1,0 +1,91 @@
+src/clients/advancedPayment/capture/index.ts
+  s_ca33c7d96b2139::t_e68a55090304af 1-25
+src/clients/chargeback/search/search.spec.ts
+  s_ca33c7d96b2139::t_b1d2eea448bf70 1-20
+src/clients/advancedPayment/search/search.spec.ts
+  s_ca33c7d96b2139::t_7024a61be83c42 1-20
+src/clients/chargeback/get/get.spec.ts
+  s_ca33c7d96b2139::t_3cfaa8b8c119b7 1-20
+src/clients/disbursementRefund/listAll/index.ts
+  s_ca33c7d96b2139::t_0820fc4dc0c956 1-22
+src/clients/disbursementRefund/createAll/types.ts
+  s_ca33c7d96b2139::t_6a48d7165f4483 1-21
+src/clients/advancedPayment/search/types.ts
+  s_ca33c7d96b2139::t_822e86b185e125 1-31
+src/clients/disbursementRefund/listAll/types.ts
+  s_ca33c7d96b2139::t_06aa1e6bbbc2d4 1-19
+src/clients/chargeback/search/index.ts
+  s_ca33c7d96b2139::t_5edd473d0b8763 1-24
+src/clients/disbursementRefund/listAll/listAll.spec.ts
+  s_ca33c7d96b2139::t_a2050881cbe751 1-20
+src/clients/disbursementRefund/createAll/index.ts
+  s_ca33c7d96b2139::t_c3c5fa7c96362f 1-24
+src/clients/disbursementRefund/create/index.ts
+  s_ca33c7d96b2139::t_0e1b63f03eb9ed 1-24
+src/clients/advancedPayment/get/get.spec.ts
+  s_ca33c7d96b2139::t_69cc9c07507ce5 1-20
+src/clients/advancedPayment/commonTypes.ts
+  s_ca33c7d96b2139::t_e386cc2629add9 1-49
+src/clients/disbursementRefund/commonTypes.ts
+  s_ca33c7d96b2139::t_6e5b2d2ac24174 1-21
+src/clients/advancedPayment/updateReleaseDate/types.ts
+  s_ca33c7d96b2139::t_80fab8828b715b 1-20
+src/clients/chargeback/commonTypes.ts
+  s_ca33c7d96b2139::t_d3cc6ae99c7185 1-27
+src/clients/advancedPayment/get/index.ts
+  s_ca33c7d96b2139::t_c777e8040ff316 1-23
+src/clients/advancedPayment/update/types.ts
+  s_ca33c7d96b2139::t_10b4605bf788c6 1-21
+src/clients/advancedPayment/update/index.ts
+  s_ca33c7d96b2139::t_0d9c8fa590ba9b 1-24
+src/clients/advancedPayment/cancel/index.ts
+  s_ca33c7d96b2139::t_bc68315a5bd585 1-24
+src/clients/advancedPayment/create/types.ts
+  s_ca33c7d96b2139::t_9a89a7820c8b0c 1-70
+src/clients/disbursementRefund/create/types.ts
+  s_ca33c7d96b2139::t_9196533deb56a9 1-23
+src/clients/chargeback/search/types.ts
+  s_ca33c7d96b2139::t_7be2049d858c03 1-26
+src/clients/advancedPayment/get/types.ts
+  s_ca33c7d96b2139::t_c4d2adb6cec1a6 1-17
+src/clients/chargeback/get/types.ts
+  s_ca33c7d96b2139::t_f0abadc0b714c7 1-12
+src/clients/advancedPayment/create/index.ts
+  s_ca33c7d96b2139::t_6a01b21ecf0d63 1-28
+src/clients/chargeback/index.ts
+  s_ca33c7d96b2139::t_ef5acc276fd589 1-41
+src/clients/disbursementRefund/index.ts
+  s_ca33c7d96b2139::t_25cf439fdcfd5d 1-50
+src/clients/disbursementRefund/create/create.spec.ts
+  s_ca33c7d96b2139::t_01895189cd6d3c 1-20
+src/clients/advancedPayment/index.ts
+  s_ca33c7d96b2139::t_66ce50bf4372f2 1-96
+src/clients/chargeback/get/index.ts
+  s_ca33c7d96b2139::t_dcc4823458214b 1-23
+src/clients/advancedPayment/search/index.ts
+  s_ca33c7d96b2139::t_0a0541c44c8c60 1-24
+src/clients/advancedPayment/capture/types.ts
+  s_ca33c7d96b2139::t_fc5523aaa3a8c1 1-17
+src/clients/advancedPayment/cancel/types.ts
+  s_ca33c7d96b2139::t_06d1f5725075bf 1-17
+src/clients/advancedPayment/updateReleaseDate/index.ts
+  s_ca33c7d96b2139::t_b284392d145b93 1-25
+src/clients/advancedPayment/create/create.spec.ts
+  s_ca33c7d96b2139::t_1009de15811547 1-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "adcaceaa233f5c7cb67d4723d6b7ca0cfdd25e2b",
+  "prompts": {},
+  "sessions": {
+    "s_ca33c7d96b2139": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "31d8d73a-8320-4e75-89be-a5971fd08efd",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
