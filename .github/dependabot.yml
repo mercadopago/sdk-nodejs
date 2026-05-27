@@ -1,0 +1,54 @@
+# Dependabot version updates — sdk-nodejs
+# Ubicación obligatoria: .github/dependabot.yml
+# Ecosistemas: npm (Node.js) + github-actions
+version: 2
+
+updates:
+  # ── Node.js / npm ────────────────────────────────────────────────────
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Bogota"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "mercadopago/backend-sdks"
+    assignees:
+      - "mercadopago/backend-sdks"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # evita que Dependabot amplíe rangos semver en package.json (ej: ^1.0 → >=1.0 <3.0)
+    # importante para un SDK que otros importan — preserva el contrato de versiones
+    versioning-strategy: "increase-if-necessary"
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        update-types: ["minor", "patch"]
+      production-dependencies:
+        dependency-type: "production"
+        update-types: ["patch"]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # ── GitHub Actions (CI) ──────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Bogota"
+    open-pull-requests-limit: 1
+    reviewers:
+      - "mercadopago/backend-sdks"
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(ci)"
