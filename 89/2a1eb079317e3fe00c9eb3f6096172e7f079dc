@@ -1,0 +1,23 @@
+src/examples/advancedPayment/create.ts
+  s_ca33c7d96b2139::t_3c01c61d8db122 1-32
+src/examples/chargeback/get.ts
+  s_ca33c7d96b2139::t_ab8388d264ebf8 1-8
+src/examples/disbursementRefund/create.ts
+  s_ca33c7d96b2139::t_ff5a9592ce1171 1-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "892a1eb079317e3fe00c9eb3f6096172e7f079dc",
+  "prompts": {},
+  "sessions": {
+    "s_ca33c7d96b2139": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "31d8d73a-8320-4e75-89be-a5971fd08efd",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
