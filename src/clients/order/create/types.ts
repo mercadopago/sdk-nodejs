@@ -70,6 +70,8 @@ export declare type CreateOrderRequest = {
 	additional_info?: Record<string, any>;
 	/** Shipping details for physical-goods orders. */
 	shipment?: ShipmentRequest;
+	/** Integration metadata identifying the integrator, platform, corporation, and sponsor. */
+	integration_data?: IntegrationDataRequest;
 };
 
 /**
@@ -96,6 +98,11 @@ export declare type PaymentRequest = {
 	subscription_data?: SubscriptionData;
 	/** ISO 8601 duration or date-time controlling payment expiration. */
 	expiration_time?: string;
+	/**
+	 * Absolute date-time (ISO 8601) after which this payment can no longer be collected.
+	 * Distinct from `expiration_time` (relative TTL). Type: string (ISO 8601).
+	 */
+	date_of_expiration?: string;
 };
 
 /**
@@ -168,4 +175,25 @@ export declare type ShipmentAddressRequest = {
 	complement?: string;
 	/** Country name or ISO code. */
 	country?: string;
+};
+
+/**
+ * Integration metadata for an order request. Identifies the integrator, platform,
+ * and corporation associated with the integration, plus any sponsoring marketplace owner.
+ */
+export declare type IntegrationDataRequest = {
+	/** Identifier of the certified integrator. Type: string. */
+	integrator_id?: string;
+	/** Platform identifier assigned by MercadoPago. Type: string. */
+	platform_id?: string;
+	/** Corporation identifier for multi-account setups. Type: string. */
+	corporation_id?: string;
+	/** Sponsor (marketplace owner) information. */
+	sponsor?: SponsorRequest;
+};
+
+/** Sponsoring marketplace owner associated with an order's integration metadata. */
+export declare type SponsorRequest = {
+	/** MercadoPago user ID of the sponsoring marketplace owner. Type: string. */
+	id?: string;
 };
