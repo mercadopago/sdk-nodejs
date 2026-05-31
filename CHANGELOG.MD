@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 3.1.0 - 2026-05-27
+- AdvancedPayment: marketplace split-payment management — create, get, search, update, capture, cancel, updateReleaseDate (`POST/GET/PUT /v1/advanced_payments`).
+- DisbursementRefund: refund management for split payments — listAll, createAll, create (`GET/POST /v1/advanced_payments/{id}/refunds`).
+- Chargeback: read-only access to payment dispute records — get, search (`GET /v1/chargebacks`).
+
 ## VERSION 3.0.0
 
  - Bump runtime to minimum Node 18 and Fix dependencies vulns [node-fetch and others]
