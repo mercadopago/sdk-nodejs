@@ -255,6 +255,12 @@ export declare type StoredCredential = {
 	store_payment_method?: boolean;
 	/** Whether this is the initial payment in a stored-credential series. */
 	first_payment?: boolean;
+	/**
+	 * Reference to the previous transaction in a recurring series. Required from the second
+	 * charge onwards to link this payment to the original card-network authorization.
+	 * Type: string (transaction ID).
+	 */
+	prev_transaction_ref?: string;
 }
 
 /**
