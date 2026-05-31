@@ -1,0 +1,24 @@
+package.json
+  s_ced5d1a3bf66c5::t_efe6488539e5c3 54
+package-lock.json
+  ai_agent 3,9,6272,6695,7674,8625
+src/utils/restClient/index.ts
+  s_ced5d1a3bf66c5::t_34ac7c43ad6608 2
+  s_ced5d1a3bf66c5::t_346cb81b1904cb 34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "f09b18e7f152717c7ea3086f3c30357502cba5cb",
+  "prompts": {},
+  "sessions": {
+    "s_ced5d1a3bf66c5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8a9fe4ad-59b4-4632-904b-2c2de9edbf01",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
