@@ -1,0 +1,21 @@
+package.json
+  s_ced5d1a3bf66c5::t_ab5a2b7c1fa214 55-57
+  s_ced5d1a3bf66c5::t_3bc91fdf0e4738 52-54
+  s_ced5d1a3bf66c5::t_ebbdbc48b18257 39-42,44-47,49-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "8ed27c6c69f6195cd2a048028a9add79131ed865",
+  "prompts": {},
+  "sessions": {
+    "s_ced5d1a3bf66c5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8a9fe4ad-59b4-4632-904b-2c2de9edbf01",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
