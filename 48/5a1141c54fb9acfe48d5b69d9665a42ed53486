@@ -1,0 +1,14 @@
+src/utils/config/index.ts
+  h_04a99bed328080 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.12",
+  "base_commit_sha": "485a1141c54fb9acfe48d5b69d9665a42ed53486",
+  "prompts": {},
+  "humans": {
+    "h_04a99bed328080": {
+      "author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
