@@ -1,5 +1,5 @@
 import { AppConfig } from '@utils/config';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 
 import type { Options } from '@src/types';
 
@@ -31,7 +31,7 @@ function headersToRecord(headers: Headers): Record<string, string[]> {
 class RestClient {
 	/** Generates a UUID v4 idempotency key for write operations. */
 	private static generateIdempotencyKey(): string {
-		return uuidv4();
+		return randomUUID();
 	}
 
 	/**
