@@ -54,7 +54,9 @@
 		"ajv": "6.14.0",
 		"diff": "4.0.4",
 		"@babel/helpers": ">=7.26.10",
-		"js-yaml": ">=3.14.2"
+		"js-yaml": ">=3.14.2",
+		"flatted": "3.4.2",
+		"picomatch": "^2.3.2"
 	},
 	"files": [
 		"dist"
