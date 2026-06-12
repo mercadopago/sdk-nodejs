@@ -1,0 +1,21 @@
+src/clients/order/commonTypes.ts
+  s_5fdf4ed1da0b67::t_5157175b6507ef 110-113
+  s_5fdf4ed1da0b67::t_21b164ebed1717 83
+  s_5fdf4ed1da0b67::t_b3b7f76dc8b687 161-207
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "e124088a3a511b33b4ce0c951358e8abe30680f5",
+  "prompts": {},
+  "sessions": {
+    "s_5fdf4ed1da0b67": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2c44a824-72f5-457b-9a43-0dbfe5cec3a2",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Luis Sanchez <luismiguel.sanchezgarcia@mercadolibre.com.co>"
+    }
+  }
+}
