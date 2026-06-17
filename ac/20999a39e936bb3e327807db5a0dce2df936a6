@@ -1,0 +1,19 @@
+src/utils/webhook/index.ts
+  s_b32531bfe47118::t_e972c781ff007a 245
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ac20999a39e936bb3e327807db5a0dce2df936a6",
+  "prompts": {},
+  "sessions": {
+    "s_b32531bfe47118": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d9a17f2-528e-498d-8c77-35da94054ad3",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
