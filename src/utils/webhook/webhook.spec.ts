@@ -14,7 +14,7 @@ const TS_NUM = Number(TS);
 
 function computeHash(dataId: string | undefined, requestId: string | undefined, ts: string, secret: string): string {
 	const parts: string[] = [];
-	if (dataId) parts.push(`id:${dataId.toLowerCase()}`);
+	if (dataId) parts.push(`id:${dataId}`);
 	if (requestId) parts.push(`request-id:${requestId}`);
 	parts.push(`ts:${ts}`);
 	return crypto.createHmac('sha256', secret).update(parts.join(';') + ';').digest('hex');
@@ -36,9 +36,11 @@ describe('WebhookSignatureValidator', () => {
 			})).not.toThrow();
 		});
 
-		it('case 2 — uppercase dataId is lowercased before HMAC', () => {
+		it('case 2 — uppercase dataId is preserved in HMAC', () => {
+			const upperHash = computeHash(DATA_ID_RAW, REQUEST_ID, TS, SECRET);
+			const upperHeader = buildHeader(upperHash);
 			expect(() => WebhookSignatureValidator.validate({
-				xSignature: validHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_RAW, secret: SECRET, now: fixedNow,
+				xSignature: upperHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_RAW, secret: SECRET, now: fixedNow,
 			})).not.toThrow();
 		});
 	});
