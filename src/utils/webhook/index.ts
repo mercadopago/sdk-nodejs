@@ -242,7 +242,7 @@ function parseSignatureHeader(header: string): { ts?: string; hashes: Record<str
  */
 function buildManifest(dataId: string | undefined, requestId: string | undefined, ts: string): string {
 	const parts: string[] = [];
-	if (dataId) parts.push(`id:${dataId.toLowerCase()}`);
+	if (dataId) parts.push(`id:${dataId}`);
 	if (requestId) parts.push(`request-id:${requestId}`);
 	parts.push(`ts:${ts}`);
 	return parts.join(';') + ';';
