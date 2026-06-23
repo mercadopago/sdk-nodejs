@@ -15,13 +15,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci --legacy-peer-deps
       - run: npm run build
-      - name: Publish to npm
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          if [[ "$VERSION" == *"-"* ]]; then
-            npm publish --tag beta
-          else
-            npm publish
-          fi
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
