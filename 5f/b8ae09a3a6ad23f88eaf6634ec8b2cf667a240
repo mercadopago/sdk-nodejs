@@ -1,0 +1,47 @@
+src/clients/order/commonTypes.ts
+  s_d69ea98b70dbc0::t_8a5569bd0a4f42 204
+  s_d69ea98b70dbc0::t_a107b929e90571 653-658
+  s_d69ea98b70dbc0::t_79a7bfd806cb2c 102
+  s_d69ea98b70dbc0::t_7ba741095dfb0f 15
+  s_d69ea98b70dbc0::t_a8802697495c3e 30,66-70
+  s_d69ea98b70dbc0::t_5680007e57b056 95-101,103-106
+  s_d69ea98b70dbc0::t_a06906fd7aea47 144-163,178-196,203,205-230
+src/examples/order/createCheckoutPro.ts
+  s_d69ea98b70dbc0::t_a44bc90db1b93e 1-161
+.github/workflows/cd.yml
+  s_d69ea98b70dbc0::t_7d15317d9d33c0 18-25
+src/clients/order/create/types.ts
+  s_d69ea98b70dbc0::t_8077e6761aaa0b 95
+  s_d69ea98b70dbc0::t_c5de5b94aeb845 10
+  s_d69ea98b70dbc0::t_1b623f8e4f4485 195
+  s_d69ea98b70dbc0::t_26ee6f141b5811 211,213
+  s_d69ea98b70dbc0::t_20f985f3946e7c 44,46-50,58,60,62-63,66-69,73-76
+  s_d69ea98b70dbc0::t_5837aff1bac60f 36,52
+  s_d69ea98b70dbc0::t_b40172be3c778e 85-94,96-101,103-113,115-147
+  s_d69ea98b70dbc0::t_a04d3f1f6e390c 102
+  s_d69ea98b70dbc0::t_8d8ffa39267bff 225-234,239-246,257-260,267
+package.json
+  s_d69ea98b70dbc0::t_f6e1bcd11ab2c8 3
+src/clients/order/create/create.spec.ts
+  s_d69ea98b70dbc0::t_c6e4e2260cf109 227-423
+  s_d69ea98b70dbc0::t_2765e0ed359372 124
+  s_d69ea98b70dbc0::t_7d268ca5e1298f 152
+package-lock.json
+  s_d69ea98b70dbc0::t_acf9bc25e101e7 3,9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "5fb8ae09a3a6ad23f88eaf6634ec8b2cf667a240",
+  "prompts": {},
+  "sessions": {
+    "s_d69ea98b70dbc0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22af7d50-ee04-49de-af34-bd9a41f30926",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Luis Sanchez <luismiguel.sanchezgarcia@mercadolibre.com.co>"
+    }
+  }
+}
