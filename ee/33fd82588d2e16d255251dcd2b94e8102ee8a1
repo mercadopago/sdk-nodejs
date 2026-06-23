@@ -1,0 +1,25 @@
+package.json
+  s_d69ea98b70dbc0::t_7fbb52451468bc 3
+package-lock.json
+  s_d69ea98b70dbc0::t_7fbb52451468bc 3
+CHANGELOG.MD
+  s_d69ea98b70dbc0::t_94050b8a3ee75e 3-12
+src/utils/config/index.ts
+  s_d69ea98b70dbc0::t_7fbb52451468bc 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ee33fd82588d2e16d255251dcd2b94e8102ee8a1",
+  "prompts": {},
+  "sessions": {
+    "s_d69ea98b70dbc0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "22af7d50-ee04-49de-af34-bd9a41f30926",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Luis Sanchez <luismiguel.sanchezgarcia@mercadolibre.com.co>"
+    }
+  }
+}
