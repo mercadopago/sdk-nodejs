@@ -1,0 +1,27 @@
+src/clients/order/commonTypes.ts
+  s_387b62a94aa1fc::t_40b8380be10502 67-68
+src/clients/order/get/get.spec.ts
+  s_387b62a94aa1fc::t_5375cb3fbdd1bf 42-47
+  s_387b62a94aa1fc::t_9dd472ccedc117 37-41,48-82
+src/utils/restClient/restClient.spec.ts
+  s_387b62a94aa1fc::t_662e6cc1b99acf 2,54,61-72
+src/clients/order/search/search.spec.ts
+  s_387b62a94aa1fc::t_31933749e9361f 1-19,26-58,65-105
+  s_387b62a94aa1fc::t_2e99d853ae0f9b 20-25,59-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "80bc19b1fd54ae22b62a20cd40ac2ce58b3dcd78",
+  "prompts": {},
+  "sessions": {
+    "s_387b62a94aa1fc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ef6d5-783a-7e81-8ab8-aa4e49156886",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Luis Sanchez <luismiguel.sanchezgarcia@mercadolibre.com.co>"
+    }
+  }
+}
