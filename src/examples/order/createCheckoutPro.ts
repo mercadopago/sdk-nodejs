@@ -157,5 +157,4 @@ order.create({
 	console.log('Checkout PRO URL:', response.checkout_url);
 	console.log('Order ID:', response.id);
 	console.log('Order status:', response.status);
-	console.log('Client token:', response.client_token);
 }).catch(console.error);

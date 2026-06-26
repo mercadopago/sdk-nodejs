@@ -64,8 +64,8 @@ export declare interface OrderResponse extends ApiResponse {
 	/** ISO 8601 date-time from which the checkout becomes available. */
 	checkout_available_at?: string;
 	/**
-	 * Checkout PRO redirect URL. Redirect the buyer here to start the
-	 * Checkout PRO payment flow. Only present for `type: "online"` orders.
+	 * Redirect URL for online checkout flows. Redirect the buyer here to
+	 * complete payment when the API returns it for the order.
 	 */
 	checkout_url?: string;
 	/** ISO 8601 date-time when the order was created. */

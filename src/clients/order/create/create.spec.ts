@@ -289,9 +289,6 @@ describe('Create Order — Checkout PRO', () => {
 		expect(response.status).toBe('created');
 		expect(response.processing_mode).toBe('manual');
 	});
-});
-
-describe('Create Order — Checkout PRO', () => {
 	test('should support config.online.tracks with google_ad and facebook_ad pixels', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const mockBody: CreateOrderRequest = {
@@ -332,9 +329,6 @@ describe('Create Order — Checkout PRO', () => {
 			})
 		);
 	});
-});
-
-describe('Create Order — Checkout PRO', () => {
 	test('should support config.payment_method.installments.interest_free with range type', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const mockBody: CreateOrderRequest = {
@@ -376,9 +370,6 @@ describe('Create Order — Checkout PRO', () => {
 		expect(response.config.payment_method.installments.interest_free.type).toBe('range');
 		expect(response.config.payment_method.installments.interest_free.values).toEqual([2, 6]);
 	});
-});
-
-describe('Create Order — Checkout PRO', () => {
 	test('should support shipment with mode, cost, and full address including floor and apartment', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
 		const mockBody: CreateOrderRequest = {

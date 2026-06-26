@@ -1,4 +1,5 @@
 import { RestClient } from '.';
+import { AppConfig } from '@src/utils/config';
 
 const fetch = jest.fn();
 globalThis.fetch = fetch as unknown as typeof globalThis.fetch;
@@ -50,11 +51,25 @@ describe('RestClient', () => {
 				'Content-Type': expect.any(String),
 				'User-Agent': expect.any(String),
 				'X-Idempotency-Key': idempotencyKey,
-				'X-Product-Id': expect.any(String),
+				'X-Product-Id': AppConfig.PRODUCT_ID,
 				'X-Tracking-Id': expect.any(String),
 			},
 			signal: expect.any(AbortSignal),
 		});
+	});
+
+	test('Should set the canonical Node SDK Product-Id header', async () => {
+		fetch.mockResolvedValue(
+			new Response(JSON.stringify({ success: true }), { status: 200, statusText: 'OK' })
+		);
+
+		await RestClient.fetch('/v1/orders', { method: 'POST' });
+
+		expect(fetch).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({
+			headers: expect.objectContaining({
+				'X-Product-Id': 'bc32b6ntrpp001u8nhkg',
+			}),
+		}));
 	});
 
 	test('Should append query parameters to the URL', async () => {
