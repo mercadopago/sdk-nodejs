@@ -36,7 +36,7 @@ export class AppConfig {
 	 * Embedded into the `User-Agent` and `X-Tracking-Id` headers so the
 	 * API can attribute traffic to a specific SDK release.
 	 */
-	static SDK_VERSION = '3.2.0-beta.1';
+	static SDK_VERSION = '3.2.0';
 
 	/**
 	 * Canonical HTTP header names used in every request to the MercadoPago API.
