@@ -7,7 +7,7 @@
 import { Phone } from '../../../clients/commonTypes';
 import { MercadoPagoConfig } from '../../../mercadoPagoConfig';
 import { Options } from '../../../types';
-import { Address, AutomaticPayments, Config, Identification, Item, StoredCredential, SubscriptionData, TransactionSecurity } from '../commonTypes';
+import { Address, AutomaticPayments, Identification, InstallmentsConfig, Item, RetriesConfig, StoredCredential, SubscriptionData, Track, TransactionSecurity } from '../commonTypes';
 
 /**
  * Internal client payload passed to the create order REST call.
@@ -31,12 +31,9 @@ export declare type OrderCreateData = {
 
 /**
  * Request body for creating a new order.
- *
- * At minimum `total_amount` and at least one payment transaction or
- * line item should be provided.
  */
 export declare type CreateOrderRequest = {
-	/** Order type (e.g. `online`). */
+	/** Order channel type (e.g. `"online"`, `"point"`, `"qr"`). */
 	type?: string;
 	/** Integrator-defined external reference for reconciliation. */
 	external_reference?: string;
@@ -44,34 +41,108 @@ export declare type CreateOrderRequest = {
 	transactions?: TransactionsRequest;
 	/** Buyer (payer) information. */
 	payer?: PayerRequest;
-	/** Total order amount as a decimal string. */
+	/** Total order amount as a decimal string. Must equal the sum of all transaction payment amounts. */
 	total_amount?: string;
-	/** Payment capture strategy: `automatic` (default) or `manual`. */
+	/**
+	 * Payment capture strategy.
+	 * `"automatic"`: approved or rejected immediately, no intermediate state.
+	 * `"automatic_async"`: may have an intermediate challenge state.
+	 */
 	capture_mode?: string;
-	/** Processing mode (e.g. `aggregator`, `gateway`). */
+	/** Processing mode (e.g. `"automatic"`, `"manual"`). */
 	processing_mode?: string;
 	/** Human-readable order description. */
 	description?: string;
 	/** Marketplace identifier when the order originates from a marketplace. */
 	marketplace?: string;
-	/** Fee charged by the marketplace as a decimal string. */
+	/** Fee charged by the marketplace as a decimal string. Must be ≤ `total_amount`. */
 	marketplace_fee?: string;
-	/** Line items included in the order. */
+	/** Line items included in the order. If provided, must contain at least one entry. */
 	items?: Item[];
-	/** Payment method and checkout configuration. */
-	config?: Config;
+	/** Payment method, checkout behaviour, and statement descriptor configuration. */
+	config?: CreateOrderConfig;
 	/** ISO 8601 date-time from which the checkout becomes available. */
 	checkout_available_at?: string;
-	/** ISO 8601 duration or date-time controlling order expiration. */
+	/**
+	 * Order availability duration in ISO 8601 duration format (e.g. `"P1D"` = 1 day).
+	 * Takes precedence over the default TTL.
+	 */
 	expiration_time?: string;
 	/** ISO 4217 currency code (e.g. `BRL`, `ARS`, `MXN`). */
 	currency?: string;
-	/** Free-form additional information for fraud prevention or analytics. */
+	/**
+	 * Supplementary data used by the fraud-prevention system.
+	 * Required for vertical industries such as travel to improve approval rates.
+	 */
 	additional_info?: Record<string, any>;
 	/** Shipping details for physical-goods orders. */
 	shipment?: ShipmentRequest;
 	/** Integration metadata identifying the integrator, platform, corporation, and sponsor. */
 	integration_data?: IntegrationDataRequest;
+};
+
+/**
+ * Top-level configuration object for an order creation request.
+ */
+export declare type CreateOrderConfig = {
+	/** Text shown on the buyer's credit card statement (≈10 chars max). */
+	statement_descriptor?: string;
+	/**
+	 * Offline payment expiration duration in ISO 8601 format.
+	 * `"P1D"` means the offline payment is available for 1 day.
+	 */
+	default_payment_due_date?: string;
+	/** Online checkout configuration (redirect URLs, tracking pixels, auto-return, access restrictions). */
+	online?: OnlineConfigRequest;
+	/** Payment method constraints (blocked brands, max installments, interest-free ranges). */
+	payment_method?: PaymentMethodConfigRequest;
+};
+
+/**
+ * Online checkout configuration sent in an order creation request.
+ */
+export declare type OnlineConfigRequest = {
+	/**
+	 * ISO 8601 date-time from which the order is available for payment.
+	 * Buyers cannot pay before this time.
+	 */
+	available_from?: string;
+	/**
+	 * Restricts who can pay. `"account_only"` requires a logged-in Mercado Pago account.
+	 * Omit to accept all users.
+	 */
+	allowed_user_type?: string;
+	/** Redirect URL after a successful payment. */
+	success_url?: string;
+	/** Redirect URL after a rejected or cancelled payment. */
+	failure_url?: string;
+	/** Redirect URL when payment is pending (e.g. boleto generated, PIX awaiting). */
+	pending_url?: string;
+	/**
+	 * Automatic redirect behaviour after payment.
+	 * `"approved"`: redirect to `success_url` on approval.
+	 * `"all"`: redirect on any outcome.
+	 * Requires `success_url` to be set when using `"approved"`.
+	 */
+	auto_return?: 'approved' | 'all';
+	/** Tracking pixels to fire on checkout events (Google Ads, Facebook Ads). */
+	tracks?: Track[];
+	/** Retry policy for this order. */
+	retries?: RetriesConfig;
+};
+
+/**
+ * Payment method constraints sent in an order creation request.
+ */
+export declare type PaymentMethodConfigRequest = {
+	/** Maximum number of installments accepted (1–36). */
+	max_installments?: number;
+	/** Card brand IDs to block (e.g. `["amex"]`). */
+	not_allowed_ids?: string[];
+	/** Payment method types to block (e.g. `["ticket"]`). */
+	not_allowed_types?: string[];
+	/** Interest-free installment configuration. */
+	installments?: InstallmentsConfig;
 };
 
 /**
@@ -121,6 +192,7 @@ export declare type PaymentMethodRequest = {
 	statement_descriptor?: string;
 	/** 3-D Secure transaction security settings. */
 	transaction_security?: TransactionSecurity;
+	/** Financial institution identifier (used for PSE and some bank transfer methods). */
 	financial_institution?: string;
 };
 
@@ -136,10 +208,9 @@ export declare type PayerRequest = {
 	first_name?: string;
 	/** Buyer's last name. */
 	last_name?: string;
-  
+	/** Entity type of the payer (e.g. `individual`, `association`). */
 	entity_type?: string;
-  
-  /** Government-issued identification document. */
+	/** Government-issued identification document. */
 	identification?: Identification;
 	/** Buyer's phone number. */
 	phone?: Phone;
@@ -151,8 +222,26 @@ export declare type PayerRequest = {
  * Shipment details for physical-goods orders.
  */
 export declare type ShipmentRequest = {
+	/** Shipping mode. `"custom"`: seller-defined. `"not_specified"`: no specification. */
+	mode?: 'custom' | 'not_specified';
+	/** When `true`, the buyer may pick up the product in person (disables shipping cost). */
+	local_pickup?: boolean;
+	/** Shipping cost when `mode` is `"custom"`. Must be ≥ 0. */
+	cost?: string;
+	/** When `true`, shipping is free for the buyer. Cannot be combined with `cost > 0`. */
+	free_shipping?: boolean;
+	/** IDs of the free shipping methods available to the buyer. */
+	free_methods?: ShippingFreeMethod[];
 	/** Delivery destination address. */
 	address?: ShipmentAddressRequest;
+};
+
+/**
+ * Free shipping method available to the buyer.
+ */
+export declare type ShippingFreeMethod = {
+	/** Shipping method ID. */
+	id: number;
 };
 
 /**
@@ -165,13 +254,17 @@ export declare type ShipmentAddressRequest = {
 	street_name?: string;
 	/** Street number. */
 	street_number?: string;
+	/** Floor. */
+	floor?: string;
+	/** Apartment / unit complement. */
+	apartment?: string;
 	/** Neighbourhood or district name. */
 	neighborhood?: string;
 	/** City name. */
 	city?: string;
 	/** State or province. */
 	state?: string;
-	/** Additional address detail (apartment, floor, etc.). */
+	/** Additional address detail. */
 	complement?: string;
 	/** Country name or ISO code. */
 	country?: string;

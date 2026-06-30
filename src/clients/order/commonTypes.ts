@@ -12,7 +12,7 @@
 // API version: acd67b14-97c4-4a4a-840d-0a018c09654f
 
 import { ApiResponse } from '@src/types';
-import { DifferentialPricing } from '../commonTypes';
+import { DifferentialPricing, Phone } from '../commonTypes';
 
 /**
  * Full order representation returned by most Orders API endpoints.
@@ -27,7 +27,7 @@ export declare interface OrderResponse extends ApiResponse {
 	type?: string;
 	/** Integrator-defined external reference for reconciliation. */
 	external_reference?: string;
-	/** ISO 3166-1 alpha-2 country code where the order was created. */
+	/** ISO 3166-1 alpha-3 country code where the order was created. */
 	country_code?: string;
 	/** Current order status (e.g. `created`, `processed`, `cancelled`). */
 	status?: string;
@@ -63,6 +63,11 @@ export declare interface OrderResponse extends ApiResponse {
 	config?: Config;
 	/** ISO 8601 date-time from which the checkout becomes available. */
 	checkout_available_at?: string;
+	/**
+	 * Redirect URL for online checkout flows. Redirect the buyer here to
+	 * complete payment when the API returns it for the order.
+	 */
+	checkout_url?: string;
 	/** ISO 8601 date-time when the order was created. */
 	created_date?: string;
 	/** ISO 8601 date-time of the most recent update. */
@@ -87,6 +92,18 @@ export declare type PayerResponse = {
 	customer_id?: string;
 	/** Entity type of the payer (e.g. `individual`, `association`). */
 	entity_type?: string;
+	/** Buyer's email address. */
+	email?: string;
+	/** Buyer's first name. */
+	first_name?: string;
+	/** Buyer's last name. */
+	last_name?: string;
+	/** Buyer's phone number. */
+	phone?: Phone;
+	/** Government-issued identification document. */
+	identification?: Identification;
+	/** Buyer's billing or residential address. */
+	address?: Address;
 }
 
 /**
@@ -124,6 +141,27 @@ export declare type PaymentMethodConfig = {
 }
 
 /**
+ * Installment configuration for payment method rules.
+ */
+export declare type InstallmentsConfig = {
+	/** Interest-free installment plan settings. */
+	interest_free?: InstallmentsInterestFreeConfig;
+}
+
+/**
+ * Interest-free installment plan configuration sent in requests and returned in responses.
+ */
+export declare type InstallmentsInterestFreeConfig = {
+	/**
+	 * Strategy for applying interest-free installments.
+	 * `"range"` uses `values` as `[min, max]`; `"list"` uses `values` as explicit counts; `"none"` disables interest-free.
+	 */
+	type?: 'range' | 'list' | 'none';
+	/** Installment counts that qualify for zero interest. When `type` is `"range"` provide `[min, max]`. */
+	values?: number[];
+}
+
+/**
  * Online checkout configuration for redirect-based flows.
  */
 export declare type OnlineConfig = {
@@ -137,10 +175,59 @@ export declare type OnlineConfig = {
 	failure_url?: string;
 	/** URL the buyer is automatically redirected to after checkout. */
 	auto_return_url?: string;
+	/**
+	 * Automatic redirect behavior after payment.
+	 * `"approved"` redirects to `success_url` on approval; `"all"` redirects on any outcome.
+	 */
+	auto_return?: 'approved' | 'all';
+	/**
+	 * ISO 8601 date-time from which this order is available for payment.
+	 * Buyers cannot pay before this time.
+	 */
+	available_from?: string;
+	/**
+	 * Restricts who can pay. `"account_only"` requires a logged-in Mercado Pago account.
+	 * Omit to accept all users (default).
+	 */
+	allowed_user_type?: 'account_only';
+	/** Retry policy for this order. */
+	retries?: RetriesConfig;
+	/** Tracking pixels to fire on checkout events (Google Ads, Facebook Ads). */
+	tracks?: Track[];
 	/** Differential pricing configuration for marketplace splits. */
 	differential_pricing?: DifferentialPricing;
 	/** 3-D Secure transaction security settings. */
 	transaction_security?: TransactionSecurity;
+}
+
+/**
+ * Retry policy for an online order.
+ */
+export declare type RetriesConfig = {
+	/** Whether automatic payment retry is enabled. When `false`, a failed attempt ends the order. */
+	allowed?: boolean;
+}
+
+/**
+ * Tracking pixel configuration for checkout events.
+ */
+export declare type Track = {
+	/** Pixel type: `"google_ad"` or `"facebook_ad"`. */
+	type: 'google_ad' | 'facebook_ad';
+	/** Pixel-specific values. */
+	values: TrackValues;
+}
+
+/**
+ * Values for a tracking pixel. Fields required depend on `type`.
+ */
+export declare type TrackValues = {
+	/** Google Ads conversion ID. Required when `type = "google_ad"`. */
+	conversion_id?: string;
+	/** Google Ads conversion label. */
+	conversion_label?: string;
+	/** Facebook Ads pixel ID. Required when `type = "facebook_ad"`. */
+	pixel_id?: string;
 }
 
 /**
@@ -563,9 +650,12 @@ export declare type InstallmentsResponse = {
  * Interest-free installment plan configuration.
  */
 export declare type InstallmentsInterestFreeResponse = {
-	/** Strategy type for applying interest-free installments. */
-	type?: string;
-	/** Specific installment counts that qualify for zero interest. */
+	/**
+	 * Strategy for applying interest-free installments.
+	 * `"range"` uses `values` as `[min, max]`; `"list"` uses `values` as explicit counts; `"none"` disables interest-free.
+	 */
+	type?: 'range' | 'list' | 'none';
+	/** Installment counts that qualify for zero interest. */
 	values?: number[];
 }
 
