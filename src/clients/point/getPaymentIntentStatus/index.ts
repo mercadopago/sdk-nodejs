@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the get-payment-intent-status operation.
  *
@@ -19,7 +20,7 @@ import type { PointGetPaymentIntentStatusClient } from './types';
  */
 export default function getPaymentIntentStatus({ payment_intent_id, config }: PointGetPaymentIntentStatusClient): Promise<PaymentIntentStatusResponse> {
 	return RestClient.fetch<PaymentIntentStatusResponse>(
-		`/point/integration-api/payment-intents/${payment_intent_id}/events`,
+		`/point/integration-api/payment-intents/${encodePathParam(payment_intent_id)}/events`,
 		{
 			method: 'GET',
 			headers: {

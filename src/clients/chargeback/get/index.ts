@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Get chargeback operation.
  *
@@ -11,7 +12,7 @@ import type { ChargebackResponse } from '../commonTypes';
 
 export default function get({ id, config }: ChargebackGetClient): Promise<ChargebackResponse> {
 	return RestClient.fetch<ChargebackResponse>(
-		`/v1/chargebacks/${id}`,
+		`/v1/chargebacks/${encodePathParam(id)}`,
 		{
 			method: 'GET',
 			headers: {

@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the search-payment-intent operation.
  *
@@ -19,7 +20,7 @@ import type { PointSearchPaymentIntentClient } from './types';
  */
 export default function searchPaymentIntent({ payment_intent_id, config }: PointSearchPaymentIntentClient): Promise<PaymentIntentResponse> {
 	return RestClient.fetch<PaymentIntentResponse>(
-		`/point/integration-api/payment-intents/${payment_intent_id}`,
+		`/point/integration-api/payment-intents/${encodePathParam(payment_intent_id)}`,
 		{
 			method: 'GET',
 			headers: {

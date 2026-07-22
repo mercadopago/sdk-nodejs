@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the create-payment-intent operation for Point devices.
  *
@@ -19,7 +20,7 @@ import type { PaymentIntentResponse } from '../commonTypes';
  */
 export default function createPaymentIntent({ device_id, request, config }: PointCreatePaymentIntentClient): Promise<PaymentIntentResponse> {
 	return RestClient.fetch<PaymentIntentResponse>(
-		`/point/integration-api/devices/${device_id}/payment-intents`,
+		`/point/integration-api/devices/${encodePathParam(device_id)}/payment-intents`,
 		{
 			method: 'POST',
 			headers: {

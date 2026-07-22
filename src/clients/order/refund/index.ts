@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Refund order operation -- sends `POST /v1/orders/{id}/refund`.
  *
@@ -18,7 +19,7 @@ import { OrderResponse } from '../commonTypes';
  */
 export default function refund({ id, body, config }: OrderRefundClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}/refund`,
+		`/v1/orders/${encodePathParam(id)}/refund`,
 		{
 			method: 'POST',
 			headers: {

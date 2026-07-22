@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the "update preference" operation.
  *
@@ -19,7 +20,7 @@ import type { PreferenceResponse } from '@src/clients/preference/commonTypes';
  */
 export default function update({ id, updatePreferenceRequest, config }: PreferenceUpdateClient): Promise<PreferenceResponse> {
 	return RestClient.fetch<PreferenceResponse>(
-		`/checkout/preferences/${id}`,
+		`/checkout/preferences/${encodePathParam(id)}`,
 		{
 			method: 'PUT',
 			headers: {

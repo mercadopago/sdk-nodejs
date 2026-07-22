@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the "update subscription plan" operation.
  *
@@ -19,7 +20,7 @@ import type { PreApprovalPlanResponse } from '@src/clients/preApprovalPlan/commo
  */
 export default function update({ id, updatePreApprovalPlanRequest, config }: UpdatePreApprovalPlanUpdateClient): Promise<PreApprovalPlanResponse> {
 	return RestClient.fetch<PreApprovalPlanResponse>(
-		`/preapproval_plan/${id}`,
+		`/preapproval_plan/${encodePathParam(id)}`,
 		{
 			method: 'PUT',
 			headers: {
