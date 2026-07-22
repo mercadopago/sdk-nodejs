@@ -59,6 +59,8 @@ export declare type Items = {
 	unit_price: number;
 	/** Whether the item carries a warranty. */
 	warranty?: boolean;
+	/** Item type (e.g. `physical`, `digital`). */
+	type?: string;
 	/** Industry-specific descriptor for travel / events. */
 	category_descriptor?: CategoryDescriptor;
 	/** Date of the event or service in ISO 8601 format. */
