@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 3.2.1 - 2026-07-22
+- Patch release: dependency updates and bug fixes.
+
 ## VERSION 3.2.0 - 2026-06-30
 - Order: Checkout PRO support — create online orders and redirect buyers to the Checkout PRO payment flow via `checkout_url`.
 - Order: New request types `CreateOrderConfig`, `OnlineConfigRequest`, `PaymentMethodConfigRequest` with full support for redirect URLs (`success_url`, `failure_url`, `pending_url`), `auto_return`, `allowed_user_type`, `available_from`, tracking pixels (Google Ads, Facebook Ads), and interest-free installment ranges.
