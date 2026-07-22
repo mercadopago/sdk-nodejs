@@ -161,6 +161,16 @@ export declare type PayerAdditionalInfo = {
   address?: Address;
   /** Account registration date on the integrator's platform (ISO 8601). */
   registration_date?: string;
+  /** Authentication method used by the payer (e.g. `gmail`). */
+  authentication_type?: string;
+  /** Whether the payer has a MercadoPago loyalty subscription. */
+  is_prime_user?: boolean;
+  /** Whether this is the payer's first online purchase. */
+  is_first_purchase_online?: boolean;
+  /** Date of the payer's last purchase (ISO 8601). */
+  last_purchase?: string;
+  /** Government-issued identification document. */
+  identification?: Identification;
 };
 
 /**
@@ -175,6 +185,12 @@ export declare type ShipmentsPayment = {
  * Simplified receiver address returned inside a payment's shipment data.
  */
 export declare type ShipmentsReceiverAddress = {
+  /** Postal / ZIP code. */
+  zip_code?: string;
+  /** Street name. */
+  street_name?: string;
+  /** Street number. */
+  street_number?: string;
   /** Floor or level within the building. */
   floor?: string;
   /** Apartment or unit identifier. */
