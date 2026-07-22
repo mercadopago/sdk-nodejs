@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Get order operation -- sends `GET /v1/orders/{id}`.
  *
@@ -15,7 +16,7 @@ import { OrderResponse } from '../commonTypes';
  */
 export default function get({ id, config }: OrderGetClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}`,
+		`/v1/orders/${encodePathParam(id)}`,
 		{
 			method: 'GET',
 			headers: {

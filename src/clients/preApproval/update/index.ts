@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the "update subscription" operation.
  *
@@ -18,7 +19,7 @@ import type { PreApprovalUpdateClient, PreApprovalUpdateResponse } from './types
  */
 export default function update({ id, body, config }: PreApprovalUpdateClient): Promise<PreApprovalUpdateResponse> {
 	return RestClient.fetch<PreApprovalUpdateResponse>(
-		`/preapproval/${id}`,
+		`/preapproval/${encodePathParam(id)}`,
 		{
 			method: 'PUT',
 			headers: {

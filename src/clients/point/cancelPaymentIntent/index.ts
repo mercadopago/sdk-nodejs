@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the cancel-payment-intent operation for Point devices.
  *
@@ -19,7 +20,7 @@ import type { PointCancelPaymentIntentClient } from './types';
  */
 export default function cancelPaymentIntent({ device_id, payment_intent_id, config }: PointCancelPaymentIntentClient): Promise<CancelPaymentIntentResponse> {
 	return RestClient.fetch<CancelPaymentIntentResponse>(
-		`/point/integration-api/devices/${device_id}/payment-intents/${payment_intent_id}`,
+		`/point/integration-api/devices/${encodePathParam(device_id)}/payment-intents/${encodePathParam(payment_intent_id)}`,
 		{
 			method: 'DELETE',
 			headers: {

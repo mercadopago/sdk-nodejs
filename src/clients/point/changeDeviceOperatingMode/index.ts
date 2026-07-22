@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the change-device-operating-mode operation.
  *
@@ -19,7 +20,7 @@ import type { PointChangeDeviceOperatingModeClient } from './types';
  */
 export default function changeDeviceOperatingMode({ device_id, request, config }: PointChangeDeviceOperatingModeClient): Promise<ChangeDeviceOperatingModeResponse> {
 	return RestClient.fetch<ChangeDeviceOperatingModeResponse>(
-		`/point/integration-api/devices/${device_id}`,
+		`/point/integration-api/devices/${encodePathParam(device_id)}`,
 		{
 			method: 'PATCH',
 			headers: {

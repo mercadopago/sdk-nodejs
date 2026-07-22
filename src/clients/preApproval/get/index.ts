@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the "get subscription" operation.
  *
@@ -19,7 +20,7 @@ import type { PreApprovalResponse } from '@src/clients/preApproval/commonTypes';
  */
 export default function get({ id, config }: PreApprovalGetClient): Promise<PreApprovalResponse> {
 	return RestClient.fetch<PreApprovalResponse>(
-		`/preapproval/${id}`,
+		`/preapproval/${encodePathParam(id)}`,
 		{
 			method: 'GET',
 			headers: {

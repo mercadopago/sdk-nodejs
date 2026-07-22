@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Capture order operation -- sends `POST /v1/orders/{id}/capture`.
  *
@@ -17,7 +18,7 @@ import { OrderResponse } from '../commonTypes';
  */
 export default function capture({ id, config }: OrderCaptureClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}/capture`,
+		`/v1/orders/${encodePathParam(id)}/capture`,
 		{
 			method: 'POST',
 			headers: {

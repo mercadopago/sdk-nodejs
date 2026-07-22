@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the customer card update operation.
  *
@@ -19,7 +20,7 @@ import type { CustomerCardUpdateClient } from './types';
  */
 export default function update({ customerId, cardId, body, config }: CustomerCardUpdateClient): Promise<CustomerCardResponse> {
 	return RestClient.fetch<CustomerCardResponse>(
-		`/v1/customers/${customerId}/cards/${cardId}`,
+		`/v1/customers/${encodePathParam(customerId)}/cards/${encodePathParam(cardId)}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

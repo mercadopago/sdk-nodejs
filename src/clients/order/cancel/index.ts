@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Cancel order operation -- sends `POST /v1/orders/{id}/cancel`.
  *
@@ -15,7 +16,7 @@ import { OrderResponse } from '../commonTypes';
  */
 export default function cancel({ id, config }: OrderCancelClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}/cancel`,
+		`/v1/orders/${encodePathParam(id)}/cancel`,
 		{
 			method: 'POST',
 			headers: {

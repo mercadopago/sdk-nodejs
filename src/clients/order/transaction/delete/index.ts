@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Delete transaction operation -- sends `DELETE /v1/orders/{id}/transactions/{transactionId}`.
  *
@@ -15,7 +16,7 @@ import { ApiResponse } from '@src/types';
  */
 export default function deleteTransaction({ id, transactionId, config }: OrderDeleteTransactionClient): Promise<ApiResponse> {
 	return RestClient.fetch(
-		`/v1/orders/${id}/transactions/${transactionId}`,
+		`/v1/orders/${encodePathParam(id)}/transactions/${encodePathParam(transactionId)}`,
 		{
 			method: 'DELETE',
 			headers: {

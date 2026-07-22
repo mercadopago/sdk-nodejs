@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the customer card list operation.
  *
@@ -19,7 +20,7 @@ import type { CustomerCardResponse } from '../commonTypes';
  */
 export default function list({ customerId, config }: CustomerCardListClient): Promise<CustomerCardResponse[]> {
 	return RestClient.fetch<CustomerCardResponse[]>(
-		`/v1/customers/${customerId}/cards`,
+		`/v1/customers/${encodePathParam(customerId)}/cards`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

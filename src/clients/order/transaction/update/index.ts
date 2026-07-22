@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Update transaction operation -- sends `PUT /v1/orders/{id}/transactions/{transactionId}`.
  *
@@ -18,7 +19,7 @@ import { PaymentApiResponse } from '../../commonTypes';
  */
 export default function updateTransaction({ id, transactionId, body, config }: OrderUpdateTransactionClient): Promise<PaymentApiResponse> {
 	return RestClient.fetch<PaymentApiResponse>(
-		`/v1/orders/${id}/transactions/${transactionId}`,
+		`/v1/orders/${encodePathParam(id)}/transactions/${encodePathParam(transactionId)}`,
 		{
 			method: 'PUT',
 			headers: {

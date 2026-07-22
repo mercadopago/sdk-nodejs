@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Create transaction operation -- sends `POST /v1/orders/{id}/transactions`.
  *
@@ -15,7 +16,7 @@ import { OrderCreateTransactionClient } from './types';
  */
 export default function createTransaction({ id, body, config }: OrderCreateTransactionClient): Promise<TransactionsApiResponse> {
 	return RestClient.fetch<TransactionsApiResponse>(
-		`/v1/orders/${id}/transactions`,
+		`/v1/orders/${encodePathParam(id)}/transactions`,
 		{
 			method: 'POST',
 			headers: {

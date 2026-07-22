@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the get-invoice operation.
  *
@@ -19,7 +20,7 @@ import type { InvoiceResponse } from '@src/clients/invoice/commonTypes';
  */
 export default function get({ id, config }: InvoiceGetClient): Promise<InvoiceResponse> {
 	return RestClient.fetch<InvoiceResponse>(
-		`/authorized_payments/${id}`,
+		`/authorized_payments/${encodePathParam(id)}`,
 		{
 			method: 'GET',
 			headers: {

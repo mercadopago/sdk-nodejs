@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Process order operation -- sends `POST /v1/orders/{id}/process`.
  *
@@ -18,7 +19,7 @@ import { OrderResponse } from '../commonTypes';
  */
 export default function process({ id, config }: OrderProcessClient): Promise<OrderResponse> {
 	return RestClient.fetch<OrderResponse>(
-		`/v1/orders/${id}/process`,
+		`/v1/orders/${encodePathParam(id)}/process`,
 		{
 			method: 'POST',
 			headers: {

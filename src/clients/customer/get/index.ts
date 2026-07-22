@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the customer retrieval operation.
  *
@@ -19,7 +20,7 @@ import type { CustomerResponse } from '../commonTypes';
  */
 export default function get({ customerId, config }: CustomerGetClient): Promise<CustomerResponse> {
 	return RestClient.fetch<CustomerResponse>(
-		`/v1/customers/${customerId}`,
+		`/v1/customers/${encodePathParam(customerId)}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

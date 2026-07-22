@@ -1,3 +1,4 @@
+import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the customer card retrieval operation.
  *
@@ -19,7 +20,7 @@ import type { CustomerCardResponse } from '../commonTypes';
  */
 export default function get({ customerId, cardId, config }: CustomerCardGetRemoveClient): Promise<CustomerCardResponse> {
 	return RestClient.fetch<CustomerCardResponse>(
-		`/v1/customers/${customerId}/cards/${cardId}`,
+		`/v1/customers/${encodePathParam(customerId)}/cards/${encodePathParam(cardId)}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`
