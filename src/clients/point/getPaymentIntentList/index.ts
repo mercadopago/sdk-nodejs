@@ -1,4 +1,3 @@
-import { encodePathParam } from '@utils/path';
 /**
  * Implementation of the get-payment-intent-list operation.
  *
