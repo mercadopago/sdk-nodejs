@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v7
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
       - run: npm install --legacy-peer-deps
       - run: npm run build
       - run: npm test
