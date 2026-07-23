@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: npm ci --legacy-peer-deps
+      - run: npm install --legacy-peer-deps
       - run: npm run build
       - name: Publish to npm
         run: |
