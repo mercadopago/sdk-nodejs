@@ -1,0 +1,23 @@
+src/clients/order/commonTypes.ts
+  s_9d868b010fbbae::t_19d802a4084b35 115
+src/clients/order/create/types.ts
+  s_9d868b010fbbae::t_e8e78f88fc7755 33
+  s_69fabdbcb9c498::t_523b4d9c1c0d99 96
+  s_9d868b010fbbae::t_e222b7a43cf1c3 87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d698ff2281d47d3ace908a766bd50edf7acc992d",
+  "prompts": {},
+  "sessions": {
+    "s_69fabdbcb9c498": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6841e5d1-e091-4d60-b9db-cbe4c995446d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Daniel Alfaro <daniel.alfaro@mercadolibre.com.co>"
+    }
+  }
+}
