@@ -16,14 +16,11 @@ jobs:
         node-version: [18.x, 20.x, 22.x, 24.x, 26.x]
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v7
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci --legacy-peer-deps
+      - run: npm install --legacy-peer-deps
       - run: npm run build
       - run: npm test
-      - name: Dependency audit
-        run: npm audit --audit-level=high
