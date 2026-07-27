@@ -1,6 +1,8 @@
-import { compilerOptions } from './tsconfig.json';
 import { pathsToModuleNameMapper } from 'ts-jest';
 import type { JestConfigWithTsJest } from 'ts-jest';
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { compilerOptions } = require('./tsconfig.json');
 
 const jestConfig: JestConfigWithTsJest = {
 	clearMocks: true,
