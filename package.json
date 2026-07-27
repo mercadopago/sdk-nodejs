@@ -11,7 +11,7 @@
 		"lint": "eslint 'src/**/*.{ts,tsx}' 'src/examples/**/*.{ts,tsx}' --cache",
 		"lint:fix": "eslint --fix --ext .ts src src/examples",
 		"exec": "node_modules/.bin/ts-node -r tsconfig-paths/register",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"repository": {
 		"type": "git",
@@ -35,29 +35,18 @@
 		"node": ">=18"
 	},
 	"devDependencies": {
-		"@types/jest": "^29.5.3",
-		"@types/node": "^22.0.0",
-		"@typescript-eslint/eslint-plugin": "^8.0.0",
-		"@typescript-eslint/parser": "^8.0.0",
-		"eslint": "^8.57.0",
-		"husky": "^8.0.0",
-		"jest": "^29.7.0",
-		"ts-jest": "^29.4.0",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^26.1.1",
+		"@typescript-eslint/eslint-plugin": "^8.63.0",
+		"@typescript-eslint/parser": "^8.63.0",
+		"eslint": "^10.7.0",
+		"husky": "^9.1.7",
+		"jest": "^30.4.2",
+		"ts-jest": "^29.4.11",
 		"ts-node": "^10.9.2",
-		"tsc-alias": "^1.8.17",
+		"tsc-alias": "^1.9.0",
 		"tsconfig-paths": "^4.2.0",
-		"typescript": "^5.8.0"
-	},
-	"overrides": {
-		"minimatch": "3.1.5",
-		"brace-expansion": "1.1.16",
-		"ajv": "6.14.0",
-		"diff": "4.0.4",
-		"@babel/core": "7.29.7",
-		"@babel/helpers": ">=7.26.10",
-		"js-yaml": ">=4.2.1",
-		"flatted": "3.4.2",
-		"picomatch": "^2.3.2"
+		"typescript": "^5.9.3"
 	},
 	"files": [
 		"dist"

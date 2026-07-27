@@ -87,7 +87,7 @@ describe('IT, create', () => {
 					address: {
 						zip_code: '06233200',
 						street_name: 'street_name',
-						street_number: 123,
+						street_number: '123',
 						neighborhood: 'neighborhood',
 						city: 'city',
 						federal_unit: 'federal_unit',
