@@ -410,6 +410,14 @@ export declare type BankInfo = {
 };
 
 /**
+ * Payment reference returned inside a Credential on File transaction response.
+ */
+export declare type TransactionDataReference = {
+  /** Identifier of the referenced payment. */
+  id?: string;
+};
+
+/**
  * Transaction data related to the point of interaction (QR, PIX, etc.).
  */
 export declare type TransactionData = {
@@ -427,6 +435,23 @@ export declare type TransactionData = {
   bank_info?: BankInfo;
   /** URL to a printable payment ticket / voucher. */
   ticket_url?: string;
+  /** Whether this is the first transaction in a Credential on File agreement. */
+  first_transaction?: boolean;
+  /**
+   * Credential storage state.
+   * `"store"` – credentials are being stored; `"stored"` – credentials were previously stored.
+   */
+  storage?: string;
+  /**
+   * Indicates how the transaction was initiated.
+   * `"customer"` – initiated by the cardholder; `"merchant"` – initiated by the merchant.
+   */
+  transaction_initiator?: string;
+  /**
+   * Reference to a prior payment in a Credential on File agreement.
+   * Present when `point_of_interaction.type` is `CREDENTIAL_ON_FILE`.
+   */
+  reference?: TransactionDataReference;
 };
 
 /**
@@ -436,7 +461,7 @@ export declare type TransactionData = {
  * and transaction-specific data.
  */
 export declare type PointOfInteraction = {
-  /** Interaction type (e.g. `CHECKOUT`, `QR`, `OPENPLATFORM`). */
+  /** Interaction type (e.g. `CHECKOUT`, `QR`, `OPENPLATFORM`, `CREDENTIAL_ON_FILE`). */
   type?: string;
   /** Interaction sub-type for further classification. */
   sub_type?: string;
