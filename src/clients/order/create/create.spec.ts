@@ -111,8 +111,8 @@ describe('Create Order', () => {
 				online: {
 					callback_url: 'https://example.com/callback',
 					transaction_security: {
-						validation: 'enabled',
-						liability_shift: 'issuer',
+						validation: 'on_fraud_risk',
+						liability_shift: 'required',
 					},
 				},
 			},
