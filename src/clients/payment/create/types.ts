@@ -194,7 +194,7 @@ export declare type SubMerchant = {
 export declare type PointOfInteractionRequest = {
   /** Identifier of the resource this payment is linked to. */
   linkedTo?: string,
-  /** Interaction type (e.g. `SUBSCRIPTIONS`). */
+  /** Interaction type (e.g. `SUBSCRIPTIONS`, `CREDENTIAL_ON_FILE`). */
   type?: string,
   /** Interaction sub-type. */
   sub_type?: string,
@@ -208,6 +208,8 @@ export declare type PointOfInteractionRequest = {
 export declare type TransactionDataRequest = {
   /** Whether this is the first charge in a subscription. */
   first_time_use?: boolean,
+  /** Whether this is the first transaction in a Credential on File agreement. */
+  first_transaction?: boolean,
   /** Position of this payment within the subscription cycle. */
   subscription_sequence?: SubscriptionSequenceRequest,
   /** Subscription plan identifier. */
@@ -216,8 +218,23 @@ export declare type TransactionDataRequest = {
   invoice_period?: InvoicePeriodRequest,
   /** Reference to a previous payment in the same subscription. */
   payment_reference?: PaymentReferenceRequest,
+  /**
+   * Reference to a previous payment in a Credential on File agreement.
+   * Use instead of `payment_reference` for `CREDENTIAL_ON_FILE` interactions.
+   */
+  reference?: ReferenceRequest,
   /** Billing date for this charge (ISO 8601). */
   billing_date?: string,
+  /**
+   * Indicates how the transaction was initiated.
+   * `"customer"` – initiated by the cardholder; `"merchant"` – initiated by the merchant.
+   */
+  transaction_initiator?: string,
+  /**
+   * Credential storage state.
+   * `"store"` – credentials are being stored; `"stored"` – credentials were previously stored.
+   */
+  storage?: string,
 };
 
 /**
@@ -244,6 +261,17 @@ export declare type InvoicePeriodRequest = {
  * Reference to a prior payment, used to link recurring charges.
  */
 export declare type PaymentReferenceRequest = {
+  /** Identifier of the referenced payment. */
+  id?: string;
+};
+
+/**
+ * Reference to a prior payment in a Credential on File agreement.
+ *
+ * Used with `CREDENTIAL_ON_FILE` point-of-interaction type to link
+ * subsequent merchant-initiated transactions to the original agreement.
+ */
+export declare type ReferenceRequest = {
   /** Identifier of the referenced payment. */
   id?: string;
 };
