@@ -1,8 +1,8 @@
-import { compilerOptions } from './tsconfig.json';
-import { pathsToModuleNameMapper } from 'ts-jest';
-import type { JestConfigWithTsJest } from 'ts-jest';
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { compilerOptions } = require('./tsconfig.json');
 
-const jestConfig: JestConfigWithTsJest = {
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+const jestConfig = {
 	clearMocks: true,
 	collectCoverage: true,
 	coverageDirectory: 'coverage',
@@ -24,4 +24,4 @@ const jestConfig: JestConfigWithTsJest = {
 	],
 };
 
-export default jestConfig;
+module.exports = jestConfig;

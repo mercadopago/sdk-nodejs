@@ -129,6 +129,8 @@ export declare type OnlineConfigRequest = {
 	tracks?: Track[];
 	/** Retry policy for this order. */
 	retries?: RetriesConfig;
+	/** 3-D Secure transaction security settings. */
+	transaction_security?: TransactionSecurity;
 };
 
 /**
