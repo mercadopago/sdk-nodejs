@@ -96,7 +96,7 @@ order.create({
 							payment_initiator: 'merchant',
 							reason: 'recurring',
 							first_payment: false,
-							prev_transaction_ref: firstPaymentId,
+							previous_transaction_reference: firstPaymentId,
 						},
 						subscription_data: {
 							invoice_id: 'INV-002',
