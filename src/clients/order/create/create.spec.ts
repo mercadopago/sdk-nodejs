@@ -73,7 +73,7 @@ describe('Create Order', () => {
 							reason: 'recurring',
 							store_payment_method: true,
 							first_payment: false,
-							prev_transaction_ref: 'prev_ref_123',
+							previous_transaction_reference: 'prev_ref_123',
 						},
 					},
 				],
