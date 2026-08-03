@@ -27,8 +27,8 @@ describe('AppConfig', () => {
 	});
 
 	it('should have correct constants', () => {
-		expect(AppConfig.DEFAULT_TIMEOUT).toEqual(10000);
-		expect(AppConfig.DEFAULT_RETRIES).toEqual(2);
+		expect(AppConfig.DEFAULT_TIMEOUT).toEqual(60000);
+		expect(AppConfig.DEFAULT_RETRIES).toEqual(3);
 		expect(AppConfig.BASE_DELAY_MS).toEqual(1000);
 		expect(AppConfig.BASE_URL).toEqual('https://api.mercadopago.com');
 		expect(AppConfig.getNodeVersion()).toEqual('v13.14.0');

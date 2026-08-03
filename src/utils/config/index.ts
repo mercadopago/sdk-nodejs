@@ -1,7 +1,9 @@
 export class AppConfig {
-	static readonly DEFAULT_TIMEOUT = 10000;
-	static readonly DEFAULT_RETRIES = 2;
+	static readonly DEFAULT_TIMEOUT = 60000;   // 60 seconds (aligned with DEFAULT_TIMEOUT_SECONDS)
+	static readonly DEFAULT_RETRIES = 3;
 	static readonly BASE_DELAY_MS = 1000;
+	static readonly DEFAULT_MAX_DELAY_MS = 30000;
+	static readonly DEFAULT_RETRY_ON = [429, 500, 502, 503, 504];
 	static readonly BASE_URL = 'https://api.mercadopago.com';
 	static readonly PRODUCT_ID = 'bc32b6ntrpp001u8nhkg';
 

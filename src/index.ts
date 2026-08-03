@@ -18,3 +18,20 @@ export { OAuth } from './clients/oAuth';
 export { MerchantOrder } from './clients/merchantOrder';
 export { User } from './clients/user';
 export { Order } from './clients/order';
+
+export {
+	MercadoPagoError,
+	MPBadRequestError,
+	MPAuthenticationError,
+	MPPaymentError,
+	MPForbiddenError,
+	MPNotFoundError,
+	MPIdempotencyError,
+	MPValidationError,
+	MPResourceLockedError,
+	MPDependencyError,
+	MPRateLimitError,
+	MPServerError,
+	MPConnectionError,
+	buildError,
+} from './utils/errors';

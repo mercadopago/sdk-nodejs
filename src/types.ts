@@ -13,6 +13,18 @@ export declare type Options = {
 	expandResponseNodes?: string;
 	cardValidation?: string;
 	testToken?: boolean;
+	/** Maximum retry attempts. Defaults to {@link AppConfig.DEFAULT_RETRIES}. */
+	maxRetries?: number;
+	/** HTTP status codes that trigger a retry. Defaults to [429, 500, 502, 503, 504]. */
+	retryOn?: number[];
+	/** Initial backoff delay in milliseconds. Defaults to {@link AppConfig.BASE_DELAY_MS}. */
+	initialDelay?: number;
+	/** Maximum backoff delay in milliseconds. Defaults to 30 000. */
+	maxDelay?: number;
+	/** Add random jitter to retry delay using `crypto.randomInt`. */
+	jitter?: boolean;
+	/** Callback invoked before each retry. Receives the attempt number and triggering error. */
+	onRetry?: (attempt: number, error: Error) => void;
 };
 
 export declare interface SearchOptions {

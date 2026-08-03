@@ -1,5 +1,7 @@
+import { randomInt } from 'crypto';
 import fetch, { Response, RequestInit } from 'node-fetch';
 import { AppConfig } from '@utils/config';
+import { buildError, MPConnectionError } from '@utils/errors';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { Options } from '@src/types';
@@ -30,29 +32,75 @@ class RestClient {
 		return url.includes('?') ? `${url}&${searchParams.toString()}` : `${url}?${searchParams.toString()}`;
 	}
 
-	private static async retryWithExponentialBackoff<T>(
-		fn: () => Promise<T>,
-		retries: number,
-	): Promise<T> {
-		let attempt = 1;
+	private static computeDelay(
+		attempt: number,
+		initialDelay: number,
+		maxDelay: number,
+		useJitter: boolean,
+	): number {
+		const exponential = Math.min(initialDelay * Math.pow(2, attempt), maxDelay);
+		if (!useJitter || exponential <= 0) return exponential;
+		// Use crypto.randomInt — NEVER Math.random()
+		return randomInt(0, exponential + 1);
+	}
 
-		const execute = async () => {
+	private static parseRetryAfterMs(response: Response): number | null {
+		const header = response.headers.get('Retry-After');
+		if (!header) return null;
+		const seconds = parseInt(header, 10);
+		return isNaN(seconds) ? null : seconds * 1000;
+	}
+
+	private static async retryWithExponentialBackoff(
+		fn: () => Promise<Response>,
+		retries: number,
+		retryOn: number[],
+		initialDelay: number,
+		maxDelay: number,
+		useJitter: boolean,
+		onRetry?: (attempt: number, error: Error) => void,
+	): Promise<Response> {
+		let lastError: Error = new Error('Retry loop exited without result');
+
+		for (let attempt = 0; attempt <= retries; attempt++) {
 			try {
-				return await fn();
-			} catch (error) {
-				if (attempt >= retries || (error.status < 500)) {
-					throw error;
+				const response = await fn();
+
+				if (response.ok) return response;
+				if (response.status === 204) return response;
+
+				// Non-ok response — should we retry?
+				if (attempt < retries && retryOn.includes(response.status)) {
+					const retryAfterMs = response.status === 429
+						? RestClient.parseRetryAfterMs(response)
+						: null;
+					const delay = retryAfterMs !== null
+						? Math.min(retryAfterMs, maxDelay)
+						: RestClient.computeDelay(attempt, initialDelay, maxDelay, useJitter);
+
+					// Build a typed error for the onRetry callback
+					const errorBody = await response.json().catch(() => ({}));
+					const err = buildError(response.status, errorBody as Record<string, unknown>);
+					lastError = err;
+					onRetry?.(attempt + 1, err);
+					await new Promise((resolve) => setTimeout(resolve, delay));
+					continue;
 				}
 
-				const delayMs = AppConfig.BASE_DELAY_MS * 2 ** attempt;
-				await new Promise((resolve) => setTimeout(resolve, delayMs));
-
-				attempt++;
-				return execute();
+				return response;
+			} catch (networkError) {
+				if (attempt >= retries) {
+					throw new MPConnectionError(networkError);
+				}
+				const err = new MPConnectionError(networkError);
+				lastError = err;
+				onRetry?.(attempt + 1, err);
+				const delay = RestClient.computeDelay(attempt, initialDelay, maxDelay, useJitter);
+				await new Promise((resolve) => setTimeout(resolve, delay));
 			}
-		};
+		}
 
-		return execute();
+		throw lastError;
 	}
 
 	static async fetch<T>(
@@ -65,6 +113,12 @@ class RestClient {
 			queryParams,
 			method = 'GET',
 			retries = AppConfig.DEFAULT_RETRIES,
+			maxRetries,
+			retryOn = AppConfig.DEFAULT_RETRY_ON,
+			initialDelay = AppConfig.BASE_DELAY_MS,
+			maxDelay = AppConfig.DEFAULT_MAX_DELAY_MS,
+			jitter = false,
+			onRetry,
 			corporationId,
 			integratorId,
 			plataformId,
@@ -74,6 +128,9 @@ class RestClient {
 			testToken,
 			...customConfig
 		} = config || {};
+
+		// maxRetries (new field) takes precedence over retries (legacy field)
+		const effectiveRetries = maxRetries !== undefined ? maxRetries : retries;
 
 		const url = RestClient.appendQueryParamsToUrl(`${AppConfig.BASE_URL}${endpoint}`, queryParams);
 		customConfig.headers = {
@@ -99,39 +156,49 @@ class RestClient {
 		}
 
 
-		let response: Response;
-
-		const fetchFn = async () => {
-			response = await fetch(url, {
+		const fetchFn = async (): Promise<Response> => {
+			return fetch(url, {
 				...customConfig,
 				method,
 				timeout,
 			});
-
-			if (response.ok) {
-				if (response.status === NO_CONTENT) {
-					return {
-						api_response: {
-							status: response.status,
-							headers: response.headers.raw(),
-						}
-					} as T;
-				}
-
-				const data = await response.json();
-				const api_response = {
-					status: response.status,
-					headers: response.headers.raw(),
-				};
-				data.api_response = api_response;
-
-				return data as T;
-			} else {
-				throw await response.json();
-			}
 		};
 
-		return await RestClient.retryWithExponentialBackoff(fetchFn, retries);
+		const response = await RestClient.retryWithExponentialBackoff(
+			fetchFn,
+			effectiveRetries,
+			retryOn,
+			initialDelay,
+			maxDelay,
+			jitter,
+			onRetry,
+		);
+
+		if (response.status === NO_CONTENT) {
+			return {
+				api_response: {
+					status: response.status,
+					headers: response.headers.raw(),
+				}
+			} as T;
+		}
+
+		const body = await response.json().catch(() => ({})) as Record<string, unknown>;
+
+		if (!response.ok) {
+			const retryAfter = response.status === 429
+				? RestClient.parseRetryAfterMs(response)
+				: null;
+			const seconds = retryAfter !== null ? retryAfter / 1000 : null;
+			throw buildError(response.status, body, seconds);
+		}
+
+		const api_response = {
+			status: response.status,
+			headers: response.headers.raw(),
+		};
+		(body as Record<string, unknown>).api_response = api_response;
+		return body as T;
 	}
 }
 
