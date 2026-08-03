@@ -13,6 +13,7 @@ import search from './search';
 import cancel from './cancel';
 import create from './create';
 import get from './get';
+import update from './update';
 
 import type { PaymentResponse } from './commonTypes';
 import type { PaymentSearchData, PaymentSearch } from './search/types';
@@ -21,6 +22,7 @@ import type { PaymentCreateData } from './create/types';
 import type { PaymentCaptureData } from './capture/types';
 import type { PaymentCancelData } from './cancel/types';
 import type { PaymentGetData } from './get/types';
+import type { PaymentUpdateData } from './update/types';
 
 /**
  * Client that exposes every operation available on the MercadoPago Payments API.
@@ -101,5 +103,15 @@ export class Payment {
 	get({ id, requestOptions }: PaymentGetData): Promise<PaymentResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return get({ id, config: this.config } );
+	}
+
+	/**
+	 * Update an existing payment via `PUT /v1/payments/:id`.
+	 *
+	 * Accepts any subset of payment fields to modify on the existing resource.
+	 */
+	update({ id, body, requestOptions }: PaymentUpdateData): Promise<PaymentResponse> {
+		this.config.options = { ...this.config.options, ...requestOptions };
+		return update({ id, body, config: this.config });
 	}
 }
