@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 async function createCardToken(token: string) {
 	const response = await fetch('https://api.mercadopago.com/v1/card_tokens', {
 		method: 'POST',

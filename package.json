@@ -1,6 +1,6 @@
 {
 	"name": "mercadopago",
-	"version": "2.7.0",
+	"version": "3.2.1",
 	"description": "Mercadopago SDK for Node.js",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
 		"lint": "eslint 'src/**/*.{ts,tsx}' 'src/examples/**/*.{ts,tsx}' --cache",
 		"lint:fix": "eslint --fix --ext .ts src src/examples",
 		"exec": "node_modules/.bin/ts-node -r tsconfig-paths/register",
-		"prepare": "husky install"
+		"prepare": "husky"
 	},
 	"repository": {
 		"type": "git",
@@ -31,27 +31,25 @@
 		"url": "https://github.com/mercadopago/sdk-nodejs/issues"
 	},
 	"homepage": "https://github.com/mercadopago/sdk-nodejs#readme",
+	"engines": {
+		"node": ">=18"
+	},
 	"devDependencies": {
-		"@types/jest": "^29.5.3",
-		"@types/node": "^20.4.8",
-		"@types/node-fetch": "^2.6.4",
-		"@types/uuid": "^9.0.3",
-		"@typescript-eslint/eslint-plugin": "^6.3.0",
-		"@typescript-eslint/parser": "^6.3.0",
-		"eslint": "^8.46.0",
-		"husky": "^8.0.0",
-		"jest": "^29.6.2",
-		"ts-jest": "^29.1.1",
-		"ts-node": "^10.9.1",
-		"tsc-alias": "^1.8.7",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^26.1.1",
+		"@typescript-eslint/eslint-plugin": "^8.63.0",
+		"@typescript-eslint/parser": "^8.63.0",
+		"eslint": "^10.7.0",
+		"husky": "^9.1.7",
+		"jest": "^30.4.2",
+		"ts-jest": "^29.4.11",
+		"ts-node": "^10.9.2",
+		"tsc-alias": "^1.9.0",
 		"tsconfig-paths": "^4.2.0",
-		"typescript": "^5.1.6"
+		"typescript": "^5.9.3"
 	},
 	"files": [
 		"dist"
 	],
-	"dependencies": {
-		"node-fetch": "^2.7.0",
-		"uuid": "^9.0.0"
-	}
+	"dependencies": {}
 }

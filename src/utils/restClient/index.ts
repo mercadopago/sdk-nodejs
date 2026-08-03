@@ -1,23 +1,51 @@
 import { randomInt } from 'crypto';
-import fetch, { Response, RequestInit } from 'node-fetch';
 import { AppConfig } from '@utils/config';
 import { buildError, MPConnectionError } from '@utils/errors';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 
 import type { Options } from '@src/types';
 
+/** HTTP 204 — the server processed the request but returns no body. */
 const NO_CONTENT = 204;
 
+/**
+ * Merged configuration for a single REST call.
+ *
+ * Combines the global SDK {@link Options} with per-request overrides
+ * such as query parameters and retry count.
+ */
 interface RestClientConfig extends Options {
+	/** Key-value pairs appended to the URL as query-string parameters. */
 	queryParams?: Record<string, string | number>;
+	/** Number of retry attempts for HTTP 5xx errors (default: {@link AppConfig.DEFAULT_RETRIES}). */
 	retries?: number;
 }
 
+function headersToRecord(headers: Headers): Record<string, string[]> {
+	const out: Record<string, string[]> = {};
+	headers.forEach((value, key) => {
+		if (!out[key]) out[key] = [];
+		out[key].push(value);
+	});
+	return out;
+}
+
 class RestClient {
+	/** Generates a UUID v4 idempotency key for write operations. */
 	private static generateIdempotencyKey(): string {
-		return uuidv4();
+		return randomUUID();
 	}
 
+	/**
+	 * Appends query-string parameters to a URL.
+	 *
+	 * Skips `undefined` values so callers don't need to pre-filter.
+	 * Handles URLs that already contain a `?` by appending with `&`.
+	 *
+	 * @param url - Base URL (may already include a query string).
+	 * @param queryParams - Key-value pairs to append.
+	 * @returns The URL with the encoded query string.
+	 */
 	static appendQueryParamsToUrl(url: string, queryParams?: Record<string, string | number>): string {
 		if (!queryParams) return url;
 
@@ -103,6 +131,22 @@ class RestClient {
 		throw lastError;
 	}
 
+	/**
+	 * Performs an HTTP request against the MercadoPago API.
+	 *
+	 * This is the single exit point for all network I/O in the SDK.
+	 * It merges SDK defaults with caller-provided overrides, injects
+	 * required headers, and normalises the JSON response.
+	 *
+	 * - **204 No Content** → returns `{ api_response }` with no body.
+	 * - **2xx with body** → returns the parsed JSON with `api_response` appended.
+	 * - **Non-2xx** → throws a typed {@link MercadoPagoError} subtype.
+	 *
+	 * @typeParam T - Expected shape of the parsed JSON response.
+	 * @param endpoint - API path relative to the base URL (e.g. `/v1/payments`).
+	 * @param config - Merged request settings (headers, body, method, options, etc.).
+	 * @returns Parsed API response with an `api_response` envelope.
+	 */
 	static async fetch<T>(
 		endpoint: string,
 		config?: RestClientConfig & RequestInit
@@ -121,7 +165,7 @@ class RestClient {
 			onRetry,
 			corporationId,
 			integratorId,
-			plataformId,
+			platformId,
 			meliSessionId,
 			expandResponseNodes,
 			cardValidation,
@@ -141,7 +185,7 @@ class RestClient {
 			[AppConfig.Headers.USER_AGENT]: AppConfig.getUserAgent(),
 			...(corporationId ? { [AppConfig.Headers.CORPORATION_ID]: corporationId } : {}),
 			...(integratorId ? { [AppConfig.Headers.INTEGRATOR_ID]: integratorId } : {}),
-			...(plataformId ? { [AppConfig.Headers.PLATFORM_ID]: plataformId } : {}),
+			...(platformId ? { [AppConfig.Headers.PLATFORM_ID]: platformId } : {}),
 			...(meliSessionId ? { [AppConfig.Headers.MELI_SESSION_ID]: meliSessionId } : {}),
 			...(expandResponseNodes ? { [AppConfig.Headers.EXPAND_RESPONDE_NODES]: expandResponseNodes } : {}),
 			...(cardValidation ? { [AppConfig.Headers.CARD_VALIDATION]: cardValidation } : {}),
@@ -155,13 +199,18 @@ class RestClient {
 			};
 		}
 
-
 		const fetchFn = async (): Promise<Response> => {
-			return fetch(url, {
-				...customConfig,
-				method,
-				timeout,
-			});
+			const controller = new AbortController();
+			const timeoutId = setTimeout(() => controller.abort(), timeout);
+			try {
+				return await fetch(url, {
+					...customConfig,
+					method,
+					signal: controller.signal,
+				});
+			} finally {
+				clearTimeout(timeoutId);
+			}
 		};
 
 		const response = await RestClient.retryWithExponentialBackoff(
@@ -178,7 +227,7 @@ class RestClient {
 			return {
 				api_response: {
 					status: response.status,
-					headers: response.headers.raw(),
+					headers: headersToRecord(response.headers),
 				}
 			} as T;
 		}
@@ -195,7 +244,7 @@ class RestClient {
 
 		const api_response = {
 			status: response.status,
-			headers: response.headers.raw(),
+			headers: headersToRecord(response.headers),
 		};
 		(body as Record<string, unknown>).api_response = api_response;
 		return body as T;

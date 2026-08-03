@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Customer card create.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/customers/_customers/post Documentation}.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/online-payments/checkout-api/cards/save-card/post Documentation}.
  */
 import MercadoPago, { CustomerCard } from '@src/index';
 

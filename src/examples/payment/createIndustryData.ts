@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Payment with Industry Data.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/payments/_payments/post Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api-payments/create-payment/post Documentation }.
  */
 
 import MercadoPago, { Payment } from '../../index';
@@ -74,6 +74,7 @@ payment
 						quantity: 1,
 						unit_price: 120.34,
 						warranty: true,
+						event_date: '2023-01-01T00:00:00Z',
 						category_descriptor: {
 							passenger: {
 								first_name: 'Name',

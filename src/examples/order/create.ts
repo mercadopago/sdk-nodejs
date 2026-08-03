@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Create Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/orders/online-payments/create/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/create-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';

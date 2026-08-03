@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Partial Refund Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/refund/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/refund-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';

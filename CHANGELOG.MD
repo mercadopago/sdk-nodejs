@@ -1,8 +1,50 @@
 # Releases
 
+## VERSION 3.2.1 - 2026-07-22
+- Patch release: dependency updates and bug fixes.
+
+## VERSION 3.2.0 - 2026-06-30
+- Order: Checkout PRO support — create online orders and redirect buyers to the Checkout PRO payment flow via `checkout_url`.
+- Order: New request types `CreateOrderConfig`, `OnlineConfigRequest`, `PaymentMethodConfigRequest` with full support for redirect URLs (`success_url`, `failure_url`, `pending_url`), `auto_return`, `allowed_user_type`, `available_from`, tracking pixels (Google Ads, Facebook Ads), and interest-free installment ranges.
+- Order: Extended `ShipmentRequest` with `mode`, `local_pickup`, `cost`, `free_shipping`, `free_methods`, and full delivery address including `floor` and `apartment`.
+- Order: New response fields on `OrderResponse`: `checkout_url`, `client_token`, `currency`.
+- Order: Extended `PayerResponse` with `email`, `first_name`, `last_name`, `phone`, `identification`, and `address`.
+- Order: New shared types: `Track`, `TrackValues`, `RetriesConfig`, `InstallmentsConfig`, `InstallmentsInterestFreeConfig`.
+- Order: `InstallmentsInterestFreeResponse.type` now typed as `'range' | 'list' | 'none'` union.
+- CI/CD: `cd.yml` updated to publish pre-release versions (e.g. `-beta.x`) with `--tag beta` automatically.
+
+## VERSION 3.1.0 - 2026-05-27
+- AdvancedPayment: marketplace split-payment management — create, get, search, update, capture, cancel, updateReleaseDate (`POST/GET/PUT /v1/advanced_payments`).
+- DisbursementRefund: refund management for split payments — listAll, createAll, create (`GET/POST /v1/advanced_payments/{id}/refunds`).
+- Chargeback: read-only access to payment dispute records — get, search (`GET /v1/chargebacks`).
+
+## VERSION 3.0.0
+
+ - Bump runtime to minimum Node 18 and Fix dependencies vulns [node-fetch and others]
+
+## VERSION 2.13.0
+
+- Added webhook capability
+- Inline comments in codebase
+- PSE support in orders
+
+## VERSION 2.12.1
+
+Add search orders
+
+## VERSION 2.9.1
+- Fix: Corrected 'plataformId' typo to 'platformId'.
+
+## VERSION 2.9.0
+- Task: Update the local project to comply with release 2.8.0
+- Task: Update dependencies and validate builds/tests
+- Fix: Removed invalid 'aa' field in 'CreateOrderRequest' in 'order/create'
+
 ## VERSION 2.8.0
 
 - Add Network-Transaction-ID
+- Add `card_number`, `expiration_month` and `expiration_year` fields to Card Token request
+- Add `email` to create customer example
 
 ## VERSION 2.7.0
 

@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Capture Order.
  *
- * @see {@link https://mercadopago.com/developers/en/reference/order/online-payments/capture/post Documentation }.
+ * @see {@link https://mercadopago.com/developers/en/reference/online-payments/checkout-api/capture-order/post Documentation }.
  */
 
 import { Order } from '@src/clients/order';
@@ -17,7 +17,7 @@ async function createOrder(): Promise<string> {
 			body: {
 				type: 'online',
 				processing_mode: 'automatic',
-				capture_mode: 'manual',
+				capture_mode: 'automatic_async',
 				total_amount: '100.00',
 				external_reference: 'ext_ref_1234',
 				payer: {

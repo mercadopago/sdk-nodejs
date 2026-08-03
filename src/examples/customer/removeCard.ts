@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Customer card remove.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/cards/_customers_customer_id_cards_id/delete Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-api/cards/delete-card/delete Documentation }.
 */
 import MercadoPago, { Customer } from '@src/index';
 

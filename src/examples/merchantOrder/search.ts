@@ -1,7 +1,7 @@
 /**
  * Mercado Pago Customer card list.
  *
- * @see {@link https://www.mercadopago.com/developers/en/reference/merchant_orders/_merchant_orders_search/get Documentation }.
+ * @see {@link https://www.mercadopago.com/developers/en/reference/online-payments/checkout-pro/merchant_orders/search-merchant-order/get Documentation }.
 */
 import MercadoPago, { MerchantOrder } from '@src/index';
 
