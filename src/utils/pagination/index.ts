@@ -89,6 +89,24 @@ export function createAutoPagingIterable<TResult, TOptions extends Record<string
 					return;
 				}
 
+				// Pattern C: data key with string paging (Orders v2 API)
+				if (result.data !== undefined) {
+					const items = (result.data as TResult[]) ?? [];
+					buffer = items;
+					bufferIndex = 0;
+
+					if (total === null && result.paging) {
+						total = parseInt(String(result.paging.total ?? '0'), 10);
+					}
+
+					offset += items.length;
+
+					if (items.length === 0 || (total !== null && offset >= total)) {
+						done = true;
+					}
+					return;
+				}
+
 				done = true;
 			};
 
