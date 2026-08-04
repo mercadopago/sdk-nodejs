@@ -15,14 +15,20 @@
  * per-instance runtime that needs its own copy of these values.
  */
 export class AppConfig {
-	/** Default HTTP timeout in milliseconds applied when no override is provided. */
-	static readonly DEFAULT_TIMEOUT = 10000;
+	/** Default HTTP timeout in milliseconds applied when no override is provided (60 seconds). */
+	static readonly DEFAULT_TIMEOUT = 60000;
 
-	/** Default number of retry attempts for server errors (HTTP 5xx). */
-	static readonly DEFAULT_RETRIES = 2;
+	/** Default number of retry attempts for transient errors (429, 5xx). */
+	static readonly DEFAULT_RETRIES = 3;
 
 	/** Base delay in milliseconds for exponential back-off between retries. */
 	static readonly BASE_DELAY_MS = 1000;
+
+	/** Maximum delay between retries in milliseconds. */
+	static readonly DEFAULT_MAX_DELAY_MS = 30000;
+
+	/** HTTP status codes that trigger automatic retry. */
+	static readonly DEFAULT_RETRY_ON = [429, 500, 502, 503, 504];
 
 	/** Root URL for all MercadoPago REST API calls. */
 	static readonly BASE_URL = 'https://api.mercadopago.com';

@@ -1,4 +1,5 @@
 import { RestClient } from '.';
+import { MercadoPagoError } from '@utils/errors';
 import { AppConfig } from '@src/utils/config';
 
 const fetch = jest.fn();
@@ -9,7 +10,7 @@ describe('RestClient', () => {
 		jest.resetAllMocks();
 	});
 
-	test('Should set 10000 timeout as default', async () => {
+	test('Should set 60000 timeout as default (via AbortSignal)', async () => {
 		fetch.mockResolvedValue(
 			new Response(JSON.stringify({ success: true }), { status: 200, statusText: 'OK' })
 		);
@@ -219,27 +220,23 @@ describe('RestClient', () => {
 	}, 20000);
 
 	test('Should not retry for 4xx errors', async () => {
-		const errorResponse = new Response('Bad Request', {
+		const errorResponse = new Response(JSON.stringify({ message: 'Bad Request', error: 'bad_request' }), {
 			status: 400,
 			statusText: 'Bad Request',
 		});
 
 		fetch
-			.mockRejectedValueOnce(errorResponse)
-			.mockRejectedValueOnce(errorResponse)
-			.mockRejectedValueOnce(errorResponse)
-			.mockRejectedValueOnce(errorResponse)
-			.mockRejectedValueOnce(errorResponse);
+			.mockResolvedValue(errorResponse);
 
 		const endpoint = '/test-4xx-error';
-		const retries = 5;
+		const maxRetries = 3;
 		try {
-			await RestClient.fetch(endpoint, { retries });
+			await RestClient.fetch(endpoint, { maxRetries });
 		} catch (error) {
+			// 4xx not in DEFAULT_RETRY_ON → only 1 fetch call, typed error thrown
 			expect(fetch).toHaveBeenCalledTimes(1);
-			expect(error instanceof Response).toBe(true);
-			expect(error.status).toBe(400);
-			expect(error.statusText).toBe('Bad Request');
+			expect(error).toBeInstanceOf(MercadoPagoError);
+			expect((error as MercadoPagoError).status).toBe(400);
 		}
 	});
 

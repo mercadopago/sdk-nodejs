@@ -14,9 +14,10 @@ import cancel from './cancel';
 import create from './create';
 import get from './get';
 import update from './update';
+import { createAutoPagingIterable } from '@utils/pagination';
 
 import type { PaymentResponse } from './commonTypes';
-import type { PaymentSearchData, PaymentSearch } from './search/types';
+import type { PaymentSearchData, PaymentSearch, PaymentSearchResult } from './search/types';
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { PaymentCreateData } from './create/types';
 import type { PaymentCaptureData } from './capture/types';
@@ -113,5 +114,28 @@ export class Payment {
 	update({ id, body, requestOptions }: PaymentUpdateData): Promise<PaymentResponse> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return update({ id, body, config: this.config });
+	}
+
+	/**
+	 * Lazily iterates over every payment matching the search criteria.
+	 *
+	 * Pages are fetched on demand as the async iterator advances.
+	 *
+	 * @example
+	 * ```ts
+	 * for await (const payment of new Payment(config).searchAll({ options: { status: 'approved' } })) {
+	 *   console.log(payment.id);
+	 * }
+	 * ```
+	 */
+	searchAll(searchData: PaymentSearchData = {}): AsyncIterable<PaymentSearchResult> {
+		const { options, requestOptions } = searchData;
+		return createAutoPagingIterable<PaymentSearchResult, Record<string, unknown>>(
+			(opts) => {
+				this.config.options = { ...this.config.options, ...requestOptions };
+				return search({ options: { ...options, ...opts as typeof options }, config: this.config }) as Promise<PaymentSearch>;
+			},
+			options as unknown as Record<string, unknown>,
+		);
 	}
 }

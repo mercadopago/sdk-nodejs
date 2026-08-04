@@ -16,6 +16,7 @@ import remove from './remove';
 import update from './update';
 import search from './search';
 import { CustomerCard } from '@src/clients/customerCard';
+import { createAutoPagingIterable } from '@utils/pagination';
 
 import type { MercadoPagoConfig } from '@src/mercadoPagoConfig';
 import type { CustomerGetRemoveData, CustomerResponse } from './commonTypes';
@@ -132,5 +133,17 @@ export class Customer {
 	listCards({ customerId, requestOptions }: CustomerCardListData): Promise<CustomerCardResponse[]> {
 		this.config.options = { ...this.config.options, ...requestOptions };
 		return this.customerCard.list({ customerId });
+	}
+
+	/** Lazily iterates over every customer matching the search criteria. */
+	searchAll(searchData: CustomerSearchData = {}): AsyncIterable<CustomerResponse> {
+		const { options, requestOptions } = searchData;
+		return createAutoPagingIterable<CustomerResponse, Record<string, unknown>>(
+			(opts) => {
+				this.config.options = { ...this.config.options, ...requestOptions };
+				return search({ options: { ...options, ...opts as typeof options }, config: this.config }) as Promise<CustomerSearchResultsPage>;
+			},
+			options as unknown as Record<string, unknown>,
+		);
 	}
 }
