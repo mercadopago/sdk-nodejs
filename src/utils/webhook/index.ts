@@ -191,7 +191,7 @@ export class WebhookSignatureValidator {
 		}
 
 		if (toleranceSeconds !== undefined) {
-			const tsMs = Number(ts);
+			const tsMs = Number(ts) * 1000;  // ts is in seconds, convert to ms
 			const driftSeconds = Math.abs(now() - tsMs) / 1000;
 			if (driftSeconds > toleranceSeconds) {
 				throw new InvalidWebhookSignatureError(SignatureFailureReason.TimestampOutOfTolerance, xRequestId, ts);
@@ -253,6 +253,6 @@ function buildManifest(dataId: string | undefined, requestId: string | undefined
  * lengths via timing) when the strings differ in length.
  */
 function constantTimeEquals(a: string, b: string): boolean {
-	if (a.length !== b.length) return false;
+	if (Buffer.byteLength(a) !== Buffer.byteLength(b)) return false;
 	return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
 }

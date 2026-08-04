@@ -11,6 +11,9 @@ const DATA_ID_RAW = 'ORD01JQ4S4KY8HWQ6NA5PXB65B3D3';
 const DATA_ID_LOWER = 'ord01jq4s4ky8hwq6na5pxb65b3d3';
 const TS = '1742505638683';
 const TS_NUM = Number(TS);
+// ts header values are in seconds; TS_SECONDS is used for tolerance tests
+const TS_SECONDS = '1742505638';
+const TS_SECONDS_MS = Number(TS_SECONDS) * 1000;
 
 function computeHash(dataId: string | undefined, requestId: string | undefined, ts: string, secret: string): string {
 	const parts: string[] = [];
@@ -110,10 +113,13 @@ describe('WebhookSignatureValidator', () => {
 
 	describe('tolerance', () => {
 		it('case 8 — ts outside tolerance throws TimestampOutOfTolerance', () => {
-			const farFuture = () => TS_NUM + 10 * 60 * 1000;
+			// ts in header is seconds; now() must be ms. 10 minutes drift exceeds 60s tolerance.
+			const toleranceHash = computeHash(DATA_ID_LOWER, REQUEST_ID, TS_SECONDS, SECRET);
+			const toleranceHeader = buildHeader(toleranceHash, TS_SECONDS);
+			const farFuture = () => TS_SECONDS_MS + 10 * 60 * 1000;
 			try {
 				WebhookSignatureValidator.validate({
-					xSignature: validHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_LOWER, secret: SECRET,
+					xSignature: toleranceHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_LOWER, secret: SECRET,
 					toleranceSeconds: 60, now: farFuture,
 				});
 				fail('expected throw');
@@ -123,9 +129,12 @@ describe('WebhookSignatureValidator', () => {
 		});
 
 		it('ts within tolerance passes', () => {
-			const slightlyAfter = () => TS_NUM + 30 * 1000;
+			// ts in header is seconds; now() is 30s later in ms — within 60s tolerance.
+			const toleranceHash = computeHash(DATA_ID_LOWER, REQUEST_ID, TS_SECONDS, SECRET);
+			const toleranceHeader = buildHeader(toleranceHash, TS_SECONDS);
+			const slightlyAfter = () => TS_SECONDS_MS + 30 * 1000;
 			expect(() => WebhookSignatureValidator.validate({
-				xSignature: validHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_LOWER, secret: SECRET,
+				xSignature: toleranceHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_LOWER, secret: SECRET,
 				toleranceSeconds: 60, now: slightlyAfter,
 			})).not.toThrow();
 		});
@@ -191,6 +200,37 @@ describe('WebhookSignatureValidator', () => {
 			expect(() => WebhookSignatureValidator.validate({
 				xSignature: [validHeader], xRequestId: [REQUEST_ID], dataId: DATA_ID_LOWER, secret: SECRET,
 			})).not.toThrow();
+		});
+	});
+
+	describe('bug fixes', () => {
+		it('issue #458 — ts in seconds is accepted when within toleranceSeconds', () => {
+			// ts from header is in seconds; Date.now() is in ms — before the fix
+			// the drift was off by 1000x, causing valid requests to be rejected.
+			const tsSeconds = Math.floor(Date.now() / 1000);
+			const tsStr = String(tsSeconds);
+			const hash = computeHash(DATA_ID_LOWER, REQUEST_ID, tsStr, SECRET);
+			const header = buildHeader(hash, tsStr);
+			expect(() => WebhookSignatureValidator.validate({
+				xSignature: header,
+				xRequestId: REQUEST_ID,
+				dataId: DATA_ID_LOWER,
+				secret: SECRET,
+				toleranceSeconds: 3600,
+			})).not.toThrow();
+		});
+
+		it('issue #459 — multibyte v1 hash throws InvalidWebhookSignatureError, not RangeError', () => {
+			// 'é' is 2 bytes but 1 character. Before the fix, Buffer.from() would
+			// produce a 65-byte buffer for the 64-char string, causing timingSafeEqual
+			// to throw RangeError instead of returning false.
+			const multibyteSig = `ts=1704908010,v1=${'é' + 'a'.repeat(63)}`;
+			expect(() => WebhookSignatureValidator.validate({
+				xSignature: multibyteSig,
+				xRequestId: REQUEST_ID,
+				dataId: DATA_ID_LOWER,
+				secret: SECRET,
+			})).toThrow(InvalidWebhookSignatureError);
 		});
 	});
 });
