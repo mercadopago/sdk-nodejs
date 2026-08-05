@@ -347,7 +347,7 @@ export declare type StoredCredential = {
 	 * charge onwards to link this payment to the original card-network authorization.
 	 * Type: string (transaction ID).
 	 */
-	prev_transaction_ref?: string;
+	previous_transaction_reference?: string;
 }
 
 /**

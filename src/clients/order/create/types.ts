@@ -102,6 +102,8 @@ export declare type CreateOrderConfig = {
  * Online checkout configuration sent in an order creation request.
  */
 export declare type OnlineConfigRequest = {
+	/** URL notified via webhook when the payment status changes. */
+	callback_url?: string;
 	/**
 	 * ISO 8601 date-time from which the order is available for payment.
 	 * Buyers cannot pay before this time.
@@ -224,8 +226,8 @@ export declare type PayerRequest = {
  * Shipment details for physical-goods orders.
  */
 export declare type ShipmentRequest = {
-	/** Shipping mode. `"custom"`: seller-defined. `"not_specified"`: no specification. */
-	mode?: 'custom' | 'not_specified';
+	/** Shipping mode. `"me2"`: MercadoEnvíos 2. `"custom"`: seller-defined. `"not_specified"`: no specification. */
+	mode?: 'me2' | 'custom' | 'not_specified';
 	/** When `true`, the buyer may pick up the product in person (disables shipping cost). */
 	local_pickup?: boolean;
 	/** Shipping cost when `mode` is `"custom"`. Must be ≥ 0. */

@@ -50,6 +50,92 @@ describe('Create Order', () => {
 			}
 		);
 	});
+
+	test('should accept newly added typed request fields', async () => {
+		const config = new MercadoPagoConfig({ accessToken: 'access_token', options: { timeout: 5000 } });
+		const mockBody: CreateOrderRequest = {
+			type: 'online',
+			total_amount: '1000.00',
+			currency: 'BRL',
+			external_reference: 'ext_ref_1234',
+			transactions: {
+				payments: [
+					{
+						amount: '1000.00',
+						payment_method: {
+							id: 'master',
+							type: 'credit_card',
+							token: 'card_token',
+							installments: 1,
+						},
+						stored_credential: {
+							payment_initiator: 'customer',
+							reason: 'recurring',
+							store_payment_method: true,
+							first_payment: false,
+							previous_transaction_reference: 'prev_ref_123',
+						},
+					},
+				],
+			},
+			payer: {
+				email: createEmailTestUser(),
+			},
+			shipment: {
+				mode: 'me2',
+				local_pickup: false,
+				cost: '10.00',
+				free_shipping: true,
+				free_methods: [{ id: 1 }, { id: 2 }],
+				address: {
+					street_name: 'Av. Sample',
+					street_number: '123',
+					zip_code: '01310000',
+					floor: '2',
+					apartment: 'B',
+					neighborhood: 'Centro',
+					state: 'SP',
+					city: 'Sao Paulo',
+					complement: 'near park',
+				},
+			},
+			integration_data: {
+				integrator_id: 'integrator_1',
+				platform_id: 'platform_1',
+				corporation_id: 'corp_1',
+				sponsor: {
+					id: 'sponsor_1',
+				},
+			},
+			config: {
+				online: {
+					callback_url: 'https://example.com/callback',
+					transaction_security: {
+						validation: 'on_fraud_risk',
+						liability_shift: 'required',
+					},
+				},
+			},
+		};
+		const mockCreate: OrderCreateClient = {
+			body: mockBody,
+			config
+		};
+		const spyFetch = jest.spyOn(RestClient, 'fetch');
+
+		await create(mockCreate);
+
+		expect(spyFetch).toHaveBeenCalledWith('/v1/orders',
+			{
+				body: JSON.stringify(mockBody),
+				headers: {
+					Authorization: 'Bearer access_token'
+				},
+				method: 'POST',
+				timeout: 5000
+			}
+		);
+	});
 });
 
 
