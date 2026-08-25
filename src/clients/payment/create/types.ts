@@ -200,6 +200,12 @@ export declare type PointOfInteractionRequest = {
   sub_type?: string,
   /** Subscription / recurring transaction data. */
   transaction_data?: TransactionDataRequest,
+  network_data?: NetworkDataRequest,
+};
+
+export declare type NetworkDataRequest = {
+  network_transaction_id?: string,
+  transaction_link_id?: string,
 };
 
 /**
