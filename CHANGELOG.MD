@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 3.5.0 - 2026-08-25
+- feat: add COF network data support — new fields on `commonTypes.ts` and payment `create/types.ts`
+
 ## VERSION 3.4.0 - 2026-08-11
 - feat(order): add Automatic Payments example — two-step recurring flow ([#454](https://github.com/mercadopago/sdk-nodejs/pull/454))
 - feat(order): add missing typed fields to `CreateOrderRequest` and related interfaces ([#454](https://github.com/mercadopago/sdk-nodejs/pull/454))

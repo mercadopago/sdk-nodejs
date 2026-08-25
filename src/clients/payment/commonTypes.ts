@@ -471,8 +471,14 @@ export declare type PointOfInteraction = {
   application_data?: ApplicationData;
   /** QR / PIX / ticket transaction data. */
   transaction_data?: TransactionData;
+  network_data?: NetworkData;
   /** Business context (unit / sub-unit). */
   business_info?: BusinessInfo;
+};
+
+export declare type NetworkData = {
+  network_transaction_id?: string;
+  transaction_link_id?: string;
 };
 
 /**
@@ -653,4 +659,3 @@ export declare interface PaymentResponse extends ApiResponse {
   /** Expanded fields requested via the `expand` query parameter. */
   expanded?: Expanded;
 }
-
