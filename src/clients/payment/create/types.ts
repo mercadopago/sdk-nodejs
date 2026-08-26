@@ -231,6 +231,8 @@ export declare type TransactionDataRequest = {
   reference?: ReferenceRequest,
   /** Billing date for this charge (ISO 8601). */
   billing_date?: string,
+  /** Legacy card-network transaction identifier within transaction data. */
+  network_transaction_id?: string,
   /**
    * Indicates how the transaction was initiated.
    * `"customer"` – initiated by the cardholder; `"merchant"` – initiated by the merchant.

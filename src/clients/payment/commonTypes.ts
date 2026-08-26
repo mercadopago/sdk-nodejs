@@ -435,6 +435,8 @@ export declare type TransactionData = {
   bank_info?: BankInfo;
   /** URL to a printable payment ticket / voucher. */
   ticket_url?: string;
+  /** Legacy card-network transaction identifier within transaction data. */
+  network_transaction_id?: string;
   /** Whether this is the first transaction in a Credential on File agreement. */
   first_transaction?: boolean;
   /**
