@@ -200,12 +200,6 @@ export declare type PointOfInteractionRequest = {
   sub_type?: string,
   /** Subscription / recurring transaction data. */
   transaction_data?: TransactionDataRequest,
-  network_data?: NetworkDataRequest,
-};
-
-export declare type NetworkDataRequest = {
-  network_transaction_id?: string,
-  transaction_link_id?: string,
 };
 
 /**
@@ -233,6 +227,8 @@ export declare type TransactionDataRequest = {
   billing_date?: string,
   /** Legacy card-network transaction identifier within transaction data. */
   network_transaction_id?: string,
+  /** Card-network identifiers for credential-on-file transactions. */
+  network_data?: NetworkDataRequest,
   /**
    * Indicates how the transaction was initiated.
    * `"customer"` – initiated by the cardholder; `"merchant"` – initiated by the merchant.
@@ -243,6 +239,16 @@ export declare type TransactionDataRequest = {
    * `"store"` – credentials are being stored; `"stored"` – credentials were previously stored.
    */
   storage?: string,
+};
+
+/**
+ * Card-network identifiers associated with a credential-on-file transaction.
+ */
+export declare type NetworkDataRequest = {
+  /** Transaction ID assigned by the card network. */
+  transaction_id?: string,
+  /** Identifier linking related card-network transactions. */
+  transaction_link_id?: string,
 };
 
 /**
