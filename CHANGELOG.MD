@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 3.5.1 - 2026-08-26
+- fix: correct credential-on-file `network_data` nesting and field names in Payment requests and responses
+- fix: add missing credential-on-file subscription and gateway-reference response fields
+- ci: publish to npm through GitHub Actions OIDC trusted publishing
+
 ## VERSION 3.5.0 - 2026-08-25
 - feat: add COF network data support — new fields on `commonTypes.ts` and payment `create/types.ts`
 
