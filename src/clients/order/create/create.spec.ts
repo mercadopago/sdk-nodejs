@@ -136,6 +136,36 @@ describe('Create Order', () => {
 			}
 		);
 	});
+
+	test('should serialize automatic payment subscription fields', async () => {
+		const config = new MercadoPagoConfig({ accessToken: 'access_token' });
+		const mockBody: CreateOrderRequest = {
+			type: 'online',
+			total_amount: '1000.00',
+			transactions: {
+				payments: [{
+					amount: '1000.00',
+					automatic_payments: {
+						subscription: {
+							id: 'subscription-1',
+							sequence: { number: 1, total: 12 },
+							invoice: {
+								id: 'invoice-1',
+								billing_date: '2026-08-26',
+								period: { interval: 1, type: 'month' },
+							},
+						},
+					},
+				}],
+			},
+		};
+
+		await create({ body: mockBody, config });
+
+		expect(jest.spyOn(RestClient, 'fetch')).toHaveBeenCalledWith('/v1/orders', expect.objectContaining({
+			body: JSON.stringify(mockBody),
+		}));
+	});
 });
 
 
