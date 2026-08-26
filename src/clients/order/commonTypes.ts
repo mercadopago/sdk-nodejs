@@ -328,6 +328,42 @@ export declare type AutomaticPayments = {
 	schedule_date?: string;
 	/** ISO 8601 due date for the payment. */
 	due_date?: string;
+	/** Subscription and invoice metadata for this automatic payment. */
+	subscription?: AutomaticPaymentsSubscription;
+}
+
+/**
+ * Subscription metadata attached to an automatic order payment.
+ */
+export declare type AutomaticPaymentsSubscription = {
+	/** Identifier of the subscription. */
+	id?: string;
+	/** Position of this charge within the subscription. */
+	sequence?: SubscriptionSequence;
+	/** Invoice information for this subscription charge. */
+	invoice?: AutomaticPaymentsInvoice;
+}
+
+/**
+ * Invoice metadata attached to an automatic payment subscription.
+ */
+export declare type AutomaticPaymentsInvoice = {
+	/** Identifier of the subscription invoice. */
+	id?: string;
+	/** ISO 8601 billing date of the invoice. */
+	billing_date?: string;
+	/** Billing period for the invoice. */
+	period?: AutomaticPaymentsPeriod;
+}
+
+/**
+ * Billing-period information for an automatic-payment subscription invoice.
+ */
+export declare type AutomaticPaymentsPeriod = {
+	/** Number of units in the billing period. */
+	interval?: number;
+	/** Billing-period unit, for example `month`. */
+	type?: string;
 }
 
 /**

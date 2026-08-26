@@ -79,4 +79,30 @@ describe('Get Order', () => {
 		expect(result.config.payment_method.installments.interest_free.type).toBe('range');
 		expect(result.config.payment_method.installments.interest_free.values).toEqual([2, 6]);
 	});
+
+	test('should expose automatic payment subscription response fields', async () => {
+		const config = new MercadoPagoConfig({ accessToken: 'access_token' });
+		const mockOrderResponse: OrderResponse = {
+			api_response: { status: 200, headers: [] },
+			transactions: {
+				payments: [{
+					automatic_payments: {
+						subscription: {
+							id: 'subscription-1',
+							sequence: { number: 1, total: 12 },
+							invoice: { id: 'invoice-1', billing_date: '2026-08-26', period: { interval: 1, type: 'month' } },
+						},
+					},
+				}],
+			},
+		};
+		jest.spyOn(RestClient, 'fetch').mockResolvedValue(mockOrderResponse);
+
+		const result = await get({ id: 'order-1', config });
+		const subscription = result.transactions?.payments?.[0].automatic_payments?.subscription;
+
+		expect(subscription?.id).toBe('subscription-1');
+		expect(subscription?.sequence?.total).toBe(12);
+		expect(subscription?.invoice?.period?.type).toBe('month');
+	});
 });
