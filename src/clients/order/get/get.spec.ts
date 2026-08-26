@@ -83,7 +83,7 @@ describe('Get Order', () => {
 	test('should expose automatic payment subscription response fields', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token' });
 		const mockOrderResponse: OrderResponse = {
-			api_response: { status: 200, headers: [] },
+			api_response: { status: 200, headers: ['content-type', ['application/json']] },
 			transactions: {
 				payments: [{
 					automatic_payments: {
