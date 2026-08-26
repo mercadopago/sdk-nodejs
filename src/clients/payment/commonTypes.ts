@@ -437,6 +437,16 @@ export declare type TransactionData = {
   ticket_url?: string;
   /** Legacy card-network transaction identifier within transaction data. */
   network_transaction_id?: string;
+  /** Card-network identifiers associated with this transaction. */
+  network_data?: NetworkData;
+  /** Identifier of the subscription associated with this transaction. */
+  subscription_id?: string;
+  /** Position of this transaction within the subscription lifecycle. */
+  subscription_sequence?: SubscriptionSequenceResponse;
+  /** Billing period for the transaction's subscription invoice. */
+  invoice_period?: InvoicePeriodResponse;
+  /** Date on which the subscription charge was billed (ISO 8601). */
+  billing_date?: string;
   /** Whether this is the first transaction in a Credential on File agreement. */
   first_transaction?: boolean;
   /**
@@ -473,14 +483,25 @@ export declare type PointOfInteraction = {
   application_data?: ApplicationData;
   /** QR / PIX / ticket transaction data. */
   transaction_data?: TransactionData;
-  network_data?: NetworkData;
   /** Business context (unit / sub-unit). */
   business_info?: BusinessInfo;
 };
 
 export declare type NetworkData = {
-  network_transaction_id?: string;
+  transaction_id?: string;
   transaction_link_id?: string;
+};
+
+/** Position of a transaction within a subscription lifecycle. */
+export declare type SubscriptionSequenceResponse = {
+  number?: number;
+  total?: number;
+};
+
+/** Billing period covered by a subscription transaction. */
+export declare type InvoicePeriodResponse = {
+  period?: number;
+  type?: string;
 };
 
 /**
@@ -509,6 +530,8 @@ export declare type ThreeDSInfo = {
 export declare type GatewayReference = {
   /** Transaction ID assigned by the card network (Visa, Mastercard, etc.). */
   network_transaction_id?: string;
+  /** Card-network identifiers returned when the gateway reference is expanded. */
+  network_data?: NetworkData;
 };
 
 /**
