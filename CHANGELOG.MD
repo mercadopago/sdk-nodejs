@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 3.6.0 - 2026-08-27
+- feat(order): add `automatic_payments.subscription` request and response support
+
 ## VERSION 3.5.1 - 2026-08-26
 - fix: correct credential-on-file `network_data` nesting and field names in Payment requests and responses
 - fix: add missing credential-on-file subscription and gateway-reference response fields
