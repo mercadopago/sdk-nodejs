@@ -8,6 +8,7 @@
  */
 
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 
 import type { RefundResponse } from '../commonTypes';
 import type { PaymentRefundTotalClient } from './types';
@@ -19,7 +20,7 @@ import type { PaymentRefundTotalClient } from './types';
  */
 export default function total({ payment_id, config }: PaymentRefundTotalClient): Promise<RefundResponse> {
 	return RestClient.fetch<RefundResponse>(
-		`/v1/payments/${payment_id}/refunds`,
+		`/v1/payments/${encodePathParam(payment_id)}/refunds`,
 		{
 			method: 'POST',
 			headers: {

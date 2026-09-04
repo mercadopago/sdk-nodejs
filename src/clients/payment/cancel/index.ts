@@ -7,6 +7,7 @@
  * @module clients/payment/cancel
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { PaymentResponse } from '../commonTypes';
 import type { PaymentCancelClient } from './types';
 
@@ -22,7 +23,7 @@ export default function cancel({ id, config }: PaymentCancelClient): Promise<Pay
 		status: 'cancelled'
 	};
 	return RestClient.fetch<PaymentResponse>(
-		`/v1/payments/${id}`,
+		`/v1/payments/${encodePathParam(id)}`,
 		{
 			method: 'PUT',
 			headers: {

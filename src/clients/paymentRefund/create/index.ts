@@ -8,6 +8,7 @@
  */
 
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 
 import type { PaymentRefundCreateClient } from './types';
 import type { RefundResponse } from '../commonTypes';
@@ -19,7 +20,7 @@ import type { RefundResponse } from '../commonTypes';
  */
 export default function create({ payment_id, body, config }: PaymentRefundCreateClient): Promise<RefundResponse> {
 	return RestClient.fetch<RefundResponse>(
-		`/v1/payments/${payment_id}/refunds`,
+		`/v1/payments/${encodePathParam(payment_id)}/refunds`,
 		{
 			method: 'POST',
 			headers: {

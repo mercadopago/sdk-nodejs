@@ -8,6 +8,7 @@
  */
 
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 
 import type { MerchantOrderResponse } from '../commonTypes';
 import type { MerchantOrderUpdateClient } from './types';
@@ -19,7 +20,7 @@ import type { MerchantOrderUpdateClient } from './types';
  */
 export default function update({ merchantOrderId, body, config }: MerchantOrderUpdateClient): Promise<MerchantOrderResponse> {
 	return RestClient.fetch<MerchantOrderResponse>(
-		`/merchant_orders/${merchantOrderId}`,
+		`/merchant_orders/${encodePathParam(merchantOrderId)}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`

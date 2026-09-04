@@ -6,12 +6,13 @@
  * @module advancedPayment/get
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { AdvancedPaymentGetClient } from './types';
 import type { AdvancedPaymentResponse } from '../commonTypes';
 
 export default function get({ id, config }: AdvancedPaymentGetClient): Promise<AdvancedPaymentResponse> {
 	return RestClient.fetch<AdvancedPaymentResponse>(
-		`/v1/advanced_payments/${id}`,
+		`/v1/advanced_payments/${encodePathParam(id)}`,
 		{
 			method: 'GET',
 			headers: {
