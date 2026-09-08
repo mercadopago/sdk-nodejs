@@ -7,6 +7,7 @@
  * @module clients/payment/update
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { PaymentResponse } from '../commonTypes';
 import type { PaymentUpdateClient } from './types';
 
@@ -20,7 +21,7 @@ import type { PaymentUpdateClient } from './types';
  */
 export default function update({ id, body, config }: PaymentUpdateClient): Promise<PaymentResponse> {
 	return RestClient.fetch<PaymentResponse>(
-		`/v1/payments/${id}`,
+		`/v1/payments/${encodePathParam(id)}`,
 		{
 			method: 'PUT',
 			headers: {

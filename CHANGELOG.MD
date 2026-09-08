@@ -1,5 +1,9 @@
 # Releases
 
+## VERSION 3.6.1 - 2026-09-04
+- fix(security): encode path segments to prevent path traversal via ID params in `Payment`, `PaymentRefund`, `AdvancedPayment`, `DisbursementRefund`, `MerchantOrder`, and `CardToken` clients (MPPARTNERS-3567)
+- fix(ci): align CD Node.js version with `.nvmrc` — bump `.nvmrc` to v22 LTS, add 22.x/24.x coverage to the CI matrix, and point `cd.yml` at `node-version-file: .nvmrc` (closes #468)
+
 ## VERSION 3.6.0 - 2026-08-27
 - feat(order): add `automatic_payments.subscription` request and response support
 

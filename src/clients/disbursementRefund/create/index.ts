@@ -7,11 +7,12 @@
  * @module disbursementRefund/create
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { DisbursementRefundCreateClient, DisbursementRefundResponse } from './types';
 
 export default function create({ advancedPaymentId, disbursementId, body, config }: DisbursementRefundCreateClient): Promise<DisbursementRefundResponse> {
 	return RestClient.fetch<DisbursementRefundResponse>(
-		`/v1/advanced_payments/${advancedPaymentId}/disbursements/${disbursementId}/refunds`,
+		`/v1/advanced_payments/${encodePathParam(advancedPaymentId)}/disbursements/${encodePathParam(disbursementId)}/refunds`,
 		{
 			method: 'POST',
 			headers: {

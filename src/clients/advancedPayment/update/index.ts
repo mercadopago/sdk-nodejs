@@ -6,12 +6,13 @@
  * @module advancedPayment/update
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { AdvancedPaymentUpdateClient } from './types';
 import type { AdvancedPaymentResponse } from '../commonTypes';
 
 export default function update({ id, body, config }: AdvancedPaymentUpdateClient): Promise<AdvancedPaymentResponse> {
 	return RestClient.fetch<AdvancedPaymentResponse>(
-		`/v1/advanced_payments/${id}`,
+		`/v1/advanced_payments/${encodePathParam(id)}`,
 		{
 			method: 'PUT',
 			headers: {

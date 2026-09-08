@@ -7,6 +7,7 @@
  * @module clients/payment/get
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { PaymentResponse } from '../commonTypes';
 import type { PaymentGetClient } from './types';
 
@@ -19,7 +20,7 @@ import type { PaymentGetClient } from './types';
  */
 export default function get({ id, config }: PaymentGetClient): Promise<PaymentResponse>  {
 	return RestClient.fetch<PaymentResponse>(
-		`/v1/payments/${id}`,
+		`/v1/payments/${encodePathParam(id)}`,
 		{
 			headers: {
 				'Authorization': `Bearer ${config.accessToken}`,

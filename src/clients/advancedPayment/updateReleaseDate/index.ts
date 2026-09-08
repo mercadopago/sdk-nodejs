@@ -7,12 +7,13 @@
  * @module advancedPayment/updateReleaseDate
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { AdvancedPaymentUpdateReleaseDateClient } from './types';
 import type { AdvancedPaymentResponse } from '../commonTypes';
 
 export default function updateReleaseDate({ id, releaseDate, config }: AdvancedPaymentUpdateReleaseDateClient): Promise<AdvancedPaymentResponse> {
 	return RestClient.fetch<AdvancedPaymentResponse>(
-		`/v1/advanced_payments/${id}/disburses`,
+		`/v1/advanced_payments/${encodePathParam(id)}/disburses`,
 		{
 			method: 'POST',
 			headers: {

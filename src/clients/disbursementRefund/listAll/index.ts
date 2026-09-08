@@ -6,11 +6,12 @@
  * @module disbursementRefund/listAll
  */
 import { RestClient } from '@utils/restClient';
+import { encodePathParam } from '@utils/path';
 import type { DisbursementRefundListAllClient, DisbursementRefundListAllResponse } from './types';
 
 export default function listAll({ advancedPaymentId, config }: DisbursementRefundListAllClient): Promise<DisbursementRefundListAllResponse> {
 	return RestClient.fetch<DisbursementRefundListAllResponse>(
-		`/v1/advanced_payments/${advancedPaymentId}/refunds`,
+		`/v1/advanced_payments/${encodePathParam(advancedPaymentId)}/refunds`,
 		{
 			method: 'GET',
 			headers: {
