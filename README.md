@@ -4,8 +4,8 @@
   <p><strong>The official Mercado Pago SDK for Node.js applications.</strong></p>
   <p>Integrate Mercado Pago APIs into your server-side JavaScript and TypeScript applications.</p>
   <p>
-    <a href="https://github.com/mercadopago/sdk-nodejs/actions/workflows/ci.yml"><img src="assets/badges/ci.svg" alt="CI workflow" /></a>
-    <a href="#installation"><img src="assets/badges/package.svg" alt="npm package" /></a>
+    <a href="https://github.com/mercadopago/sdk-nodejs/actions/workflows/ci.yml"><img src="https://github.com/mercadopago/sdk-nodejs/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI status" /></a>
+    <a href="#installation"><img src="assets/badges/package.svg" alt="npm package version" /></a>
     <img src="assets/badges/runtime.svg" alt="Node.js 18 or later" />
     <a href="LICENSE"><img src="assets/badges/license.svg" alt="MIT license" /></a>
   </p>
