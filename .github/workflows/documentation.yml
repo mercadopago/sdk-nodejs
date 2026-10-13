@@ -1,0 +1,103 @@
+name: Documentation quality
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - 'llms.txt'
+      - 'assets/**'
+      - '.github/workflows/documentation.yml'
+  push:
+    paths:
+      - '**/*.md'
+      - 'llms.txt'
+      - 'assets/**'
+      - '.github/workflows/documentation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  local-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4
+      - name: Validate local documentation links
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+
+          while IFS= read -r file; do
+            case "$file" in
+              README.md|SECURITY.md|llms.txt|docs/*.md|guides/*.md|docs/guides/*.md|examples/README.md|src/examples/README.md|src/main/java/com/mercadopago/example/README.md)
+                ;;
+              *)
+                continue
+                ;;
+            esac
+
+            while IFS= read -r raw; do
+              target="${raw#](}"
+              target="${target%%#*}"
+
+              case "$target" in
+                ""|http://*|https://*|mailto:*|\#*)
+                  continue
+                  ;;
+              esac
+
+              if [[ ! -e "$(dirname "$file")/$target" ]]; then
+                echo "::error file=$file::Broken local link: $target"
+                failed=1
+              fi
+            done < <(grep -oE '\]\([^)[:space:]]+' "$file" || true)
+          done < <(git ls-files '*.md' 'llms.txt')
+
+          exit "$failed"
+
+      - name: Require repository-local documentation images
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+
+          while IFS= read -r file; do
+            case "$file" in
+              README.md|SECURITY.md|llms.txt|docs/*.md|guides/*.md|docs/guides/*.md|examples/README.md|src/examples/README.md|src/main/java/com/mercadopago/example/README.md)
+                ;;
+              *)
+                continue
+                ;;
+            esac
+
+            if grep -nE "(<img[^>]+src=['\"]https?://|!\[[^]]*\]\(https?://)" "$file"; then
+              echo "::error file=$file::Documentation images must be stored in this repository"
+              failed=1
+            fi
+          done < <(git ls-files '*.md' 'llms.txt')
+
+          exit "$failed"
+
+      - name: Allow only Mercado Pago and repository links
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+
+          while IFS= read -r file; do
+            case "$file" in
+              docs/apidocs/*|docs/sdk/*) continue ;;
+              README.md|SECURITY.md|llms.txt|docs/*.md|guides/*.md|docs/guides/*.md|examples/README.md|src/examples/README.md|src/main/java/com/mercadopago/example/README.md) ;;
+              *) continue ;;
+            esac
+
+            while IFS= read -r url; do
+              case "$url" in
+                https://github.com/mercadopago/*|https://mercadopago.github.io/*|https://mercadopago.com|https://mercadopago.com/*|https://*.mercadopago.com|https://*.mercadopago.com/*|https://mercadopago.com.ar|https://mercadopago.com.ar/*|https://*.mercadopago.com.ar|https://*.mercadopago.com.ar/*|https://mercadopago.com.br|https://mercadopago.com.br/*|https://*.mercadopago.com.br|https://*.mercadopago.com.br/*) ;;
+                *) echo "::error file=$file::External link is not approved: $url"; failed=1 ;;
+              esac
+            done < <(grep -oE 'https?://[^)"[:space:]<>]+' "$file" || true)
+          done < <(git ls-files '*.md' 'llms.txt')
+
+          exit "$failed"
