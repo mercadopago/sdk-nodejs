@@ -1,11 +1,23 @@
-![SDK Node Mercado Pago](https://github.com/lucmkz/sdk-nodejs/assets/31546923/84211022-6fc5-4db1-8772-117eca84f2d9)
+<div align="center">
+  <img src="assets/mercado-pago.svg" alt="Mercado Pago" width="120" />
+  <h1>Mercado Pago SDK for Node.js</h1>
+  <p><strong>The official Mercado Pago SDK for Node.js applications.</strong></p>
+  <p>Integrate Mercado Pago APIs into your server-side JavaScript and TypeScript applications.</p>
+  <p>
+    <a href="https://github.com/mercadopago/sdk-nodejs/actions/workflows/ci.yml"><img src="assets/badges/ci.svg" alt="CI workflow" /></a>
+    <a href="#installation"><img src="assets/badges/package.svg" alt="npm package" /></a>
+    <img src="assets/badges/runtime.svg" alt="Node.js 18 or later" />
+    <a href="LICENSE"><img src="assets/badges/license.svg" alt="MIT license" /></a>
+  </p>
+  <p>
+    <a href="#installation">Installation</a> ·
+    <a href="#getting-started">Getting started</a> ·
+    <a href="#documentation">Documentation</a> ·
+    <a href="#contributing">Contributing</a>
+  </p>
+</div>
 
-# Mercado Pago SDK for NodeJS
-
-[![NPM Version](https://img.shields.io/npm/v/mercadopago.svg)](http://npmjs.com/package/mercadopago)
-[![Downloads](https://img.shields.io/npm/dt/mercadopago.svg)](http://npmjs.com/package/mercadopago)
-
-This library provides developers with a simple set of bindings to help you integrate Mercado Pago APIs to a website and start receiving payments.
+---
 
 ## 💡 Requirements
 
@@ -91,7 +103,7 @@ Initialize the client object, passing the following:
 - `accessToken`: Application's private key.
 - `options`: These are optional fields,
   - `timeout`: Are the timeout of requests
-  - `idempotencyKey`: [Idempotency](https://en.wikipedia.org/wiki/Idempotence) Is for retrying requests without accidentally performing the same operation twice
+  - `idempotencyKey`: use one stable key when retrying the same operation. See [retries and idempotency](docs/request-options.md).
 
 For example:
 
@@ -150,9 +162,9 @@ order.create({ body }).then(console.log).catch(console.error);
 
 ## 📚 Documentation
 
-Visit our Dev Site for further information regarding:
-
-- Order API: [Spanish](https://mercadopago.com/developers/es/docs/order/landing) / [Portuguese](https://mercadopago.com/developers/pt/docs/order/landing) / [English](https://mercadopago.com/developers/en/docs/order/landing)
+- [SDK guides](docs/README.md): request options, errors, webhooks, and production guidance.
+- [Examples](src/examples/README.md): integration flows supported by this SDK.
+- [API reference](https://www.mercadopago.com/developers/en/reference): request fields and response schemas.
 
 ## 🤝 Contributing
 

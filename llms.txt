@@ -1,0 +1,30 @@
+# Mercado Pago SDK for Node.js
+
+Official server-side Node.js SDK for Mercado Pago APIs.
+
+## Start here
+- [README](README.md)
+- [Documentation index](docs/README.md)
+- [Examples](src/examples/README.md)
+
+## Recommended integration path
+- [Orders-first examples](src/examples/README.md#orders-first)
+- [Request options and retries](docs/request-options.md)
+- [Error handling](docs/error-handling.md)
+
+## Operational guides
+- [Request options and retries](docs/request-options.md)
+- [Error handling](docs/error-handling.md)
+- [Webhook validation](docs/webhooks.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
+## Supported examples
+- [Orders](src/examples/order/)
+- [Checkout Pro preferences](src/examples/preference/)
+- [OAuth](src/examples/oAuth/)
+- [Subscriptions](src/examples/preApproval/)
+
+## Canonical sources
+- [Installation](README.md#installation)
+- [Mercado Pago API reference](https://www.mercadopago.com/developers/en/reference)
+- [Source repository](https://github.com/mercadopago/sdk-nodejs)
