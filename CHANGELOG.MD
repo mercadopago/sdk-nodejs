@@ -1,5 +1,8 @@
 # Releases
 
+## VERSION 3.6.2 - 2026-11-10
+- fix: preserve API error details when the response has no message and handle bodies that cannot be serialized
+
 ## VERSION 3.6.1 - 2026-09-04
 - fix(security): encode path segments to prevent path traversal via ID params in `Payment`, `PaymentRefund`, `AdvancedPayment`, `DisbursementRefund`, `MerchantOrder`, and `CardToken` clients (MPPARTNERS-3567)
 - fix(ci): align CD Node.js version with `.nvmrc` — bump `.nvmrc` to v22 LTS, add 22.x/24.x coverage to the CI matrix, and point `cd.yml` at `node-version-file: .nvmrc` (closes #468)

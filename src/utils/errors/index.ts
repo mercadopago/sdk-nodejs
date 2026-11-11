@@ -30,22 +30,27 @@ export class MercadoPagoError extends Error {
 	readonly error: string;
 	readonly causes: unknown[];
 
-	constructor(body: ApiErrorBody) {
-		const message = typeof body.message === 'string' && body.message.trim().length > 0
-			? body.message
+	constructor(body: ApiErrorBody | null | undefined) {
+		const safeBody = body ?? {};
+		const message = typeof safeBody.message === 'string' && safeBody.message.trim().length > 0
+			? safeBody.message
 			: undefined;
-		const serializedBody = JSON.stringify(body);
-		const errorValue = message
-			? message
-			: serializedBody && serializedBody !== '{}'
-				? serializedBody
-				: `HTTP ${body.status ?? 0}`;
+		let errorValue = message;
+		if (!errorValue) {
+			try {
+				const serializedBody = JSON.stringify(safeBody);
+				if (serializedBody && serializedBody !== '{}') errorValue = serializedBody;
+			} catch {
+				// Preserve the API error when the body cannot be serialized.
+			}
+		}
+		errorValue = errorValue || `HTTP ${safeBody.status ?? 0}`;
 
 		super(errorValue);
 		this.name = this.constructor.name;
-		this.status = body.status ?? 0;
+		this.status = safeBody.status ?? 0;
 		this.error = errorValue;
-		this.causes = body.cause ?? [];
+		this.causes = safeBody.cause ?? [];
 		// Maintain prototype chain in compiled JavaScript
 		Object.setPrototypeOf(this, new.target.prototype);
 	}
