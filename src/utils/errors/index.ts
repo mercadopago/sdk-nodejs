@@ -41,7 +41,8 @@ export class MercadoPagoError extends Error {
 				const serializedBody = JSON.stringify(safeBody);
 				if (serializedBody && serializedBody !== '{}') errorValue = serializedBody;
 			} catch {
-				// Preserve the API error when the body cannot be serialized.
+				// Fall back to the HTTP status when the body cannot be serialized.
+				errorValue = `HTTP ${safeBody.status ?? 0}`;
 			}
 		}
 		errorValue = errorValue || `HTTP ${safeBody.status ?? 0}`;
