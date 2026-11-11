@@ -26,16 +26,32 @@ interface ApiErrorBody {
  */
 export class MercadoPagoError extends Error {
 	readonly status: number;
+	/** API message, or the serialized response body when no message is available. */
 	readonly error: string;
 	readonly causes: unknown[];
 
-	constructor(body: ApiErrorBody) {
-		const msg = body.message || body.error || 'MercadoPago API error';
-		super(msg);
+	constructor(body: ApiErrorBody | null | undefined) {
+		const safeBody = body ?? {};
+		const message = typeof safeBody.message === 'string' && safeBody.message.trim().length > 0
+			? safeBody.message
+			: undefined;
+		let errorValue = message;
+		if (!errorValue) {
+			try {
+				const serializedBody = JSON.stringify(safeBody);
+				if (serializedBody && serializedBody !== '{}') errorValue = serializedBody;
+			} catch {
+				// Fall back to the HTTP status when the body cannot be serialized.
+				errorValue = `HTTP ${safeBody.status ?? 0}`;
+			}
+		}
+		errorValue = errorValue || `HTTP ${safeBody.status ?? 0}`;
+
+		super(errorValue);
 		this.name = this.constructor.name;
-		this.status = body.status ?? 0;
-		this.error = body.error ?? '';
-		this.causes = body.cause ?? [];
+		this.status = safeBody.status ?? 0;
+		this.error = errorValue;
+		this.causes = safeBody.cause ?? [];
 		// Maintain prototype chain in compiled JavaScript
 		Object.setPrototypeOf(this, new.target.prototype);
 	}
