@@ -53,6 +53,8 @@ export { MerchantOrder } from './clients/merchantOrder';
 export { User } from './clients/user';
 /** Order client — creates, processes, captures, cancels, and refunds orders (v2 API). */
 export { Order } from './clients/order';
+/** Store client — creates, retrieves, searches, and updates physical stores linked to a user account. */
+export { Store } from './clients/store';
 
 export {
 	MercadoPagoError,
