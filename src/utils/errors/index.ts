@@ -15,6 +15,7 @@ interface ApiErrorBody {
     message?: string;
     error?: string;
     cause?: unknown[];
+    errors?: Array<{ message?: string; [key: string]: unknown }>;
     [key: string]: unknown;
 }
 
@@ -34,7 +35,7 @@ export class MercadoPagoError extends Error {
 		const safeBody = body ?? {};
 		const message = typeof safeBody.message === 'string' && safeBody.message.trim().length > 0
 			? safeBody.message
-			: undefined;
+			: typeof safeBody.errors?.[0]?.message === 'string' ? safeBody.errors[0].message : undefined;
 		let errorValue = message;
 		if (!errorValue) {
 			try {
@@ -51,7 +52,7 @@ export class MercadoPagoError extends Error {
 		this.name = this.constructor.name;
 		this.status = safeBody.status ?? 0;
 		this.error = errorValue;
-		this.causes = safeBody.cause ?? [];
+		this.causes = safeBody.cause ?? safeBody.errors ?? [];
 		// Maintain prototype chain in compiled JavaScript
 		Object.setPrototypeOf(this, new.target.prototype);
 	}

@@ -36,8 +36,8 @@ export class Invoice {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/invoice/get.ts Usage Example }.
 	 */
 	get({ id, requestOptions }: InvoiceGetData): Promise<InvoiceResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return get({ id, config });
 	}
 
 	/**
@@ -49,7 +49,7 @@ export class Invoice {
 	 */
 	search(ivoicesSearchOptions: InvoiceSearchData = {}): Promise<InvoiceSearchResponse> {
 		const { options, requestOptions } = ivoicesSearchOptions;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ options, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return search({ options, config });
 	}
 }

@@ -52,8 +52,8 @@ export class Payment {
 	 */
 	search(paymentSearchOptions: PaymentSearchData = {}): Promise<PaymentSearch> {
 		const { options, requestOptions } = paymentSearchOptions;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ options, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return search({ options, config });
 	}
 
 	/**
@@ -64,8 +64,8 @@ export class Payment {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payment/cancel.ts Usage Example}
 	 */
 	cancel({ id, requestOptions }: PaymentCancelData): Promise<PaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return cancel({ id, config: this.config } );
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return cancel({ id, config } );
 	}
 
 	/**
@@ -77,8 +77,8 @@ export class Payment {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payment/capture.ts Usage Example}
 	 */
 	capture({ id, transaction_amount, requestOptions }: PaymentCaptureData): Promise<PaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return capture({ id, transaction_amount, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return capture({ id, transaction_amount, config });
 	}
 
 	/**
@@ -90,8 +90,8 @@ export class Payment {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payment/create.ts Usage Example}
 	 */
 	create({ body, requestOptions }: PaymentCreateData): Promise<PaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return create({ body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return create({ body, config });
 	}
 
 	/**
@@ -102,8 +102,8 @@ export class Payment {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/payment/get.ts Usage Example}
 	 */
 	get({ id, requestOptions }: PaymentGetData): Promise<PaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ id, config: this.config } );
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return get({ id, config } );
 	}
 
 	/**
@@ -112,8 +112,8 @@ export class Payment {
 	 * Accepts any subset of payment fields to modify on the existing resource.
 	 */
 	update({ id, body, requestOptions }: PaymentUpdateData): Promise<PaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return update({ id, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return update({ id, body, config });
 	}
 
 	/**
@@ -132,8 +132,8 @@ export class Payment {
 		const { options, requestOptions } = searchData;
 		return createAutoPagingIterable<PaymentSearchResult, Record<string, unknown>>(
 			(opts) => {
-				this.config.options = { ...this.config.options, ...requestOptions };
-				return search({ options: { ...options, ...opts as typeof options }, config: this.config }) as Promise<PaymentSearch>;
+				const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+				return search({ options: { ...options, ...opts as typeof options }, config }) as Promise<PaymentSearch>;
 			},
 			options as unknown as Record<string, unknown>,
 		);

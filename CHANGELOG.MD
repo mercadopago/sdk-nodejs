@@ -1,5 +1,10 @@
 # Releases
 
+## VERSION 3.6.3 - 2026-11-25
+- fix: isolate per-request options and preserve structured Orders errors
+- fix: support webhook timestamps in seconds and milliseconds and correct response header types
+- ci: harden workflows and Dependabot configuration
+
 ## VERSION 3.6.2 - 2026-11-10
 - fix: preserve API error details when the response has no message and handle bodies that cannot be serialized
 

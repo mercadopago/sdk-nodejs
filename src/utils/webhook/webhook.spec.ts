@@ -33,6 +33,10 @@ const fixedNow = () => TS_NUM;
 
 describe('WebhookSignatureValidator', () => {
 	describe('happy path', () => {
+		it('accepts millisecond timestamps within tolerance', () => {
+			WebhookSignatureValidator.validate({ xSignature: validHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_LOWER, secret: SECRET, toleranceSeconds: 300, now: () => Number(TS) + 1000 });
+		});
+
 		it('case 1 — lowercase dataId passes', () => {
 			expect(() => WebhookSignatureValidator.validate({
 				xSignature: validHeader, xRequestId: REQUEST_ID, dataId: DATA_ID_LOWER, secret: SECRET, now: fixedNow,

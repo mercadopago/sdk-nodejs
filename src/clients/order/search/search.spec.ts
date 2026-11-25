@@ -19,9 +19,7 @@ describe('Search Order', () => {
 				{
 					api_response: {
 						status: 200,
-						headers: [
-							'Content-Type', ['application/json']
-						]
+						headers: { 'Content-Type': ['application/json'] }
 					},
 					id: 'ORDTST01KS5AJ6HTK2HRQ3XJ3C2JCKP9',
 					status: 'created',
@@ -58,9 +56,7 @@ describe('Search Order', () => {
 				{
 					api_response: {
 						status: 200,
-						headers: [
-							'Content-Type', ['application/json']
-						]
+						headers: { 'Content-Type': ['application/json'] }
 					},
 					id: 'ORDTST01KS5AJ6HTK2HRQ3XJ3C2JCKP9',
 					type: 'online',

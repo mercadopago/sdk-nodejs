@@ -41,16 +41,16 @@ export class AdvancedPayment {
 	 * Create a new advanced (split) payment distributed among multiple sellers.
 	 */
 	create({ body, requestOptions }: AdvancedPaymentCreateData): Promise<AdvancedPaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return create({ body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return create({ body, config });
 	}
 
 	/**
 	 * Retrieve an advanced payment by its ID.
 	 */
 	get({ id, requestOptions }: AdvancedPaymentGetData): Promise<AdvancedPaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return get({ id, config });
 	}
 
 	/**
@@ -58,39 +58,39 @@ export class AdvancedPayment {
 	 */
 	search(advancedPaymentSearchOptions: AdvancedPaymentSearchData = {}): Promise<AdvancedPaymentSearchResponse> {
 		const { options, requestOptions } = advancedPaymentSearchOptions;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ options, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return search({ options, config });
 	}
 
 	/**
 	 * Update an existing advanced payment with arbitrary fields.
 	 */
 	update({ id, body, requestOptions }: AdvancedPaymentUpdateData): Promise<AdvancedPaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return update({ id, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return update({ id, body, config });
 	}
 
 	/**
 	 * Cancel a pending advanced payment by setting its status to `cancelled`.
 	 */
 	cancel({ id, requestOptions }: AdvancedPaymentCancelData): Promise<AdvancedPaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return cancel({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return cancel({ id, config });
 	}
 
 	/**
 	 * Capture a previously authorised advanced payment.
 	 */
 	capture({ id, requestOptions }: AdvancedPaymentCaptureData): Promise<AdvancedPaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return capture({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return capture({ id, config });
 	}
 
 	/**
 	 * Change the money release date for all disbursements of an advanced payment.
 	 */
 	updateReleaseDate({ id, releaseDate, requestOptions }: AdvancedPaymentUpdateReleaseDateData): Promise<AdvancedPaymentResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return updateReleaseDate({ id, releaseDate, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return updateReleaseDate({ id, releaseDate, config });
 	}
 }

@@ -12,9 +12,7 @@ describe('Get Order', () => {
 		const mockOrderResponse: OrderResponse = {
 			api_response: {
 				status: 200,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			id: orderId,
 			status: '200',
@@ -41,9 +39,7 @@ describe('Get Order', () => {
 		const mockOrderResponse: OrderResponse = {
 			api_response: {
 				status: 200,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			id: orderId,
 			type: 'online',
@@ -83,7 +79,7 @@ describe('Get Order', () => {
 	test('should expose automatic payment subscription response fields', async () => {
 		const config = new MercadoPagoConfig({ accessToken: 'access_token' });
 		const mockOrderResponse: OrderResponse = {
-			api_response: { status: 200, headers: ['content-type', ['application/json']] },
+			api_response: { status: 200, headers: { 'content-type': ['application/json'] } },
 			transactions: {
 				payments: [{
 					automatic_payments: {

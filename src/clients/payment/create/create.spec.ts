@@ -64,7 +64,7 @@ describe('Testing create payments', () => {
 			id: 123,
 			api_response: {
 				status: 200,
-				headers: ['content-type', ['application/json']],
+				headers: { 'content-type': ['application/json'] },
 			},
 			point_of_interaction: {
 				transaction_data: {

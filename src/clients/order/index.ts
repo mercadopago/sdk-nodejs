@@ -60,8 +60,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/create.ts Usage Example}
 	 */
 	create({ body, requestOptions }: OrderCreateData): Promise<OrderResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return create({ body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return create({ body, config });
 	}
 
 	/**
@@ -72,8 +72,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/get.ts Usage Example}
 	 */
 	get({ id, requestOptions }: OrderGetData): Promise<OrderResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return get({ id, config });
 	}
 
 	/**
@@ -85,8 +85,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/process.ts Usage Example}
 	 */
 	process({ id, requestOptions }: OrderProcessData): Promise<OrderResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return process({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return process({ id, config });
 	}
 
 	/**
@@ -98,8 +98,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/capture.ts Usage Example}
 	 */
 	capture({ id, requestOptions }: OrderCaptureData): Promise<OrderResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return capture({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return capture({ id, config });
 	}
 
 	/**
@@ -110,8 +110,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/cancel.ts Usage Example}
 	 */
 	cancel({ id, requestOptions }: OrderCancelData): Promise<OrderResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return cancel({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return cancel({ id, config });
 	}
 
 	/**
@@ -125,8 +125,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/refundPartial.ts Partial Refund Example}
 	 */
 	refund({ id, body, requestOptions }: OrderRefundData): Promise<OrderResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return refund({ id, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return refund({ id, body, config });
 	}
 
 	/**
@@ -140,8 +140,8 @@ export class Order {
 	search(searchData?: OrderSearchData): Promise<OrderSearchResponse> {
 		const options = searchData?.options;
 		const requestOptions = searchData?.requestOptions;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ options, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return search({ options, config });
 	}
 
 	/**
@@ -152,8 +152,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/create.ts Usage Example}
 	 */
 	createTransaction({ id, body, requestOptions }: OrderCreateTransactionData): Promise<TransactionsApiResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return createTransaction({ id, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return createTransaction({ id, body, config });
 	}
 
 	/**
@@ -164,8 +164,8 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/update.ts Usage Example}
 	 */
 	updateTransaction({ id, transactionId, body, requestOptions }: OrderUpdateTransactionData): Promise<PaymentApiResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return updateTransaction({ id, transactionId, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return updateTransaction({ id, transactionId, body, config });
 	}
 
 	/**
@@ -176,7 +176,7 @@ export class Order {
 	 * @see {@link https://github.com/mercadopago/sdk-nodejs/blob/master/src/examples/order/transaction/delete.ts Usage Example}
 	 */
 	deleteTransaction({ id, transactionId, requestOptions }: OrderDeleteTransactionData): Promise<ApiResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return deleteTransaction({ id, transactionId, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return deleteTransaction({ id, transactionId, config });
 	}
 }

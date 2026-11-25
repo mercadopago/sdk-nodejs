@@ -12,9 +12,7 @@ describe('Process Order', () => {
 		const mockOrderResponse: OrderResponse = {
 			api_response: {
 				status: 200,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			id: orderId,
 			type: 'online',

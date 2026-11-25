@@ -93,5 +93,5 @@ export declare type ResponseFields = {
 	/** HTTP status code (e.g. 200, 201, 204). */
 	status: number;
 	/** Response headers as key → values pairs. */
-	headers: [string, string[]];
+	headers: Record<string, string[]>;
 };
