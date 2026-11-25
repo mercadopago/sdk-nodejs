@@ -191,7 +191,7 @@ export class WebhookSignatureValidator {
 		}
 
 		if (toleranceSeconds !== undefined) {
-			const tsMs = Number(ts) * 1000;  // ts is in seconds, convert to ms
+			const tsMs = ts.length >= 13 ? Number(ts) : Number(ts) * 1000;
 			const driftSeconds = Math.abs(now() - tsMs) / 1000;
 			if (driftSeconds > toleranceSeconds) {
 				throw new InvalidWebhookSignatureError(SignatureFailureReason.TimestampOutOfTolerance, xRequestId, ts);

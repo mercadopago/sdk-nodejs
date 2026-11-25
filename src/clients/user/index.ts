@@ -39,7 +39,7 @@ export class User {
 	 */
 	get(userGetData: UserGetData = {}): Promise<UserResponse> {
 		const { requestOptions } =  userGetData;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return get({ config });
 	}
 }

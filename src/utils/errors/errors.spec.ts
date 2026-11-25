@@ -23,6 +23,13 @@ import { createAutoPagingIterable } from '@utils/pagination';
 // ─── Exception hierarchy ──────────────────────────────────────────────────────
 
 describe('MercadoPagoError hierarchy', () => {
+	it('preserves structured Orders errors', () => {
+		const errors = [{ code: 'order_already_canceled', message: 'Already canceled', details: ['detail'] }];
+		const error = buildError(409, { errors });
+		expect(error.message).toBe('Already canceled');
+		expect(error.causes).toEqual(errors);
+	});
+
 	it('all subtypes extend MercadoPagoError', () => {
 		const subtypes = [
 			MPBadRequestError, MPAuthenticationError, MPPaymentError,

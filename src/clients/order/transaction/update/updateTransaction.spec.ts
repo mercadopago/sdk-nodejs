@@ -26,9 +26,7 @@ describe('Update Order transaction', () => {
 		const mockResponse: PaymentApiResponse = {
 			api_response: {
 				status: 200,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			payment_method: {
 				installments: 3,

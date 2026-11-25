@@ -102,7 +102,7 @@ export declare type CreateOrderConfig = {
  * Online checkout configuration sent in an order creation request.
  */
 export declare type OnlineConfigRequest = {
-	/** URL notified via webhook when the payment status changes. */
+	/** Callback URL accepted by the API. Webhook delivery to this URL is not guaranteed; configure notifications in your integration settings. */
 	callback_url?: string;
 	/**
 	 * ISO 8601 date-time from which the order is available for payment.

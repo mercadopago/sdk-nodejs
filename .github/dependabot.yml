@@ -7,6 +7,8 @@ updates:
   # ── Node.js / npm ────────────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/"
+    cooldown:
+      default-days: 7
     schedule:
       interval: "weekly"
       day: "monday"
@@ -39,6 +41,8 @@ updates:
   # ── GitHub Actions (CI) ──────────────────────────────────────────────
   - package-ecosystem: "github-actions"
     directory: "/"
+    cooldown:
+      default-days: 7
     schedule:
       interval: "weekly"
       day: "monday"

@@ -13,9 +13,7 @@ describe('Refund Total Order', () => {
 		const mockOrderResponse: OrderResponse = {
 			api_response: {
 				status: 201,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			id: orderId,
 			status: 'refunded',
@@ -61,9 +59,7 @@ describe('Refund Total Order', () => {
 		const mockOrderResponse: OrderResponse = {
 			api_response: {
 				status: 201,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			id: orderId,
 			status: 'processed',

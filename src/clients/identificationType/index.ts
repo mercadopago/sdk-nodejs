@@ -37,7 +37,7 @@ export class IdentificationType {
 	 */
 	list(identificationTypeListOptions: IdentificationTypeListData = {} as IdentificationTypeListData): Promise<IdentificationTypeResponse[]> {
 		const { requestOptions } =  identificationTypeListOptions;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return list({ config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return list({ config });
 	}
 }

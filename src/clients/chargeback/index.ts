@@ -26,8 +26,8 @@ export class Chargeback {
 	 * Retrieve a single chargeback by its ID.
 	 */
 	get({ id, requestOptions }: ChargebackGetData): Promise<ChargebackResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return get({ id, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return get({ id, config });
 	}
 
 	/**
@@ -35,7 +35,7 @@ export class Chargeback {
 	 */
 	search(chargebackSearchOptions: ChargebackSearchData = {}): Promise<ChargebackSearchResponse> {
 		const { options, requestOptions } = chargebackSearchOptions;
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return search({ options, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return search({ options, config });
 	}
 }

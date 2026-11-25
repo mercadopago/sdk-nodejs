@@ -28,23 +28,23 @@ export class DisbursementRefund {
 	 * List all refunds for an advanced payment.
 	 */
 	listAll({ advancedPaymentId, requestOptions }: DisbursementRefundListAllData): Promise<DisbursementRefundListAllResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return listAll({ advancedPaymentId, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return listAll({ advancedPaymentId, config });
 	}
 
 	/**
 	 * Refund all disbursements of an advanced payment at once.
 	 */
 	createAll({ advancedPaymentId, body, requestOptions }: DisbursementRefundCreateAllData): Promise<DisbursementRefundResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return createAll({ advancedPaymentId, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return createAll({ advancedPaymentId, body, config });
 	}
 
 	/**
 	 * Refund a specific disbursement by amount.
 	 */
 	create({ advancedPaymentId, disbursementId, body, requestOptions }: DisbursementRefundCreateData): Promise<DisbursementRefundResponse> {
-		this.config.options = { ...this.config.options, ...requestOptions };
-		return create({ advancedPaymentId, disbursementId, body, config: this.config });
+		const config = { ...this.config, options: { ...this.config.options, ...requestOptions } };
+		return create({ advancedPaymentId, disbursementId, body, config });
 	}
 }

@@ -32,9 +32,7 @@ describe('Create Order transaction', () => {
 		const mockResponse: TransactionsApiResponse = {
 			api_response: {
 				status: 201,
-				headers: [
-					'Content-Type', ['application/json']
-				]
+				headers: { 'Content-Type': ['application/json'] }
 			},
 			payments: [
 				{
